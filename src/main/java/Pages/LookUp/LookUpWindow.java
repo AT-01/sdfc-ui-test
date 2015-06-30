@@ -2,13 +2,16 @@ package Pages.LookUp;
 
 import Framework.BrowserManager;
 import Framework.CommonActions;
+import Pages.Accounts.NewAccountForm;
 import Pages.Campaigns.NewCampaignForm;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
@@ -95,6 +98,13 @@ public class LookUpWindow {
     {
         Driver.switchTo().frame(SearchResultFrame);
         return this;
+    }
+
+    public NewAccountForm clickAccountResult(String text)
+    {
+        CommonActions.click(RowsContaine.findElement(By.xpath("//a[contains(.,'" + text + "')]")));
+        Driver.switchTo().defaultContent();
+        return new NewAccountForm(Driver);
     }
 
 

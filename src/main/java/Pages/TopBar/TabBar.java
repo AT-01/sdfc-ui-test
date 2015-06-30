@@ -2,6 +2,7 @@ package Pages.TopBar;
 
 import Framework.BrowserManager;
 import Framework.CommonActions;
+import Pages.Accounts.AccountsHome;
 import Pages.Campaigns.CampaignsHome;
 import Pages.Contacts.ContactsHome;
 import Pages.Leads.LeadHome;
@@ -40,6 +41,9 @@ public class TabBar {
     @FindBy(xpath = "//a[@title='Leads Tab']")
     @CacheLookup
     WebElement LeadTab;
+
+    @FindBy(xpath = "//*[@id='Account_Tab']/*[contains(.,'Accounts')]")
+    WebElement accountsTab;
 
     //Contacts Locator
 //    @FindBy(xpath = "//a[@href='/003/o']")
@@ -81,5 +85,11 @@ public class TabBar {
 	    public LeadHome clickLead() {
         CommonActions.click(LeadTab);
         return new LeadHome(Driver);
+    }
+
+    public AccountsHome clickAccountsTab() {
+        CommonActions.click(accountsTab);
+
+        return new AccountsHome(Driver);
     }
 }
