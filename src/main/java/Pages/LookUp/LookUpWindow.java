@@ -54,10 +54,10 @@ public class LookUpWindow {
     //endregion
 
     public LookUpWindow(WebDriver driver) {
-        Driver = driver;
+
+        driver = BrowserManager.getInstance().getDriver();
         wait = BrowserManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
-
         String LookUpWindow = new LinkedList(driver.getWindowHandles()).getLast().toString();
         Driver.switchTo().window(LookUpWindow);
     }
@@ -90,7 +90,7 @@ public class LookUpWindow {
         CommonActions.click(RowsContaine.findElement(By.xpath("//a[contains(.,'" + text + "')]")));
         Driver.switchTo().defaultContent();
 
-        return new NewOpportunityForm(Driver);
+        return new NewOpportunityForm();
     }
 
     public LookUpWindow switchSearchFrame()

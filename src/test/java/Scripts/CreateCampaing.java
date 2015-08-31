@@ -64,8 +64,8 @@ public class CreateCampaing {
     {
         BrowserManager.getInstance().goStartPage("https://login.salesforce.com/");
         mainApp = new LoginPage()
-                .setUserNameField("vasquez.vn@gmail.com")
-                .setPasswordField("123Control")
+                .setUserNameField("rubercuellar2@new.com")
+                .setPasswordField("Control123*")
                 .clickLogInToSalesforceButton();
 
         campaongParent = "Parent" + new Random().nextInt(9999);

@@ -1,6 +1,7 @@
 package Pages.Accounts;
 
 import Framework.BrowserManager;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -26,10 +27,9 @@ public class NewAccountForm {
     private WebElement saveBtn;
     //endregion
 
-    public NewAccountForm(WebDriver driver) {
-        this.driver = driver;
+    public NewAccountForm() {
+        driver = BrowserManager.getInstance().getDriver();
         wait = BrowserManager.getInstance().getWait();
-
         PageFactory.initElements(driver, this);
     }
 
@@ -43,7 +43,19 @@ public class NewAccountForm {
     public AccountProfile pressSaveBtn() {
         saveBtn.click();
 
-        return new AccountProfile(driver);
+        return new AccountProfile();
     }
+    public AccountProfile clickOnAccount(String accountName)
+    {
+        System.out.println("here 1");
+        //driver.findElement(By.linkText(accountName)).click();
+        /*return new AccountProfile();*/
+        System.out.println("here 2");
+        driver.findElement(By.xpath("//span[contains(.,'" + accountName + "')]")).click();
+        return new AccountProfile();
+        //driver.findElement(By.xpath("//span[contains(.,'"+accountName+"')]")).click();
+
+    }
+
 
 }
