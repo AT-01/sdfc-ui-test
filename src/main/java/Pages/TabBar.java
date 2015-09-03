@@ -31,14 +31,6 @@ public class TabBar {
     @CacheLookup
     WebElement CampaignsTab;
 
-    @FindBy(xpath = "//*[@id='Opportunity_Tab']/*[contains(.,'Opportunities')]")
-    @CacheLookup
-    WebElement opportunitiesTab;
-
-    @FindBy(xpath = "//*[@id='Product2_Tab']/*[contains(.,'Products')]")
-    @CacheLookup
-    WebElement productsTab;
-
     @FindBy(xpath = "//*[@id='Account_Tab']/*[contains(.,'Accounts')]")
     @CacheLookup
     WebElement accountTab;
@@ -47,14 +39,26 @@ public class TabBar {
     @CacheLookup
     WebElement LeadTab;
 
-    @FindBy(xpath = "//a[@href='/003/o']")
-    @CacheLookup
-    WebElement contactsTab;
-    //endregion
-
     @FindBy(linkText = "Chatter")
     @CacheLookup
     private WebElement chatterTab;
+
+    @FindBy(linkText = "Contacts")
+    @CacheLookup
+    private WebElement contactsTab;
+
+
+    @FindBy(linkText = "Products")
+    @CacheLookup
+    private WebElement productsTab;
+
+    @FindBy(linkText = "Accounts")
+    @CacheLookup
+    private WebElement accountsTab;
+
+    @FindBy(linkText = "Opportunities")
+    @CacheLookup
+    private WebElement opportunitiesTab;
 
     public TabBar()
     {
@@ -68,29 +72,6 @@ public class TabBar {
         return new CampaignsHome(driver);
     }
 
-    public ContactsHome clickContacts() {
-        CommonActions.click(contactsTab);
-        return new ContactsHome(driver);
-    }
-
-    public OpportunitiesHome clickOpportunityTab() {
-        CommonActions.click(opportunitiesTab);
-
-        return new OpportunitiesHome(driver);
-    }
-
-    public ProductsHome clickProductsTab() {
-        CommonActions.click(productsTab);
-
-        return new ProductsHome(driver);
-    }
-
-    public AccountsHome clickAccountsTab() {
-        CommonActions.click(accountTab);
-
-        return new AccountsHome(driver);
-    }
-	
 	public LeadHome clickLead() {
         CommonActions.click(LeadTab);
         return new LeadHome(driver);
@@ -100,4 +81,22 @@ public class TabBar {
 		CommonActions.click(chatterTab);
 		return new ChatterHome();
 	}
+
+    public ContactsHome clickOnContactsHome() {
+        CommonActions.click(contactsTab);
+        return new ContactsHome();
+    }
+    public ProductsHome clickOnProductsHome() {
+        CommonActions.click(productsTab);
+        return new ProductsHome();
+    }
+    public OpportunitiesHome clickOnOpportunitiesHome() {
+        CommonActions.click(opportunitiesTab);
+        return new OpportunitiesHome();
+    }
+
+    public AccountsHome clickOnAccountsHome() {
+        CommonActions.click(accountsTab);
+        return new AccountsHome();
+    }
 }

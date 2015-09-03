@@ -1,6 +1,8 @@
 package Pages.Accounts;
 
 import Framework.BrowserManager;
+import Pages.MainApp;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -21,12 +23,21 @@ public class AccountProfile {
     @CacheLookup
     private WebElement accountNameLabel;
 
+    @FindBy(xpath = "//input[@name='delete']")
+    @CacheLookup
+    private WebElement deleteButton;
 
-    public AccountProfile(WebDriver driver) {
-        this.driver = driver;
+    public AccountProfile() {
+        driver = BrowserManager.getInstance().getDriver();
         wait = BrowserManager.getInstance().getWait();
-
         PageFactory.initElements(driver, this);
+    }
+
+    public MainApp deleteAccount() {
+        deleteButton.click();
+        Alert javascriptAlert = driver.switchTo().alert();
+        javascriptAlert.accept();
+        return new MainApp();
     }
 
     public String getUrl()
