@@ -13,8 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class LeadProfile {
 
-    WebDriver Driver;
-    WebDriverWait wait;
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     //region Locators
 
@@ -24,9 +24,9 @@ public class LeadProfile {
 
     //endregion
 
-    public LeadProfile(WebDriver driver)
+    public LeadProfile()
     {
-        Driver = driver;
+        driver = BrowserManager.getInstance().getDriver();
         wait = BrowserManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }

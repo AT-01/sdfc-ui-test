@@ -1,21 +1,18 @@
 package Pages.Products;
 
-import Framework.BrowserManager;
-import org.openqa.selenium.WebDriver;
+import Framework.CommonActions;
+import Pages.Base.ViewFormBase;
+
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by ivan on 28-06-15.
  */
-public class NewProductForm {
-
-    private WebDriver       driver;
-    private WebDriverWait   wait;
+public class NewProductForm extends ViewFormBase{
 
     //region Locators
 
@@ -50,12 +47,13 @@ public class NewProductForm {
     private WebElement descriptionTextArea;
 
     //endregion
+    
+    @FindBy(name = "delID")
+    @CacheLookup
+    private WebElement deleteBtn;
 
-    public NewProductForm(WebDriver driver) {
-        this.driver = driver;
-        wait = BrowserManager.getInstance().getWait();
-
-        PageFactory.initElements(driver, this);
+    public NewProductForm() {
+        super();
     }
 
     public NewProductForm setProductName(String productName) {
@@ -110,5 +108,17 @@ public class NewProductForm {
         saveBtn.click();
 
         return new ProductProfile(driver);
+    }
+
+    public ProductView clickSaveBtn() {
+    	ProductView productView = (ProductView) new ProductView().setViewName(this.viewNameTxt).setViewUniqueName(this.viewUniqueNameTxt);
+    	CommonActions.click(saveBtn);
+    	return productView;
+    }
+    
+    public void clickDeleteBtn() {
+    	CommonActions.click(deleteBtn);
+    	Alert alert = driver.switchTo().alert();
+		alert.accept();	
     }
 }

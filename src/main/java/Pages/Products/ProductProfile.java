@@ -71,7 +71,7 @@ public class ProductProfile {
     public NewProductForm pressEditBtn() {
         editBtn.click();
 
-        return new NewProductForm(driver);
+        return new NewProductForm();
     }
 
     // product name

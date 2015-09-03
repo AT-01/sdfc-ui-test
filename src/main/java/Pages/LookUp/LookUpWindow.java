@@ -20,8 +20,9 @@ import java.util.Set;
  * Created by Miguel.Pari on 6/24/2015.
  */
 public class LookUpWindow {
-    WebDriver Driver;
-    WebDriverWait wait;
+	
+    private WebDriver driver;
+    private WebDriverWait wait;
     String PreviousWindow;
     String LookUpWindow;
 
@@ -53,13 +54,13 @@ public class LookUpWindow {
     WebElement SearchResultFrame;
     //endregion
 
-    public LookUpWindow(WebDriver driver) {
-        Driver = driver;
+    public LookUpWindow() {
+        driver = BrowserManager.getInstance().getDriver();
         wait = BrowserManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
 
         String LookUpWindow = new LinkedList(driver.getWindowHandles()).getLast().toString();
-        Driver.switchTo().window(LookUpWindow);
+        driver.switchTo().window(LookUpWindow);
     }
 
     public LookUpWindow selectSearchWithinDropdown(String item) {
@@ -81,27 +82,27 @@ public class LookUpWindow {
 
     public NewCampaignForm clickResult(String text) {
         CommonActions.click(RowsContaine.findElement(By.xpath("//a[contains(.,'" + text + "')]")));
-        Driver.switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
-        return new NewCampaignForm(Driver);
+        return new NewCampaignForm();
     }
 
     public NewOpportunityForm clickResultGotoNewOpportunityForm(String text) {
         CommonActions.click(RowsContaine.findElement(By.xpath("//a[contains(.,'" + text + "')]")));
-        Driver.switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
-        return new NewOpportunityForm(Driver);
+        return new NewOpportunityForm();
     }
 
     public LookUpWindow switchSearchFrame()
     {
-        Driver.switchTo().frame(SearchFrame);
+        driver.switchTo().frame(SearchFrame);
         return this;
     }
 
     public LookUpWindow switchResultsFrame()
     {
-        Driver.switchTo().frame(SearchResultFrame);
+        driver.switchTo().frame(SearchResultFrame);
         return this;
     }
 

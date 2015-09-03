@@ -14,8 +14,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Created by Gisela on 6/28/2015.
  */
 public class ContactsProfile {
-    WebDriver Driver;
-    WebDriverWait wait;
+	
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     //region Locators
 
@@ -36,9 +37,9 @@ public class ContactsProfile {
     private WebElement editButton;
 
 
-    public ContactsProfile(WebDriver driver)
+    public ContactsProfile()
     {
-        Driver = driver;
+        driver = BrowserManager.getInstance().getDriver();
         wait = BrowserManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
@@ -49,7 +50,7 @@ public class ContactsProfile {
 
     public void deleteContact() {
         deleteButton.click();
-        Alert javascriptAlert = Driver.switchTo().alert();
+        Alert javascriptAlert = driver.switchTo().alert();
         javascriptAlert.accept();
     }
 
@@ -58,6 +59,6 @@ public class ContactsProfile {
 //        Alert javascriptAlert = Driver.switchTo().alert();
 //        javascriptAlert.accept();
         CommonActions.click(editButton);
-        return new NewContactForm(Driver);
+        return new NewContactForm();
     }
 }

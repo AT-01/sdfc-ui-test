@@ -4,6 +4,7 @@ package Scripts;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -30,13 +31,11 @@ public class CreateChatterPost {
     private PostForm postForm;
     private PostContainer postContainer;
     private String postContain = "TestCreatePost";
-    private LoginPage loginPage;
     
-    @BeforeTest
+    @BeforeMethod
 	public void login() {
     	
-    	loginPage = new LoginPage();
-    	mainApp = loginPage.loginAsPrimaryUser();  
+    	mainApp = new MainApp();  
         tabBar = mainApp.goToTabBar();
         chatterHome = tabBar.clickOnChatterTab();    
 	}

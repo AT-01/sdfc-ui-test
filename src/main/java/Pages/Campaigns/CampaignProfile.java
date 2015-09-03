@@ -16,8 +16,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 public class CampaignProfile {
 
-    WebDriver Driver;
-    WebDriverWait wait;
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     //region Locators
 
@@ -30,9 +30,9 @@ public class CampaignProfile {
     WebElement DeleteButton;
     //endregion
 
-    public CampaignProfile(WebDriver driver)
+    public CampaignProfile()
     {
-        Driver = driver;
+        driver = BrowserManager.getInstance().getDriver();
         wait = BrowserManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
@@ -44,15 +44,15 @@ public class CampaignProfile {
     public CampaignsHome clickDeleteButton()
     {
         CommonActions.click(DeleteButton);
-        Alert alert = Driver.switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         alert.accept();
-        Driver.switchTo().defaultContent();
-        return new CampaignsHome(Driver);
+        driver.switchTo().defaultContent();
+        return new CampaignsHome();
     }
 
     public String getUrl()
     {
-        return Driver.getCurrentUrl();
+        return driver.getCurrentUrl();
     }
 
 }

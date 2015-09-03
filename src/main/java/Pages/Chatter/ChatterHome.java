@@ -3,6 +3,7 @@ package Pages.Chatter;
 import Framework.BrowserManager;
 import Framework.CommonActions;
 import Pages.Base.HomeBase;
+import Pages.Base.ViewFormBase;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,9 +13,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-/**
- * Created by Gisela on 6/29/2015.
- */
+
 public class ChatterHome extends HomeBase{
     //private WebDriver Driver;
     //WebDriverWait wait;
@@ -83,4 +82,8 @@ public class ChatterHome extends HomeBase{
     	CommonActions.click(postLnk);
     	return new PostForm();
     }
+	
+	public ViewFormBase clickNewViewLnk() {	
+		return null;
+	}
 }

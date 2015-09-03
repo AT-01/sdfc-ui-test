@@ -1,11 +1,30 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Suite1" verbose="1" >
     <test name="Regression1">
-        <classes>
+        <classes>       
+            <class name="Scripts.LoginSalesPage"/> 
+            <class name="Scripts.CreateCampaignView"/>
+            <class name="Scripts.EditCampaignView"/>
+            <class name="Scripts.DeleteCampaignView"/>         
+            <class name="Scripts.CreateLeadView"/>
+            <class name="Scripts.EditLeadView"/>
+            <class name="Scripts.DeleteLeadView"/>
+            <class name="Scripts.CreateAccountView"/>
+            <class name="Scripts.EditAccountView"/>
+            <class name="Scripts.DeleteAccountView"/> 
+            <class name="Scripts.CreateContactView"/>
+            <class name="Scripts.EditContactView"/> 
+            <class name="Scripts.DeleteContactView"/>
+            <class name="Scripts.CreateOpportunityView"/>
+            <class name="Scripts.EditOpportunityView"/>
+            <class name="Scripts.DeleteOpportunityView"/>  
+            <class name="Scripts.CreateProductView"/>
+            <class name="Scripts.EditProductView"/>
+            <class name="Scripts.DeleteProductView"/>  
         	<class name="Scripts.CreateChatterPost"/>
      		<class name="Scripts.EditChatterPost"/>
             <class name="Scripts.CommentChatterPost"/>
-            <class name="Scripts.DeleteChatterPost"/>
+            <class name="Scripts.DeleteChatterPost"/>          
         </classes>
     </test>
 </suite>

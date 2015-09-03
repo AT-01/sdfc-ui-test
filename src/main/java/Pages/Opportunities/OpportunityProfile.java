@@ -64,8 +64,8 @@ public class OpportunityProfile {
     //endregion
 
 
-    public OpportunityProfile(WebDriver driver) {
-        this.driver = driver;
+    public OpportunityProfile() {
+        driver = BrowserManager.getInstance().getDriver();
         wait = BrowserManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
@@ -79,7 +79,7 @@ public class OpportunityProfile {
     public NewOpportunityForm pressEditBtn() {
         editBtn.click();
 
-        return new NewOpportunityForm(driver);
+        return new NewOpportunityForm();
     }
 
     public boolean isPrivateFlag() {

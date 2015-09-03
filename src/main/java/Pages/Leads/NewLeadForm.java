@@ -2,6 +2,10 @@ package Pages.Leads;
 
 import Framework.BrowserManager;
 import Framework.CommonActions;
+import Pages.Base.ViewFormBase;
+import Pages.Campaigns.CampaignView;
+
+
 //import Pages.LookUp.LookUpWindow;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -13,9 +17,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by Miguel.Pari on 6/24/2015.
  */
-public class NewLeadForm {
-    WebDriver Driver;
-    WebDriverWait wait;
+public class NewLeadForm extends ViewFormBase {
+	
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     @FindBy(id = "name_lastlea2")
     @CacheLookup
@@ -45,9 +50,9 @@ public class NewLeadForm {
     @CacheLookup
     WebElement SaveButton;
 
-    public NewLeadForm(WebDriver driver)
+    public NewLeadForm()
     {
-        Driver = driver;
+        driver = BrowserManager.getInstance().getDriver();
         wait = BrowserManager.getInstance().getWait();
         PageFactory.initElements(driver, this);
     }
@@ -85,6 +90,12 @@ public class NewLeadForm {
 
     public LeadProfile clickSaveButton() {
         CommonActions.click(SaveButton);
-        return new LeadProfile(Driver);
+        return new LeadProfile();
+    }
+    
+    public LeadView clickSaveBtn() {
+    	LeadView leadView = (LeadView) new LeadView().setViewName(this.viewNameTxt).setViewUniqueName(this.viewUniqueNameTxt);
+    	CommonActions.click(saveBtn);
+    	return leadView;
     }
 }

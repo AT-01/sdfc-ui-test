@@ -1,20 +1,19 @@
 package Pages.Leads;
 
-import Framework.BrowserManager;
-import Pages.Leads.*;
+
+import Pages.Base.HomeBase;
+import Pages.Campaigns.NewCampaignForm;
 import Framework.CommonActions;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
-public class LeadHome {
-    WebDriver Driver;
-    WebDriverWait wait;
-
+public class LeadHome extends HomeBase{
+ 
     //region Locators
 
     @FindBy(xpath = "//*[@name='new' and @type='button']")
@@ -22,15 +21,18 @@ public class LeadHome {
     WebElement NewLeadFormButtton;
     //endregion
 
-    public LeadHome(WebDriver driver)
+    public LeadHome()
     {
-        Driver = driver;
-        wait = BrowserManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
+        super();
     }
 
     public NewLeadForm clickNewButton() {
         CommonActions.click(NewLeadFormButtton);
-        return new NewLeadForm(Driver);
+        return new NewLeadForm();
     }
+    
+    public NewLeadForm clickNewViewLnk() {
+    	CommonActions.click(createNewViewLnk);
+    	return new NewLeadForm();
+    } 
 }

@@ -2,8 +2,12 @@ package Pages.Contacts;
 
 import Framework.BrowserManager;
 import Framework.CommonActions;
+import Pages.Base.ViewBase;
+import Pages.Base.ViewFormBase;
+import Pages.Campaigns.CampaignView;
 import Pages.Contacts.ContactsProfile;
 import Pages.LookUp.LookUpWindow;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -14,11 +18,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by Gisela on 6/28/2015.
  */
-public class NewContactForm {
+public class NewContactForm extends ViewFormBase{
 
-    WebDriver Driver;
-    WebDriverWait wait;
-
+   
     //region Locators
 
 //    @FindBy(id = "cpn1")
@@ -187,11 +189,6 @@ public class NewContactForm {
 //    @CacheLookup
 //    WebElement descriptionField;
 
-    //Button
-    @FindBy(xpath = "//input[@tabindex='31']")
-   // @FindBy(id = "//*[@name='save']")
-    @CacheLookup
-    WebElement saveBtn;
 
     @FindBy(xpath = "//input[@tabindex='32']")
     @CacheLookup
@@ -201,11 +198,9 @@ public class NewContactForm {
     @CacheLookup
     WebElement cancelBtn;
 
-    public NewContactForm(WebDriver driver)
+    public NewContactForm()
     {
-        Driver = driver;
-        wait = BrowserManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
+        super();
     }
 //
 //    public void selectFirstNameCategory(String categoryFirstName) {
@@ -250,7 +245,7 @@ public class NewContactForm {
 
     public LookUpWindow clickReportTo() {
         CommonActions.click(reportToField);
-        return new LookUpWindow(Driver);
+        return new LookUpWindow();
     }
 
     public NewContactForm selectLeadSource(String item) {
@@ -260,7 +255,12 @@ public class NewContactForm {
 
     public ContactsProfile clickSaveButton() {
         CommonActions.click(saveBtn);
-        return new ContactsProfile(Driver);
+        return new ContactsProfile();
+    }
+    public ContactView clickSaveBtn() {
+    	ContactView contactView = (ContactView) new ContactView().setViewName(this.viewNameTxt).setViewUniqueName(this.viewUniqueNameTxt);
+    	CommonActions.click(saveBtn);
+    	return contactView;
     }
 
 //    public NewContactForm checkActiveCheckbox() {

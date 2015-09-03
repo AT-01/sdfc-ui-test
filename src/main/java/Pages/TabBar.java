@@ -27,7 +27,7 @@ public class TabBar {
 
     //region Locators
 
-    @FindBy(xpath = "//*[@id='Campaign_Tab']/*[contains(.,'Campaigns')]")
+    @FindBy(linkText = "Campaigns")
     @CacheLookup
     WebElement CampaignsTab;
 
@@ -39,11 +39,11 @@ public class TabBar {
     @CacheLookup
     WebElement productsTab;
 
-    @FindBy(xpath = "//*[@id='Account_Tab']/*[contains(.,'Accounts')]")
+    @FindBy(linkText = "Accounts")
     @CacheLookup
     WebElement accountTab;
 	
-    @FindBy(xpath = "//a[@title='Leads Tab']")
+    @FindBy(linkText = "Leads")
     @CacheLookup
     WebElement LeadTab;
 
@@ -65,7 +65,7 @@ public class TabBar {
 
     public CampaignsHome clickCampaigns() {
         CommonActions.click(CampaignsTab);
-        return new CampaignsHome(driver);
+        return new CampaignsHome();
     }
 
     public ContactsHome clickContacts() {
@@ -76,7 +76,7 @@ public class TabBar {
     public OpportunitiesHome clickOpportunityTab() {
         CommonActions.click(opportunitiesTab);
 
-        return new OpportunitiesHome(driver);
+        return new OpportunitiesHome();
     }
 
     public ProductsHome clickProductsTab() {
@@ -87,13 +87,12 @@ public class TabBar {
 
     public AccountsHome clickAccountsTab() {
         CommonActions.click(accountTab);
-
-        return new AccountsHome(driver);
+        return new AccountsHome();
     }
 	
-	public LeadHome clickLead() {
+	public LeadHome clickLeadTab() {
         CommonActions.click(LeadTab);
-        return new LeadHome(driver);
+        return new LeadHome();
     }
 
 	public ChatterHome clickOnChatterTab() {

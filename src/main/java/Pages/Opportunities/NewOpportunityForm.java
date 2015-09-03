@@ -1,25 +1,20 @@
 package Pages.Opportunities;
 
-import Framework.BrowserManager;
+
 import Framework.CommonActions;
+import Pages.Base.ViewFormBase;
 import Pages.LookUp.LookUpWindow;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.util.Set;
 
 /**
  * Created by ivan on 26-06-15.
  */
-public class NewOpportunityForm {
+public class NewOpportunityForm extends ViewFormBase{
 
-    private WebDriver       driver;
-    private WebDriverWait   wait;
 
     // to manage window popup
     private String          mainWindowId;
@@ -111,12 +106,9 @@ public class NewOpportunityForm {
 
     //endregion
 
-    public NewOpportunityForm(WebDriver driver) {
-        this.driver = driver;
-        wait = BrowserManager.getInstance().getWait();
-        mainWindowId = driver.getWindowHandle();
-
-        PageFactory.initElements(driver, this);
+    public NewOpportunityForm() {  
+    	super();
+        mainWindowId = driver.getWindowHandle(); 
     }
 
     // TODO: Implement method to switch to popup window
@@ -244,18 +236,25 @@ public class NewOpportunityForm {
     public OpportunityProfile pressSaveBtn() {
         saveBtn.click();
 
-        return new OpportunityProfile(driver);
+        return new OpportunityProfile();
     }
 
     public LookUpWindow clickAccountNameLookUpIcon() {
         CommonActions.click(accountNameLookupIconBtn);
 
-        return new LookUpWindow(driver);
+        return new LookUpWindow();
     }
 
     public LookUpWindow clickPrimaryCampaignSrcLookUpIcon() {
         CommonActions.click(primaryCampaignSourceLookupIconBtn);
 
-        return new LookUpWindow(driver);
+        return new LookUpWindow();
     }
+
+    public OpportunityView clickSaveBtn() {
+    	OpportunityView opportunityView = (OpportunityView) new OpportunityView().setViewName(this.viewNameTxt).setViewUniqueName(this.viewUniqueNameTxt);
+    	CommonActions.click(saveBtn);
+    	return opportunityView;
+    }
+    
 }

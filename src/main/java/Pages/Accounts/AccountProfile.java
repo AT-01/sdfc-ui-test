@@ -22,8 +22,8 @@ public class AccountProfile {
     private WebElement accountNameLabel;
 
 
-    public AccountProfile(WebDriver driver) {
-        this.driver = driver;
+    public AccountProfile() {
+        driver = BrowserManager.getInstance().getDriver();
         wait = BrowserManager.getInstance().getWait();
 
         PageFactory.initElements(driver, this);

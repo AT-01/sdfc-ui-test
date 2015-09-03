@@ -2,7 +2,9 @@ package Pages.Campaigns;
 
 import Framework.BrowserManager;
 import Framework.CommonActions;
+import Pages.Base.ViewFormBase;
 import Pages.LookUp.LookUpWindow;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -13,9 +15,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by Miguel.Pari on 6/24/2015.
  */
-public class NewCampaignForm {
-    WebDriver Driver;
-    WebDriverWait wait;
+public class NewCampaignForm extends ViewFormBase{
+	
 
     //region Locators
 
@@ -43,16 +44,10 @@ public class NewCampaignForm {
     @CacheLookup
     WebElement LookUpIcon;
 
-    @FindBy(name = "save")
-    @CacheLookup
-    WebElement SaveButton;
-    //endregion
-
-    public NewCampaignForm(WebDriver driver)
+      
+    public NewCampaignForm()
     {
-        Driver = driver;
-        wait = BrowserManager.getInstance().getWait();
-        PageFactory.initElements(driver, this);
+        super();
     }
 
     public NewCampaignForm setCampaingNameField(String text) {
@@ -73,10 +68,18 @@ public class NewCampaignForm {
     }
     public LookUpWindow clickLookUpIcon() {
         CommonActions.click(LookUpIcon);
-        return new LookUpWindow(Driver);
+        return new LookUpWindow();
     }
     public CampaignProfile clickSaveButton() {
-        CommonActions.click(SaveButton);
-        return new CampaignProfile(Driver);
+        CommonActions.click(saveBtn);
+        return new CampaignProfile();
     }
+        
+    
+    public CampaignView clickSaveBtn() {
+    	CampaignView campaignView = (CampaignView) new CampaignView().setViewName(this.viewNameTxt).setViewUniqueName(this.viewUniqueNameTxt);
+    	CommonActions.click(saveBtn);
+    	return campaignView;
+    }
+    
 }
