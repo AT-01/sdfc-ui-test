@@ -2,11 +2,12 @@ language: java
 jdk:
 - oraclejdk8
 sudo: required
-
-script: gradle clean check runTestNGTestCases -Psuites=TestNgSuiteCampaign.xml -PprimaryUserName=Aldo.Balderrama@mydomain.org -PprimaryUserPassword=P@ssw0rd -PremoteUserName=mabalderramav -PremoteKey=e38c9438-cfbf-4401-b295-130c7787333f
-branches:
+env:
+  secure: RyZV/jA9KuMPj6vePKh/OsapxXMh7qHr2n7+/uQAkT3zu0YeM30H1flQopCeBPfkSjsH9gA/4cf+5l2I9zLhU9nShdxu+SS9ODGPL3VMlr0nGBnMqyZZ0/Xf3ralc9BaZep+iyHM+9Cxz+P4x2vaC+E/WDGbQOCUDVHV4uctiebfGYBkBNEy/eE173sOSu1VwIDuuXEJNF8ZW16zzllIo7ff/1ofsnp9dZchS+eRmlmJKatoPKQv8Kx+PNbCTioKp6isWd/9tMkGZ5goPlpHjwaHMlrxUUyjzxRkYrWr9z4ZsaUWi85gieQI4qJB9iGNUyxGxjCrS0LT99eYDJKaH/lNOpXWqyxC0ztidWzOExNJORmpkIVzwULlW9pLQyvk4ksTtmC7dZ2Gws9HmSSmycBKC5oQr1GauBH9wGOWI8s7F0K/MwvxQGy6kV6i3sUpRwUhTABH8slyQ6xyeQ5QsEHbTa8xT0eZJ9NBfSaGpvnkLlbLpwZETJ3Zq89WcFFsZoU8fKIUD0yU16GMTBClqGUicjmoxL8WRExEUeZlgBokn40Yx/pQkl2iBJVzn92MLGE5Ezgnh0I3wfzlXc9W+jPTDuJf7CiFgp90I4GT1WO1fQhtfGfslBPdHQ99Ldg3S7Qv+fwlhA1YnJqfycAq+GqeUIwJANL+oqOc7YuY8B0=
+script: gradle clean check runTestNGTestCases -Psuites=TestNgSuiteCampaign.xml -PprimaryUserName=Aldo.Balderrama@mydomain.org
+  -PprimaryUserPassword=P@ssw0rd -PremoteUserName=mabalderramav -PremoteKey="$REMOTE_KEY"
+branches: 
 only: develop
-
 notifications:
   email: true
   recipients:
