@@ -1,13 +1,12 @@
 package org.fundacionjala.sfdc.framework.utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * This class is in charge to set the default  parameters to
@@ -57,14 +56,12 @@ public final class Environment {
      */
     private Environment() {
         File file = new File(CONFIG);
-        try (FileReader fileReader = new FileReader(file)) {
+        try (FileInputStream fileReader = new FileInputStream(file)) {
             properties = new Properties();
             properties.load(fileReader);
-        } catch (FileNotFoundException e) {
-            LOGGER.warn(e.getMessage(), e);
-
         } catch (IOException e) {
             LOGGER.warn(e.getMessage(), e);
+            throw new RuntimeException(e);
         }
     }
 

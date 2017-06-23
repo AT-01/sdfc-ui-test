@@ -1,5 +1,7 @@
 package org.fundacionjala.sfdc.tests.campaign;
 
+import java.util.Map;
+
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.framework.utils.Navigator;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignDetail;
@@ -11,8 +13,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Map;
-
 /**
  * Update a campaign created.
  */
@@ -23,14 +23,13 @@ public class UpdateCampaign {
     private static final String CAMPAIGN_UPDATE_CAMPAIGN_DATA = "campaign/UpdateCampaignData.json";
     private static final String CAMPAIGN_DATA_PATH = "campaign/CreateCampaignData.json";
     private CampaignsHome campaignsHome;
-    private JsonMapper jsonMapper;
 
     /**
      * Setup the Campaign that will be updated.
      */
     @BeforeMethod()
     public void setup() {
-        Map<String, String> valuesMapJson = jsonMapper.getMapJson(CAMPAIGN_DATA_PATH);
+        Map<String, String> valuesMapJson = JsonMapper.getMapJson(CAMPAIGN_DATA_PATH);
         campaignsHome = Navigator.goToCampaign();
         CampaignForm campaignForm = campaignsHome.clickNewButton();
         campaignForm.fillTheForm(valuesMapJson);

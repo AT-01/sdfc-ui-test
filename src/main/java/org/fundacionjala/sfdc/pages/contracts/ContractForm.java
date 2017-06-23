@@ -401,28 +401,6 @@ public class ContractForm extends FormBase {
      */
     public static class ContractBuilder {
 
-        private String accountName;
-
-        private String customerSignedBy;
-
-        private String customerSignedTitle;
-
-        private String customerSignedDate;
-
-        private String priceBook;
-
-        private String status;
-
-        private String contractStartDate;
-
-        private String contractTermMonths;
-
-        private String ownerExpirationNotice;
-
-        private String companySignedBy;
-
-        private String companySignedDate;
-
         private Map<String, String> strategyMap;
 
         /**
@@ -437,10 +415,6 @@ public class ContractForm extends FormBase {
                 final String accountName, final String status, final String contractStartDate,
                 final String contractTermMonths) {
             strategyMap = new HashMap<>();
-            this.accountName = accountName;
-            this.status = status;
-            this.contractStartDate = contractStartDate;
-            this.contractTermMonths = contractTermMonths;
             strategyMap.put(ACCOUNT_NAME.toString(), accountName);
             strategyMap.put(STATUS.toString(), status);
             strategyMap.put(CONTRACT_START_DATE.toString(), contractStartDate);
@@ -455,18 +429,8 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setAccountName(final String accountName) {
-            this.accountName = accountName;
             strategyMap.put(ACCOUNT_NAME.toString(), accountName);
             return this;
-        }
-
-        /**
-         * Returns the value of the customer signed by field.
-         *
-         * @return the customer signed by value of the form.
-         */
-        public String getCustomerSignedBy() {
-            return customerSignedBy;
         }
 
         /**
@@ -476,18 +440,8 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setCustomerSignedBy(final String customerSignedBy) {
-            this.customerSignedBy = customerSignedBy;
             strategyMap.put(CUSTOMER_SIGNED_BY.toString(), customerSignedBy);
             return this;
-        }
-
-        /**
-         * Returns the value of the customer signed title field.
-         *
-         * @return the customer signed title value of the form.
-         */
-        public String getCustomerSignedTitle() {
-            return customerSignedTitle;
         }
 
         /**
@@ -497,18 +451,8 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setCustomerSignedTitle(final String customerSignedTitle) {
-            this.customerSignedTitle = customerSignedTitle;
             strategyMap.put(CUSTOMER_SIGNED_TITLE.toString(), customerSignedTitle);
             return this;
-        }
-
-        /**
-         * Returns the value of the customer signed date field.
-         *
-         * @return the customer signed date value of the form.
-         */
-        public String getCustomerSignedDate() {
-            return customerSignedDate;
         }
 
         /**
@@ -518,18 +462,8 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setCustomerSignedDate(final String customerSignedDate) {
-            this.customerSignedDate = customerSignedDate;
             strategyMap.put(CUSTOMER_SIGNED_DATE.toString(), customerSignedDate);
             return this;
-        }
-
-        /**
-         * Returns the value of the price book field.
-         *
-         * @return the price book value of the form.
-         */
-        public String getPriceBook() {
-            return priceBook;
         }
 
         /**
@@ -539,18 +473,8 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setPriceBook(final String priceBook) {
-            this.priceBook = priceBook;
             strategyMap.put(PRICE_BOOK.toString(), priceBook);
             return this;
-        }
-
-        /**
-         * Returns the value of the status field.
-         *
-         * @return the status value of the form.
-         */
-        public String getStatus() {
-            return status;
         }
 
         /**
@@ -560,18 +484,8 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setStatus(final String status) {
-            this.status = status;
             strategyMap.put(STATUS.toString(), status);
             return this;
-        }
-
-        /**
-         * Returns the value of the contract start date field.
-         *
-         * @return the contract start date value of the form.
-         */
-        public String getContractStartDate() {
-            return contractStartDate;
         }
 
         /**
@@ -581,18 +495,8 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setContractStartDate(final String contractStartDate) {
-            this.contractStartDate = contractStartDate;
             strategyMap.put(CONTRACT_START_DATE.toString(), contractStartDate);
             return this;
-        }
-
-        /**
-         * Returns the value of the contract term months field.
-         *
-         * @return the contract term months value of the form.
-         */
-        public String getContractTermMonths() {
-            return contractTermMonths;
         }
 
         /**
@@ -602,18 +506,8 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setContractTermMonths(final String contractTermMonths) {
-            this.contractTermMonths = contractTermMonths;
             strategyMap.put(CONTRACT_TERM_MONTHS.toString(), contractTermMonths);
             return this;
-        }
-
-        /**
-         * Returns the value of the owner expiration notice field.
-         *
-         * @return the owner expiration notice value of the form.
-         */
-        public String getOwnerExpirationNotice() {
-            return ownerExpirationNotice;
         }
 
         /**
@@ -623,18 +517,8 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setOwnerExpirationNotice(final String ownerExpirationNotice) {
-            this.ownerExpirationNotice = ownerExpirationNotice;
             strategyMap.put(OWNER_EXPIRATION_NOTICE.toString(), ownerExpirationNotice);
             return this;
-        }
-
-        /**
-         * Returns the value of the company signed by field.
-         *
-         * @return the company signed by value of the form.
-         */
-        public String getCompanySignedBy() {
-            return companySignedBy;
         }
 
         /**
@@ -644,18 +528,8 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setCompanySignedBy(final String companySignedBy) {
-            this.companySignedBy = companySignedBy;
             strategyMap.put(COMPANY_SIGNED_BY.toString(), companySignedBy);
             return this;
-        }
-
-        /**
-         * Returns the value of the company signed date field.
-         *
-         * @return the company signed date value of the form.
-         */
-        public String getCompanySignedDate() {
-            return companySignedDate;
         }
 
         /**
@@ -665,7 +539,6 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setCompanySignedDate(final String companySignedDate) {
-            this.companySignedDate = companySignedDate;
             strategyMap.put(COMPANY_SIGNED_DATE.toString(), companySignedDate);
             return this;
         }

@@ -3,20 +3,18 @@ package org.fundacionjala.sfdc.tests.lead;
 
 import java.util.Map;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.framework.utils.Navigator;
 import org.fundacionjala.sfdc.pages.TabBar;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignDetail;
-import org.fundacionjala.sfdc.pages.campaigns.CampaignForm;
 import org.fundacionjala.sfdc.pages.campaigns.Campaigns;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignsHome;
 import org.fundacionjala.sfdc.pages.leads.LeadDetails;
 import org.fundacionjala.sfdc.pages.leads.LeadForm;
 import org.fundacionjala.sfdc.pages.leads.LeadHome;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import static org.fundacionjala.sfdc.pages.leads.LeadFields.CAMPAIGN;
 import static org.fundacionjala.sfdc.tests.Asserts.assertDetailValues;
@@ -45,7 +43,7 @@ public class CreateLead {
     public void setUp() {
         TabBar tabBar = new TabBar();
         campaignsHome = Navigator.goToCampaign();
-        CampaignForm campaignForm = campaignsHome.clickNewButton();
+        campaignsHome.clickNewButton();
         Campaigns campaigns = new Campaigns.CampaignBuilder(CAMPAIGN_NAME)
                 .setActive("checked")
                 .build();

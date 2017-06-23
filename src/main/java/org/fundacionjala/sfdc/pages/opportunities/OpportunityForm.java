@@ -371,13 +371,6 @@ public class OpportunityForm extends FormBase {
      */
     public static class OpportunityBuilder {
 
-        private String accountName;
-        private String type;
-        private String amount;
-        private String opportunityName;
-        private String closeDate;
-        private String stage;
-
         private Map<String, String> strategyMap;
 
         /**
@@ -402,9 +395,6 @@ public class OpportunityForm extends FormBase {
             strategyMap.put(OPPORTUNITY_NAME.getValue(), opportunityName);
             strategyMap.put(CURRENT_CLOSE_DATE.getValue(), currentCloseDate);
             strategyMap.put(STAGE.getValue(), stage);
-            this.opportunityName = opportunityName;
-            this.closeDate = currentCloseDate;
-            this.stage = stage;
         }
 
         /**
@@ -414,7 +404,6 @@ public class OpportunityForm extends FormBase {
          * @return {@link OpportunityBuilder}
          */
         public OpportunityBuilder setAccountName(final String accountName) {
-            this.accountName = accountName;
             strategyMap.put(ACCOUNT_NAME.getValue(), accountName);
             return this;
         }
@@ -426,7 +415,6 @@ public class OpportunityForm extends FormBase {
          * @return {@link OpportunityBuilder}
          */
         public OpportunityBuilder setType(final String type) {
-            this.type = type;
             strategyMap.put(TYPE.getValue(), type);
             return this;
         }
@@ -438,7 +426,6 @@ public class OpportunityForm extends FormBase {
          * @return {@link OpportunityBuilder}
          */
         public OpportunityBuilder setAmount(final String amount) {
-            this.amount = amount;
             strategyMap.put(AMOUNT.getValue(), amount);
             return this;
         }

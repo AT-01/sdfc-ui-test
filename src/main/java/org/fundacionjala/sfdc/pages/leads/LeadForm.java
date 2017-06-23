@@ -490,42 +490,6 @@ public class LeadForm extends FormBase {
      * Inner class that manage the values to be built.
      */
     public static class LeadBuilder {
-        /*LeadHome Information*/
-        private String nameSalutation;
-        private String firstName;
-        private String lastName;
-        private String company;
-        private String title;
-        private String leadSource;
-        private String campaign;
-        private String industry;
-        private String annualRevenue;
-        private String phone;
-        private String mobile;
-        private String fax;
-        private String email;
-        private String website;
-        private String leadStatus;
-        private String rating;
-        private String numEmployees;
-
-        /*Address Information*/
-        private String street;
-        private String city;
-        private String stateProvince;
-        private String zipCode;
-        private String country;
-
-        /*additional information*/
-        private String productInterest;
-        private String sicCode;
-        private String numberLocations;
-        private String currentGenerators;
-        private String primary;
-
-        /*Others*/
-        private String description;
-        private String assignRule;
 
         private Map<String, String> strategyMap;
 
@@ -537,8 +501,6 @@ public class LeadForm extends FormBase {
          */
         public LeadBuilder(final String lastName, final String company) {
             strategyMap = new HashMap<>();
-            this.lastName = lastName;
-            this.company = company;
             strategyMap.put(LAST_NAME.toString(), lastName);
             strategyMap.put(COMPANY.toString(), company);
         }
@@ -550,7 +512,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setNameSalutation(final String nameSalutation) {
-            this.nameSalutation = nameSalutation;
             strategyMap.put(NAME_SALUTATION.toString(), nameSalutation);
             return this;
         }
@@ -562,7 +523,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setFirstName(final String firstName) {
-            this.firstName = firstName;
             strategyMap.put(FIRST_NAME.toString(), firstName);
             return this;
         }
@@ -574,7 +534,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setLastName(final String lastName) {
-            this.lastName = lastName;
             strategyMap.put(LAST_NAME.toString(), lastName);
             return this;
         }
@@ -586,7 +545,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setCompany(final String company) {
-            this.company = company;
             strategyMap.put(COMPANY.toString(), company);
             return this;
         }
@@ -598,7 +556,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setTitle(final String title) {
-            this.title = title;
             strategyMap.put(TITLE.toString(), title);
             return this;
         }
@@ -610,7 +567,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setLeadSource(final String leadSource) {
-            this.leadSource = leadSource;
             strategyMap.put(LEAD_SOURCE.toString(), leadSource);
             return this;
         }
@@ -622,7 +578,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setCampaign(final String campaign) {
-            this.campaign = campaign;
             strategyMap.put(CAMPAIGN.toString(), campaign);
             return this;
         }
@@ -634,7 +589,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setIndustry(final String industry) {
-            this.industry = industry;
             strategyMap.put(INDUSTRY.toString(), industry);
             return this;
         }
@@ -646,7 +600,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setAnnualRevenue(final String annualRevenue) {
-            this.annualRevenue = annualRevenue;
             strategyMap.put(ANNUAL_REVENUE.toString(), annualRevenue);
             return this;
         }
@@ -658,7 +611,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setPhone(final String phone) {
-            this.phone = phone;
             strategyMap.put(PHONE.toString(), phone);
             return this;
         }
@@ -670,7 +622,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setMobile(final String mobile) {
-            this.mobile = mobile;
             strategyMap.put(MOBILE.toString(), mobile);
             return this;
         }
@@ -682,7 +633,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setFax(final String fax) {
-            this.fax = fax;
             strategyMap.put(FAX.toString(), fax);
             return this;
         }
@@ -694,7 +644,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setEmail(final String email) {
-            this.email = email;
             strategyMap.put(EMAIL.toString(), email);
             return this;
         }
@@ -706,7 +655,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setWebsite(final String website) {
-            this.website = website;
             strategyMap.put(WEBSITE.toString(), website);
             return this;
         }
@@ -718,7 +666,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setLeadStatus(final String leadStatus) {
-            this.leadStatus = leadStatus;
             strategyMap.put(LEAD_STATUS.toString(), leadStatus);
             return this;
         }
@@ -730,7 +677,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setRating(final String rating) {
-            this.rating = rating;
             strategyMap.put(RATING.toString(), rating);
             return this;
         }
@@ -742,7 +688,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setNumEmployees(final String numEmployees) {
-            this.numEmployees = numEmployees;
             strategyMap.put(NUM_EMPLOYEES.toString(), numEmployees);
             return this;
         }
@@ -754,7 +699,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setStreet(final String street) {
-            this.street = street;
             strategyMap.put(STREET.toString(), street);
             return this;
         }
@@ -766,7 +710,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setCity(final String city) {
-            this.city = city;
             strategyMap.put(CITY.toString(), city);
             return this;
         }
@@ -778,7 +721,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setStateProvince(final String stateProvince) {
-            this.stateProvince = stateProvince;
             strategyMap.put(STATE_PROVINCE.toString(), stateProvince);
             return this;
         }
@@ -790,7 +732,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setZipCode(final String zipCode) {
-            this.zipCode = zipCode;
             strategyMap.put(ZIP_CODE.toString(), zipCode);
             return this;
         }
@@ -802,7 +743,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setCountry(final String country) {
-            this.country = country;
             strategyMap.put(COUNTRY.toString(), country);
             return this;
         }
@@ -814,7 +754,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setProductInterest(final String productInterest) {
-            this.productInterest = productInterest;
             strategyMap.put(PRODUCT_INTEREST.toString(), productInterest);
             return this;
         }
@@ -826,7 +765,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setSicCode(final String sicCode) {
-            this.sicCode = sicCode;
             strategyMap.put(SICCODE.toString(), sicCode);
             return this;
         }
@@ -838,7 +776,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setNumberLocations(final String numberLocations) {
-            this.numberLocations = numberLocations;
             strategyMap.put(NUMBER_LOCATIONS.toString(), numberLocations);
             return this;
         }
@@ -850,7 +787,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setCurrentGenerators(final String currentGenerators) {
-            this.currentGenerators = currentGenerators;
             strategyMap.put(CURRENT_GENERATORS.toString(), currentGenerators);
             return this;
         }
@@ -862,7 +798,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setPrimary(final String primary) {
-            this.primary = primary;
             strategyMap.put(PRIMARY.toString(), primary);
             return this;
         }
@@ -874,7 +809,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setDescription(final String description) {
-            this.description = description;
             strategyMap.put(DESCRIPTION.toString(), description);
             return this;
         }
@@ -886,7 +820,6 @@ public class LeadForm extends FormBase {
          * @return {@link LeadBuilder}
          */
         public LeadBuilder setAssignRule(final String assignRule) {
-            this.assignRule = assignRule;
             strategyMap.put(ASSIGN_RULE.toString(), assignRule);
             return this;
         }
@@ -909,4 +842,5 @@ public class LeadForm extends FormBase {
             return new LeadForm(this);
         }
     }
+
 }

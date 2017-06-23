@@ -48,14 +48,6 @@ public class Campaigns {
      */
     public static class CampaignBuilder {
 
-        private String name;
-        private String active;
-        private String typeDropDown;
-        private String statusDropDown;
-        private String startDate;
-        private String endDate;
-        private String revenue;
-
         private Map<String, String> strategyMap;
 
         /**
@@ -75,7 +67,6 @@ public class Campaigns {
         public CampaignBuilder(final String name) {
             strategyMap = new HashMap<>();
             strategyMap.put("campaignName", name);
-            this.name = name;
         }
 
         /**
@@ -85,8 +76,7 @@ public class Campaigns {
          * @return {@link CampaignBuilder}
          */
         public CampaignBuilder setActive(final String active) {
-            strategyMap.put("active", startDate);
-            this.active = active;
+            strategyMap.put("active", active);
             return this;
         }
 
@@ -98,7 +88,6 @@ public class Campaigns {
          */
         public CampaignBuilder setStartDate(final String startDate) {
             strategyMap.put("startDate", startDate);
-            this.startDate = startDate;
             return this;
         }
 
@@ -110,7 +99,6 @@ public class Campaigns {
          */
         public CampaignBuilder setTypeDropDown(final String typeDropDown) {
             strategyMap.put("typeDropDown", typeDropDown);
-            this.typeDropDown = typeDropDown;
             return this;
         }
 
@@ -122,7 +110,6 @@ public class Campaigns {
          */
         public CampaignBuilder setStatusDropDown(final String statusDropDown) {
             strategyMap.put("statusDropDown", statusDropDown);
-            this.statusDropDown = statusDropDown;
             return this;
         }
 
@@ -134,7 +121,6 @@ public class Campaigns {
          */
         public CampaignBuilder setRevenue(final String revenue) {
             strategyMap.put("revenue", revenue);
-            this.revenue = revenue;
             return this;
         }
 
@@ -146,7 +132,6 @@ public class Campaigns {
          */
         public CampaignBuilder setEndDate(final String endDate) {
             strategyMap.put("endDate", endDate);
-            this.endDate = endDate;
             return this;
         }
 
@@ -159,6 +144,5 @@ public class Campaigns {
             return strategyMap;
         }
     }
-
 
 }

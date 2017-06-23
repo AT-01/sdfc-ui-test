@@ -49,17 +49,6 @@ public class Cases {
      */
     public static class CasesBuilder {
 
-        private String status;
-        private String caseOrigin;
-        private String priority;
-        private String type;
-        private String caseReason;
-        private String product;
-        private String potentialLiability;
-        private String engineeringNumber;
-        private String slaViolation;
-        private String subject;
-        private String description;
         private Map<String, String> strategyMap;
 
         /**
@@ -80,8 +69,6 @@ public class Cases {
             strategyMap = new HashMap<>();
             strategyMap.put("status", status);
             strategyMap.put("caseOrigin", caseOrigin);
-            this.status = status;
-            this.caseOrigin = caseOrigin;
         }
 
         /**
@@ -92,7 +79,6 @@ public class Cases {
          */
         public Cases.CasesBuilder setPriority(final String priority) {
             strategyMap.put("priority", priority);
-            this.priority = priority;
             return this;
         }
 
@@ -104,7 +90,6 @@ public class Cases {
          */
         public Cases.CasesBuilder setTypeValue(final String type) {
             strategyMap.put("type", type);
-            this.type = type;
             return this;
         }
 
@@ -116,7 +101,6 @@ public class Cases {
          */
         public Cases.CasesBuilder setCaseReason(final String caseReason) {
             strategyMap.put("caseReason", caseReason);
-            this.caseReason = caseReason;
             return this;
         }
 
@@ -128,7 +112,6 @@ public class Cases {
          */
         public Cases.CasesBuilder setProductValue(final String product) {
             strategyMap.put("product", product);
-            this.product = product;
             return this;
         }
 
@@ -140,7 +123,6 @@ public class Cases {
          */
         public Cases.CasesBuilder setPotentialLiability(final String potentialLiability) {
             strategyMap.put("potentialLiability", potentialLiability);
-            this.potentialLiability = potentialLiability;
             return this;
         }
 
@@ -152,9 +134,7 @@ public class Cases {
          */
         public Cases.CasesBuilder setEngineeringNumber(final String engineeringNumber) {
             strategyMap.put("engineeringNumber", engineeringNumber);
-            this.engineeringNumber = engineeringNumber;
             return this;
-
         }
 
         /**
@@ -165,7 +145,6 @@ public class Cases {
          */
         public Cases.CasesBuilder setSlaViolation(final String slaViolation) {
             strategyMap.put("slaViolation", slaViolation);
-            this.slaViolation = slaViolation;
             return this;
         }
 
@@ -177,7 +156,6 @@ public class Cases {
          */
         public Cases.CasesBuilder setSubject(final String subject) {
             strategyMap.put("subject", subject);
-            this.subject = subject;
             return this;
         }
 
@@ -189,7 +167,6 @@ public class Cases {
          */
         public Cases.CasesBuilder setDescription(final String description) {
             strategyMap.put("description", description);
-            this.description = description;
             return this;
         }
 
@@ -203,6 +180,5 @@ public class Cases {
         }
 
     }
-
 
 }
