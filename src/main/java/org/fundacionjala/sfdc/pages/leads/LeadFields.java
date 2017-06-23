@@ -13,7 +13,7 @@ public enum LeadFields {
     TITLE,
     LEAD_SOURCE,
     CAMPAIGN,
-    INDUSTRY ,
+    INDUSTRY,
     ANNUAL_REVENUE,
     PHONE,
     MOBILE,

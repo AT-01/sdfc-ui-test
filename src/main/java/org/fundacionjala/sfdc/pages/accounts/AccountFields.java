@@ -14,7 +14,7 @@ public enum AccountFields {
     INDUSTRY,
     ANNUAL_REVENUE,
     RATING,
-    PHONE ,
+    PHONE,
     FAX,
     WEBSITE,
     TICKER_SYMBOL,

@@ -15,8 +15,8 @@ import org.fundacionjala.sfdc.pages.chatter.PostForm;
  */
 public class EditChatterPost {
 
-    private final String postContain = "TestEditPost";
-    private final String newPostContain = "TestPost123";
+    private static final String POST_CONTAIN = "TestEditPost";
+    private static final String NEW_POST_CONTAIN = "TestPost123";
     private PostForm postForm;
     private PostContainer postContainer;
 
@@ -26,7 +26,7 @@ public class EditChatterPost {
     @BeforeMethod
     public void setUp() {
         ChatterAbstractPage chatterHome = Navigator.goToChatter();
-        postForm = chatterHome.clickPostLnk().setPostTxt(postContain);
+        postForm = chatterHome.clickPostLnk().setPostTxt(POST_CONTAIN);
         postContainer = postForm.clickShareBtn();
     }
 
@@ -35,8 +35,8 @@ public class EditChatterPost {
      */
     @Test
     public void editChatterPostTest() {
-        postForm = postContainer.editPost(postContain);
-        postForm.editPostTxt(newPostContain);
+        postForm = postContainer.editPost(POST_CONTAIN);
+        postForm.editPostTxt(NEW_POST_CONTAIN);
         postContainer = postForm.clickSaveBtn();
         Assert.assertTrue(postContainer.isPostDisplayed(), "Chatter Post Displayed");
     }
@@ -46,7 +46,7 @@ public class EditChatterPost {
      */
     @AfterMethod
     public void deleteChatterPost() {
-        postContainer.deletePost(newPostContain);
+        postContainer.deletePost(NEW_POST_CONTAIN);
     }
 
 }

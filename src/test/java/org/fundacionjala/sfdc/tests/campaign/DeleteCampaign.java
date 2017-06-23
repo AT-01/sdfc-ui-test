@@ -1,5 +1,7 @@
 package org.fundacionjala.sfdc.tests.campaign;
 
+import java.util.Map;
+
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.framework.utils.Navigator;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignDetail;
@@ -7,8 +9,6 @@ import org.fundacionjala.sfdc.pages.campaigns.CampaignForm;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignsHome;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Map;
 
 import static org.testng.Assert.assertFalse;
 
@@ -19,7 +19,6 @@ public class DeleteCampaign {
     private CampaignDetail campaignDetail;
     private CampaignsHome campaignsHome;
     private Map<String, String> valuesMapJson;
-    private JsonMapper jsonMapper;
     public static final String CAMPAIGN_DATA_PATH = "campaign/CreateCampaignData.json";
 
     /**

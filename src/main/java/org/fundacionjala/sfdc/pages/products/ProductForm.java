@@ -202,16 +202,6 @@ public class ProductForm extends FormBase {
      */
     public static class ProductBuilder {
 
-        private String name;
-
-        private String code;
-
-        private String description;
-
-        private Boolean active;
-
-        private String family;
-
         private Map<String, String> strategyMap;
 
         /**
@@ -230,7 +220,6 @@ public class ProductForm extends FormBase {
         public ProductBuilder(final String name) {
             strategyMap = new HashMap<>();
             strategyMap.put(NAME.toString(), name);
-            this.name = name;
         }
 
         /**
@@ -241,7 +230,6 @@ public class ProductForm extends FormBase {
          */
         public ProductBuilder setCode(final String code) {
             strategyMap.put(CODE.toString(), code);
-            this.code = code;
             return this;
         }
 
@@ -253,7 +241,6 @@ public class ProductForm extends FormBase {
          */
         public ProductBuilder setDescription(final String description) {
             strategyMap.put(DESCRIPTION.toString(), description);
-            this.description = description;
             return this;
         }
 
@@ -265,7 +252,6 @@ public class ProductForm extends FormBase {
          */
         public ProductBuilder setActive(final Boolean active) {
             strategyMap.put(ACTIVE.toString(), String.valueOf(active));
-            this.active = active;
             return this;
         }
 
@@ -277,7 +263,6 @@ public class ProductForm extends FormBase {
          */
         public ProductBuilder setFamily(final String family) {
             strategyMap.put(FAMILY.toString(), family);
-            this.family = family;
             return this;
         }
 

@@ -189,16 +189,6 @@ public class AccountForm extends FormBase {
      */
     public static class AccountBuilder {
 
-        private String accountName;
-
-        private String accountSite;
-
-        private String phone;
-
-        private String website;
-
-        private String employees;
-
         private Map<String, String> strategyMap;
 
         /**
@@ -217,7 +207,6 @@ public class AccountForm extends FormBase {
         public AccountBuilder(final String accountName) {
             strategyMap = new HashMap<>();
             strategyMap.put(ACCOUNT_NAME.toString(), accountName);
-            this.accountName = accountName;
         }
 
         /**
@@ -228,7 +217,6 @@ public class AccountForm extends FormBase {
          */
         public AccountBuilder setSite(final String accountSite) {
             strategyMap.put(ACCOUNT_SITE.toString(), accountSite);
-            this.accountSite = accountSite;
             return this;
         }
 
@@ -240,7 +228,6 @@ public class AccountForm extends FormBase {
          */
         public AccountBuilder setPhone(final String phone) {
             strategyMap.put(PHONE.toString(), phone);
-            this.phone = phone;
             return this;
         }
 
@@ -252,7 +239,6 @@ public class AccountForm extends FormBase {
          */
         public AccountBuilder setWebsite(final String website) {
             strategyMap.put(WEBSITE.toString(), website);
-            this.website = website;
             return this;
         }
 
@@ -264,7 +250,6 @@ public class AccountForm extends FormBase {
          */
         public AccountBuilder setEmployees(final String employees) {
             strategyMap.put(EMPLOYEES.toString(), employees);
-            this.employees = employees;
             return this;
         }
 

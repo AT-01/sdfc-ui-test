@@ -16,7 +16,7 @@ import org.fundacionjala.sfdc.framework.utils.Navigator;
  */
 public class CreateChatterPost {
 
-    private final String postContain = "TestCreatePost";
+    private static final String POST_CONTAIN = "TestCreatePost";
     private ChatterAbstractPage chatterHome;
     private PostContainer postContainer;
 
@@ -34,7 +34,7 @@ public class CreateChatterPost {
      */
     @Test
     public void createChatterPostTest() {
-        PostForm postForm = chatterHome.clickPostLnk().setPostTxt(postContain);
+        PostForm postForm = chatterHome.clickPostLnk().setPostTxt(POST_CONTAIN);
         postContainer = postForm.clickShareBtn();
         Assert.assertTrue(postContainer.isPostDisplayed(), "Chatter Post Displayed");
     }
@@ -44,7 +44,7 @@ public class CreateChatterPost {
      */
     @AfterMethod
     public void deleteChatterPost() {
-        postContainer.deletePost(postContain);
+        postContainer.deletePost(POST_CONTAIN);
     }
 
 }

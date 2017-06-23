@@ -1,24 +1,12 @@
 group 'org.fundacionjala.sfdc'
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'de.undercouch:gradle-download-task:1.2'
-    }
-}
 
 // Apply the java plugin to add support for Java
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'eclipse'
 apply plugin: 'checkstyle'
-checkstyle {
-    toolVersion = "6.1.1"
-}
-
-//handling the download drivers
-apply plugin: 'de.undercouch.download'
+apply plugin: 'pmd'
+apply plugin: 'findbugs'
 
 // In this section you declare where to find the dependencies of your project
 repositories {
@@ -34,21 +22,38 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.8.3'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.3'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.8.3'
-    // The production code uses the SLF4J logging API at compile time
-    compile 'org.slf4j:slf4j-api:1.7.12'
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '2.53.0'
-    compile group: 'org.testng', name: 'testng', version: '6.9.10'
+    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.4.0'
     compile 'com.googlecode.json-simple:json-simple:1.1.1'
     compile 'org.uncommons:reportng:1.1.4'
     compile 'com.google.inject:guice:3.0'
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-chrome-driver', version: '2.53.0'
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-ie-driver', version: '2.53.0'
+    compile group: 'org.testng', name: 'testng', version: '6.11'
+}
 
-    // Declare the dependency for your favourite test framework you want to use in your tests.
-    // TestNG is also supported by the Gradle Test task. Just change the
-    // testCompile dependency to testCompile 'org.testng:testng:6.8.1' and add
-    // 'test.useTestNG()' to your build script.
-    testCompile 'org.testng:testng:6.8.1'
+// Checkstyle configuration
+checkstyle {
+    toolVersion = '7.8'
+}
+
+// FindBugs configuration
+findbugs {
+    toolVersion = "3.0.1"
+}
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+// PMD Configuration
+pmd {
+    toolVersion = '5.7.0'
+}
+tasks.withType(Pmd) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
 }
 
 task runTestNGTestCases(type: Test) {
