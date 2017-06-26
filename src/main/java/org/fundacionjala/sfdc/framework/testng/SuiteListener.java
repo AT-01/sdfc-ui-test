@@ -1,9 +1,10 @@
 package org.fundacionjala.sfdc.framework.testng;
 
-import org.fundacionjala.sfdc.framework.browser.DriverManager;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
+
+import org.fundacionjala.sfdc.framework.browser.DriverManager;
+import org.fundacionjala.sfdc.pages.LoginPage;
 
 /**
  * Class to manage the login and close the driver for each suite.
@@ -17,8 +18,7 @@ public class SuiteListener implements ISuiteListener {
      */
     @Override
     public void onStart(final ISuite suite) {
-        LoginPage loginPage = new LoginPage();
-        loginPage.loginAsPrimaryUser();
+        LoginPage.loginAsPrimaryUser();
     }
 
     /**

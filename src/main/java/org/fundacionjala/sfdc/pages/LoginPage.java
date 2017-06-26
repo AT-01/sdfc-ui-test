@@ -1,15 +1,16 @@
 package org.fundacionjala.sfdc.pages;
 
-import org.fundacionjala.sfdc.framework.browser.DriverManager;
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.framework.utils.Environment;
-import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.concurrent.TimeUnit;
+import org.fundacionjala.sfdc.framework.browser.DriverManager;
+import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.framework.utils.Environment;
+import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 
 /**
  * Class to manage the login process.
@@ -111,8 +112,9 @@ public class LoginPage extends AbstractBasePage {
      *
      * @return Main page after login to Salesforce application.
      */
-    public MainApp loginAsPrimaryUser() {
-        return loginOtherUser(Environment.getInstance().getPrimaryUser(),
+    public static MainApp loginAsPrimaryUser() {
+        LoginPage login = new LoginPage();
+        return login.loginOtherUser(Environment.getInstance().getPrimaryUser(),
                 Environment.getInstance().getPrimaryPassword());
     }
 }
