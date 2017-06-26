@@ -1,20 +1,16 @@
 package org.fundacionjala.sfdc.framework.browser;
 
-import org.fundacionjala.sfdc.framework.utils.Environment;
+import java.util.concurrent.TimeUnit;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.concurrent.TimeUnit;
+import org.fundacionjala.sfdc.framework.utils.Environment;
 
 /**
  * Class to manage the drivers.
  */
 public final class DriverManager {
-
-    private static final Logger LOGGER = LogManager.getLogger(BrowserStack.class);
 
     private static final Environment ENVIRONMENT = Environment.getInstance();
 
@@ -28,15 +24,13 @@ public final class DriverManager {
      * This method is in charge to initialize the DriverManager.
      */
     private DriverManager() {
-        final String baseUrl = ENVIRONMENT.getBaseUrl();
-        final int timeout = ENVIRONMENT.getTimeout();
         final Browser browser = Browser.valueOf(ENVIRONMENT.getBrowser().toUpperCase());
         driver = DriverFactory.getDriver(browser).initDriver();
 
-        driver.manage().timeouts().implicitlyWait(timeout, TimeUnit.SECONDS);
-        driver.get(baseUrl);
+        driver.manage().timeouts().implicitlyWait(ENVIRONMENT.getTimeout(), TimeUnit.SECONDS);
+        driver.get(ENVIRONMENT.getBaseUrl());
         driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Environment.getInstance().getTimeout());
+        wait = new WebDriverWait(driver, ENVIRONMENT.getTimeout());
     }
 
     /**

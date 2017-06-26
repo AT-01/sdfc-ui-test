@@ -1,16 +1,18 @@
 package org.fundacionjala.sfdc.tests.account;
 
-import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
-import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
-import org.fundacionjala.sfdc.pages.accounts.AccountForm;
-import org.fundacionjala.sfdc.pages.accounts.AccountHome;
-import org.fundacionjala.sfdc.tests.Asserts;
+import java.util.Map;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Map;
+import org.fundacionjala.sfdc.framework.utils.JsonMapper;
+import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.pages.LoginPage;
+import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
+import org.fundacionjala.sfdc.pages.accounts.AccountForm;
+import org.fundacionjala.sfdc.pages.accounts.AccountHome;
+import org.fundacionjala.sfdc.tests.Asserts;
 
 /**
  * Class that verify the creation of the account.
@@ -29,6 +31,7 @@ public class CreateAccount {
     @BeforeMethod
     public void setUp() {
         valuesMapJson = JsonMapper.getMapJson(ACCOUNT_DATA_PATH);
+        LoginPage.loginAsPrimaryUser();
         AccountHome accountHome = Navigator.goToAccount();
         accountForm = accountHome.clickNewButton();
     }
