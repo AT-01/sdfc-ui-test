@@ -1,6 +1,7 @@
 package org.fundacionjala.sfdc.pages;
 
 import org.fundacionjala.sfdc.framework.browser.DriverManager;
+import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.framework.utils.Environment;
 import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebDriverException;
@@ -40,9 +41,8 @@ public class LoginPage extends AbstractBasePage {
      * @param email String with the username or email.
      * @return {@link LoginPage}
      */
-    public LoginPage setUserNameField(final String email) {
-        userNameField.clear();
-        userNameField.sendKeys(email);
+    private LoginPage setUserNameField(final String email) {
+        CommonActions.sendKeys(userNameField, email);
         return this;
     }
 
@@ -52,9 +52,8 @@ public class LoginPage extends AbstractBasePage {
      * @param password String  whit the password.
      * @return {@link LoginPage}
      */
-    public LoginPage setPasswordField(final String password) {
-        passwordTxt.clear();
-        passwordTxt.sendKeys(password);
+    private LoginPage setPasswordField(final String password) {
+        CommonActions.sendKeys(passwordTxt, password);
         return this;
     }
 
@@ -63,7 +62,7 @@ public class LoginPage extends AbstractBasePage {
      *
      * @return The home page.
      */
-    public MainApp clickLogInToSalesforceButton() {
+    private MainApp clickLogInToSalesforceButton() {
         loginField.click();
         return new MainApp();
     }
