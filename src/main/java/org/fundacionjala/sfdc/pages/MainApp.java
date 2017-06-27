@@ -11,6 +11,10 @@ import org.openqa.selenium.support.FindBy;
  */
 public class MainApp extends AbstractBasePage {
 
+    @FindBy(css = ".slds-icon-waffle")
+    @CacheLookup
+    private WebElement appLauncherButton;
+
     @FindBy(css = "#recentItems tr:first-child td a")
     private WebElement userInformationLink;
 
@@ -28,6 +32,7 @@ public class MainApp extends AbstractBasePage {
 
     /**
      * Method that goes to the tab bar.
+     *
      * @return {@link TabBar}
      */
     public TabBar goToTabBar() {
@@ -36,11 +41,22 @@ public class MainApp extends AbstractBasePage {
 
     /**
      * Method that makes click on the user Information link.
+     *
      * @return {@link UserInformationPage}
      */
     public UserInformationPage clickUserInformationLink() {
         CommonActions.clickElement(userInformationLink);
         return new UserInformationPage();
+    }
+
+    /**
+     * Method that males click on the AppLauncher link.
+     *
+     * @return {@link AppLauncher}
+     */
+    public AppLauncher clickAppLauncher() {
+        CommonActions.clickElement(appLauncherButton);
+        return new AppLauncher();
     }
 
 }
