@@ -121,4 +121,12 @@ public final class Navigator {
         MainApp mainApp = new MainApp();
         return mainApp.goToTabBar();
     }
+
+    /**
+     * Go to page sales.
+     */
+
+    public static void goToSales() {
+        goToNavigator().clickSales();
+    }
 }
