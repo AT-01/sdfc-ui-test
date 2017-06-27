@@ -57,6 +57,13 @@ public class TabBar extends AbstractBasePage {
     @CacheLookup
     private WebElement caseTab;
 
+    @FindBy(css = ".slds-icon-waffle")
+    @CacheLookup
+    private WebElement iconWaffle;
+
+    @FindBy(css = "[title=\"Sales\"]")
+    @CacheLookup
+    private WebElement salesLabel;
 
     /**
      * This Method makes click on Campaigns tab.
@@ -149,4 +156,12 @@ public class TabBar extends AbstractBasePage {
         return new CasesHome();
     }
 
+    /**
+     * This method makes click on icon and page sales.
+     */
+
+    public void clickSales() {
+        CommonActions.clickElement(iconWaffle);
+        CommonActions.clickElement(salesLabel);
+    }
 }
