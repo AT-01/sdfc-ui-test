@@ -2,7 +2,7 @@ package org.fundacionjala.sfdc.tests.opportunity;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.pages.MainApp;
-import org.fundacionjala.sfdc.pages.TabBar;
+import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
 import org.fundacionjala.sfdc.pages.accounts.AccountForm;
 import org.fundacionjala.sfdc.pages.accounts.AccountHome;
@@ -29,7 +29,7 @@ import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.CURRE
 public class CreateOpportunity {
 
     static final String OPPORTUNITY_DATA_PATH = "opportunity/CreateOpportunityData.json";
-    private TabBar tabBar;
+    private AppLauncher appLauncher;
     private OpportunityDetail opportunityDetail;
     private AccountDetail accountDetail;
     private Map<String, String> valuesMapJson;
@@ -41,8 +41,8 @@ public class CreateOpportunity {
     public void beforeTest() {
         valuesMapJson = JsonMapper.getMapJson(OPPORTUNITY_DATA_PATH);
         MainApp mainApp = new MainApp();
-        tabBar = mainApp.goToTabBar();
-        AccountHome accountsHome = tabBar.clickOnAccountsHome();
+        appLauncher = mainApp.clickAppLauncher();
+        AccountHome accountsHome = appLauncher.clickOnAccountsHome();
         //AccountHome accountsHome= Navigator.goToAccount();
         AccountForm newAccountForm = accountsHome.clickNewButton();
         accountDetail = newAccountForm
@@ -55,7 +55,7 @@ public class CreateOpportunity {
      */
     @Test
     public void createOpportunity() {
-        OpportunityHome opportunityHome = tabBar.clickOnOpportunitiesHome();
+        OpportunityHome opportunityHome = appLauncher.clickOnOpportunitiesHome();
         OpportunityForm opportunityForm = opportunityHome.clickNewButton();
         opportunityForm = new OpportunityForm.OpportunityBuilder(
                 valuesMapJson.get(OPPORTUNITY_NAME.getValue()),

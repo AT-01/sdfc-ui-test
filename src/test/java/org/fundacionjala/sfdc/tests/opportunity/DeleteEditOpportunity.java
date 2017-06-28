@@ -2,7 +2,7 @@ package org.fundacionjala.sfdc.tests.opportunity;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.pages.MainApp;
-import org.fundacionjala.sfdc.pages.TabBar;
+import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
 import org.fundacionjala.sfdc.pages.accounts.AccountForm;
 import org.fundacionjala.sfdc.pages.accounts.AccountHome;
@@ -26,7 +26,7 @@ import static org.testng.Assert.assertFalse;
 public class DeleteEditOpportunity {
 
     private static final String OPPORTUNITY_DATA_EDIT_PATH = "opportunity/EditOpportunityData.json";
-    private TabBar tabBar;
+    private AppLauncher appLauncher;
     private OpportunityForm opportunityForm;
     private OpportunityDetail opportunityDetail;
     private AccountHome accountsHome;
@@ -41,13 +41,13 @@ public class DeleteEditOpportunity {
     public void beforeTest() {
         valuesMapJson = JsonMapper.getMapJson(CreateOpportunity.OPPORTUNITY_DATA_PATH);
         mainApp = new MainApp();
-        tabBar = mainApp.goToTabBar();
-        accountsHome = tabBar.clickOnAccountsHome();
+        appLauncher = mainApp.clickAppLauncher();
+        accountsHome = appLauncher.clickOnAccountsHome();
         AccountForm newAccountForm = accountsHome.clickNewButton();
         accountDetail = newAccountForm
                 .setNameTextField(valuesMapJson.get(ACCOUNT_NAME.getValue()))
                 .clickSaveButton();
-        OpportunityHome opportunityHome = tabBar.clickOnOpportunitiesHome();
+        OpportunityHome opportunityHome = appLauncher.clickOnOpportunitiesHome();
         opportunityForm = opportunityHome.clickNewButton();
 
         opportunityForm.fillTheForm(valuesMapJson);
@@ -81,8 +81,8 @@ public class DeleteEditOpportunity {
      */
     @AfterMethod
     public void afterTest() {
-        tabBar = mainApp.goToTabBar();
-        accountsHome = tabBar.clickOnAccountsHome();
+        appLauncher = mainApp.clickAppLauncher();
+        accountsHome = appLauncher.clickOnAccountsHome();
 
         accountDetail = accountsHome.clickAccountName(valuesMapJson.get(ACCOUNT_NAME.getValue()));
         mainApp = accountDetail.clickDeleteButton();

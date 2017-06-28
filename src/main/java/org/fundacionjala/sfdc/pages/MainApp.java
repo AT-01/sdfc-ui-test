@@ -33,10 +33,12 @@ public class MainApp extends AbstractBasePage {
     /**
      * Method that goes to the tab bar.
      *
-     * @return {@link TabBar}
+     * @return {@link AppLauncher}
      */
-    public TabBar goToTabBar() {
-        return new TabBar();
+    public AppLauncher clickAppLauncher() {
+        CommonActions.sleep();
+        CommonActions.clickElement(appLauncherButton);
+        return new AppLauncher();
     }
 
     /**
@@ -44,19 +46,10 @@ public class MainApp extends AbstractBasePage {
      *
      * @return {@link UserInformationPage}
      */
-    public UserInformationPage clickUserInformationLink() {
+    UserInformationPage clickUserInformationLink() {
         CommonActions.clickElement(userInformationLink);
         return new UserInformationPage();
     }
 
-    /**
-     * Method that males click on the AppLauncher link.
-     *
-     * @return {@link AppLauncher}
-     */
-    public AppLauncher clickAppLauncher() {
-        CommonActions.clickElement(appLauncherButton);
-        return new AppLauncher();
-    }
 
 }

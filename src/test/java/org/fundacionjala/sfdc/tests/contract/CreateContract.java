@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.MainApp;
-import org.fundacionjala.sfdc.pages.TabBar;
 import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
 import org.fundacionjala.sfdc.pages.accounts.AccountForm;
 import org.fundacionjala.sfdc.pages.accounts.AccountHome;
@@ -44,7 +44,7 @@ public class CreateContract {
 
     private ContractDetail contractDetail;
 
-    private TabBar tabBar;
+    private AppLauncher appLauncher;
 
     private MainApp mainApp;
 
@@ -64,8 +64,8 @@ public class CreateContract {
         accountForm.clickSaveButton();
 
         mainApp = new MainApp();
-        tabBar = mainApp.goToTabBar();
-        final ContractHome contractHome = tabBar.clickOnContractHome();
+        appLauncher = mainApp.clickAppLauncher();
+        final ContractHome contractHome = appLauncher.clickOnContractHome();
         contractForm = contractHome.clickNewButton();
     }
 
@@ -97,8 +97,8 @@ public class CreateContract {
     @AfterMethod
     public void tearDown() {
         contractDetail.clickDeleteButton();
-        tabBar = mainApp.goToTabBar();
-        accountHome = tabBar.clickOnAccountsHome();
+        appLauncher = mainApp.clickAppLauncher();
+        accountHome = appLauncher.clickOnAccountsHome();
         accountDetail = accountHome.clickOnAccount(valuesMapJson.get(ACCOUNT_NAME.toString()));
 
         accountDetail.clickDeleteButton();
