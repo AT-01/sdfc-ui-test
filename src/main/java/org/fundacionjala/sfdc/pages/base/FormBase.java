@@ -1,9 +1,8 @@
 package org.fundacionjala.sfdc.pages.base;
 
+import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
 
 /**
  * This class contains the common procedures to manage Add, and Delete elements from different components:
@@ -11,20 +10,14 @@ import org.fundacionjala.sfdc.framework.utils.CommonActions;
  */
 public abstract class FormBase extends AbstractBasePage {
 
-    @FindBy(name = "save")
+    @FindBy(css = "button[title='Save']")
     protected WebElement saveButton;
 
-    @FindBy(name = "save_new")
+    @FindBy(css = "button[title='Save & New']")
     protected WebElement saveNewBtn;
 
-    @FindBy(name = "cancel")
-    protected WebElement cancelBtn;
-
-    @FindBy(id = "calMonthPicker")
-    protected WebElement monthPicker;
-
-    @FindBy(id = "calYearPicker")
-    protected WebElement yearPicker;
+    @FindBy(css = "button[title='Cancel']")
+    private WebElement cancelBtn;
 
     /**
      * Clicks on "save" button.

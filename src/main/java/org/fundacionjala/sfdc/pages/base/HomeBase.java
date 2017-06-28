@@ -9,15 +9,18 @@ import org.openqa.selenium.support.FindBy;
  */
 public abstract class HomeBase extends AbstractBasePage {
 
-    @FindBy(name = "new")
+    @FindBy(css = "a.forceActionLink[title='New']")
     @CacheLookup
     protected WebElement newButton;
 
-    @FindBy(linkText = "Create New View")
+    @FindBy(css = "button[title='List View Controls'")
+    protected WebElement listViewButton;
+
+    @FindBy(xpath = "//span[text()='New']")
     @CacheLookup
     protected WebElement createNewViewLink;
 
-    @FindBy(linkText = "Edit")
+    @FindBy(css = "button[title='Edit List']")
     @CacheLookup
     protected WebElement editViewLink;
 
