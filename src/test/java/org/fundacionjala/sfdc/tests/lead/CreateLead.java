@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.framework.utils.Navigator;
-import org.fundacionjala.sfdc.pages.TabBar;
+import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignDetail;
 import org.fundacionjala.sfdc.pages.campaigns.Campaigns;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignsHome;
@@ -41,7 +41,7 @@ public class CreateLead {
      */
     @BeforeMethod
     public void setUp() {
-        TabBar tabBar = new TabBar();
+        AppLauncher appLauncher = new AppLauncher();
         campaignsHome = Navigator.goToCampaign();
         campaignsHome.clickNewButton();
         Campaigns campaigns = new Campaigns.CampaignBuilder(CAMPAIGN_NAME)
@@ -50,7 +50,7 @@ public class CreateLead {
         campaignDetail = campaigns.createCampaign();
         valuesMapJson = JsonMapper.getMapJson(LEAD_DATA_PATH);
         valuesMapJson.put(CAMPAIGN.toString(), CAMPAIGN_NAME);
-        leadHomePage = tabBar.clickLead();
+        leadHomePage = appLauncher.clickLead();
     }
 
     /**
@@ -71,7 +71,7 @@ public class CreateLead {
     @AfterMethod
     public void tearDown() {
         leadDetails.clickDeleteButton();
-        campaignsHome = new TabBar().clickCampaigns();
+        campaignsHome = new AppLauncher().clickCampaigns();
         campaignDetail = campaignsHome.selectCampaign(CAMPAIGN_NAME);
         campaignDetail.clickDeleteButton();
     }

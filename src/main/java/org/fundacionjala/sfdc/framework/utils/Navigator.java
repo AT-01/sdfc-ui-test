@@ -1,7 +1,7 @@
 package org.fundacionjala.sfdc.framework.utils;
 
+import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.MainApp;
-import org.fundacionjala.sfdc.pages.TabBar;
 import org.fundacionjala.sfdc.pages.accounts.AccountHome;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignsHome;
 import org.fundacionjala.sfdc.pages.cases.CasesHome;
@@ -117,16 +117,8 @@ public final class Navigator {
      *
      * @return Mainapp class.
      */
-    private static TabBar goToNavigator() {
+    private static AppLauncher goToNavigator() {
         MainApp mainApp = new MainApp();
-        return mainApp.goToTabBar();
-    }
-
-    /**
-     * Go to page sales.
-     */
-
-    public static void goToSales() {
-        goToNavigator().clickSales();
+        return mainApp.clickAppLauncher();
     }
 }
