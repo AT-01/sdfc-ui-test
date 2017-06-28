@@ -2,8 +2,8 @@ package org.fundacionjala.sfdc.tests.contract;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.MainApp;
-import org.fundacionjala.sfdc.pages.TabBar;
 import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
 import org.fundacionjala.sfdc.pages.accounts.AccountForm;
 import org.fundacionjala.sfdc.pages.accounts.AccountHome;
@@ -27,7 +27,7 @@ public class DeleteEditContract {
 
     private static final String CONTRACT_DATA_EDIT_PATH = "contract/EditContractData.json";
     private String contractNumber;
-    private TabBar tabBar;
+    private AppLauncher appLauncher;
     private ContractForm contractForm;
     private ContractDetail contractDetail;
     private AccountHome accountsHome;
@@ -47,7 +47,7 @@ public class DeleteEditContract {
                 .setNameTextField(valuesMapJson.get(ACCOUNT_NAME.toString()))
                 .clickSaveButton();
 
-        ContractHome contractHome = tabBar.clickOnContractHome();
+        ContractHome contractHome = appLauncher.clickOnContractHome();
         contractForm = contractHome.clickNewButton();
 
         contractForm.fillTheForm(valuesMapJson);
@@ -81,8 +81,8 @@ public class DeleteEditContract {
      */
     @AfterMethod
     public void tearDown() {
-        tabBar = mainApp.goToTabBar();
-        accountsHome = tabBar.clickOnAccountsHome();
+        appLauncher = mainApp.clickAppLauncher();
+        accountsHome = appLauncher.clickOnAccountsHome();
         accountDetail = accountsHome.clickOnAccount(valuesMapJson.get(ACCOUNT_NAME.toString()));
         mainApp = accountDetail.clickDeleteButton();
 

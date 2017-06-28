@@ -20,27 +20,27 @@ import java.util.Map;
  */
 public class CampaignForm extends FormBase {
 
-    @FindBy(id = "cpn1")
+    @FindBy(xpath = "//span[text()='Campaign Name']/parent::label/following-sibling::input")
     @CacheLookup
-    private WebElement campaingNameField;
+    private WebElement campaignNameField;
 
-    @FindBy(id = "cpn16")
+    @FindBy(xpath = "//span[text()='Active']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement activeCheckbox;
 
-    @FindBy(id = "cpn2")
+    @FindBy(xpath = "//span[text()='Type']/parent::span/following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement typeDropdown;
 
-    @FindBy(id = "cpn3")
+    @FindBy(xpath = "//span[text()='Status']/parent::span/following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement statusDropdown;
 
-    @FindBy(id = "cpn5")
+    @FindBy(xpath = "//span[text()='Start Date']/parent::label/following-sibling::div/child::input")
     @CacheLookup
     private WebElement startDateField;
 
-    @FindBy(id = "cpn6")
+    @FindBy(xpath = "//span[text()='End Date']/parent::label/following-sibling::div/child::input")
     @CacheLookup
     private WebElement endDateField;
 
@@ -64,9 +64,9 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     private WebElement allCampaigns;
 
-    @FindBy(id = "cpn8")
+    @FindBy(xpath = "//span[text()='Expected Revenue in Campaign']/parent::label/following-sibling::input")
     @CacheLookup
-    private WebElement revenueTextField;
+    private WebElement revenueCampaignTextField;
 
     /**
      * set name of the campaign.
@@ -74,8 +74,8 @@ public class CampaignForm extends FormBase {
      * @param text String whit the name.
      * @return return Campaign Form.
      */
-    public CampaignForm setCampaingNameField(final String text) {
-        CommonActions.sendKeys(campaingNameField, text);
+    public CampaignForm setCampaignNameField(final String text) {
+        CommonActions.sendKeys(campaignNameField, text);
         return this;
     }
 
@@ -130,7 +130,7 @@ public class CampaignForm extends FormBase {
      */
     private CampaignForm setEndDateField(final String endDate) {
         CommonActions.sendKeys(endDateField, endDate);
-        CommonActions.clickElement(campaingNameField);
+        CommonActions.clickElement(campaignNameField);
         return this;
     }
 
@@ -184,7 +184,7 @@ public class CampaignForm extends FormBase {
      */
     public Map<String, FormSteps> getStrategyStepMap(final Map<String, String> values) {
         final Map<String, FormSteps> strategyMap = new HashMap();
-        strategyMap.put("campaignName", () -> setCampaingNameField(String.valueOf(values.get("campaignName"))));
+        strategyMap.put("campaignName", () -> setCampaignNameField(String.valueOf(values.get("campaignName"))));
         strategyMap.put("active", this::checkActiveCheckbox);
         strategyMap.put("typeDropDown", () -> selectTypeDropdown(String.valueOf(values.get("typeDropDown"))));
         strategyMap.put("statusDropDown", () -> selectStatusDropdown(String.valueOf(values.get("statusDropDown"))));
@@ -200,8 +200,8 @@ public class CampaignForm extends FormBase {
      * @param quantity String whit the quantity.
      */
     public void setRevenue(final String quantity) {
-        CommonActions.clearTextField(revenueTextField);
-        CommonActions.sendKeys(revenueTextField, quantity);
+        CommonActions.clearTextField(revenueCampaignTextField);
+        CommonActions.sendKeys(revenueCampaignTextField, quantity);
     }
 
     /**
@@ -210,8 +210,7 @@ public class CampaignForm extends FormBase {
      * @param valuesMapCreate  Map
      */
     public void fillTheForm(final Map<String, String> valuesMapCreate) {
-        valuesMapCreate.keySet()
-                .forEach(step -> getStrategyStepMap(valuesMapCreate).get(step).executeStep());
+        valuesMapCreate.keySet().forEach(step -> getStrategyStepMap(valuesMapCreate).get(step).executeStep());
     }
 
 

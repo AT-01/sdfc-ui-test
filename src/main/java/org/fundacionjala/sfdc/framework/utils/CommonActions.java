@@ -18,7 +18,7 @@ import org.fundacionjala.sfdc.framework.browser.DriverManager;
 public final class CommonActions {
 
     private static final Logger LOGGER = LogManager.getLogger(CommonActions.class);
-    private static final int MILLIS_SECONDS = 10000;
+    private static final int MILLIS_SECONDS = 30000;
 
     /**
      * Constructor private.
