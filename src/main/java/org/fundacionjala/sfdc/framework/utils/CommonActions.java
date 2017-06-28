@@ -18,6 +18,7 @@ import org.fundacionjala.sfdc.framework.browser.DriverManager;
 public final class CommonActions {
 
     private static final Logger LOGGER = LogManager.getLogger(CommonActions.class);
+    private static final int MILLIS_SECONDS = 10000;
 
     /**
      * Constructor private.
@@ -31,7 +32,7 @@ public final class CommonActions {
      * @param element Element to wait and clickElement.
      */
     public static void clickElement(final WebElement element) {
-        DriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
+        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
         element.click();
     }
 
@@ -160,4 +161,19 @@ public final class CommonActions {
         String currentWindow = DriverManager.getInstance().getDriver().getWindowHandle();
         DriverManager.getInstance().getDriver().switchTo().window(currentWindow);
     }
+
+    /**
+     * Wait a millis seconds to page loading.
+     */
+
+    public static void sleep() {
+        try {
+            Thread.sleep(MILLIS_SECONDS);
+        } catch (InterruptedException e) {
+            LOGGER.error("Waiting time is over", e);
+            Thread.currentThread().interrupt();
+        }
+    }
+
+
 }
