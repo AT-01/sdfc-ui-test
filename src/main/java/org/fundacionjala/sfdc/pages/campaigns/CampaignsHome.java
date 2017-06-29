@@ -27,6 +27,10 @@ public class CampaignsHome extends AbstractBasePage {
     @CacheLookup
     private WebElement campaignNameLink;
 
+    @FindBy(css = ".rowActionsPlaceHolder")
+    @CacheLookup
+    private WebElement deleteNew;
+
     /**
      * click on the new button.
      *
@@ -58,4 +62,8 @@ public class CampaignsHome extends AbstractBasePage {
         allCampaigns.findElement(By.linkText(campaignName)).click();
         return new CampaignDetail();
     }
+
+//    public void clickDelete() {
+//        CommonActions.clickElement(DeleteNew);
+//    }
 }
