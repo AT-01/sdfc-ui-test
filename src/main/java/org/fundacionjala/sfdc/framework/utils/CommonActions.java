@@ -42,7 +42,7 @@ public final class CommonActions {
      * This method waits and fill the element.
      *
      * @param element Element to wait and fill.
-     * @param value    value to fill.
+     * @param value   value to fill.
      */
     public static void sendKeys(final WebElement element, final String value) {
         DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
@@ -74,7 +74,11 @@ public final class CommonActions {
 
 
     /**
+     * This method slect a item from a webelemet list.
      *
+     * @param elementsList is a list of web elements
+     * @param selectItem   the item witch is looked.
+     * @return a web element.
      */
 
     public static WebElement selectAnElement(final List<WebElement> elementsList,

@@ -278,72 +278,151 @@ public class ContactForm extends FormBase {
         return this;
     }
 
-
-    public ContactForm setPhone(final String phone){
-        CommonActions.sendKeys(phoneField,phone);
+    /**
+     * Method.
+     *
+     * @param phone is the phone to set.
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setPhone(final String phone) {
+        CommonActions.sendKeys(phoneField, phone);
         return this;
     }
 
-    public ContactForm sethomePhone(final String phoneHome){
-        CommonActions.sendKeys(homePhoneField,phoneHome);
+    /**
+     * Method.
+     *
+     * @param phoneHome phone.
+     * @return {@link ContactForm}.
+     */
+
+    public ContactForm sethomePhone(final String phoneHome) {
+        CommonActions.sendKeys(homePhoneField, phoneHome);
         return this;
     }
 
-    public ContactForm setMobilePhone(final String mobilePhone){
-        CommonActions.sendKeys(mobilePhoneField,mobilePhone);
+    /**
+     * Method.
+     *
+     * @param mobilePhone phone.
+     * @return {@link ContactForm}.
+     */
+
+    public ContactForm setMobilePhone(final String mobilePhone) {
+        CommonActions.sendKeys(mobilePhoneField, mobilePhone);
         return this;
     }
 
-    public ContactForm setOtherPhone(final String item){
-        CommonActions.sendKeys(otherPhone,item);
+    /**
+     * Method.
+     *
+     * @param item nis the phone
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setOtherPhone(final String item) {
+        CommonActions.sendKeys(otherPhone, item);
         return this;
     }
 
-    public ContactForm setAssistant(final String item){
+    /**
+     * Method.
+     *
+     * @param item name
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setAssistant(final String item) {
         CommonActions.sendKeys(assistandField, item);
         return this;
     }
 
-    public ContactForm setAssistantPhone(final String item ){
-        CommonActions.sendKeys(assitandPhoneFiled,item);
+    /**
+     * Method.
+     *
+     * @param item text.
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setAssistantPhone(final String item) {
+        CommonActions.sendKeys(assitandPhoneFiled, item);
         return this;
     }
 
-    public ContactForm setMailingCity(final String item){
-        CommonActions.sendKeys(mailingCity,item);
+    /**
+     * method.
+     *
+     * @param item mail.
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setMailingCity(final String item) {
+        CommonActions.sendKeys(mailingCity, item);
         return this;
     }
 
-    public ContactForm setMalingState(final String item){
-        CommonActions.sendKeys(mailingStateProvinceField,item);
+    /**
+     * method.
+     *
+     * @param item mail.
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setMalingState(final String item) {
+        CommonActions.sendKeys(mailingStateProvinceField, item);
         return this;
     }
 
-    public ContactForm setOtherCity(final String item){
-        CommonActions.sendKeys(otherCityFiled,item);
+    /**
+     * method.
+     *
+     * @param item mail.
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setOtherCity(final String item) {
+        CommonActions.sendKeys(otherCityFiled, item);
         return this;
     }
 
-    public ContactForm setMailingZip(final String item){
-        CommonActions.sendKeys(mailingZipPostalCodeField,item);
+    /**
+     * method.
+     *
+     * @param item mail.
+     * @return {@link ContactForm}.
+     */
+
+    public ContactForm setMailingZip(final String item) {
+        CommonActions.sendKeys(mailingZipPostalCodeField, item);
         return this;
     }
 
-    public ContactForm setMailingCoutry(final String item){
-        CommonActions.sendKeys(mailingCountryField,item);
+    /**
+     * method.
+     *
+     * @param item mail.
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setMailingCoutry(final String item) {
+        CommonActions.sendKeys(mailingCountryField, item);
         return this;
     }
 
-    public ContactForm setOtherZip(final String item){
-        CommonActions.sendKeys(otherZipPostalCodeField,item);
+    /**
+     * method.
+     *
+     * @param item mail.
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setOtherZip(final String item) {
+        CommonActions.sendKeys(otherZipPostalCodeField, item);
         return this;
     }
 
-    public ContactForm setLanguages(final  String item){
-        CommonActions.sendKeys(languagesField,item);
+    /**
+     * method.
+     *
+     * @param item mail.
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setLanguages(final String item) {
+        CommonActions.sendKeys(languagesField, item);
         return this;
     }
-
 
 
     /**
