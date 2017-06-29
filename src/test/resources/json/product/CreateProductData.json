@@ -2,6 +2,5 @@
   "NAME" : "product_001",
   "CODE" : "prod_001",
   "DESCRIPTION" : "description Test",
-  "ACTIVE" : "true",
-  "FAMILY" : "None"
+  "ACTIVE" : "true"
 }

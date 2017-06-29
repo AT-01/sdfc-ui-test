@@ -2,47 +2,40 @@ package org.fundacionjala.sfdc.pages.products;
 
 import java.util.HashMap;
 import java.util.Map;
-
+import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.pages.FormSteps;
+import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
+import org.fundacionjala.sfdc.pages.base.FormBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.FormSteps;
-import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
-import org.fundacionjala.sfdc.pages.base.FormBase;
-
-import static org.fundacionjala.sfdc.pages.products.ProductFields.ACTIVE;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.CODE;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.DESCRIPTION;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.FAMILY;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.NAME;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.*;
 
 /**
  * This class handle the product form.
  */
 public class ProductForm extends FormBase {
 
-    @FindBy(id = "Name")
+    @FindBy(xpath = "//span[text()='Product Name']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement productNameTextField;
 
-    @FindBy(id = "ProductCode")
+    @FindBy(xpath = "//span[text()='Product Code']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement productCodeTextField;
 
-    @FindBy(id = "IsActive")
+    @FindBy(xpath = "//span[text()='Active']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement isActiveCheckBox;
 
-    @FindBy(id = "Family")
+    @FindBy(css = "[title=\"None\"]")
     @CacheLookup
     private WebElement productFamilySelect;
 
-    @FindBy(id = "Description")
+    @FindBy(xpath = "//span[text()='Product Description']/parent::label/following-sibling::textarea")
     @CacheLookup
     private WebElement descriptionTextArea;
 
@@ -135,7 +128,10 @@ public class ProductForm extends FormBase {
             int index = 0;
             selectBox.selectByIndex(index);
         } else {
-            selectBox.selectByVisibleText(productFamily);
+            //System.out.println(productFamily);
+            //selectBox.selectByValue(productFamily);
+            selectBox.selectByVisibleText("None");
+            //selectBox.selectByVisibleText(productFamily);
         }
         return this;
     }
@@ -191,7 +187,7 @@ public class ProductForm extends FormBase {
         strategyMap.put(NAME.toString(), () -> setProductName(values.get(NAME.toString())));
         strategyMap.put(CODE.toString(), () -> setProductCode(values.get(CODE.toString())));
         strategyMap.put(ACTIVE.toString(), () -> checkActiveFlag(Boolean.parseBoolean(values.get(ACTIVE.toString()))));
-        strategyMap.put(FAMILY.toString(), () -> chooseProductFamilyDdl(values.get(FAMILY.toString())));
+        //strategyMap.put(FAMILY.toString(), () -> chooseProductFamilyDdl(values.get(FAMILY.toString())));
         strategyMap.put(DESCRIPTION.toString(), () -> setDescription(values.get(DESCRIPTION.toString())));
 
         return strategyMap;

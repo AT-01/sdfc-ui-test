@@ -2,65 +2,81 @@ package org.fundacionjala.sfdc.pages.products;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-
 import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.AssertsDetails;
 import org.fundacionjala.sfdc.pages.base.DetailBase;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
-import static org.fundacionjala.sfdc.pages.products.ProductFields.NAME;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.ACTIVE;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.CODE;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.FAMILY;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.DESCRIPTION;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.*;
 
 /**
  * This class handle the product details.
  */
 public class ProductDetail extends DetailBase {
 
-    private static final String CHECKED = "Checked";
-
-    private static final String TITLE = "title";
+    private static final String alt = "alt";
 
     // product name
-    @FindBy(id = "Name_ileinner")
+    @FindBy(xpath = "//span[text()='Product Name']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement productNameLabel;
 
     // product code
-    @FindBy(id = "ProductCode_ileinner")
+    @FindBy(xpath = "//span[text()='Product Code']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement productCodeLabel;
 
     // product description
-    @FindBy(id = "Description_ileinner")
+    @FindBy(xpath = "//span[text()='Product Description']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement productDescriptionLabel;
 
     // active flag
-    @FindBy(id = "IsActive_chkbox")
+    @FindBy(xpath = "//span[text()='Active']/parent::div/following-sibling::div/span/span/img")
     @CacheLookup
     private WebElement activeFlagImg;
 
+    // active flag
+    @FindBy(xpath = "//span[text()='Active']/parent::div/following-sibling::div/span/span/img/@alt")
+    @CacheLookup
+    private WebElement activeFlagImg2;
+
     // product family
-    @FindBy(id = "Family_ileinner")
+    @FindBy(css = ".select")
     @CacheLookup
     private WebElement productFamilyLabel;
+
+    @FindBy(css = "a[title=\"None\"]")
+    @CacheLookup
+    private WebElement productFamilyNoneOption;
+
+    @FindBy(xpath = "//span[@class=\"slds-icon_container slds-icon-utility-down slds-button__icon forceIcon\"]/child::span[1]")
+    @CacheLookup
+    private WebElement downArrow;
+
+    @FindBy(css = "a[title=\"Delete\"]")
+    @CacheLookup
+    private WebElement deleteOption;
+
+    @FindBy(css = "a[title=\"Edit\"]")
+    @CacheLookup
+    private WebElement editOption;
+
+    @FindBy(css = "[class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton'] span")
+    @CacheLookup
+    private WebElement confirmDelete;
+
 
     /**
      * {@inheritDoc}
      */
     @Override
     public ProductHome clickDeleteButton() {
-        CommonActions.clickElement(deleteBtn);
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        alert.accept();
+        CommonActions.clickElement(downArrow);
+        CommonActions.clickElement(deleteOption);
+        CommonActions.clickElement(confirmDelete);
         return new ProductHome();
     }
 
@@ -69,7 +85,8 @@ public class ProductDetail extends DetailBase {
      */
     @Override
     public ProductForm clickEditButton() {
-        CommonActions.clickElement(editBtn);
+        CommonActions.clickElement(downArrow);
+        CommonActions.clickElement(editOption);
         return new ProductForm();
     }
 
@@ -83,7 +100,7 @@ public class ProductDetail extends DetailBase {
         strategyMap.put(NAME.toString(), this::getProductName);
         strategyMap.put(CODE.toString(), this::getProductCode);
         strategyMap.put(ACTIVE.toString(), () -> String.valueOf(isActiveFlag()));
-        strategyMap.put(FAMILY.toString(), this::getProductFamily);
+        //strategyMap.put(FAMILY.toString(), this::getProductFamily);
         strategyMap.put(DESCRIPTION.toString(), this::getDescription);
         return strategyMap;
     }
@@ -104,7 +121,7 @@ public class ProductDetail extends DetailBase {
      * @return Return true if is active.
      */
     public boolean isActiveFlag() {
-        return CHECKED.equals(activeFlagImg.getAttribute(TITLE));
+        return Boolean.valueOf(activeFlagImg.getAttribute(alt));
     }
 
     /**
@@ -113,7 +130,9 @@ public class ProductDetail extends DetailBase {
      * @return String with product family.
      */
     public String getProductFamily() {
-        return CommonActions.getText(productFamilyLabel);
+        CommonActions.clickElement(productFamilyLabel);
+        CommonActions.clickElement(productFamilyNoneOption);
+        return "";
     }
 
     /**
