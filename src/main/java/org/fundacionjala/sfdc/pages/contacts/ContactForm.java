@@ -26,57 +26,122 @@ import static org.fundacionjala.sfdc.pages.contacts.ContactFields.TITLE;
  */
 public class ContactForm extends FormBase {
 
-    @FindBy(id = "name_salutationcon2")
+    @FindBy(css = "a[aria-label='Salutation']")
     @CacheLookup
-    private WebElement firstNameCategoryField;
+    private WebElement salutations;
 
-    @FindBy(id = "name_firstcon2")
+    @FindBy(css = "input[placeholder='First Name']")
     @CacheLookup
     private WebElement firstNameField;
 
-    @FindBy(id = "name_lastcon2")
+    @FindBy(css = "input[placeholder='Last Name']")
     @CacheLookup
     private WebElement lastNameField;
 
-    @FindBy(id = "con4")
+    @FindBy(css = "input[placeholder='Search Accounts']")
     @CacheLookup
     private WebElement accountNameField;
 
-    @FindBy(id = "con5")
+    @FindBy(xpath = "//span[text()='Title']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement titleField;
 
-    @FindBy(id = "con6")
+    @FindBy(xpath = "//span[text()='Department']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement departmentField;
 
-    @FindBy(id = "con7")
+    @FindBy(xpath = "//span[text()='Birthdate']/parent::label/following-sibling::div/child::input")
     @CacheLookup
     private WebElement birthDateField;
 
-    @FindBy(id = "con8")
+    @FindBy(xpath = "//span[text()='Reports To']/parent::label/following-sibling::div/descendant::input")
     @CacheLookup
     private WebElement reportToField;
 
-    @FindBy(id = "con9")
-    @CacheLookup
-    private WebElement leadSourceField;
-
-    @FindBy(id = "con10")
+    @FindBy(xpath = "//span[text()='Phone']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement phoneField;
+    @FindBy(xpath = "//span[text()='Home Phone']/parent::label/following-sibling::input")
+    @CacheLookup
+    private WebElement homePhoneField;
+    @FindBy(xpath = "//span[text()='Mobile']/parent::label/following-sibling::input")
+    @CacheLookup
+    private WebElement mobilePhoneField;
+    @FindBy(xpath = "//span[text()='Fax']/parent::label/following-sibling::input")
+    @CacheLookup
+    private WebElement fax;
+    @FindBy(xpath = "//span[text()='Other Phone']/parent::label/following-sibling::input")
+    @CacheLookup
+    private WebElement otherPhone;
 
-    @FindBy(id = "con15")
+    @FindBy(xpath = "//span[text()='Email']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement mailField;
 
-    @FindBy(id = "con19street")
+    @FindBy(xpath = "//span[text()='Assistant']/parent::label/following-sibling::input")
+    @CacheLookup
+    private WebElement assistandField;
+
+    @FindBy(xpath = "//span[text()='Asst. Phone']/parent::label/following-sibling::input")
+    @CacheLookup
+    private WebElement assitandPhoneFiled;
+
+    @FindBy(css = "a[aria-label='Lead Source']")
+    @CacheLookup
+    private WebElement leadSourceField;
+
+    @FindBy(css = "textarea[placeholder='Mailing Street']")
     @CacheLookup
     private WebElement mailingStreetField;
 
-    @FindBy(id = "con18street")
+    @FindBy(css = "textarea[placeholder='Other Street']")
     @CacheLookup
     private WebElement otherStreetField;
+
+    @FindBy(css = "input[placeholder='Mailing City']")
+    @CacheLookup
+    private WebElement mailingCity;
+
+    @FindBy(css = "input[placeholder='Mailing State/Province']")
+    @CacheLookup
+    private WebElement mailingStateProvinceField;
+
+    @FindBy(css = "input[placeholder='Other City']")
+    @CacheLookup
+    private WebElement otherCityFiled;
+
+    @FindBy(css = "input[placeholder='Other State/Province']")
+    @CacheLookup
+    private WebElement otherStateProvinceField;
+
+    @FindBy(css = "input[placeholder='Mailing Zip/Postal Code']")
+    @CacheLookup
+    private WebElement mailingZipPostalCodeField;
+
+    @FindBy(css = "input[placeholder='Mailing Country']")
+    @CacheLookup
+    private WebElement mailingCountryField;
+
+    @FindBy(css = "input[placeholder='Other Zip/Postal Code']")
+    @CacheLookup
+    private WebElement otherZipPostalCodeField;
+
+    @FindBy(css = "input[placeholder='Other Country']")
+    @CacheLookup
+    private WebElement otherCountryField;
+
+    @FindBy(xpath = "//span[text()='Languages']/parent::label/following-sibling::input")
+    @CacheLookup
+    private WebElement languagesField;
+
+    @FindBy(css = "a[aria-label='Level']")
+    @CacheLookup
+    private WebElement levelCombo;
+
+    @FindBy(xpath = "//span[text()='Description']/parent::label/following-sibling::textarea")
+    @CacheLookup
+    private WebElement decriptionField;
+
 
     @FindBy(xpath = "//input[@tabindex='33']")
     @CacheLookup
@@ -90,7 +155,7 @@ public class ContactForm extends FormBase {
      * @return {@link ContactForm}.
      */
     public ContactForm selectFirstNameCategory(final String item) {
-        CommonActions.selectItem(firstNameCategoryField, item);
+        CommonActions.selectItem(salutations, item);
         return this;
     }
 

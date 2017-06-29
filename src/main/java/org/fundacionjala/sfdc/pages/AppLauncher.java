@@ -33,7 +33,7 @@ public class AppLauncher extends AbstractBasePage {
     @CacheLookup
     private WebElement chatterTab;
 
-    @FindBy(id = "Contact_Tab")
+    @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Contacts']")
     @CacheLookup
     private WebElement contactsTab;
 
