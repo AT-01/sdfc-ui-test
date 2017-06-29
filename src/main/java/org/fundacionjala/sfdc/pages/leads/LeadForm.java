@@ -5,15 +5,14 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.pages.FormSteps;
+import org.fundacionjala.sfdc.pages.base.FormBase;
 import org.fundacionjala.sfdc.pages.lookup.LookUpWindow;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.FormSteps;
-import org.fundacionjala.sfdc.pages.base.FormBase;
 
 import static org.fundacionjala.sfdc.pages.leads.LeadFields.ADDRESS;
 import static org.fundacionjala.sfdc.pages.leads.LeadFields.ANNUAL_REVENUE;
@@ -53,27 +52,27 @@ import static org.fundacionjala.sfdc.pages.leads.LeadFields.ZIP_CODE;
  */
 public class LeadForm extends FormBase {
 
-    @FindBy(id = "name_lastlea2")
+    @FindBy(css = "input[placeholder='Last Name']")
     @CacheLookup
     private WebElement lastNameTextField;
 
-    @FindBy(id = "lea13")
+    @FindBy(css = "a[aria-label='Lead Status']")
     @CacheLookup
     private WebElement leadStatustTextField;
 
-    @FindBy(id = "lea3")
+    @FindBy(xpath = "//span[text()='Company']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement companyTextField;
 
-    @FindBy(id = "name_firstlea2")
+    @FindBy(css = "input[placeholder='First Name']")
     @CacheLookup
     private WebElement firstNameTextField;
 
-    @FindBy(id = "lea16street")
+    @FindBy(css = "textarea[placeholder='Street']")
     @CacheLookup
     private WebElement streetTextField;
 
-    @FindBy(id = "lea16city")
+    @FindBy(css = "input[placeholder='City']")
     @CacheLookup
     private WebElement cityTextField;
 
@@ -81,88 +80,88 @@ public class LeadForm extends FormBase {
     @CacheLookup
     private WebElement campaingTextField;
 
-    @FindBy(id = "name_salutationlea2")
+    @FindBy(css = "aria-label='Salutation'")
     @CacheLookup
     private WebElement nameSalutationSelect;
 
-    @FindBy(id = "lea4")
+    @FindBy(xpath = "//span[text()='Title']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement titleField;
 
-    @FindBy(id = "lea5")
+    @FindBy(css = "a[aria-label='Lead Source']")
     @CacheLookup
     private WebElement leadSourceSelect;
 
-    @FindBy(id = "lea6")
+    @FindBy(css = "a[aria-label='Industry']")
     @CacheLookup
     private WebElement industrySelect;
 
-    @FindBy(id = "lea7")
+    @FindBy(xpath = "//span[text()='Annual Revenue']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement annualRevenueTextField;
 
-    @FindBy(id = "lea8")
+    @FindBy(xpath = "//span[text()='Phone']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement phoneTextField;
 
-    @FindBy(id = "lea9")
+    @FindBy(xpath = "//span[text()='Mobile']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement mobileTextField;
 
-    @FindBy(id = "lea10")
+    @FindBy(xpath = "//span[text()='Fax']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement faxTextField;
 
-    @FindBy(id = "lea11")
+    @FindBy(css = "input[type='email']")
     @CacheLookup
     private WebElement emailTextField;
 
-    @FindBy(id = "lea12")
+    @FindBy(xpath = "//span[text()='Website']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement websiteTextField;
 
-    @FindBy(id = "lea14")
+    @FindBy(css = "a[aria-label='Rating']")
     @CacheLookup
     private WebElement ratingTextField;
 
-    @FindBy(id = "lea15")
+    @FindBy(xpath = "//span[text()='No. of Employees']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement numEmployeesTextField;
 
-    @FindBy(id = "lea16state")
+    @FindBy(css = "input[placeholder='State/Province']")
     @CacheLookup
     private WebElement stateTextField;
 
-    @FindBy(id = "lea16zip")
+    @FindBy(css = "input[placeholder='Zip/Postal Code']")
     @CacheLookup
     private WebElement zipCodeTextField;
 
-    @FindBy(id = "lea16country")
+    @FindBy(css = "input[placeholder='Country']")
     @CacheLookup
     private WebElement countryTextField;
 
-    @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::span/select")
+    @FindBy(css = "a[aria-label='Product Interest']")
     @CacheLookup
     private WebElement productInterestSelect;
 
-    @FindBy(xpath = "//td[contains(.,'SIC Code')]/following::input")
+    @FindBy(xpath = "//span[text()='SIC Code']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement sicCodeTextField;
 
-    @FindBy(xpath = "//td[contains(.,'Number of Locations')]/following::input")
+    @FindBy(xpath = "//span[text()='Number of Locations']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement numLocationsTextField;
 
-    @FindBy(xpath = "//td[contains(.,'Current Generator')]/following::input")
+    @FindBy(xpath = "//span[text()='Current Generator(s)']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement currentGeneratorsTextField;
 
-    @FindBy(xpath = "//td[contains(.,'Primary')]/following::span/select")
+    @FindBy(css = "a[aria-label='Primary']")
     @CacheLookup
     private WebElement primarySelect;
 
     /*Others*/
-    @FindBy(id = "lea17")
+    @FindBy(xpath = "//span[text()='Description']/parent::label/following-sibling::textarea")
     @CacheLookup
     private WebElement descriptionTextArea;
 
@@ -172,6 +171,13 @@ public class LeadForm extends FormBase {
 
     @FindBy(id = "lea20_lkwgt")
     private WebElement campaignIcon;
+
+    @FindBy(id = "button[title='Save & New']")
+    private WebElement saveAndNewButton;
+
+    @FindBy(id = "button[title='Save']")
+    private WebElement saveButton;
+
 
     private LeadBuilder leadBuilder;
 
@@ -309,6 +315,7 @@ public class LeadForm extends FormBase {
      * @param valuesMapCreate Map with the Json or builder map values.
      */
     public void fillTheForm(final Map<String, String> valuesMapCreate) {
+        //System.out.println(String.format().);
         valuesMapCreate.keySet()
                 .forEach(step -> getStrategyStepMap(valuesMapCreate).get(step).executeStep());
     }

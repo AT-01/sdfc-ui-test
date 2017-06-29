@@ -4,10 +4,10 @@ package org.fundacionjala.sfdc.tests.lead;
 import java.util.Map;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
 import org.fundacionjala.sfdc.pages.AppLauncher;
+import org.fundacionjala.sfdc.pages.LoginPage;
+import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignDetail;
-import org.fundacionjala.sfdc.pages.campaigns.Campaigns;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignsHome;
 import org.fundacionjala.sfdc.pages.leads.LeadDetails;
 import org.fundacionjala.sfdc.pages.leads.LeadForm;
@@ -16,7 +16,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.CAMPAIGN;
 import static org.fundacionjala.sfdc.tests.Asserts.assertDetailValues;
 
 /**
@@ -27,9 +26,12 @@ public class CreateLead {
     private static final String CAMPAIGN_NAME = "AT-CampaignTest-01";
     private static final String LEAD_DATA_PATH = "lead/CreateLeadData.json";
 
-    private LeadHome leadHomePage;
     private CampaignsHome campaignsHome;
     private CampaignDetail campaignDetail;
+    private AppLauncher appLauncher;
+    private MainApp mainApp;
+    private LeadHome leadHome;
+    private LeadForm leadForm;
     private LeadDetails leadDetails;
 
     private Map<String, String> valuesMapJson;
@@ -41,16 +43,11 @@ public class CreateLead {
      */
     @BeforeMethod
     public void setUp() {
-        AppLauncher appLauncher = new AppLauncher();
-        campaignsHome = Navigator.goToCampaign();
-        campaignsHome.clickNewButton();
-        Campaigns campaigns = new Campaigns.CampaignBuilder(CAMPAIGN_NAME)
-                .setActive("checked")
-                .build();
-        campaignDetail = campaigns.createCampaign();
         valuesMapJson = JsonMapper.getMapJson(LEAD_DATA_PATH);
-        valuesMapJson.put(CAMPAIGN.toString(), CAMPAIGN_NAME);
-        leadHomePage = appLauncher.clickLead();
+        LoginPage.loginAsPrimaryUser();
+        mainApp = new MainApp();
+        appLauncher = mainApp.clickAppLauncher();
+        leadHome = appLauncher.clickLead();
     }
 
     /**
@@ -58,7 +55,7 @@ public class CreateLead {
      */
     @Test
     public void createLeadTest() {
-        LeadForm leadForm = leadHomePage.clickNewButton();
+        leadForm = leadHome.clickNewButton();
         leadForm.fillTheForm(valuesMapJson);
         leadDetails = leadForm.clickSaveButton();
         assertDetailValues(leadDetails, leadForm.formatJson(valuesMapJson));
