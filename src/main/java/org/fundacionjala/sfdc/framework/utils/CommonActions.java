@@ -65,9 +65,9 @@ public final class CommonActions {
      * @param item    Item to be selected.
      */
     public static void selectItem(final WebElement element, final String item) {
-        DriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
-        Select dropdown = new Select(element);
-        dropdown.selectByValue(item);
+//        DriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
+//        Select dropdown = new Select(element);
+//        dropdown.selectByValue(item);
     }
 
     /**

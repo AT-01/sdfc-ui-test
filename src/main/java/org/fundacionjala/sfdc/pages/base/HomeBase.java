@@ -9,7 +9,7 @@ import org.openqa.selenium.support.FindBy;
  */
 public abstract class HomeBase extends AbstractBasePage {
 
-    @FindBy(css = "a.forceActionLink[title='New']")
+    @FindBy(css = "a[title='New']")
     @CacheLookup
     protected WebElement newButton;
 
