@@ -34,6 +34,7 @@ public class ContactForm extends FormBase {
     @FindBy(css = ".uiMenuItem.uiRadioMenuItem>a")
     private List<WebElement> salutdationsList;
 
+
     @FindBy(css = "input[placeholder='First Name']")
     @CacheLookup
     private WebElement firstNameField;
