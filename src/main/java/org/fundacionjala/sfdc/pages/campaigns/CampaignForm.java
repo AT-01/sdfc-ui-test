@@ -1,19 +1,19 @@
 package org.fundacionjala.sfdc.pages.campaigns;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.FormSteps;
 import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.fundacionjala.sfdc.pages.base.FormBase;
 import org.fundacionjala.sfdc.pages.lookup.LookUpWindow;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * This class is in charge to manage the elements of the page.
@@ -28,11 +28,14 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     private WebElement activeCheckbox;
 
-    @FindBy(xpath = "//span[text()='Type']/parent::span/following-sibling::div/descendant::a")
-    @CacheLookup
-    private WebElement typeDropdown;
+    @FindBy(css = ".uiMenuItem.uiRadioMenuItem>a")
+    private List<WebElement> generalDropdown;
 
-    @FindBy(xpath = "//span[text()='Status']/parent::span/following-sibling::div/descendant::a")
+    @FindBy(css = "[aria-label=\"Type\"]")
+    @CacheLookup
+    private WebElement typeDropdownButton;
+
+    @FindBy(css = "[aria-label=\"Status\"]")
     @CacheLookup
     private WebElement statusDropdown;
 
@@ -52,7 +55,7 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     private WebElement lookUpIcon;
 
-    @FindBy(name = "save")
+    @FindBy(css = "button[title='Save']")
     @CacheLookup
     private WebElement saveButton;
 
@@ -96,7 +99,8 @@ public class CampaignForm extends FormBase {
      * @return Campaign Form.
      */
     public CampaignForm selectTypeDropdown(final String item) {
-        CommonActions.selectItem(typeDropdown, item);
+        CommonActions.clickElement(typeDropdownButton);
+        CommonActions.selectAnElement(generalDropdown, item).click();
         return this;
     }
 
@@ -107,7 +111,8 @@ public class CampaignForm extends FormBase {
      * @return Campaign Form.
      */
     public CampaignForm selectStatusDropdown(final String item) {
-        CommonActions.selectItem(statusDropdown, item);
+        CommonActions.clickElement(statusDropdown);
+        CommonActions.selectAnElement(generalDropdown, item).click();
         return this;
     }
 
@@ -171,9 +176,10 @@ public class CampaignForm extends FormBase {
      * @param campaignUpdated String whit the name of the campaign.
      * @return Boolean
      */
-    public boolean campaingUpdate(final String campaignUpdated) {
+    public boolean campaignUpdate(final String campaignUpdated) {
         List<WebElement> campaigns = allCampaigns.findElements(By.className("dataCell"));
-        return campaigns.stream().filter(x -> x.equals(campaignUpdated)).findAny().isPresent();
+        return campaigns.stream()
+                .anyMatch(webElement -> webElement.getText().equals(campaignUpdated));
     }
 
     /**
@@ -212,6 +218,4 @@ public class CampaignForm extends FormBase {
     public void fillTheForm(final Map<String, String> valuesMapCreate) {
         valuesMapCreate.keySet().forEach(step -> getStrategyStepMap(valuesMapCreate).get(step).executeStep());
     }
-
-
 }

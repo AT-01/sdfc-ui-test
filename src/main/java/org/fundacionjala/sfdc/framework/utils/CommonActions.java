@@ -74,7 +74,7 @@ public final class CommonActions {
 
 
     /**
-     * This method slect a item from a webelemet list.
+     * This method select a item from a webElement list.
      *
      * @param elementsList is a list of web elements
      * @param selectItem   the item witch is looked.
@@ -198,6 +198,4 @@ public final class CommonActions {
             Thread.currentThread().interrupt();
         }
     }
-
-
 }
