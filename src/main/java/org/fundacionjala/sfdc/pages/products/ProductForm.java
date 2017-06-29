@@ -6,13 +6,17 @@ import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.FormSteps;
 import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.fundacionjala.sfdc.pages.base.FormBase;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 
-import static org.fundacionjala.sfdc.pages.products.ProductFields.*;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.NAME;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.DESCRIPTION;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.CODE;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.ACTIVE;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.FAMILY;
 
 /**
  * This class handle the product form.
@@ -30,6 +34,11 @@ public class ProductForm extends FormBase {
     @FindBy(xpath = "//span[text()='Active']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement isActiveCheckBox;
+
+    // product family
+    @FindBy(css = "[aria-label=\"Product Family\"]")
+    @CacheLookup
+    private WebElement productFamilyLabel;
 
     @FindBy(css = "[title=\"None\"]")
     @CacheLookup
@@ -122,16 +131,11 @@ public class ProductForm extends FormBase {
      * @return Return this class.
      */
     public ProductForm chooseProductFamilyDdl(final String productFamily) {
-        wait.until(ExpectedConditions.elementToBeClickable(productFamilySelect));
-        Select selectBox = new Select(productFamilySelect);
-        if (productFamily.isEmpty()) {
-            int index = 0;
-            selectBox.selectByIndex(index);
-        } else {
-            //System.out.println(productFamily);
-            //selectBox.selectByValue(productFamily);
-            selectBox.selectByVisibleText("None");
-            //selectBox.selectByVisibleText(productFamily);
+        wait.until(ExpectedConditions.elementToBeClickable(productFamilyLabel));
+        CommonActions.clickElement(productFamilyLabel);
+        if (!productFamily.isEmpty()) {
+            String cssSelector = "[title=" + productFamily + "]";
+            CommonActions.clickElement(driver.findElement(By.cssSelector(cssSelector)));
         }
         return this;
     }
@@ -172,7 +176,7 @@ public class ProductForm extends FormBase {
      */
     public void fillTheForm(final Map<String, String> valuesMapCreate) {
         valuesMapCreate.keySet()
-                .forEach(step -> getStrategyStepMap(valuesMapCreate).get(step).executeStep());
+            .forEach(step -> getStrategyStepMap(valuesMapCreate).get(step).executeStep());
     }
 
     /**
@@ -183,11 +187,10 @@ public class ProductForm extends FormBase {
      */
     private Map<String, FormSteps> getStrategyStepMap(final Map<String, String> values) {
         final Map<String, FormSteps> strategyMap = new HashMap<>();
-
         strategyMap.put(NAME.toString(), () -> setProductName(values.get(NAME.toString())));
         strategyMap.put(CODE.toString(), () -> setProductCode(values.get(CODE.toString())));
         strategyMap.put(ACTIVE.toString(), () -> checkActiveFlag(Boolean.parseBoolean(values.get(ACTIVE.toString()))));
-        //strategyMap.put(FAMILY.toString(), () -> chooseProductFamilyDdl(values.get(FAMILY.toString())));
+        strategyMap.put(FAMILY.toString(), () -> chooseProductFamilyDdl(values.get(FAMILY.toString())));
         strategyMap.put(DESCRIPTION.toString(), () -> setDescription(values.get(DESCRIPTION.toString())));
 
         return strategyMap;
@@ -202,6 +205,7 @@ public class ProductForm extends FormBase {
 
         /**
          * This method build the Product form.
+         *
          * @return {@link ProductForm}.
          */
         public ProductForm build() {

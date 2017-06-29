@@ -9,14 +9,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import static org.fundacionjala.sfdc.pages.products.ProductFields.*;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.NAME;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.DESCRIPTION;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.CODE;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.ACTIVE;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.FAMILY;
 
 /**
  * This class handle the product details.
  */
 public class ProductDetail extends DetailBase {
 
-    private static final String alt = "alt";
+    private static final String ATTRIBUTE_ALT = "alt";
 
     // product name
     @FindBy(xpath = "//span[text()='Product Name']/parent::div/following-sibling::div/span/span")
@@ -44,15 +48,12 @@ public class ProductDetail extends DetailBase {
     private WebElement activeFlagImg2;
 
     // product family
-    @FindBy(css = ".select")
+    @FindBy(xpath = "//span[text()='Product Family']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement productFamilyLabel;
 
-    @FindBy(css = "a[title=\"None\"]")
-    @CacheLookup
-    private WebElement productFamilyNoneOption;
-
-    @FindBy(xpath = "//span[@class=\"slds-icon_container slds-icon-utility-down slds-button__icon forceIcon\"]/child::span[1]")
+    @FindBy(xpath = "//span[@class=\"slds-icon_container slds-icon-utility-down slds-button__icon forceIcon\"]"
+        + "/child::span[1]")
     @CacheLookup
     private WebElement downArrow;
 
@@ -64,7 +65,8 @@ public class ProductDetail extends DetailBase {
     @CacheLookup
     private WebElement editOption;
 
-    @FindBy(css = "[class='slds-button slds-button--neutral uiButton--default uiButton--brand uiButton forceActionButton'] span")
+    @FindBy(css = "[class='slds-button slds-button--neutral uiButton--default "
+        + "uiButton--brand uiButton forceActionButton'] span")
     @CacheLookup
     private WebElement confirmDelete;
 
@@ -100,7 +102,7 @@ public class ProductDetail extends DetailBase {
         strategyMap.put(NAME.toString(), this::getProductName);
         strategyMap.put(CODE.toString(), this::getProductCode);
         strategyMap.put(ACTIVE.toString(), () -> String.valueOf(isActiveFlag()));
-        //strategyMap.put(FAMILY.toString(), this::getProductFamily);
+        strategyMap.put(FAMILY.toString(), this::getProductFamily);
         strategyMap.put(DESCRIPTION.toString(), this::getDescription);
         return strategyMap;
     }
@@ -121,7 +123,7 @@ public class ProductDetail extends DetailBase {
      * @return Return true if is active.
      */
     public boolean isActiveFlag() {
-        return Boolean.valueOf(activeFlagImg.getAttribute(alt));
+        return Boolean.valueOf(activeFlagImg.getAttribute(ATTRIBUTE_ALT));
     }
 
     /**
@@ -130,9 +132,7 @@ public class ProductDetail extends DetailBase {
      * @return String with product family.
      */
     public String getProductFamily() {
-        CommonActions.clickElement(productFamilyLabel);
-        CommonActions.clickElement(productFamilyNoneOption);
-        return "";
+        return CommonActions.getText(productFamilyLabel);
     }
 
     /**
