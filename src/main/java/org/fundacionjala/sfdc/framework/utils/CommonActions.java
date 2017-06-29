@@ -1,5 +1,7 @@
 package org.fundacionjala.sfdc.framework.utils;
 
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
@@ -68,6 +70,24 @@ public final class CommonActions {
         DriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
         Select dropdown = new Select(element);
         dropdown.selectByValue(item);
+    }
+
+
+    /**
+     *
+     */
+
+    public static WebElement selectAnElement(final List<WebElement> elementsList,
+                                             final String selectItem) {
+        WebElement webElement = elementsList.stream()
+                .filter(element -> selectItem.equals(element.getText()))
+                .findAny()
+                .orElse(null);
+        if (webElement == null) {
+            throw new WebDriverException("Not fount: The element looking for does not exits!");
+        }
+        return webElement;
+
     }
 
     /**
