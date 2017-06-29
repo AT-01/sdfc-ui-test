@@ -2,8 +2,8 @@ package org.fundacionjala.sfdc.pages.campaigns;
 
 
 import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.AssertsDetails;
-import org.fundacionjala.sfdc.pages.TabBar;
 import org.fundacionjala.sfdc.pages.base.DetailBase;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class CampaignDetail extends DetailBase {
 
-    @FindBy(className = "pageDescription")
+    @FindBy(className = "div.uiInput.uiInputText input")
     @CacheLookup
     private WebElement campaingNameLabel;
 
@@ -104,10 +104,10 @@ public class CampaignDetail extends DetailBase {
     /**
      * give us a tab bar class.
      *
-     * @return TabBar class.
+     * @return AppLauncher class.
      */
-    public TabBar toTabBar() {
-        return new TabBar();
+    public AppLauncher toTabBar() {
+        return new AppLauncher();
     }
 
     /**

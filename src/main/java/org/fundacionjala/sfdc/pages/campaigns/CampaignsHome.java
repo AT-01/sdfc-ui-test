@@ -15,9 +15,9 @@ import java.util.List;
 public class CampaignsHome extends AbstractBasePage {
 
 
-    @FindBy(xpath = "//*[@name='new' and @type='button']")
+    @FindBy(css = "li.slds-button a .slds-truncate")
     @CacheLookup
-    private WebElement newButtton;
+    private WebElement newButton;
 
     @FindBy(className = "hotListElement")
     @CacheLookup
@@ -33,7 +33,7 @@ public class CampaignsHome extends AbstractBasePage {
      * @return CampaignForm.
      */
     public CampaignForm clickNewButton() {
-        CommonActions.clickElement(newButtton);
+        CommonActions.clickElement(newButton);
         return new CampaignForm();
     }
 
