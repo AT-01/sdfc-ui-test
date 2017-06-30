@@ -58,6 +58,7 @@ public class CreateLead {
         leadForm = leadHome.clickNewButton();
         leadForm.fillTheForm(valuesMapJson);
         leadDetails = leadForm.clickSaveButton();
+        leadDetails.clickDetails();
         assertDetailValues(leadDetails, leadForm.formatJson(valuesMapJson));
 
     }
