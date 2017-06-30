@@ -47,6 +47,7 @@ public class CreateCampaign {
         campaignForm = campaignsHome.clickNewButton();
         campaignForm.fillTheForm(valuesMapJson);
         campaignDetail = campaignForm.clickSaveButton();
+        campaignDetail.clickDetails();
         Asserts.assertDetailValues(campaignDetail, valuesMapJson);
     }
 
@@ -64,6 +65,7 @@ public class CreateCampaign {
                 .setRevenue("1,000")
                 .build();
         campaignDetail = campaigns.createCampaign();
+        campaignDetail.clickDetails();
         Asserts.assertDetailValues(campaignDetail, campaigns.getValuesMap());
     }
 

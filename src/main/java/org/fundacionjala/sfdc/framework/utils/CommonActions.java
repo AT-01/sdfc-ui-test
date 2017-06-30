@@ -20,7 +20,6 @@ import org.fundacionjala.sfdc.framework.browser.DriverManager;
 public final class CommonActions {
 
     private static final Logger LOGGER = LogManager.getLogger(CommonActions.class);
-    private static final int MILLIS_SECONDS = 30000;
 
     /**
      * Constructor private.
@@ -66,6 +65,7 @@ public final class CommonActions {
      * @param element Element to wait.
      * @param item    Item to be selected.
      */
+    @Deprecated
     public static void selectItem(final WebElement element, final String item) {
         DriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
         Select dropdown = new Select(element);
@@ -91,7 +91,6 @@ public final class CommonActions {
             throw new WebDriverException("Not fount: The element looking for does not exits!");
         }
         return webElement;
-
     }
 
     /**
@@ -100,6 +99,7 @@ public final class CommonActions {
      * @param webElement the webElement to be edited.
      * @param value      the value to select within the webElement.
      */
+    @Deprecated
     public static void selectItemByVisibleText(final WebElement webElement, final String value) {
         try {
             DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(webElement));
@@ -188,11 +188,12 @@ public final class CommonActions {
 
     /**
      * Wait a millis seconds to page loading.
+     *
+     * @param millisSeconds millis seconds.
      */
-
-    public static void sleep() {
+    public static void sleep(int millisSeconds) {
         try {
-            Thread.sleep(MILLIS_SECONDS);
+            Thread.sleep(millisSeconds);
         } catch (InterruptedException e) {
             LOGGER.error("Waiting time is over", e);
             Thread.currentThread().interrupt();

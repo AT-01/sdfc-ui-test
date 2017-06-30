@@ -70,17 +70,6 @@ public class Campaigns {
         }
 
         /**
-         * Method that sets the Active campaign.
-         *
-         * @param active String with active campaign.
-         * @return {@link CampaignBuilder}
-         */
-        public CampaignBuilder setActive(final String active) {
-            strategyMap.put("active", active);
-            return this;
-        }
-
-        /**
          * set the start date.
          *
          * @param startDate String whit the date.
