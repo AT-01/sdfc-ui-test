@@ -5,7 +5,6 @@ import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.AssertsDetails;
 import org.fundacionjala.sfdc.pages.base.DetailBase;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -21,41 +20,37 @@ public class CampaignDetail extends DetailBase {
 
     @FindBy(className = "div.uiInput.uiInputText input")
     @CacheLookup
-    private WebElement campaingNameLabel;
+    private WebElement campaignNameLabel;
 
     @FindBy(name = "del")
     @CacheLookup
     private WebElement deleteButton;
 
-    @FindBy(id = "cpn1_ileinner")
+    @FindBy(xpath = "//span[text()='Campaign Name']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement campaignName;
-
-    @FindBy(id = "cpn16_chkbox")
-    @CacheLookup
-    private WebElement checkStatus;
 
     @FindBy(name = "edit")
     @CacheLookup
     private WebElement editButton;
 
-    @FindBy(id = "cpn2_ileinner")
+    @FindBy(xpath = "//span[text()='Type']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement typeText;
 
-    @FindBy(id = "cpn3_ileinner")
+    @FindBy(xpath = "//span[text()='Status']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement statusText;
 
-    @FindBy(id = "cpn5_ileinner")
+    @FindBy(xpath = "//span[text()='Start Date']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement startDate;
 
-    @FindBy(id = "cpn6_ileinner")
+    @FindBy(xpath = "//span[text()='End Date']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement endDate;
 
-    @FindBy(id = "cpn8_ileinner")
+    @FindBy(xpath = "//span[text()='Expected Revenue in Campaign']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement revenueValue;
 
@@ -64,8 +59,8 @@ public class CampaignDetail extends DetailBase {
      *
      * @return String the name of the campaign.
      */
-    public String getCampaingNameLabel() {
-        return CommonActions.getText(campaingNameLabel);
+    public String getCampaignNameLabel() {
+        return CommonActions.getText(campaignNameLabel);
     }
 
     /**
@@ -74,10 +69,9 @@ public class CampaignDetail extends DetailBase {
      * @return CampaignsHome.
      */
     public CampaignsHome clickDeleteButton() {
-        CommonActions.clickElement(deleteButton);
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
-        driver.switchTo().defaultContent();
+        CommonActions.clickElement(downArrow);
+        CommonActions.clickElement(deleteBtn);
+        CommonActions.clickElement(confirmDeleteButton);
         return new CampaignsHome();
     }
 
@@ -118,7 +112,6 @@ public class CampaignDetail extends DetailBase {
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap();
         strategyMap.put("campaignName", this::getCampaignName);
-        strategyMap.put("active", this::getCheckStatus);
         strategyMap.put("typeDropDown", this::getSelectedValue);
         strategyMap.put("statusDropDown", this::getSelectedStatus);
         strategyMap.put("startDate", this::getStartDate);
@@ -174,21 +167,18 @@ public class CampaignDetail extends DetailBase {
     }
 
     /**
-     * get the estatus of the check box.
-     *
-     * @return String whit the status.
-     */
-    private String getCheckStatus() {
-        return checkStatus.getAttribute("title");
-    }
-
-    /**
      * get the campaign name.
      *
      * @return String whit the name of the campaign.
      */
     public String getCampaignName() {
-        String value = campaignName.getText();
-        return value.substring(0, value.indexOf(" "));
+        return campaignName.getText();
+    }
+
+    /**
+     * Go to details tab.
+     */
+    public void clickDetails() {
+        CommonActions.clickElement(detailsLinkButton);
     }
 }
