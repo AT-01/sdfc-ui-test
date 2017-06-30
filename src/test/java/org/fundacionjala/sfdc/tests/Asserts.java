@@ -26,7 +26,7 @@ public final class Asserts {
      * @param valuesMapJson is a map with values of a json file.
      */
     public static void assertDetailValues(final DetailBase detail, final Map<String, String> valuesMapJson) {
-        CommonActions.sleep();
+        CommonActions.sleep(10000);
         valuesMapJson.keySet()
                 .forEach(value -> assertEquals(detail.getStrategyAssertMap().get(value).getText(),
                         valuesMapJson.get(value)));
