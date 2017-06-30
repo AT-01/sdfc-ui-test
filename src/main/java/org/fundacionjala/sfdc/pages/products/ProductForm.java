@@ -2,47 +2,49 @@ package org.fundacionjala.sfdc.pages.products;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-
-
 import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.FormSteps;
 import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.fundacionjala.sfdc.pages.base.FormBase;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static org.fundacionjala.sfdc.pages.products.ProductFields.ACTIVE;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.CODE;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.DESCRIPTION;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.FAMILY;
 import static org.fundacionjala.sfdc.pages.products.ProductFields.NAME;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.DESCRIPTION;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.CODE;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.ACTIVE;
+import static org.fundacionjala.sfdc.pages.products.ProductFields.FAMILY;
 
 /**
  * This class handle the product form.
  */
 public class ProductForm extends FormBase {
 
-    @FindBy(id = "Name")
+    @FindBy(xpath = "//span[text()='Product Name']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement productNameTextField;
 
-    @FindBy(id = "ProductCode")
+    @FindBy(xpath = "//span[text()='Product Code']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement productCodeTextField;
 
-    @FindBy(id = "IsActive")
+    @FindBy(xpath = "//span[text()='Active']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement isActiveCheckBox;
 
-    @FindBy(id = "Family")
+    // product family
+    @FindBy(css = "[aria-label=\"Product Family\"]")
+    @CacheLookup
+    private WebElement productFamilyLabel;
+
+    @FindBy(css = "[title=\"None\"]")
     @CacheLookup
     private WebElement productFamilySelect;
 
-    @FindBy(id = "Description")
+    @FindBy(xpath = "//span[text()='Product Description']/parent::label/following-sibling::textarea")
     @CacheLookup
     private WebElement descriptionTextArea;
 
@@ -129,13 +131,11 @@ public class ProductForm extends FormBase {
      * @return Return this class.
      */
     public ProductForm chooseProductFamilyDdl(final String productFamily) {
-        wait.until(ExpectedConditions.elementToBeClickable(productFamilySelect));
-        Select selectBox = new Select(productFamilySelect);
-        if (productFamily.isEmpty()) {
-            int index = 0;
-            selectBox.selectByIndex(index);
-        } else {
-            selectBox.selectByVisibleText(productFamily);
+        wait.until(ExpectedConditions.elementToBeClickable(productFamilyLabel));
+        CommonActions.clickElement(productFamilyLabel);
+        if (!productFamily.isEmpty()) {
+            String cssSelector = "[title=" + productFamily + "]";
+            CommonActions.clickElement(driver.findElement(By.cssSelector(cssSelector)));
         }
         return this;
     }
@@ -176,7 +176,7 @@ public class ProductForm extends FormBase {
      */
     public void fillTheForm(final Map<String, String> valuesMapCreate) {
         valuesMapCreate.keySet()
-                .forEach(step -> getStrategyStepMap(valuesMapCreate).get(step).executeStep());
+            .forEach(step -> getStrategyStepMap(valuesMapCreate).get(step).executeStep());
     }
 
     /**
@@ -187,7 +187,6 @@ public class ProductForm extends FormBase {
      */
     private Map<String, FormSteps> getStrategyStepMap(final Map<String, String> values) {
         final Map<String, FormSteps> strategyMap = new HashMap<>();
-
         strategyMap.put(NAME.toString(), () -> setProductName(values.get(NAME.toString())));
         strategyMap.put(CODE.toString(), () -> setProductCode(values.get(CODE.toString())));
         strategyMap.put(ACTIVE.toString(), () -> checkActiveFlag(Boolean.parseBoolean(values.get(ACTIVE.toString()))));
@@ -206,6 +205,7 @@ public class ProductForm extends FormBase {
 
         /**
          * This method build the Product form.
+         *
          * @return {@link ProductForm}.
          */
         public ProductForm build() {
