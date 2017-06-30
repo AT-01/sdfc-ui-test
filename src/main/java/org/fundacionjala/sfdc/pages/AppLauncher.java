@@ -53,7 +53,7 @@ public class AppLauncher extends AbstractBasePage {
     @CacheLookup
     private WebElement contractsTab;
 
-    @FindBy(id = "Case_Tab")
+    @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Cases']")
     @CacheLookup
     private WebElement caseTab;
 

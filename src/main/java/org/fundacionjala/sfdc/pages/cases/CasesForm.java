@@ -9,6 +9,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.fundacionjala.sfdc.pages.cases.CasesFields.DESCRIPTION_TEXT;
@@ -25,54 +26,90 @@ import static org.fundacionjala.sfdc.pages.cases.CasesFields.CASES_ORIGIN_DROOPD
 
 import static java.lang.String.valueOf;
 
-
 /**
- * This class manage the cases form page objects.
+ * This class manage the cases form page objects .
  */
 public class CasesForm extends FormBase {
 
-    @FindBy(id = "cas7")
+    @FindBy(xpath = "//span[text()='Status']/../following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement statusDropDownList;
 
-    @FindBy(id = "cas11")
+    @FindBy(css = "a[role=\"menuitemradio\"]")
+    @CacheLookup
+    private List<WebElement> statusDropDownListItemms;
+
+
+    @FindBy(xpath = "//span[text()='Case Origin']/../following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement caseOriginDropDownList;
 
-    @FindBy(css = "select[id=\"00N4100000BTana\"]")
+    @FindBy(css = "a[role=\"menuitemradio\"]")
+    @CacheLookup
+    private List<WebElement> caseOriginDropDownListItems;
+
+    @FindBy(xpath = "//span[text()='SLA Violation']/../following::a")
     @CacheLookup
     private WebElement slaDropDownList;
 
-    @FindBy(id = "00N4100000BTanX")
+    @FindBy(css = "a[role=\"menuitemradio\"]")
+    @CacheLookup
+    private List<WebElement> slaDropDownListItems;
+
+
+    @FindBy(xpath = "//span[text()='Engineering Req Number']/../following::input")
     @CacheLookup
     private WebElement engieeneringNumberTextField;
 
-    @FindBy(css = "select[id=\"00N4100000BTanY\"]")
+
+    @FindBy(xpath = "//span[text()='Potential Liability']/../following::a")
     @CacheLookup
     private WebElement liabilityDropDownList;
 
-    @FindBy(css = "select[id=\"00N4100000BTanZ\"]")
+    @FindBy(css = "a[role=\"menuitemradio\"]")
+    @CacheLookup
+    private List<WebElement> liabilityDropDownListItems;
+
+    @FindBy(xpath = "//span[text()='Product']/../following::a")
     @CacheLookup
     private WebElement productDropDownList;
 
-    @FindBy(id = "cas6")
+
+    @FindBy(css = "a[role=\"menuitemradio\"]")
+    @CacheLookup
+    private List<WebElement> productDropDownListItems;
+
+    @FindBy(xpath = "//span[text()='Case Reason']/../following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement caseReasonDropDownList;
 
-    @FindBy(id = "cas5")
+    @FindBy(css = "a[role=\"menuitemradio\"]")
+    @CacheLookup
+    private List<WebElement> caseReasonDropDownListItems;
+
+    @FindBy(xpath = "//span[text()='Type']/../following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement typeDropDownList;
 
-    @FindBy(css = "select[id=\"cas8\"]")
+    @FindBy(css = "a[role=\"menuitemradio\"]")
+    @CacheLookup
+    private List<WebElement> typeDropDownListItems;
+
+
+    @FindBy(xpath = "//span[text()='Priority']/../following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement priorityDropDownList;
 
+    @FindBy(css = "a[role=\"menuitemradio\"]")
+    @CacheLookup
+    private List<WebElement> priorityDropDownListItems;
 
-    @FindBy(css = "input[id=\"cas14\"]")
+
+    @FindBy(xpath = "//span[text()='Subject']/../.././input")
     @CacheLookup
     private WebElement subjectTextBox;
 
-    @FindBy(css = "textarea[id=\"cas15\"]")
+    @FindBy(xpath = "//span[text()='Description']/../following-sibling::textarea")
     @CacheLookup
     private WebElement descriptionTextBox;
 
@@ -94,7 +131,7 @@ public class CasesForm extends FormBase {
     }
 
     /**
-     * This method loads data to fill the form for a given Json file.
+     * This method loads data to fill the form for a given Json file .
      *
      * @param valuesMapCreate Map
      */
@@ -163,7 +200,8 @@ public class CasesForm extends FormBase {
      * @return CasesForm class.
      */
     private CasesForm setSlaViolation(final String sla) {
-        CommonActions.selectItem(slaDropDownList, sla);
+        CommonActions.clickElement(slaDropDownList);
+        CommonActions.selectAnElement(slaDropDownListItems, sla).click();
         return this;
     }
 
@@ -185,7 +223,8 @@ public class CasesForm extends FormBase {
      * @return CasesForm class.
      */
     private CasesForm setPotentialLiability(final String liability) {
-        CommonActions.selectItem(liabilityDropDownList, liability);
+        CommonActions.clickElement(liabilityDropDownList);
+        CommonActions.selectAnElement(liabilityDropDownListItems, liability).click();
         return this;
     }
 
@@ -196,7 +235,8 @@ public class CasesForm extends FormBase {
      * @return CasesForm class.
      */
     private CasesForm setProduct(final String product) {
-        CommonActions.selectItem(productDropDownList, product);
+        CommonActions.clickElement(productDropDownList);
+        CommonActions.selectAnElement(productDropDownListItems, product).click();
         return this;
     }
 
@@ -207,7 +247,8 @@ public class CasesForm extends FormBase {
      * @return CasesForm class.
      */
     private CasesForm setCaseReason(final String caseReason) {
-        CommonActions.selectItem(caseReasonDropDownList, caseReason);
+        CommonActions.clickElement(caseReasonDropDownList);
+        CommonActions.selectAnElement(caseReasonDropDownListItems, caseReason).click();
         return this;
     }
 
@@ -218,7 +259,8 @@ public class CasesForm extends FormBase {
      * @return CasesForm class.
      */
     private CasesForm setType(final String type) {
-        CommonActions.selectItem(typeDropDownList, type);
+        CommonActions.clickElement(typeDropDownList);
+        CommonActions.selectAnElement(typeDropDownListItems, type).click();
         return this;
     }
 
@@ -229,7 +271,8 @@ public class CasesForm extends FormBase {
      * @return CasesForm class.
      */
     private CasesForm setPriority(final String priority) {
-        CommonActions.selectItem(priorityDropDownList, priority);
+        CommonActions.clickElement(priorityDropDownList);
+        CommonActions.selectAnElement(priorityDropDownListItems, priority).click();
         return this;
     }
 
@@ -240,7 +283,8 @@ public class CasesForm extends FormBase {
      * @return CasesForm class.
      */
     private CasesForm setCaseOriginDropDownList(final String caseOrigin) {
-        CommonActions.selectItem(caseOriginDropDownList, caseOrigin);
+        CommonActions.clickElement(caseOriginDropDownList);
+        CommonActions.selectAnElement(caseOriginDropDownListItems, caseOrigin).click();
         return this;
     }
 
@@ -251,7 +295,9 @@ public class CasesForm extends FormBase {
      * @return CasesForm class.
      */
     private CasesForm setStatusDropDownList(final String status) {
-        CommonActions.selectItem(statusDropDownList, status);
+
+        CommonActions.clickElement(statusDropDownList);
+        CommonActions.selectAnElement(statusDropDownListItemms, status).click();
         return this;
     }
 

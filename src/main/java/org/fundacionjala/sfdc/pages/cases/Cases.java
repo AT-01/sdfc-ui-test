@@ -47,6 +47,8 @@ public class Cases {
     /**
      * builder Pattern.
      */
+
+
     public static class CasesBuilder {
 
         private Map<String, String> strategyMap;
