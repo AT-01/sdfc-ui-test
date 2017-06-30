@@ -20,7 +20,6 @@ import java.util.Map;
  * This class manage the test create.
  */
 public class CreateCases {
-
     private static final String CASES_DATA_PATH = "cases/CreateCasesData.json";
     private Map<String, String> valuesMapJson;
     private CasesHome casesHome;
@@ -32,7 +31,6 @@ public class CreateCases {
      */
     @BeforeMethod
     public void setUp() {
-
         LoginPage.loginAsPrimaryUser();
         MainApp mainApp = new MainApp();
         AppLauncher appLauncher = mainApp.clickAppLauncher();
@@ -45,13 +43,11 @@ public class CreateCases {
      */
     @Test
     public void createCaseWhitJsonFile() {
-
         CasesForm casesForm = casesHome.clickNewButton();
         casesForm.fillTheForm(valuesMapJson);
         caseInformation = casesForm.clickSaveButton();
         caseDetail = caseInformation.clickOndetailsPanelOption();
         Asserts.assertDetailValues(caseDetail, valuesMapJson);
-
     }
 
     /**
@@ -59,7 +55,6 @@ public class CreateCases {
      */
     @Test()
     public void createCaseWhitBuilderPattern() {
-
         casesHome.clickNewButton();
         Cases cases = new Cases.CasesBuilder(valuesMapJson.get("status"), valuesMapJson.get("caseOrigin"))
                 .setPriority(valuesMapJson.get("priority"))
@@ -78,7 +73,6 @@ public class CreateCases {
      */
     @AfterMethod
     public void tearDown() {
-
         casesHome = caseDetail.clickDeleteButton();
         casesHome.clickConfirmationDelete();
     }

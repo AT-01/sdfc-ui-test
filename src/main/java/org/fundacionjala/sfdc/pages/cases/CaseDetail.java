@@ -25,7 +25,7 @@ import static org.fundacionjala.sfdc.pages.cases.CasesFields.CASES_ORIGIN_DROOPD
 
 
 /**
- * This class manage the Detail page objects .
+ * This class manage the Detail page objects.
  */
 public class CaseDetail extends DetailBase {
 

@@ -11,7 +11,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 /**
- * This class manage the page objects .
+ * This class manage the page objects.
  */
 public class CasesHome extends HomeBase {
 

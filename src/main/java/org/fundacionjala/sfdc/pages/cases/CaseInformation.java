@@ -7,7 +7,6 @@ import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
  */
 public class CaseInformation extends AbstractBasePage {
 
-
     /**
      * @return CaseDetail .
      */

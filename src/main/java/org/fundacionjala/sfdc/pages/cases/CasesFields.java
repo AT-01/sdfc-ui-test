@@ -4,7 +4,6 @@ package org.fundacionjala.sfdc.pages.cases;
  * Enum class.
  */
 public enum CasesFields {
-
     STATUS_DROOPDOWNLIST("status"),
     CASES_ORIGIN_DROOPDOWNLIST("caseOrigin"),
     PRIORITY_VALUE("priority"),
