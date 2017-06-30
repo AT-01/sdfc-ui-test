@@ -3,15 +3,14 @@ package org.fundacionjala.sfdc.pages.leads;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.pages.AssertsDetails;
+import org.fundacionjala.sfdc.pages.base.DetailBase;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.AssertsDetails;
-import org.fundacionjala.sfdc.pages.base.DetailBase;
 
 import static org.fundacionjala.sfdc.pages.leads.LeadFields.ADDRESS;
 import static org.fundacionjala.sfdc.pages.leads.LeadFields.ANNUAL_REVENUE;
@@ -44,6 +43,11 @@ public class LeadDetails extends DetailBase {
     @FindBy(id = "lea1_ileinner")
     @CacheLookup
     private WebElement ownerLabel;
+
+    @FindBy(xpath = "//span[text()='Details']")
+    @CacheLookup
+    private WebElement details;
+
 
     @FindBy(id = "lea2_ileinner")
     @CacheLookup
@@ -151,6 +155,13 @@ public class LeadDetails extends DetailBase {
      */
     public String getOwnerLabel() {
         return ownerLabel.getText();
+    }
+
+    /**
+     * Method that gets the Owner that was registered in the creation of LeadHome.
+     */
+    public void clickDetails() {
+        CommonActions.clickElement(details);
     }
 
     /**
