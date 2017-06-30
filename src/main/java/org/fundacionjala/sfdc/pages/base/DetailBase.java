@@ -10,7 +10,7 @@ import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.AssertsDetails;
 
 /**
- * Class that represents the details options .
+ * Class that represents the details options.
  */
 public abstract class DetailBase extends AbstractBasePage {
 
@@ -22,11 +22,11 @@ public abstract class DetailBase extends AbstractBasePage {
     @CacheLookup
     protected WebElement pageDescriptionText;
 
-    @FindBy(name = "edit")
+    @FindBy(css = "[title ='Edit']")
     @CacheLookup
     protected WebElement editBtn;
 
-    @FindBy(css = "a[title='Delete']")
+    @FindBy(css = "[title='Delete']")
     @CacheLookup
     protected WebElement deleteBtn;
 
@@ -34,7 +34,7 @@ public abstract class DetailBase extends AbstractBasePage {
     @CacheLookup
     protected WebElement cloneBtn;
 
-    @FindBy(css = "[title=\"Details\"]")
+    @FindBy(css = "[title='Details']")
     @CacheLookup
     protected WebElement detailsLinkButton;
 
@@ -42,8 +42,7 @@ public abstract class DetailBase extends AbstractBasePage {
     @CacheLookup
     protected WebElement confirmDeleteButton;
 
-    @FindBy(xpath = "//span[@class=\"slds-icon_container slds-icon-utility-down slds-button__icon forceIcon\"]"
-            + "/child::span[1]")
+    @FindBy(css = ".uiMenu a[title='Show more actions for this record']")
     @CacheLookup
     protected WebElement downArrow;
 
