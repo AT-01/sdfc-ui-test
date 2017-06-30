@@ -1,15 +1,16 @@
 package org.fundacionjala.sfdc.tests.product;
 
 
+import java.util.Map;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.pages.AppLauncher;
+import org.fundacionjala.sfdc.pages.LoginPage;
+import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.products.ProductDetail;
 import org.fundacionjala.sfdc.pages.products.ProductForm;
 import org.fundacionjala.sfdc.pages.products.ProductHome;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Map;
 
 import static org.fundacionjala.sfdc.pages.products.ProductFields.NAME;
 import static org.testng.Assert.assertFalse;
@@ -31,7 +32,10 @@ public class DeleteProduct {
     @BeforeMethod
     public void setup() {
         valuesMapJson = JsonMapper.getMapJson(PRODUCT_DATA_PATH);
-        ProductHome productHome = Navigator.goToProduct();
+        LoginPage.loginAsPrimaryUser();
+        MainApp mainApp = new MainApp();
+        AppLauncher appLauncher = mainApp.clickAppLauncher();
+        ProductHome productHome = appLauncher.clickOnProductsHome();
         ProductForm newProductForm = productHome.clickNewButton();
         newProductForm.fillTheForm(valuesMapJson);
         productDetail = newProductForm.clickSaveButton();

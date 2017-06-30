@@ -1,15 +1,16 @@
 package org.fundacionjala.sfdc.tests.product;
 
+import java.util.Map;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.pages.AppLauncher;
+import org.fundacionjala.sfdc.pages.LoginPage;
+import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.products.ProductDetail;
 import org.fundacionjala.sfdc.pages.products.ProductForm;
 import org.fundacionjala.sfdc.pages.products.ProductHome;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import java.util.Map;
 
 import static org.fundacionjala.sfdc.tests.Asserts.assertDetailValues;
 
@@ -20,7 +21,7 @@ public class EditProduct {
 
     private static final String PRODUCT_DATA_PATH = "product/CreateProductData.json";
 
-    private static final String OPPORTUNITY_DATA_EDIT_PATH = "product/EditProductData.json";
+    private static final String PRODUCT_EDIT = "product/EditProductData.json";
 
     private static final String NAME_TEST = "nameTestUpdate";
 
@@ -36,10 +37,13 @@ public class EditProduct {
     @BeforeMethod
     public void setup() {
         Map<String, String> valuesMapJson = JsonMapper.getMapJson(PRODUCT_DATA_PATH);
-        ProductHome productHome = Navigator.goToProduct();
-        productForm = productHome.clickNewButton();
-        productForm.fillTheForm(valuesMapJson);
-        productDetail = productForm.clickSaveButton();
+        LoginPage.loginAsPrimaryUser();
+        MainApp mainApp = new MainApp();
+        AppLauncher appLauncher = mainApp.clickAppLauncher();
+        ProductHome productHome = appLauncher.clickOnProductsHome();
+        ProductForm newProductForm = productHome.clickNewButton();
+        newProductForm.fillTheForm(valuesMapJson);
+        productDetail = newProductForm.clickSaveButton();
         productForm = productDetail.clickEditButton();
     }
 
@@ -48,7 +52,7 @@ public class EditProduct {
      */
     @Test
     public void editProductWithJson() {
-        Map<String, String> valuesMapEditJson = JsonMapper.getMapJson(OPPORTUNITY_DATA_EDIT_PATH);
+        Map<String, String> valuesMapEditJson = JsonMapper.getMapJson(PRODUCT_EDIT);
         productForm.fillTheForm(valuesMapEditJson);
         productDetail = productForm.clickSaveButton();
         assertDetailValues(productDetail, valuesMapEditJson);
