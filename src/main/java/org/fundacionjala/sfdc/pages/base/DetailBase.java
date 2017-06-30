@@ -10,7 +10,7 @@ import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.AssertsDetails;
 
 /**
- * Class that represents the details options.
+ * Class that represents the details options .
  */
 public abstract class DetailBase extends AbstractBasePage {
 
@@ -26,7 +26,7 @@ public abstract class DetailBase extends AbstractBasePage {
     @CacheLookup
     protected WebElement editBtn;
 
-    @FindBy(name = "del")
+    @FindBy(css = "a[title='Delete']")
     @CacheLookup
     protected WebElement deleteBtn;
 
