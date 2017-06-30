@@ -52,8 +52,7 @@ public class ProductDetail extends DetailBase {
     @CacheLookup
     private WebElement productFamilyLabel;
 
-    @FindBy(xpath = "//span[@class=\"slds-icon_container slds-icon-utility-down slds-button__icon forceIcon\"]"
-        + "/child::span[1]")
+    @FindBy(css = ".slds-grid.primaryFieldRow div li div div div div a")
     @CacheLookup
     private WebElement downArrow;
 

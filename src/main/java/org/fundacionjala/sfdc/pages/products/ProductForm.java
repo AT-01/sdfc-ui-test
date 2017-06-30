@@ -40,10 +40,6 @@ public class ProductForm extends FormBase {
     @CacheLookup
     private WebElement productFamilyLabel;
 
-    @FindBy(css = "[title=\"None\"]")
-    @CacheLookup
-    private WebElement productFamilySelect;
-
     @FindBy(xpath = "//span[text()='Product Description']/parent::label/following-sibling::textarea")
     @CacheLookup
     private WebElement descriptionTextArea;
@@ -134,8 +130,7 @@ public class ProductForm extends FormBase {
         wait.until(ExpectedConditions.elementToBeClickable(productFamilyLabel));
         CommonActions.clickElement(productFamilyLabel);
         if (!productFamily.isEmpty()) {
-            String cssSelector = "[title=" + productFamily + "]";
-            CommonActions.clickElement(driver.findElement(By.cssSelector(cssSelector)));
+            CommonActions.clickElement(driver.findElement(By.cssSelector("[title=" + productFamily + "]")));
         }
         return this;
     }
