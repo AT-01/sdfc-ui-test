@@ -1,7 +1,9 @@
 package org.fundacionjala.sfdc.tests.cases;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.pages.AppLauncher;
+import org.fundacionjala.sfdc.pages.LoginPage;
+import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.cases.CaseDetail;
 import org.fundacionjala.sfdc.pages.cases.CaseInformation;
 import org.fundacionjala.sfdc.pages.cases.CasesForm;
@@ -14,11 +16,11 @@ import java.util.Map;
 import static org.testng.Assert.assertFalse;
 
 /**
- * This is in charge to execute the test Delete Case.
+ * This is in charge to execute the test Delete Case .
  */
 public class DeleteCases {
 
-    static final String CASES_DATA_PATH = "cases/CreateCasesData.json";
+    private static final String CASES_DATA_PATH = "cases/CreateCasesData.json";
     private Map<String, String> valuesMapJson;
     private CasesHome casesHome;
     private CaseInformation caseInformation;
@@ -29,12 +31,15 @@ public class DeleteCases {
      */
     @BeforeMethod
     public void setUp() {
+
+        LoginPage.loginAsPrimaryUser();
+        MainApp mainApp = new MainApp();
+        AppLauncher appLauncher = mainApp.clickAppLauncher();
+        casesHome = appLauncher.clickOnCasesHome();
         valuesMapJson = JsonMapper.getMapJson(CASES_DATA_PATH);
-        casesHome = Navigator.goToCases();
         CasesForm casesForm = casesHome.clickNewButton();
         casesForm.fillTheForm(valuesMapJson);
         caseInformation = casesForm.clickSaveButton();
-        caseDetail = caseInformation.clickOndetailsPanelOption();
     }
 
     /**
@@ -42,8 +47,11 @@ public class DeleteCases {
      */
     @Test
     public void createCaseWhitJsonFile() {
+
+        caseDetail = caseInformation.clickOndetailsPanelOption();
         casesHome = caseDetail.clickDeleteButton();
-        assertFalse(casesHome.existCase(valuesMapJson.get("subject")));
+        casesHome.clickConfirmationDelete();
+        assertFalse(casesHome.existCase(valuesMapJson.get("Subject")));
     }
 
 }

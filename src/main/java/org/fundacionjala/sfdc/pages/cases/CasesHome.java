@@ -11,13 +11,18 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 /**
- * This class manage the page objects.
+ * This class manage the page objects .
  */
 public class CasesHome extends HomeBase {
 
-    @FindBy(css = "table[class=\"list\"]")
+    @FindBy(css = ".displayArea div.emptyContentInner")
     @CacheLookup
     private WebElement casesList;
+
+
+    @FindBy(xpath = "//span[text()='Delete']")
+    @CacheLookup
+    private WebElement confirmationDeleteButton;
 
     /**
      * {@inheritDoc}
@@ -26,6 +31,13 @@ public class CasesHome extends HomeBase {
     public CasesForm clickNewButton() {
         CommonActions.clickElement(newButton);
         return new CasesForm();
+    }
+
+    /**
+     * Click in confirmationDelete.
+     */
+    public void clickConfirmationDelete() {
+        CommonActions.clickElement(confirmationDeleteButton);
     }
 
     /**
@@ -51,7 +63,8 @@ public class CasesHome extends HomeBase {
      * @return Boolean value.
      */
     public boolean existCase(final String subject) {
-        List<WebElement> casesRows = casesList.findElements(By.cssSelector("td[class=\" dataCell  \"]"));
-        return casesRows.stream().filter(webElement -> webElement.getText().equals(subject)).findAny().isPresent();
+        List<WebElement> casesRows = casesList.findElements(By.cssSelector(".displayArea div.emptyContent"));
+        return casesRows.stream().anyMatch(webElement -> webElement.getText().equals(subject));
     }
+
 }

@@ -8,5 +8,22 @@
   "leadSource": "Partner Referral",
   "mail": "fernando@gmail.com",
   "mailingStreet": "Washington #654",
-  "otherStreet": "Virginia #789"
+  "otherStreet": "Virginia #789",
+  "phone":"67409093",
+  "homePhone":"4458952",
+  "mobilePhone":"79706960",
+  "otherPhone":"78945618",
+  "assistant":"Gal Gadot",
+  "assistantPhone":"66666445",
+  "mailingCity":"Virginia",
+  "mailingState":"Alabama",
+  "otherCity":"Miami",
+  "mailingZip":"123456",
+  "mailigCountry":"USA",
+  "otherZip":"0000",
+  "otherState":"Florida",
+  "otherCountry":"Canada",
+  "languages":"English",
+  "level":"Secondary"
+
 }

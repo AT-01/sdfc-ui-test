@@ -2,6 +2,7 @@ package org.fundacionjala.sfdc.tests;
 
 import java.util.Map;
 
+import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.base.DetailBase;
 
 import static org.testng.Assert.assertEquals;
@@ -25,6 +26,7 @@ public final class Asserts {
      * @param valuesMapJson is a map with values of a json file.
      */
     public static void assertDetailValues(final DetailBase detail, final Map<String, String> valuesMapJson) {
+        CommonActions.sleep(10000);
         valuesMapJson.keySet()
                 .forEach(value -> assertEquals(detail.getStrategyAssertMap().get(value).getText(),
                         valuesMapJson.get(value)));

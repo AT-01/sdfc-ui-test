@@ -1,6 +1,5 @@
 {
- "campaignName": "NewCampaign",
- "active": "Checked",
+  "campaignName": "NewCampaign",
   "typeDropDown": "Email",
   "statusDropDown": "In Progress",
   "startDate": "10/25/2015",

@@ -1,7 +1,9 @@
 package org.fundacionjala.sfdc.tests.cases;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.pages.AppLauncher;
+import org.fundacionjala.sfdc.pages.LoginPage;
+import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.cases.CasesHome;
 import org.fundacionjala.sfdc.pages.cases.CaseInformation;
 import org.fundacionjala.sfdc.pages.cases.CaseDetail;
@@ -19,19 +21,23 @@ import java.util.Map;
  */
 public class CreateCases {
 
-    static final String CASES_DATA_PATH = "cases/CreateCasesData.json";
+    private static final String CASES_DATA_PATH = "cases/CreateCasesData.json";
     private Map<String, String> valuesMapJson;
     private CasesHome casesHome;
     private CaseInformation caseInformation;
     private CaseDetail caseDetail;
 
     /**
-     * This method is a preconditions to create a case.
+     * This method is a preconditions to create a case .
      */
     @BeforeMethod
     public void setUp() {
+
+        LoginPage.loginAsPrimaryUser();
+        MainApp mainApp = new MainApp();
+        AppLauncher appLauncher = mainApp.clickAppLauncher();
+        casesHome = appLauncher.clickOnCasesHome();
         valuesMapJson = JsonMapper.getMapJson(CASES_DATA_PATH);
-        casesHome = Navigator.goToCases();
     }
 
     /**
@@ -39,6 +45,7 @@ public class CreateCases {
      */
     @Test
     public void createCaseWhitJsonFile() {
+
         CasesForm casesForm = casesHome.clickNewButton();
         casesForm.fillTheForm(valuesMapJson);
         caseInformation = casesForm.clickSaveButton();
@@ -52,6 +59,7 @@ public class CreateCases {
      */
     @Test()
     public void createCaseWhitBuilderPattern() {
+
         casesHome.clickNewButton();
         Cases cases = new Cases.CasesBuilder(valuesMapJson.get("status"), valuesMapJson.get("caseOrigin"))
                 .setPriority(valuesMapJson.get("priority"))
@@ -61,6 +69,7 @@ public class CreateCases {
                 .setDescription(valuesMapJson.get("description"))
                 .build();
         caseDetail = cases.createCases();
+
         Asserts.assertDetailValues(caseDetail, cases.getValuesMap());
     }
 
@@ -69,8 +78,8 @@ public class CreateCases {
      */
     @AfterMethod
     public void tearDown() {
+
         casesHome = caseDetail.clickDeleteButton();
-
-
+        casesHome.clickConfirmationDelete();
     }
 }

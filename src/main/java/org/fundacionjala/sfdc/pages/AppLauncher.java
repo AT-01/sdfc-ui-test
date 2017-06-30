@@ -37,7 +37,7 @@ public class AppLauncher extends AbstractBasePage {
     @CacheLookup
     private WebElement contactsTab;
 
-    @FindBy(id = "Product2_Tab")
+    @FindBy(linkText = "Products")
     @CacheLookup
     private WebElement productsTab;
 
@@ -53,7 +53,7 @@ public class AppLauncher extends AbstractBasePage {
     @CacheLookup
     private WebElement contractsTab;
 
-    @FindBy(id = "Case_Tab")
+    @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Cases']")
     @CacheLookup
     private WebElement caseTab;
 
@@ -153,4 +153,5 @@ public class AppLauncher extends AbstractBasePage {
         CommonActions.clickElement(caseTab);
         return new CasesHome();
     }
+
 }

@@ -36,7 +36,7 @@ public class MainApp extends AbstractBasePage {
      * @return {@link AppLauncher}
      */
     public AppLauncher clickAppLauncher() {
-        CommonActions.sleep();
+        CommonActions.sleep(30000);
         CommonActions.clickElement(appLauncherButton);
         return new AppLauncher();
     }

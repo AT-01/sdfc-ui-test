@@ -1,7 +1,6 @@
 package org.fundacionjala.sfdc.tests.campaign;
 
 import java.util.Map;
-import java.util.Random;
 
 import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.LoginPage;
@@ -11,12 +10,10 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignDetail;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignForm;
 import org.fundacionjala.sfdc.pages.campaigns.Campaigns;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignsHome;
-import org.fundacionjala.sfdc.pages.lookup.LookUpWindow;
 import org.fundacionjala.sfdc.tests.Asserts;
 
 /**
@@ -24,14 +21,9 @@ import org.fundacionjala.sfdc.tests.Asserts;
  */
 public class CreateCampaign {
 
-    public static final int BOUND = 9999;
-    private CampaignsHome campaignsHome;
     private CampaignForm campaignForm;
-    private LookUpWindow lookUpWindow;
     private CampaignDetail campaignDetail;
-    private AppLauncher appLauncher;
-    private String campaignParent;
-    private MainApp mainApp;
+    private CampaignsHome campaignsHome;
     private static final String CAMPAIGN_DATA_PATH = "campaign/CreateCampaignData.json";
     private Map<String, String> valuesMapJson;
 
@@ -42,18 +34,8 @@ public class CreateCampaign {
     public void setup() {
         valuesMapJson = JsonMapper.getMapJson(CAMPAIGN_DATA_PATH);
         LoginPage.loginAsPrimaryUser();
-        campaignParent = "Parent" + new Random().nextInt(BOUND);
-        campaignsHome = Navigator.goToCampaign();
-        campaignForm = campaignsHome
-                .clickNewButton();
-        campaignDetail = campaignForm
-                .setCampaignNameField(campaignParent)
-                .checkActiveCheckbox()
-                .clickSaveButton();
-
-        LoginPage.loginAsPrimaryUser();
-        mainApp = new MainApp();
-        appLauncher = mainApp.clickAppLauncher();
+        MainApp mainApp = new MainApp();
+        AppLauncher appLauncher = mainApp.clickAppLauncher();
         campaignsHome = appLauncher.clickCampaigns();
     }
 
@@ -64,9 +46,8 @@ public class CreateCampaign {
     public void createCampaignWithJson() {
         campaignForm = campaignsHome.clickNewButton();
         campaignForm.fillTheForm(valuesMapJson);
-        lookUpWindow = campaignForm.clickLookUpIcon();
-        lookUpWindow.selectCampaignWithNameByScope(campaignParent, LookUpWindow.ALL_CAMPAIGN);
         campaignDetail = campaignForm.clickSaveButton();
+        campaignDetail.clickDetails();
         Asserts.assertDetailValues(campaignDetail, valuesMapJson);
     }
 
@@ -76,7 +57,7 @@ public class CreateCampaign {
     @Test()
     public void createCampaign() {
         campaignsHome.clickNewButton();
-        Campaigns campaigns = new Campaigns.CampaignBuilder("builderTest")
+        Campaigns campaigns = new Campaigns.CampaignBuilder("builderTestNew")
                 .setTypeDropDown("Email")
                 .setStatusDropDown("In Progress")
                 .setStartDate("10/25/2015")
@@ -84,6 +65,7 @@ public class CreateCampaign {
                 .setRevenue("1,000")
                 .build();
         campaignDetail = campaigns.createCampaign();
+        campaignDetail.clickDetails();
         Asserts.assertDetailValues(campaignDetail, campaigns.getValuesMap());
     }
 
@@ -93,7 +75,5 @@ public class CreateCampaign {
     @AfterMethod()
     public void tearDown() {
         campaignsHome = campaignDetail.clickDeleteButton();
-
-
     }
 }
