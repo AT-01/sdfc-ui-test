@@ -2,12 +2,14 @@ package org.fundacionjala.sfdc.pages.leads;
 
 import java.text.NumberFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.FormSteps;
 import org.fundacionjala.sfdc.pages.base.FormBase;
+import org.fundacionjala.sfdc.pages.contacts.ContactForm;
 import org.fundacionjala.sfdc.pages.lookup.LookUpWindow;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -52,49 +54,61 @@ import static org.fundacionjala.sfdc.pages.leads.LeadFields.ZIP_CODE;
  */
 public class LeadForm extends FormBase {
 
-    @FindBy(css = "input[placeholder='Last Name']")
+    @FindBy(xpath = "//span[text()='Last Name']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement lastNameTextField;
 
-    @FindBy(css = "a[aria-label='Lead Status']")
+    @FindBy(xpath = "//a[@aria-label='Lead Status']")
     @CacheLookup
     private WebElement leadStatustTextField;
+
+    @FindBy(css = "a[role='menuitemradio']")
+    @CacheLookup
+    private List<WebElement> leatStatusItems;
 
     @FindBy(xpath = "//span[text()='Company']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement companyTextField;
 
-    @FindBy(css = "input[placeholder='First Name']")
+    @FindBy(xpath = "//span[text()='First Name']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement firstNameTextField;
 
-    @FindBy(css = "textarea[placeholder='Street']")
+    @FindBy(xpath = "//span[text()='Street']/parent::label/following-sibling::textarea")
     @CacheLookup
     private WebElement streetTextField;
 
-    @FindBy(css = "input[placeholder='City']")
+    @FindBy(xpath = "//span[text()='City']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement cityTextField;
 
-    @FindBy(id = "lea20")
-    @CacheLookup
-    private WebElement campaingTextField;
-
-    @FindBy(css = "aria-label='Salutation'")
+    @FindBy(css = "a[aria-label='Salutation']")
     @CacheLookup
     private WebElement nameSalutationSelect;
+
+    @FindBy(css = "a[role='menuitemradio']")
+    @CacheLookup
+    private List<WebElement> nameSalutationItems;
 
     @FindBy(xpath = "//span[text()='Title']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement titleField;
 
-    @FindBy(css = "a[aria-label='Lead Source']")
+    @FindBy(xpath = "//a[@aria-label='Lead Source']")
     @CacheLookup
     private WebElement leadSourceSelect;
+
+    @FindBy(css = "a[role='menuitemradio']")
+    @CacheLookup
+    private List<WebElement> leadSourceItems;
 
     @FindBy(css = "a[aria-label='Industry']")
     @CacheLookup
     private WebElement industrySelect;
+
+    @FindBy(css = "a[role='menuitemradio']")
+    @CacheLookup
+    private List<WebElement> industrySelectItems;
 
     @FindBy(xpath = "//span[text()='Annual Revenue']/parent::label/following-sibling::input")
     @CacheLookup
@@ -124,6 +138,10 @@ public class LeadForm extends FormBase {
     @CacheLookup
     private WebElement ratingTextField;
 
+    @FindBy(css = "a[role='menuitemradio']")
+    @CacheLookup
+    private List<WebElement> ratingItems;
+
     @FindBy(xpath = "//span[text()='No. of Employees']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement numEmployeesTextField;
@@ -144,6 +162,10 @@ public class LeadForm extends FormBase {
     @CacheLookup
     private WebElement productInterestSelect;
 
+    @FindBy(css = "a[role='menuitemradio']")
+    @CacheLookup
+    private List<WebElement> productInterestItems;
+
     @FindBy(xpath = "//span[text()='SIC Code']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement sicCodeTextField;
@@ -160,6 +182,10 @@ public class LeadForm extends FormBase {
     @CacheLookup
     private WebElement primarySelect;
 
+    @FindBy(css = "a[role='menuitemradio']")
+    @CacheLookup
+    private List<WebElement> primaryItems;
+
     /*Others*/
     @FindBy(xpath = "//span[text()='Description']/parent::label/following-sibling::textarea")
     @CacheLookup
@@ -172,10 +198,10 @@ public class LeadForm extends FormBase {
     @FindBy(id = "lea20_lkwgt")
     private WebElement campaignIcon;
 
-    @FindBy(id = "button[title='Save & New']")
+    @FindBy(css = "button[title='Save & New']")
     private WebElement saveAndNewButton;
 
-    @FindBy(id = "button[title='Save']")
+    @FindBy(css = "button[title='Save']")
     private WebElement saveButton;
 
 
@@ -406,6 +432,90 @@ public class LeadForm extends FormBase {
     }
 
     /**
+     * This method is to select name category.
+     *
+     * @param item a string to select.
+     * @return {@link ContactForm}.
+     */
+    public LeadForm selectNameSalutation(final String item) {
+        CommonActions.clickElement(nameSalutationSelect);
+        CommonActions.selectAnElement(nameSalutationItems, item).click();
+        return this;
+    }
+
+    /**
+     * This method is to select name category.
+     *
+     * @param item a string to select.
+     * @return {@link ContactForm}.
+     */
+    public LeadForm selectLeadSource(final String item) {
+        CommonActions.clickElement(leadSourceSelect);
+        CommonActions.selectAnElement(leadSourceItems, item).click();
+        return this;
+    }
+
+    /**
+     * This method is to select name category.
+     *
+     * @param item a string to select.
+     * @return {@link ContactForm}.
+     */
+    public LeadForm selectIndustry(final String item) {
+        CommonActions.clickElement(industrySelect);
+        CommonActions.selectAnElement(industrySelectItems, item).click();
+        return this;
+    }
+
+    /**
+     * This method is to select name category.
+     *
+     * @param item a string to select.
+     * @return {@link ContactForm}.
+     */
+    public LeadForm selectLeadStatus(final String item) {
+        CommonActions.clickElement(leadStatustTextField);
+        CommonActions.selectAnElement(leatStatusItems, item).click();
+        return this;
+    }
+
+    /**
+     * This method is to select name category.
+     *
+     * @param item a string to select.
+     * @return {@link ContactForm}.
+     */
+    public LeadForm selectRating(final String item) {
+        CommonActions.clickElement(ratingTextField);
+        CommonActions.selectAnElement(ratingItems, item).click();
+        return this;
+    }
+
+    /**
+     * This method is to select name category.
+     *
+     * @param item a string to select.
+     * @return {@link ContactForm}.
+     */
+    public LeadForm selectProductInterest(final String item) {
+        CommonActions.clickElement(productInterestSelect);
+        CommonActions.selectAnElement(productInterestItems, item).click();
+        return this;
+    }
+
+    /**
+     * This method is to select name category.
+     *
+     * @param item a string to select.
+     * @return {@link ContactForm}.
+     */
+    public LeadForm selectPrimary(final String item) {
+        CommonActions.clickElement(primarySelect);
+        CommonActions.selectAnElement(primaryItems, item).click();
+        return this;
+    }
+
+    /**
      * Method to sets the values to create a new LeadFields.
      *
      * @param values Map with the information to be mapped.
@@ -415,7 +525,7 @@ public class LeadForm extends FormBase {
         final Map<String, FormSteps> strategyMap = new HashMap<>();
 
         strategyMap.put(NAME_SALUTATION.toString(),
-                () -> CommonActions.selectItem(nameSalutationSelect, values.get(NAME_SALUTATION.toString())));
+                () -> selectNameSalutation(values.get(NAME_SALUTATION.toString())));
         strategyMap.put(FIRST_NAME.toString(),
                 () -> setFirstNameTextField(values.get(FIRST_NAME.toString())));
         strategyMap.put(LAST_NAME.toString(),
@@ -425,11 +535,11 @@ public class LeadForm extends FormBase {
         strategyMap.put(TITLE.toString(),
                 () -> CommonActions.sendKeys(titleField, values.get(TITLE.toString())));
         strategyMap.put(LEAD_SOURCE.toString(),
-                () -> CommonActions.selectItem(leadSourceSelect, values.get(LEAD_SOURCE.toString())));
-        strategyMap.put(CAMPAIGN.toString(),
-                () -> selectCampaign(values.get(CAMPAIGN.toString())));
+                () ->  selectLeadSource(values.get(LEAD_SOURCE.toString())));
+        //strategyMap.put(CAMPAIGN.toString(),
+          //      () -> selectCampaign(values.get(CAMPAIGN.toString())));
         strategyMap.put(INDUSTRY.toString(),
-                () -> CommonActions.selectItem(industrySelect, values.get(INDUSTRY.toString())));
+                () ->  selectIndustry(values.get(INDUSTRY.toString())));
         strategyMap.put(ANNUAL_REVENUE.toString(),
                 () -> CommonActions.sendKeys(annualRevenueTextField, values.get(ANNUAL_REVENUE.toString())));
         strategyMap.put(PHONE.toString(),
@@ -443,9 +553,9 @@ public class LeadForm extends FormBase {
         strategyMap.put(WEBSITE.toString(),
                 () -> CommonActions.sendKeys(websiteTextField, values.get(WEBSITE.toString())));
         strategyMap.put(LEAD_STATUS.toString(),
-                () -> CommonActions.selectItem(leadStatustTextField, values.get(LEAD_STATUS.toString())));
+                () -> selectLeadStatus(values.get(LEAD_STATUS.toString())));
         strategyMap.put(RATING.toString(),
-                () -> CommonActions.selectItem(ratingTextField, values.get(RATING.toString())));
+                () -> selectRating(values.get(RATING.toString())));
         strategyMap.put(NUM_EMPLOYEES.toString(),
                 () -> CommonActions.sendKeys(numEmployeesTextField, values.get(NUM_EMPLOYEES.toString())));
         strategyMap.put(STREET.toString(),
@@ -458,7 +568,7 @@ public class LeadForm extends FormBase {
         strategyMap.put(COUNTRY.toString(),
                 () -> CommonActions.sendKeys(countryTextField, values.get(COUNTRY.toString())));
         strategyMap.put(PRODUCT_INTEREST.toString(),
-                () -> CommonActions.selectItem(productInterestSelect, values.get(PRODUCT_INTEREST.toString())));
+                () ->  selectProductInterest(values.get(PRODUCT_INTEREST.toString())));
         strategyMap.put(SICCODE.toString(),
                 () -> CommonActions.sendKeys(sicCodeTextField, values.get(SICCODE.toString())));
         strategyMap.put(NUMBER_LOCATIONS.toString(),
@@ -466,7 +576,7 @@ public class LeadForm extends FormBase {
         strategyMap.put(CURRENT_GENERATORS.toString(),
                 () -> CommonActions.sendKeys(currentGeneratorsTextField, values.get(CURRENT_GENERATORS.toString())));
         strategyMap.put(PRIMARY.toString(),
-                () -> CommonActions.selectItem(primarySelect, values.get(PRIMARY.toString())));
+                () -> selectPrimary(values.get(PRIMARY.toString())));
         strategyMap.put(DESCRIPTION.toString(),
                 () -> CommonActions.sendKeys(descriptionTextArea, values.get(DESCRIPTION.toString())));
         strategyMap.put(ASSIGN_RULE.toString(),
