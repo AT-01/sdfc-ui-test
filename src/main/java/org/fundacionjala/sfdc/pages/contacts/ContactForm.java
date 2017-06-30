@@ -11,15 +11,31 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.ASSISTANT;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.ASSISTANT_PHONE;
 import static org.fundacionjala.sfdc.pages.contacts.ContactFields.BIRTH_DATE;
 import static org.fundacionjala.sfdc.pages.contacts.ContactFields.CONTACT_NAME;
 import static org.fundacionjala.sfdc.pages.contacts.ContactFields.DEPARTMENT;
 import static org.fundacionjala.sfdc.pages.contacts.ContactFields.FIRST_NAME_CATEGORY;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.HOME_PHONE;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LANGUAGES;
 import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LAST_NAME;
 import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LEAD_SOURCE;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LEVEL;
 import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAIL;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_CITY;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_COUNTRY;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_STATE;
 import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_STREET;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_ZIP;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MOBILE;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_CITY;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_COUNTRY;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_PHONE;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_STATE;
 import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_STREET;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_ZIP;
+import static org.fundacionjala.sfdc.pages.contacts.ContactFields.PHONE;
 import static org.fundacionjala.sfdc.pages.contacts.ContactFields.TITLE;
 
 /**
@@ -33,7 +49,6 @@ public class ContactForm extends FormBase {
 
     @FindBy(css = ".uiMenuItem.uiRadioMenuItem>a")
     private List<WebElement> salutdationsList;
-
 
     @FindBy(css = "input[placeholder='First Name']")
     @CacheLookup
@@ -275,7 +290,7 @@ public class ContactForm extends FormBase {
      */
     public ContactForm selectLeadSource(final String item) {
         CommonActions.clickElement(leadSourceField);
-        CommonActions.selectAnElement(leadList, item).click();
+        CommonActions.selectAnElement(salutdationsList, item).click();
         return this;
     }
 
@@ -417,11 +432,44 @@ public class ContactForm extends FormBase {
     /**
      * method.
      *
+     * @param item text.
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setOtherState(final String item) {
+        CommonActions.sendKeys(otherStateProvinceField, item);
+        return this;
+    }
+
+    /**
+     * method.
+     *
+     * @param item text.
+     * @return {@link ContactForm}.
+     */
+    public ContactForm setOtherCountry(final String item) {
+        CommonActions.sendKeys(otherCountryField, item);
+        return this;
+    }
+
+    /**
+     * method.
+     *
      * @param item mail.
      * @return {@link ContactForm}.
      */
     public ContactForm setLanguages(final String item) {
         CommonActions.sendKeys(languagesField, item);
+        return this;
+    }
+
+    /**
+     * Method.
+     * @param item string.
+     * @return a instance of the ContactFrom class.
+     */
+    public ContactForm setLevel(final String item) {
+        CommonActions.clickElement(levelCombo);
+        CommonActions.selectAnElement(salutdationsList, item).click();
         return this;
     }
 
@@ -464,6 +512,23 @@ public class ContactForm extends FormBase {
         strategyMap.put(MAIL.getValue(), () -> setMail(values.get(MAIL.getValue())));
         strategyMap.put(MAILING_STREET.getValue(), () -> setMailingStreet(values.get(MAILING_STREET.getValue())));
         strategyMap.put(OTHER_STREET.getValue(), () -> setOtherStreet(values.get(OTHER_STREET.getValue())));
+        strategyMap.put(PHONE.getValue(), () -> setPhone(values.get(PHONE.getValue())));
+        strategyMap.put(HOME_PHONE.getValue(), () -> sethomePhone(values.get(HOME_PHONE.getValue())));
+        strategyMap.put(MOBILE.getValue(), () -> setMobilePhone(values.get(MOBILE.getValue())));
+        strategyMap.put(OTHER_PHONE.getValue(), () -> setOtherPhone(values.get(OTHER_PHONE.getValue())));
+        strategyMap.put(ASSISTANT.getValue(), () -> setAssistant(values.get(ASSISTANT.getValue())));
+        strategyMap.put(ASSISTANT_PHONE.getValue(), () -> setAssistantPhone(values.get(ASSISTANT_PHONE.getValue())));
+        strategyMap.put(MAILING_CITY.getValue(), () -> setMailingCity(values.get(MAILING_CITY.getValue())));
+        strategyMap.put(MAILING_STATE.getValue(), () -> setMalingState(values.get(MAILING_STATE.getValue())));
+        strategyMap.put(OTHER_CITY.getValue(), () -> setOtherCity(values.get(OTHER_CITY.getValue())));
+        strategyMap.put(MAILING_ZIP.getValue(), () -> setMailingZip(values.get(MAILING_ZIP.getValue())));
+        strategyMap.put(MAILING_COUNTRY.getValue(), () -> setMailingCoutry(values.get(MAILING_COUNTRY.getValue())));
+        strategyMap.put(OTHER_ZIP.getValue(), () -> setOtherZip(values.get(OTHER_ZIP.getValue())));
+        strategyMap.put(OTHER_STATE.getValue(), () -> setOtherState(values.get(OTHER_STATE.getValue())));
+        strategyMap.put(OTHER_COUNTRY.getValue(), () -> setOtherCountry(values.get(OTHER_COUNTRY.getValue())));
+        strategyMap.put(LANGUAGES.getValue(), () -> setLanguages(values.get(LANGUAGES.getValue())));
+        strategyMap.put(LEVEL.getValue(), () -> setLevel(values.get(LEVEL.getValue())));
+
 
         return strategyMap;
     }

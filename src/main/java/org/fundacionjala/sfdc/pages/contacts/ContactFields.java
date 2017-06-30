@@ -13,7 +13,24 @@ public enum ContactFields {
     LEAD_SOURCE("leadSource"),
     MAIL("mail"),
     MAILING_STREET("mailingStreet"),
-    OTHER_STREET("otherStreet");
+    OTHER_STREET("otherStreet"),
+    PHONE("phone"),
+    HOME_PHONE("homePhone"),
+    MOBILE("mobilePhone"),
+    OTHER_PHONE("otherPhone"),
+    ASSISTANT("assistant"),
+    ASSISTANT_PHONE("assistantPhone"),
+    MAILING_CITY("mailingCity"),
+    MAILING_STATE("mailingState"),
+    OTHER_CITY("otherCity"),
+    MAILING_ZIP("mailingZip"),
+    MAILING_COUNTRY("mailigCountry"),
+    OTHER_ZIP("otherZip"),
+    OTHER_STATE("otherState"),
+    OTHER_COUNTRY("otherCountry"),
+    LANGUAGES("languages"),
+    LEVEL("level");
+
 
     private final String value;
 

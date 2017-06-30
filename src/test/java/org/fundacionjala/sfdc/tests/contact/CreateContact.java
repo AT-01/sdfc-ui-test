@@ -46,6 +46,7 @@ public class CreateContact {
         ContactForm contactForm = contactsHome.clickNewButton();
         contactForm.fillTheForm(valuesMapJson);
         contactsDetail = contactForm.clickSaveButton();
+        contactsDetail.clickOnDetails();
         Asserts.assertDetailValues(contactsDetail, valuesMapJson);
     }
 
@@ -55,5 +56,6 @@ public class CreateContact {
     @AfterMethod
     public void afterTest() {
         contactsDetail.clickDeleteButton();
+
     }
 }
