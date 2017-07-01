@@ -253,6 +253,17 @@ public class CampaignDetail extends DetailBase {
      * Go to details tab.
      */
     public void clickDetails() {
+        CommonActions.sleep(3000);
         CommonActions.clickElement(detailsLinkButton);
+    }
+
+    /**
+     * This method verify that campaign is displayed.
+     *
+     * @param campaignName String with campaign.
+     * @return returns true if campaign is displayed.
+     */
+    public boolean isCampaignDisplayed(String campaignName) {
+        return CommonActions.existElementByLinkText(campaignName);
     }
 }
