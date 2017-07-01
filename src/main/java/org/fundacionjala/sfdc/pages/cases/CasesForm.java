@@ -27,7 +27,7 @@ import static org.fundacionjala.sfdc.pages.cases.CasesFields.CASES_ORIGIN_DROOPD
 import static java.lang.String.valueOf;
 
 /**
- * This class manage the cases form page objects .
+ * This class manage the cases form page objects.
  */
 public class CasesForm extends FormBase {
 
