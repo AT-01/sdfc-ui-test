@@ -1,31 +1,19 @@
 package org.fundacionjala.sfdc.pages.cases;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.AssertsDetails;
-import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
-import org.fundacionjala.sfdc.pages.base.DetailBase;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.DESCRIPTION_TEXT;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.SLA_VIOLATION;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.SUBJECT_TEXT;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.ENGINEERING_NUMBER;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.POTENTIAL_LIABILITY;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.PRODUCT_VALUE;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.CASE_REASON;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.TYPE_VALUE;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.PRIORITY_VALUE;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.STATUS_DROOPDOWNLIST;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.CASES_ORIGIN_DROOPDOWNLIST;
-
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.AssertsDetails;
+import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
+import org.fundacionjala.sfdc.pages.base.DetailBase;
 
 /**
- * This class manage the Detail page objects .
+ * This class manage the Detail page objects.
  */
 public class CaseDetail extends DetailBase {
 
@@ -97,17 +85,17 @@ public class CaseDetail extends DetailBase {
      */
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap<>();
-        strategyMap.put(CASES_ORIGIN_DROOPDOWNLIST.getValue(), this::getCasesOrigin);
-        strategyMap.put(STATUS_DROOPDOWNLIST.getValue(), this::getStatus);
-        strategyMap.put(PRIORITY_VALUE.getValue(), this::getPriority);
-        strategyMap.put(TYPE_VALUE.getValue(), this::getType);
-        strategyMap.put(CASE_REASON.getValue(), this::getCasesReason);
-        strategyMap.put(PRODUCT_VALUE.getValue(), this::getProduct);
-        strategyMap.put(POTENTIAL_LIABILITY.getValue(), this::getLiability);
-        strategyMap.put(ENGINEERING_NUMBER.getValue(), this::getEngineeringNumber);
-        strategyMap.put(SLA_VIOLATION.getValue(), this::getSla);
-        strategyMap.put(SUBJECT_TEXT.getValue(), this::getSubject);
-        strategyMap.put(DESCRIPTION_TEXT.getValue(), this::getDescription);
+        strategyMap.put(CasesFields.CASES_ORIGIN.getValue(), this::getCasesOrigin);
+        strategyMap.put(CasesFields.STATUS.getValue(), this::getStatus);
+        strategyMap.put(CasesFields.PRIORITY.getValue(), this::getPriority);
+        strategyMap.put(CasesFields.TYPE.getValue(), this::getType);
+        strategyMap.put(CasesFields.CASE_REASON.getValue(), this::getCasesReason);
+        strategyMap.put(CasesFields.PRODUCT.getValue(), this::getProduct);
+        strategyMap.put(CasesFields.POTENTIAL_LIABILITY.getValue(), this::getLiability);
+        strategyMap.put(CasesFields.ENGINEERING_NUMBER.getValue(), this::getEngineeringNumber);
+        strategyMap.put(CasesFields.SLA_VIOLATION.getValue(), this::getSla);
+        strategyMap.put(CasesFields.SUBJECT.getValue(), this::getSubject);
+        strategyMap.put(CasesFields.DESCRIPTION.getValue(), this::getDescription);
         return strategyMap;
     }
 

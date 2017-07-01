@@ -2,21 +2,17 @@ package org.fundacionjala.sfdc.pages.products;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.FormSteps;
-import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
-import org.fundacionjala.sfdc.pages.base.FormBase;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static org.fundacionjala.sfdc.pages.products.ProductFields.NAME;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.DESCRIPTION;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.CODE;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.ACTIVE;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.FAMILY;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.FormSteps;
+import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
+import org.fundacionjala.sfdc.pages.base.FormBase;
 
 /**
  * This class handle the product form.
@@ -39,10 +35,6 @@ public class ProductForm extends FormBase {
     @FindBy(css = "[aria-label=\"Product Family\"]")
     @CacheLookup
     private WebElement productFamilyLabel;
-
-    @FindBy(css = "[title=\"None\"]")
-    @CacheLookup
-    private WebElement productFamilySelect;
 
     @FindBy(xpath = "//span[text()='Product Description']/parent::label/following-sibling::textarea")
     @CacheLookup
@@ -134,8 +126,7 @@ public class ProductForm extends FormBase {
         wait.until(ExpectedConditions.elementToBeClickable(productFamilyLabel));
         CommonActions.clickElement(productFamilyLabel);
         if (!productFamily.isEmpty()) {
-            String cssSelector = "[title=" + productFamily + "]";
-            CommonActions.clickElement(driver.findElement(By.cssSelector(cssSelector)));
+            CommonActions.clickElement(driver.findElement(By.cssSelector("[title=" + productFamily + "]")));
         }
         return this;
     }
@@ -187,11 +178,16 @@ public class ProductForm extends FormBase {
      */
     private Map<String, FormSteps> getStrategyStepMap(final Map<String, String> values) {
         final Map<String, FormSteps> strategyMap = new HashMap<>();
-        strategyMap.put(NAME.toString(), () -> setProductName(values.get(NAME.toString())));
-        strategyMap.put(CODE.toString(), () -> setProductCode(values.get(CODE.toString())));
-        strategyMap.put(ACTIVE.toString(), () -> checkActiveFlag(Boolean.parseBoolean(values.get(ACTIVE.toString()))));
-        strategyMap.put(FAMILY.toString(), () -> chooseProductFamilyDdl(values.get(FAMILY.toString())));
-        strategyMap.put(DESCRIPTION.toString(), () -> setDescription(values.get(DESCRIPTION.toString())));
+        strategyMap.put(ProductFields.NAME.toString(),
+                () -> setProductName(values.get(ProductFields.NAME.toString())));
+        strategyMap.put(ProductFields.CODE.toString(),
+                () -> setProductCode(values.get(ProductFields.CODE.toString())));
+        strategyMap.put(ProductFields.ACTIVE.toString(),
+                () -> checkActiveFlag(Boolean.parseBoolean(values.get(ProductFields.ACTIVE.toString()))));
+        strategyMap.put(ProductFields.FAMILY.toString(),
+                () -> chooseProductFamilyDdl(values.get(ProductFields.FAMILY.toString())));
+        strategyMap.put(ProductFields.DESCRIPTION.toString(),
+                () -> setDescription(values.get(ProductFields.DESCRIPTION.toString())));
 
         return strategyMap;
     }
@@ -219,7 +215,7 @@ public class ProductForm extends FormBase {
          */
         public ProductBuilder(final String name) {
             strategyMap = new HashMap<>();
-            strategyMap.put(NAME.toString(), name);
+            strategyMap.put(ProductFields.NAME.toString(), name);
         }
 
         /**
@@ -229,7 +225,7 @@ public class ProductForm extends FormBase {
          * @return {@link ProductBuilder}
          */
         public ProductBuilder setCode(final String code) {
-            strategyMap.put(CODE.toString(), code);
+            strategyMap.put(ProductFields.CODE.toString(), code);
             return this;
         }
 
@@ -240,7 +236,7 @@ public class ProductForm extends FormBase {
          * @return {@link ProductBuilder}
          */
         public ProductBuilder setDescription(final String description) {
-            strategyMap.put(DESCRIPTION.toString(), description);
+            strategyMap.put(ProductFields.DESCRIPTION.toString(), description);
             return this;
         }
 
@@ -251,7 +247,7 @@ public class ProductForm extends FormBase {
          * @return {@link ProductBuilder}
          */
         public ProductBuilder setActive(final Boolean active) {
-            strategyMap.put(ACTIVE.toString(), String.valueOf(active));
+            strategyMap.put(ProductFields.ACTIVE.toString(), String.valueOf(active));
             return this;
         }
 
@@ -262,7 +258,7 @@ public class ProductForm extends FormBase {
          * @return {@link ProductBuilder}
          */
         public ProductBuilder setFamily(final String family) {
-            strategyMap.put(FAMILY.toString(), family);
+            strategyMap.put(ProductFields.FAMILY.toString(), family);
             return this;
         }
 

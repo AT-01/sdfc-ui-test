@@ -4,19 +4,18 @@ package org.fundacionjala.sfdc.pages.cases;
  * Enum class.
  */
 public enum CasesFields {
-
-    STATUS_DROOPDOWNLIST("status"),
-    CASES_ORIGIN_DROOPDOWNLIST("caseOrigin"),
-    PRIORITY_VALUE("priority"),
-    TYPE_VALUE("type"),
+    STATUS("status"),
+    CASES_ORIGIN("caseOrigin"),
+    PRIORITY("priority"),
+    TYPE("type"),
     CASE_REASON("caseReason"),
-    PRODUCT_VALUE("product"),
+    PRODUCT("product"),
     POTENTIAL_LIABILITY("potentialLiability"),
     ENGINEERING_NUMBER("engineeringNumber"),
     SLA_VIOLATION("slaViolation"),
-    SUBJECT_TEXT("subject"),
-    DESCRIPTION_TEXT("description"),
-    COMMENT_TEXT("commentText");
+    SUBJECT("subject"),
+    DESCRIPTION("description"),
+    COMMENT("commentText");
 
     private final String value;
 

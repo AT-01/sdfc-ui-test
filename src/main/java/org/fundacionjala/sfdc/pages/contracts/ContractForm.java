@@ -8,23 +8,11 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.FormSteps;
 import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.fundacionjala.sfdc.pages.base.FormBase;
 import org.fundacionjala.sfdc.pages.lookup.LookUpWindow;
-
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.ACCOUNT_NAME;
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.CUSTOMER_SIGNED_BY;
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.CUSTOMER_SIGNED_TITLE;
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.COMPANY_SIGNED_BY;
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.CONTRACT_START_DATE;
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.COMPANY_SIGNED_DATE;
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.CONTRACT_TERM_MONTHS;
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.CUSTOMER_SIGNED_DATE;
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.OWNER_EXPIRATION_NOTICE;
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.PRICE_BOOK;
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.STATUS;
 
 /**
  * This class represents a form to create or edit a contract.
@@ -355,25 +343,28 @@ public class ContractForm extends FormBase {
     public Map<String, FormSteps> getStrategyStepMap(final Map<String, String> values) {
         final Map<String, FormSteps> strategyMap = new HashMap<>();
 
-        strategyMap.put(ACCOUNT_NAME.toString(), () -> setAccountName(values.get(ACCOUNT_NAME.toString())));
-        strategyMap.put(CUSTOMER_SIGNED_BY.toString(), () ->
-                setCustomerSignedBy(values.get(CUSTOMER_SIGNED_BY.toString())));
-        strategyMap.put(CUSTOMER_SIGNED_TITLE.toString(), () ->
-                setCustomerSignedTitle(values.get(CUSTOMER_SIGNED_TITLE.toString())));
-        strategyMap.put(CUSTOMER_SIGNED_DATE.toString(), () ->
-                setCustomerSignedDate(values.get(CUSTOMER_SIGNED_DATE.toString())));
-        strategyMap.put(PRICE_BOOK.toString(), () -> choosePriceBookType(values.get(PRICE_BOOK.toString())));
-        strategyMap.put(STATUS.toString(), () -> chooseStatus(values.get(STATUS.toString())));
-        strategyMap.put(CONTRACT_START_DATE.toString(), () ->
-                setContractStartDate(values.get(CONTRACT_START_DATE.toString())));
-        strategyMap.put(CONTRACT_TERM_MONTHS.toString(), () ->
-                setContractTermMonths(values.get(CONTRACT_TERM_MONTHS.toString())));
-        strategyMap.put(OWNER_EXPIRATION_NOTICE.toString(), () ->
-                setAccountName(values.get(OWNER_EXPIRATION_NOTICE.toString())));
-        strategyMap.put(COMPANY_SIGNED_BY.toString(), () ->
-                setCompanySignedBy(values.get(COMPANY_SIGNED_BY.toString())));
-        strategyMap.put(COMPANY_SIGNED_DATE.toString(), () ->
-                setCompanySignedDate(values.get(COMPANY_SIGNED_DATE.toString())));
+        strategyMap.put(ContractFields.ACCOUNT_NAME.toString(),
+                () -> setAccountName(values.get(ContractFields.ACCOUNT_NAME.toString())));
+        strategyMap.put(ContractFields.CUSTOMER_SIGNED_BY.toString(),
+                () -> setCustomerSignedBy(values.get(ContractFields.CUSTOMER_SIGNED_BY.toString())));
+        strategyMap.put(ContractFields.CUSTOMER_SIGNED_TITLE.toString(),
+                () -> setCustomerSignedTitle(values.get(ContractFields.CUSTOMER_SIGNED_TITLE.toString())));
+        strategyMap.put(ContractFields.CUSTOMER_SIGNED_DATE.toString(),
+                () -> setCustomerSignedDate(values.get(ContractFields.CUSTOMER_SIGNED_DATE.toString())));
+        strategyMap.put(ContractFields.PRICE_BOOK.toString(),
+                () -> choosePriceBookType(values.get(ContractFields.PRICE_BOOK.toString())));
+        strategyMap.put(ContractFields.STATUS.toString(),
+                () -> chooseStatus(values.get(ContractFields.STATUS.toString())));
+        strategyMap.put(ContractFields.CONTRACT_START_DATE.toString(),
+                () -> setContractStartDate(values.get(ContractFields.CONTRACT_START_DATE.toString())));
+        strategyMap.put(ContractFields.CONTRACT_TERM_MONTHS.toString(),
+                () -> setContractTermMonths(values.get(ContractFields.CONTRACT_TERM_MONTHS.toString())));
+        strategyMap.put(ContractFields.OWNER_EXPIRATION_NOTICE.toString(),
+                () -> setAccountName(values.get(ContractFields.OWNER_EXPIRATION_NOTICE.toString())));
+        strategyMap.put(ContractFields.COMPANY_SIGNED_BY.toString(),
+                () -> setCompanySignedBy(values.get(ContractFields.COMPANY_SIGNED_BY.toString())));
+        strategyMap.put(ContractFields.COMPANY_SIGNED_DATE.toString(),
+                () -> setCompanySignedDate(values.get(ContractFields.COMPANY_SIGNED_DATE.toString())));
 
         return strategyMap;
     }
@@ -415,10 +406,10 @@ public class ContractForm extends FormBase {
                 final String accountName, final String status, final String contractStartDate,
                 final String contractTermMonths) {
             strategyMap = new HashMap<>();
-            strategyMap.put(ACCOUNT_NAME.toString(), accountName);
-            strategyMap.put(STATUS.toString(), status);
-            strategyMap.put(CONTRACT_START_DATE.toString(), contractStartDate);
-            strategyMap.put(CONTRACT_TERM_MONTHS.toString(), contractTermMonths);
+            strategyMap.put(ContractFields.ACCOUNT_NAME.toString(), accountName);
+            strategyMap.put(ContractFields.STATUS.toString(), status);
+            strategyMap.put(ContractFields.CONTRACT_START_DATE.toString(), contractStartDate);
+            strategyMap.put(ContractFields.CONTRACT_TERM_MONTHS.toString(), contractTermMonths);
             //this.OWNER_EXPIRATION_NOTICE = "--None--";
         }
 
@@ -429,7 +420,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setAccountName(final String accountName) {
-            strategyMap.put(ACCOUNT_NAME.toString(), accountName);
+            strategyMap.put(ContractFields.ACCOUNT_NAME.toString(), accountName);
             return this;
         }
 
@@ -440,7 +431,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setCustomerSignedBy(final String customerSignedBy) {
-            strategyMap.put(CUSTOMER_SIGNED_BY.toString(), customerSignedBy);
+            strategyMap.put(ContractFields.CUSTOMER_SIGNED_BY.toString(), customerSignedBy);
             return this;
         }
 
@@ -451,7 +442,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setCustomerSignedTitle(final String customerSignedTitle) {
-            strategyMap.put(CUSTOMER_SIGNED_TITLE.toString(), customerSignedTitle);
+            strategyMap.put(ContractFields.CUSTOMER_SIGNED_TITLE.toString(), customerSignedTitle);
             return this;
         }
 
@@ -462,7 +453,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setCustomerSignedDate(final String customerSignedDate) {
-            strategyMap.put(CUSTOMER_SIGNED_DATE.toString(), customerSignedDate);
+            strategyMap.put(ContractFields.CUSTOMER_SIGNED_DATE.toString(), customerSignedDate);
             return this;
         }
 
@@ -473,7 +464,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setPriceBook(final String priceBook) {
-            strategyMap.put(PRICE_BOOK.toString(), priceBook);
+            strategyMap.put(ContractFields.PRICE_BOOK.toString(), priceBook);
             return this;
         }
 
@@ -484,7 +475,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setStatus(final String status) {
-            strategyMap.put(STATUS.toString(), status);
+            strategyMap.put(ContractFields.STATUS.toString(), status);
             return this;
         }
 
@@ -495,7 +486,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setContractStartDate(final String contractStartDate) {
-            strategyMap.put(CONTRACT_START_DATE.toString(), contractStartDate);
+            strategyMap.put(ContractFields.CONTRACT_START_DATE.toString(), contractStartDate);
             return this;
         }
 
@@ -506,7 +497,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setContractTermMonths(final String contractTermMonths) {
-            strategyMap.put(CONTRACT_TERM_MONTHS.toString(), contractTermMonths);
+            strategyMap.put(ContractFields.CONTRACT_TERM_MONTHS.toString(), contractTermMonths);
             return this;
         }
 
@@ -517,7 +508,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setOwnerExpirationNotice(final String ownerExpirationNotice) {
-            strategyMap.put(OWNER_EXPIRATION_NOTICE.toString(), ownerExpirationNotice);
+            strategyMap.put(ContractFields.OWNER_EXPIRATION_NOTICE.toString(), ownerExpirationNotice);
             return this;
         }
 
@@ -528,7 +519,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setCompanySignedBy(final String companySignedBy) {
-            strategyMap.put(COMPANY_SIGNED_BY.toString(), companySignedBy);
+            strategyMap.put(ContractFields.COMPANY_SIGNED_BY.toString(), companySignedBy);
             return this;
         }
 
@@ -539,7 +530,7 @@ public class ContractForm extends FormBase {
          * @return {@link ContractBuilder}
          */
         public ContractBuilder setCompanySignedDate(final String companySignedDate) {
-            strategyMap.put(COMPANY_SIGNED_DATE.toString(), companySignedDate);
+            strategyMap.put(ContractFields.COMPANY_SIGNED_DATE.toString(), companySignedDate);
             return this;
         }
 

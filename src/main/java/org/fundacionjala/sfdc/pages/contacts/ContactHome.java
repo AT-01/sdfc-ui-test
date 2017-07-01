@@ -1,6 +1,6 @@
 package org.fundacionjala.sfdc.pages.contacts;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.base.HomeBase;
 
 /**

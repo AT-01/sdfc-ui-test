@@ -19,7 +19,6 @@ import static org.testng.Assert.assertFalse;
  * This is in charge to execute the test Delete Case .
  */
 public class DeleteCases {
-
     private static final String CASES_DATA_PATH = "cases/CreateCasesData.json";
     private Map<String, String> valuesMapJson;
     private CasesHome casesHome;
@@ -31,7 +30,6 @@ public class DeleteCases {
      */
     @BeforeMethod
     public void setUp() {
-
         LoginPage.loginAsPrimaryUser();
         MainApp mainApp = new MainApp();
         AppLauncher appLauncher = mainApp.clickAppLauncher();
@@ -47,7 +45,6 @@ public class DeleteCases {
      */
     @Test
     public void createCaseWhitJsonFile() {
-
         caseDetail = caseInformation.clickOndetailsPanelOption();
         casesHome = caseDetail.clickDeleteButton();
         casesHome.clickConfirmationDelete();

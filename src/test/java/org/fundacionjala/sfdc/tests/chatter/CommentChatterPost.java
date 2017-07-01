@@ -5,7 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.pages.chatter.ChatterAbstractPage;
 import org.fundacionjala.sfdc.pages.chatter.PostContainer;
 import org.fundacionjala.sfdc.pages.chatter.PostForm;

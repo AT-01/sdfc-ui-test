@@ -1,4 +1,4 @@
-package org.fundacionjala.sfdc.framework.utils;
+package org.fundacionjala.sfdc.framework.selenium;
 
 import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.AppLauncher;

@@ -60,7 +60,7 @@ public final class Environment {
             properties = new Properties();
             properties.load(fileReader);
         } catch (IOException e) {
-            LOGGER.warn(e.getMessage(), e);
+            LOGGER.error(e.getMessage(), e);
             throw new RuntimeException(e);
         }
     }

@@ -1,6 +1,10 @@
 package org.fundacionjala.sfdc.pages;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.accounts.AccountHome;
 import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignsHome;
@@ -11,9 +15,6 @@ import org.fundacionjala.sfdc.pages.contracts.ContractHome;
 import org.fundacionjala.sfdc.pages.leads.LeadHome;
 import org.fundacionjala.sfdc.pages.opportunities.OpportunityHome;
 import org.fundacionjala.sfdc.pages.products.ProductHome;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
 
 
 /**
@@ -69,7 +70,6 @@ public class AppLauncher extends AbstractBasePage {
      */
 
     public CampaignsHome clickCampaigns() {
-//        CommonActions.sleep();
         CommonActions.clickElement(campaignsTab);
         return new CampaignsHome();
     }
