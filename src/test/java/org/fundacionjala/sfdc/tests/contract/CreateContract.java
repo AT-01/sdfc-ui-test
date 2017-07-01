@@ -3,22 +3,22 @@ package org.fundacionjala.sfdc.tests.contract;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
 import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
 import org.fundacionjala.sfdc.pages.accounts.AccountForm;
 import org.fundacionjala.sfdc.pages.accounts.AccountHome;
 import org.fundacionjala.sfdc.pages.contracts.ContractDetail;
+import org.fundacionjala.sfdc.pages.contracts.ContractFields;
 import org.fundacionjala.sfdc.pages.contracts.ContractForm;
 import org.fundacionjala.sfdc.pages.contracts.ContractHome;
 import org.fundacionjala.sfdc.tests.Asserts;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.ACCOUNT_NAME;
 
 /**
  * This class handle create a new contract.
@@ -57,7 +57,8 @@ public class CreateContract {
     public void setup() {
         valuesMapJson = JsonMapper.getMapJson(CONTRACT_DATA_PATH);
         Map<String, String> valuesMapAccount = new HashMap<>();
-        valuesMapAccount.put(ACCOUNT_NAME.toString(), valuesMapJson.get(ACCOUNT_NAME.toString()));
+        valuesMapAccount.put(ContractFields.ACCOUNT_NAME.toString(),
+                valuesMapJson.get(ContractFields.ACCOUNT_NAME.toString()));
         accountHome = Navigator.goToAccount();
         accountForm = accountHome.clickNewButton();
         accountForm.fillTheForm(valuesMapAccount);
@@ -84,8 +85,8 @@ public class CreateContract {
      */
     @Test
     public void createContract() {
-        contractForm = new ContractForm.ContractBuilder(
-                valuesMapJson.get(ACCOUNT_NAME.toString()), STATUS, CONTRACT_START_DATE, CONTRACT_TERM_MONTHS)
+        contractForm = new ContractForm.ContractBuilder(valuesMapJson.get(ContractFields.ACCOUNT_NAME.toString()),
+                STATUS, CONTRACT_START_DATE, CONTRACT_TERM_MONTHS)
                 .build();
         contractDetail = contractForm.saveContract();
         Asserts.assertDetailValues(contractDetail, contractForm.getValuesMap());
@@ -99,7 +100,7 @@ public class CreateContract {
         contractDetail.clickDeleteButton();
         appLauncher = mainApp.clickAppLauncher();
         accountHome = appLauncher.clickOnAccountsHome();
-        accountDetail = accountHome.clickOnAccount(valuesMapJson.get(ACCOUNT_NAME.toString()));
+        accountDetail = accountHome.clickOnAccount(valuesMapJson.get(ContractFields.ACCOUNT_NAME.toString()));
 
         accountDetail.clickDeleteButton();
     }

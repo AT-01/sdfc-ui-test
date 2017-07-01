@@ -5,7 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 
 /**

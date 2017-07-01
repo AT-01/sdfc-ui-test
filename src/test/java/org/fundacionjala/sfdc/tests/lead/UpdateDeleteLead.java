@@ -8,18 +8,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.pages.leads.LeadDetails;
+import org.fundacionjala.sfdc.pages.leads.LeadFields;
 import org.fundacionjala.sfdc.pages.leads.LeadForm;
 import org.fundacionjala.sfdc.pages.leads.LeadHome;
 
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.CITY;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.COMPANY;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.COUNTRY;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.FIRST_NAME;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.LAST_NAME;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.STATE_PROVINCE;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.ZIP_CODE;
 import static org.fundacionjala.sfdc.tests.Asserts.assertDetailValues;
 import static org.testng.Assert.assertFalse;
 
@@ -43,9 +37,9 @@ public class UpdateDeleteLead {
         leadHomePage = Navigator.goToLead();
         leadForm = leadHomePage.clickNewButton();
         leadDetails = leadForm
-                .setFirstNameTextField(valuesMapJson.get(FIRST_NAME.toString()))
-                .setLastNameTextField(valuesMapJson.get(LAST_NAME.toString()))
-                .setCompanyTextField(valuesMapJson.get(COMPANY.toString()))
+                .setFirstNameTextField(valuesMapJson.get(LeadFields.FIRST_NAME.toString()))
+                .setLastNameTextField(valuesMapJson.get(LeadFields.LAST_NAME.toString()))
+                .setCompanyTextField(valuesMapJson.get(LeadFields.COMPANY.toString()))
                 .clickSaveButton();
     }
 
@@ -55,7 +49,8 @@ public class UpdateDeleteLead {
     @Test
     public void deleteLead() {
         leadDetails.clickDeleteButton();
-        assertFalse(leadHomePage.isLeadDisplayed(valuesMapJson.get(FIRST_NAME.toString())), "The Lead was not deleted");
+        assertFalse(leadHomePage.isLeadDisplayed(valuesMapJson.get(LeadFields.FIRST_NAME.toString())),
+                "The Lead was not deleted");
     }
 
     /**
@@ -69,10 +64,10 @@ public class UpdateDeleteLead {
         leadDetails.clickEditButton();
         leadForm = new LeadForm.LeadBuilder(lastNameEdited, companyNameEdited)
                 .setFirstName(firstNameEdited)
-                .setCity(valuesMapJson.get(CITY.toString()))
-                .setStateProvince(valuesMapJson.get(STATE_PROVINCE.toString()))
-                .setZipCode(valuesMapJson.get(ZIP_CODE.toString()))
-                .setCountry(valuesMapJson.get(COUNTRY.toString()))
+                .setCity(valuesMapJson.get(LeadFields.CITY.toString()))
+                .setStateProvince(valuesMapJson.get(LeadFields.STATE_PROVINCE.toString()))
+                .setZipCode(valuesMapJson.get(LeadFields.ZIP_CODE.toString()))
+                .setCountry(valuesMapJson.get(LeadFields.COUNTRY.toString()))
                 .build();
         leadDetails = leadForm.saveLead();
         assertDetailValues(leadDetails, leadForm.formatJson(leadForm.getLeadValues()));

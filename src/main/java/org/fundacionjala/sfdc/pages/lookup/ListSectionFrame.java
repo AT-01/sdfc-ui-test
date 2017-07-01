@@ -3,7 +3,7 @@ package org.fundacionjala.sfdc.pages.lookup;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 
 /**

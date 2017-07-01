@@ -2,18 +2,14 @@ package org.fundacionjala.sfdc.pages.products;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.AssertsDetails;
-import org.fundacionjala.sfdc.pages.base.DetailBase;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import static org.fundacionjala.sfdc.pages.products.ProductFields.NAME;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.DESCRIPTION;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.CODE;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.ACTIVE;
-import static org.fundacionjala.sfdc.pages.products.ProductFields.FAMILY;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.AssertsDetails;
+import org.fundacionjala.sfdc.pages.base.DetailBase;
 
 /**
  * This class handle the product details.
@@ -92,21 +88,6 @@ public class ProductDetail extends DetailBase {
     }
 
     /**
-     * Method that permit gets texts.
-     *
-     * @return a Map with the values of product edit.
-     */
-    public Map<String, AssertsDetails> getStrategyAssertMap() {
-        final Map<String, AssertsDetails> strategyMap = new HashMap<>();
-        strategyMap.put(NAME.toString(), this::getProductName);
-        strategyMap.put(CODE.toString(), this::getProductCode);
-        strategyMap.put(ACTIVE.toString(), () -> String.valueOf(isActiveFlag()));
-        strategyMap.put(FAMILY.toString(), this::getProductFamily);
-        strategyMap.put(DESCRIPTION.toString(), this::getDescription);
-        return strategyMap;
-    }
-
-    /**
      * This method verify that product is displayed.
      *
      * @param product String with product.
@@ -159,6 +140,21 @@ public class ProductDetail extends DetailBase {
      */
     public String getDescription() {
         return CommonActions.getText(productDescriptionLabel);
+    }
+
+    /**
+     * Method that permit gets texts.
+     *
+     * @return a Map with the values of product edit.
+     */
+    public Map<String, AssertsDetails> getStrategyAssertMap() {
+        final Map<String, AssertsDetails> strategyMap = new HashMap<>();
+        strategyMap.put(ProductFields.NAME.toString(), this::getProductName);
+        strategyMap.put(ProductFields.CODE.toString(), this::getProductCode);
+        strategyMap.put(ProductFields.ACTIVE.toString(), () -> String.valueOf(isActiveFlag()));
+        strategyMap.put(ProductFields.FAMILY.toString(), this::getProductFamily);
+        strategyMap.put(ProductFields.DESCRIPTION.toString(), this::getDescription);
+        return strategyMap;
     }
 
 }

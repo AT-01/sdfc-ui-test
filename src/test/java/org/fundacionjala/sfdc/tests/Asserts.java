@@ -2,7 +2,7 @@ package org.fundacionjala.sfdc.tests;
 
 import java.util.Map;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.base.DetailBase;
 
 import static org.testng.Assert.assertEquals;

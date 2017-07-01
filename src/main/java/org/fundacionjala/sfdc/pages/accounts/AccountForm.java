@@ -3,20 +3,19 @@ package org.fundacionjala.sfdc.pages.accounts;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.FormSteps;
-import org.fundacionjala.sfdc.pages.base.FormBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.FormSteps;
+import org.fundacionjala.sfdc.pages.base.FormBase;
 
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_NAME;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_SITE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.EMPLOYEES;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.PHONE;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.WEBSITE;
-import static org.fundacionjala.sfdc.pages.accounts.AccountFields.EMPLOYEES;
 
 /**
  * It is the account base page, abstract class.

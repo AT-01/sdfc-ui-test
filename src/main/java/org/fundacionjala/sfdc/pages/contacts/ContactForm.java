@@ -1,42 +1,16 @@
 package org.fundacionjala.sfdc.pages.contacts;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
+import java.util.Map;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.FormSteps;
-import org.fundacionjala.sfdc.pages.base.FormBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.ASSISTANT;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.ASSISTANT_PHONE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.BIRTH_DATE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.CONTACT_NAME;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.DEPARTMENT;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.FIRST_NAME_CATEGORY;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.HOME_PHONE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LANGUAGES;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LAST_NAME;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LEAD_SOURCE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LEVEL;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAIL;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_CITY;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_COUNTRY;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_STATE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_STREET;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_ZIP;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MOBILE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_CITY;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_COUNTRY;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_PHONE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_STATE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_STREET;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_ZIP;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.PHONE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.TITLE;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.FormSteps;
+import org.fundacionjala.sfdc.pages.base.FormBase;
 
 /**
  * This class represent Contact Form.
@@ -501,35 +475,58 @@ public class ContactForm extends FormBase {
     private Map<String, FormSteps> getStrategyStepMap(final Map<String, String> values) {
         final Map<String, FormSteps> strategyMap = new HashMap<>();
 
-        strategyMap.put(FIRST_NAME_CATEGORY.getValue(),
-                () -> selectFirstNameCategory(values.get(FIRST_NAME_CATEGORY.getValue())));
-        strategyMap.put(CONTACT_NAME.getValue(), () -> setContactNameField(values.get(CONTACT_NAME.getValue())));
-        strategyMap.put(LAST_NAME.getValue(), () -> setLastName(values.get(LAST_NAME.getValue())));
-        strategyMap.put(TITLE.getValue(), () -> setTitle(values.get(TITLE.getValue())));
-        strategyMap.put(DEPARTMENT.getValue(), () -> setDepartment(values.get(DEPARTMENT.getValue())));
-        strategyMap.put(BIRTH_DATE.getValue(), () -> setBirthDate(values.get(BIRTH_DATE.getValue())));
-        strategyMap.put(LEAD_SOURCE.getValue(), () -> selectLeadSource(values.get(LEAD_SOURCE.getValue())));
-        strategyMap.put(MAIL.getValue(), () -> setMail(values.get(MAIL.getValue())));
-        strategyMap.put(MAILING_STREET.getValue(), () -> setMailingStreet(values.get(MAILING_STREET.getValue())));
-        strategyMap.put(OTHER_STREET.getValue(), () -> setOtherStreet(values.get(OTHER_STREET.getValue())));
-        strategyMap.put(PHONE.getValue(), () -> setPhone(values.get(PHONE.getValue())));
-        strategyMap.put(HOME_PHONE.getValue(), () -> sethomePhone(values.get(HOME_PHONE.getValue())));
-        strategyMap.put(MOBILE.getValue(), () -> setMobilePhone(values.get(MOBILE.getValue())));
-        strategyMap.put(OTHER_PHONE.getValue(), () -> setOtherPhone(values.get(OTHER_PHONE.getValue())));
-        strategyMap.put(ASSISTANT.getValue(), () -> setAssistant(values.get(ASSISTANT.getValue())));
-        strategyMap.put(ASSISTANT_PHONE.getValue(), () -> setAssistantPhone(values.get(ASSISTANT_PHONE.getValue())));
-        strategyMap.put(MAILING_CITY.getValue(), () -> setMailingCity(values.get(MAILING_CITY.getValue())));
-        strategyMap.put(MAILING_STATE.getValue(), () -> setMalingState(values.get(MAILING_STATE.getValue())));
-        strategyMap.put(OTHER_CITY.getValue(), () -> setOtherCity(values.get(OTHER_CITY.getValue())));
-        strategyMap.put(MAILING_ZIP.getValue(), () -> setMailingZip(values.get(MAILING_ZIP.getValue())));
-        strategyMap.put(MAILING_COUNTRY.getValue(), () -> setMailingCoutry(values.get(MAILING_COUNTRY.getValue())));
-        strategyMap.put(OTHER_ZIP.getValue(), () -> setOtherZip(values.get(OTHER_ZIP.getValue())));
-        strategyMap.put(OTHER_STATE.getValue(), () -> setOtherState(values.get(OTHER_STATE.getValue())));
-        strategyMap.put(OTHER_COUNTRY.getValue(), () -> setOtherCountry(values.get(OTHER_COUNTRY.getValue())));
-        strategyMap.put(LANGUAGES.getValue(), () -> setLanguages(values.get(LANGUAGES.getValue())));
-        strategyMap.put(LEVEL.getValue(), () -> setLevel(values.get(LEVEL.getValue())));
-
-
+        strategyMap.put(ContactFields.FIRST_NAME_CATEGORY.getValue(),
+                () -> selectFirstNameCategory(values.get(ContactFields.FIRST_NAME_CATEGORY.getValue())));
+        strategyMap.put(ContactFields.CONTACT_NAME.getValue(),
+                () -> setContactNameField(values.get(ContactFields.CONTACT_NAME.getValue())));
+        strategyMap.put(ContactFields.LAST_NAME.getValue(),
+                () -> setLastName(values.get(ContactFields.LAST_NAME.getValue())));
+        strategyMap.put(ContactFields.TITLE.getValue(),
+                () -> setTitle(values.get(ContactFields.TITLE.getValue())));
+        strategyMap.put(ContactFields.DEPARTMENT.getValue(),
+                () -> setDepartment(values.get(ContactFields.DEPARTMENT.getValue())));
+        strategyMap.put(ContactFields.BIRTH_DATE.getValue(),
+                () -> setBirthDate(values.get(ContactFields.BIRTH_DATE.getValue())));
+        strategyMap.put(ContactFields.LEAD_SOURCE.getValue(),
+                () -> selectLeadSource(values.get(ContactFields.LEAD_SOURCE.getValue())));
+        strategyMap.put(ContactFields.MAIL.getValue(),
+                () -> setMail(values.get(ContactFields.MAIL.getValue())));
+        strategyMap.put(ContactFields.MAILING_STREET.getValue(),
+                () -> setMailingStreet(values.get(ContactFields.MAILING_STREET.getValue())));
+        strategyMap.put(ContactFields.OTHER_STREET.getValue(),
+                () -> setOtherStreet(values.get(ContactFields.OTHER_STREET.getValue())));
+        strategyMap.put(ContactFields.PHONE.getValue(),
+                () -> setPhone(values.get(ContactFields.PHONE.getValue())));
+        strategyMap.put(ContactFields.HOME_PHONE.getValue(),
+                () -> sethomePhone(values.get(ContactFields.HOME_PHONE.getValue())));
+        strategyMap.put(ContactFields.MOBILE.getValue(),
+                () -> setMobilePhone(values.get(ContactFields.MOBILE.getValue())));
+        strategyMap.put(ContactFields.OTHER_PHONE.getValue(),
+                () -> setOtherPhone(values.get(ContactFields.OTHER_PHONE.getValue())));
+        strategyMap.put(ContactFields.ASSISTANT.getValue(),
+                () -> setAssistant(values.get(ContactFields.ASSISTANT.getValue())));
+        strategyMap.put(ContactFields.ASSISTANT_PHONE.getValue(),
+                () -> setAssistantPhone(values.get(ContactFields.ASSISTANT_PHONE.getValue())));
+        strategyMap.put(ContactFields.MAILING_CITY.getValue(),
+                () -> setMailingCity(values.get(ContactFields.MAILING_CITY.getValue())));
+        strategyMap.put(ContactFields.MAILING_STATE.getValue(),
+                () -> setMalingState(values.get(ContactFields.MAILING_STATE.getValue())));
+        strategyMap.put(ContactFields.OTHER_CITY.getValue(),
+                () -> setOtherCity(values.get(ContactFields.OTHER_CITY.getValue())));
+        strategyMap.put(ContactFields.MAILING_ZIP.getValue(),
+                () -> setMailingZip(values.get(ContactFields.MAILING_ZIP.getValue())));
+        strategyMap.put(ContactFields.MAILING_COUNTRY.getValue(),
+                () -> setMailingCoutry(values.get(ContactFields.MAILING_COUNTRY.getValue())));
+        strategyMap.put(ContactFields.OTHER_ZIP.getValue(),
+                () -> setOtherZip(values.get(ContactFields.OTHER_ZIP.getValue())));
+        strategyMap.put(ContactFields.OTHER_STATE.getValue(),
+                () -> setOtherState(values.get(ContactFields.OTHER_STATE.getValue())));
+        strategyMap.put(ContactFields.OTHER_COUNTRY.getValue(),
+                () -> setOtherCountry(values.get(ContactFields.OTHER_COUNTRY.getValue())));
+        strategyMap.put(ContactFields.LANGUAGES.getValue(),
+                () -> setLanguages(values.get(ContactFields.LANGUAGES.getValue())));
+        strategyMap.put(ContactFields.LEVEL.getValue(),
+                () -> setLevel(values.get(ContactFields.LEVEL.getValue())));
         return strategyMap;
     }
 

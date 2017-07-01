@@ -1,21 +1,22 @@
-package org.fundacionjala.sfdc.framework.browser;
+package org.fundacionjala.sfdc.framework.selenium.browser;
+
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.fundacionjala.sfdc.framework.utils.Environment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-import java.net.MalformedURLException;
-import java.net.URL;
+import org.fundacionjala.sfdc.framework.utils.Environment;
 
 /**
  * Abstract class that is in charge to run test on saucelab and browserstack.
  */
 public abstract class RemoteService implements Driver {
 
-    private static final Logger LOGGER = LogManager.getLogger(BrowserStack.class);
+    private static final Logger LOGGER = LogManager.getLogger(RemoteService.class);
 
     protected static final Environment ENVIRONMENT = Environment.getInstance();
 

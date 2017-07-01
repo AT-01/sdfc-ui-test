@@ -3,11 +3,6 @@ package org.fundacionjala.sfdc.pages.opportunities;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.AssertsDetails;
-import org.fundacionjala.sfdc.pages.MainApp;
-import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
-import org.fundacionjala.sfdc.pages.base.DetailBase;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
@@ -15,16 +10,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.ACCOUNT_NAME;
-import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.AMOUNT;
-import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.CURRENT_CLOSE_DATE;
-import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.DELIVERY_INSTALL_STATUS;
-import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.LEAD_SOURCE;
-import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.NEXT_STEP;
-import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.OPPORTUNITY_NAME;
-import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.ORDER_NUMBER;
-import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.STAGE;
-import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.TYPE;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.AssertsDetails;
+import org.fundacionjala.sfdc.pages.MainApp;
+import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
+import org.fundacionjala.sfdc.pages.base.DetailBase;
 
 /**
  * This class represents the opportunity detail.
@@ -229,16 +219,16 @@ public class OpportunityDetail extends DetailBase {
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap<>();
 
-        strategyMap.put(OPPORTUNITY_NAME.getValue(), this::getOpportunityName);
-        strategyMap.put(STAGE.getValue(), this::getStage);
-        strategyMap.put(ORDER_NUMBER.getValue(), this::getOrderNumber);
-        strategyMap.put(DELIVERY_INSTALL_STATUS.getValue(), this::getDeliveryInstallation);
-        strategyMap.put(ACCOUNT_NAME.getValue(), this::getAccountName);
-        strategyMap.put(CURRENT_CLOSE_DATE.getValue(), this::getCloseDate);
-        strategyMap.put(TYPE.getValue(), this::getTypeText);
-        strategyMap.put(LEAD_SOURCE.getValue(), this::getLeadSource);
-        strategyMap.put(NEXT_STEP.getValue(), this::getNextStep);
-        strategyMap.put(AMOUNT.getValue(), this::getAmount);
+        strategyMap.put(OpportunityFields.OPPORTUNITY_NAME.getValue(), this::getOpportunityName);
+        strategyMap.put(OpportunityFields.STAGE.getValue(), this::getStage);
+        strategyMap.put(OpportunityFields.ORDER_NUMBER.getValue(), this::getOrderNumber);
+        strategyMap.put(OpportunityFields.DELIVERY_INSTALL_STATUS.getValue(), this::getDeliveryInstallation);
+        strategyMap.put(OpportunityFields.ACCOUNT_NAME.getValue(), this::getAccountName);
+        strategyMap.put(OpportunityFields.CURRENT_CLOSE_DATE.getValue(), this::getCloseDate);
+        strategyMap.put(OpportunityFields.TYPE.getValue(), this::getTypeText);
+        strategyMap.put(OpportunityFields.LEAD_SOURCE.getValue(), this::getLeadSource);
+        strategyMap.put(OpportunityFields.NEXT_STEP.getValue(), this::getNextStep);
+        strategyMap.put(OpportunityFields.AMOUNT.getValue(), this::getAmount);
 
         return strategyMap;
     }

@@ -1,18 +1,19 @@
 package org.fundacionjala.sfdc.tests.account;
 
-import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
-import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
-import org.fundacionjala.sfdc.pages.accounts.AccountForm;
-import org.fundacionjala.sfdc.pages.accounts.AccountHome;
-import org.fundacionjala.sfdc.tests.Asserts;
+import java.util.Map;
+
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Map;
+import org.fundacionjala.sfdc.framework.selenium.Navigator;
+import org.fundacionjala.sfdc.framework.utils.JsonMapper;
+import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
+import org.fundacionjala.sfdc.pages.accounts.AccountFields;
+import org.fundacionjala.sfdc.pages.accounts.AccountForm;
+import org.fundacionjala.sfdc.pages.accounts.AccountHome;
+import org.fundacionjala.sfdc.tests.Asserts;
 
-import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_NAME;
 import static org.testng.Assert.assertFalse;
 
 /**
@@ -44,7 +45,7 @@ public class EditDeleteAccount {
     @Test
     public void deleteAccount() {
         accountDetail.clickDeleteButton();
-        assertFalse(accountHome.isAccountDisplayed(valuesMapJson.get(ACCOUNT_NAME.toString())));
+        assertFalse(accountHome.isAccountDisplayed(valuesMapJson.get(AccountFields.ACCOUNT_NAME.toString())));
     }
 
     /**

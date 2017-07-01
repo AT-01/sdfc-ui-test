@@ -1,4 +1,4 @@
-package org.fundacionjala.sfdc.framework.utils;
+package org.fundacionjala.sfdc.framework.selenium;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-import org.fundacionjala.sfdc.framework.browser.DriverManager;
+import org.fundacionjala.sfdc.framework.selenium.browser.DriverManager;
 
 
 /**
