@@ -5,6 +5,7 @@ import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.AssertsDetails;
 import org.fundacionjala.sfdc.pages.base.DetailBase;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -50,9 +51,29 @@ public class CampaignDetail extends DetailBase {
     @CacheLookup
     private WebElement endDate;
 
+    @FindBy(xpath = "//span[text()='Budgeted Cost in Campaign']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement budgetedCostValue;
+
+    @FindBy(xpath = "//span[text()='Actual Cost in Campaign']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement actualCostValue;
+
+    @FindBy(css = ".uiOutputPercent")
+    @CacheLookup
+    private WebElement expectedResponseValue;
+
     @FindBy(xpath = "//span[text()='Expected Revenue in Campaign']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement revenueValue;
+
+    @FindBy(xpath = "//span[text()='Description']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement descriptionValue;
+
+    @FindBy(xpath = "//span[text()='Num Sent in Campaign']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement numSentInCampaignValue;
 
     /**
      * Gets the campaign label.
@@ -91,7 +112,8 @@ public class CampaignDetail extends DetailBase {
      */
     @Override
     public CampaignForm clickEditButton() {
-        CommonActions.clickElement(editButton);
+        CommonActions.clickElement(downArrow);
+        CommonActions.clickElement(editBtn);
         return new CampaignForm();
     }
 
@@ -116,16 +138,68 @@ public class CampaignDetail extends DetailBase {
         strategyMap.put("statusDropDown", this::getSelectedStatus);
         strategyMap.put("startDate", this::getStartDate);
         strategyMap.put("endDate", this::getEndDate);
-        strategyMap.put("revenue", this::getRevenauValue);
+        strategyMap.put("revenue", this::getRevenueValue);
+        strategyMap.put("budgetedCost", this::getBudgetedCostValue);
+        strategyMap.put("actualCost", this::getActualCostValue);
+        strategyMap.put("expectedResponse", this::getExpectedResponseValue);
+        strategyMap.put("numSentInCampaign", this::getNumSentInCampaignValue);
+        strategyMap.put("description", this::getDescriptionValue);
         return strategyMap;
+    }
+
+    /**
+     * get description.
+     *
+     * @return String with the value.
+     */
+    private String getDescriptionValue() {
+        return descriptionValue.getText();
+    }
+
+    /**
+     * get num sent in campaign value.
+     *
+     * @return String with the value.
+     */
+    private String getNumSentInCampaignValue() {
+        return numSentInCampaignValue.getText();
+    }
+
+    /**
+     * get expected response value.
+     *
+     * @return String with the value.
+     */
+    private String getExpectedResponseValue() {
+        return expectedResponseValue.getText();
+    }
+
+    /**
+     * get actual cost value.
+     *
+     * @return String with the value.
+     */
+    private String getActualCostValue() {
+        String quantity = actualCostValue.getText();
+        return quantity.replace(quantity.substring(0, 1), "");
+    }
+
+    /**
+     * get budgeted cost value.
+     *
+     * @return String with the value.
+     */
+    private String getBudgetedCostValue() {
+        String quantity = budgetedCostValue.getText();
+        return quantity.replace(quantity.substring(0, 1), "");
     }
 
     /**
      * get revenue value.
      *
-     * @return String whit the value.
+     * @return String with the value.
      */
-    private String getRevenauValue() {
+    private String getRevenueValue() {
         String quantity = revenueValue.getText();
         return quantity.replace(quantity.substring(0, 1), "");
     }

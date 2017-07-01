@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +14,6 @@ import org.fundacionjala.sfdc.framework.utils.CommonActions;
 import org.fundacionjala.sfdc.pages.FormSteps;
 import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.fundacionjala.sfdc.pages.base.FormBase;
-import org.fundacionjala.sfdc.pages.lookup.LookUpWindow;
 
 /**
  * This class is in charge to manage the elements of the page.
@@ -28,7 +28,7 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     private WebElement activeCheckbox;
 
-    @FindBy(css = ".uiMenuItem.uiRadioMenuItem>a")
+    @FindBy(css = "div.visible.positioned li.uiMenuItem.uiRadioMenuItem>a")
     private List<WebElement> generalDropdown;
 
     @FindBy(css = "[aria-label=\"Type\"]")
@@ -47,21 +47,29 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     private WebElement endDateField;
 
-    @FindBy(id = "Parent")
+    @FindBy(xpath = "//span[text()='Budgeted Cost in Campaign']/parent::label/following-sibling::input")
     @CacheLookup
-    private WebElement parentCampaing;
+    private WebElement budgetedCostField;
 
-    @FindBy(id = "Parent_lkwgt")
+    @FindBy(xpath = "//span[text()='Actual Cost in Campaign']/parent::label/following-sibling::input")
     @CacheLookup
-    private WebElement lookUpIcon;
+    private WebElement actualCostField;
+
+    @FindBy(xpath = "//span[text()='Expected Response (%)']/parent::label/following-sibling::input")
+    @CacheLookup
+    private WebElement expectedResponseField;
+
+    @FindBy(xpath = "//span[text()='Num Sent in Campaign']/parent::label/following-sibling::input")
+    @CacheLookup
+    private WebElement numSentInCampaignField;
+
+    @FindBy(xpath = "//span[text()='Description']/parent::label/following-sibling::textarea")
+    @CacheLookup
+    private WebElement descriptionField;
 
     @FindBy(css = "button[title='Save']")
     @CacheLookup
     private WebElement saveButton;
-
-    @FindBy(css = "a[tabindex=\"5\"]")
-    @CacheLookup
-    private WebElement dateLink;
 
     @FindBy(className = "hotListElement")
     @CacheLookup
@@ -139,15 +147,15 @@ public class CampaignForm extends FormBase {
         return this;
     }
 
-    /**
-     * click on the look up icon.
-     *
-     * @return Campaign Form.
-     */
-    public LookUpWindow clickLookUpIcon() {
-        CommonActions.clickElement(lookUpIcon);
-        return new LookUpWindow();
-    }
+//    /**
+//     * click on the look up icon.
+//     *
+//     * @return Campaign Form.
+//     */
+//    public LookUpWindow clickLookUpIcon() {
+//        CommonActions.clickElement(lookUpIcon);
+//        return new LookUpWindow();
+//    }
 
     /**
      * click on save button.
@@ -196,7 +204,65 @@ public class CampaignForm extends FormBase {
         strategyMap.put("startDate", () -> setStartDateField(String.valueOf(values.get("startDate"))));
         strategyMap.put("endDate", () -> setEndDateField(String.valueOf(values.get("endDate"))));
         strategyMap.put("revenue", () -> setRevenue(String.valueOf(values.get("revenue"))));
+        strategyMap.put("budgetedCost", () -> setBudgetedCost(String.valueOf(values.get("budgetedCost"))));
+        strategyMap.put("actualCost", () -> setActualCost(String.valueOf(values.get("actualCost"))));
+        strategyMap.put("expectedResponse", () -> setExpectedResponse(String.valueOf(values.get("expectedResponse"))));
+        strategyMap.put("numSentInCampaign", () -> setNumSentInCampaign(String.valueOf(values
+                .get("numSentInCampaign"))));
+        strategyMap.put("description", () -> setDescription(String.valueOf(values.get("description"))));
         return strategyMap;
+    }
+
+    /**
+     * Set description to campaign.
+     *
+     * @param description String description to campaign
+     */
+    private void setDescription(String description) {
+        CommonActions.clearTextField(descriptionField);
+        CommonActions.sendKeys(descriptionField, description);
+    }
+
+    /**
+     * Set num sent in campaign.
+     *
+     * @param numSentInCampaign String to num sent in campaign.
+     */
+    private void setNumSentInCampaign(String numSentInCampaign) {
+        CommonActions.clearTextField(numSentInCampaignField);
+        CommonActions.sendKeys(numSentInCampaignField, numSentInCampaign);
+    }
+
+    /**
+     * Set the expected response.
+     *
+     * @param expectedResponse String with expected response.
+     */
+    private void setExpectedResponse(String expectedResponse) {
+        CommonActions.clearTextField(expectedResponseField);
+        CommonActions.sendKeys(expectedResponseField, expectedResponse);
+        expectedResponseField.sendKeys(Keys.ENTER);
+    }
+
+    /**
+     * Set the quantity to set actual cost.
+     *
+     * @param actualCost String with the quantity.
+     */
+    private void setActualCost(String actualCost) {
+        CommonActions.clearTextField(actualCostField);
+        CommonActions.sendKeys(actualCostField, actualCost);
+    }
+
+
+    /**
+     * Set the quantity to budgeted cost field.
+     *
+     * @param budgetedCost String with the quantity.
+     */
+    private void setBudgetedCost(String budgetedCost) {
+        CommonActions.clearTextField(budgetedCostField);
+        CommonActions.sendKeys(budgetedCostField, budgetedCost);
     }
 
     /**

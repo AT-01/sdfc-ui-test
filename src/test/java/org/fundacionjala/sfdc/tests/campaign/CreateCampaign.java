@@ -2,9 +2,8 @@ package org.fundacionjala.sfdc.tests.campaign;
 
 import java.util.Map;
 
-import org.fundacionjala.sfdc.pages.AppLauncher;
+import org.fundacionjala.sfdc.framework.utils.Navigator;
 import org.fundacionjala.sfdc.pages.LoginPage;
-import org.fundacionjala.sfdc.pages.MainApp;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,22 +20,19 @@ import org.fundacionjala.sfdc.tests.Asserts;
  */
 public class CreateCampaign {
 
-    private CampaignForm campaignForm;
+    private static final String CAMPAIGN_DATA_PATH = "campaign/CreateCampaignData.json";
     private CampaignDetail campaignDetail;
     private CampaignsHome campaignsHome;
-    private static final String CAMPAIGN_DATA_PATH = "campaign/CreateCampaignData.json";
     private Map<String, String> valuesMapJson;
 
     /**
-     * Setup the Test crating a Parent campaign for a test.
+     * Setup the Test creating a Parent campaign for a test.
      */
     @BeforeMethod()
     public void setup() {
         valuesMapJson = JsonMapper.getMapJson(CAMPAIGN_DATA_PATH);
         LoginPage.loginAsPrimaryUser();
-        MainApp mainApp = new MainApp();
-        AppLauncher appLauncher = mainApp.clickAppLauncher();
-        campaignsHome = appLauncher.clickCampaigns();
+        campaignsHome = Navigator.goToCampaign();
     }
 
     /**
@@ -44,7 +40,7 @@ public class CreateCampaign {
      */
     @Test()
     public void createCampaignWithJson() {
-        campaignForm = campaignsHome.clickNewButton();
+        CampaignForm campaignForm = campaignsHome.clickNewButton();
         campaignForm.fillTheForm(valuesMapJson);
         campaignDetail = campaignForm.clickSaveButton();
         campaignDetail.clickDetails();
@@ -63,6 +59,11 @@ public class CreateCampaign {
                 .setStartDate("10/25/2015")
                 .setEndDate("10/27/2015")
                 .setRevenue("1,000")
+                .setBudgetedCost("1,000")
+                .setActualCost("1,000")
+                .setExpectedResponse("50.00%")
+                .setNumSentInCampaign("10")
+                .setDescription("Description Campaign")
                 .build();
         campaignDetail = campaigns.createCampaign();
         campaignDetail.clickDetails();

@@ -103,9 +103,9 @@ public class Campaigns {
         }
 
         /**
-         * set the revenau value.
+         * set the revenue value.
          *
-         * @param revenue String whit the value.
+         * @param revenue String with the value.
          * @return campaign builder.
          */
         public CampaignBuilder setRevenue(final String revenue) {
@@ -116,7 +116,7 @@ public class Campaigns {
         /**
          * set the end date.
          *
-         * @param endDate String whi the date.
+         * @param endDate String with the date.
          * @return campaign builder.
          */
         public CampaignBuilder setEndDate(final String endDate) {
@@ -131,6 +131,61 @@ public class Campaigns {
          */
         public Map<String, String> getStrategyMap() {
             return strategyMap;
+        }
+
+        /**
+         * Set budgeted cost.
+         *
+         * @param budgetedCost String value.
+         * @return value campaign.
+         */
+        public CampaignBuilder setBudgetedCost(final String budgetedCost) {
+            strategyMap.put("budgetedCost", budgetedCost);
+            return this;
+        }
+
+        /**
+         * Set actual cost.
+         *
+         * @param actualCost String value.
+         * @return value campaign.
+         */
+        public CampaignBuilder setActualCost(String actualCost) {
+            strategyMap.put("actualCost", actualCost);
+            return this;
+        }
+
+        /**
+         * Set expected response.
+         *
+         * @param expectedResponse String value.
+         * @return value to campaign.
+         */
+        public CampaignBuilder setExpectedResponse(String expectedResponse) {
+            strategyMap.put("expectedResponse", expectedResponse);
+            return this;
+        }
+
+        /**
+         * Set num sent in campaign.
+         *
+         * @param numSentInCampaign String value.
+         * @return value to campaign.
+         */
+        public CampaignBuilder setNumSentInCampaign(String numSentInCampaign) {
+            strategyMap.put("numSentInCampaign", numSentInCampaign);
+            return this;
+        }
+
+        /**
+         * Set description to campaign.
+         *
+         * @param description string value.
+         * @return description to campaign.
+         */
+        public CampaignBuilder setDescription(String description) {
+            strategyMap.put("description", description);
+            return this;
         }
     }
 
