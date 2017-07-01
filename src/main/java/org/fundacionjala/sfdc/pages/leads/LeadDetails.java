@@ -3,36 +3,15 @@ package org.fundacionjala.sfdc.pages.leads;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.AssertsDetails;
-import org.fundacionjala.sfdc.pages.base.DetailBase;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.ADDRESS;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.ANNUAL_REVENUE;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.COMPANY;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.CURRENT_GENERATORS;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.DESCRIPTION;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.EMAIL;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.FAX;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.FULL_NAME;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.INDUSTRY;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.LEAD_SOURCE;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.LEAD_STATUS;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.MOBILE;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.NUMBER_LOCATIONS;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.NUM_EMPLOYEES;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.PHONE;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.PRIMARY;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.PRODUCT_INTEREST;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.RATING;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.SICCODE;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.TITLE;
-import static org.fundacionjala.sfdc.pages.leads.LeadFields.WEBSITE;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.AssertsDetails;
+import org.fundacionjala.sfdc.pages.base.DetailBase;
 
 /**
  * Class to manage the Detail of the LeadHome Page when it was created.
@@ -390,30 +369,30 @@ public class LeadDetails extends DetailBase {
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap<>();
 
-        strategyMap.put(FULL_NAME.toString(), this::getNameLabel);
-        strategyMap.put(COMPANY.toString(), this::getCompanyLabel);
-        strategyMap.put(TITLE.toString(), this::getTitleLabel);
-        strategyMap.put(LEAD_SOURCE.toString(), this::getLeadSourceLabel);
-        strategyMap.put(INDUSTRY.toString(), this::getIndustryLabel);
-        strategyMap.put(PHONE.toString(), this::getPhoneLabel);
-        strategyMap.put(MOBILE.toString(), this::getMobileLabel);
-        strategyMap.put(FAX.toString(), this::getFaxLabel);
-        strategyMap.put(ANNUAL_REVENUE.toString(), this::getAnnualRevenueLabel);
+        strategyMap.put(LeadFields.FULL_NAME.toString(), this::getNameLabel);
+        strategyMap.put(LeadFields.COMPANY.toString(), this::getCompanyLabel);
+        strategyMap.put(LeadFields.TITLE.toString(), this::getTitleLabel);
+        strategyMap.put(LeadFields.LEAD_SOURCE.toString(), this::getLeadSourceLabel);
+        strategyMap.put(LeadFields.INDUSTRY.toString(), this::getIndustryLabel);
+        strategyMap.put(LeadFields.PHONE.toString(), this::getPhoneLabel);
+        strategyMap.put(LeadFields.MOBILE.toString(), this::getMobileLabel);
+        strategyMap.put(LeadFields.FAX.toString(), this::getFaxLabel);
+        strategyMap.put(LeadFields.ANNUAL_REVENUE.toString(), this::getAnnualRevenueLabel);
 
-        strategyMap.put(EMAIL.toString(), this::getEmailLabel);
-        strategyMap.put(WEBSITE.toString(), this::getWebsiteLabel);
-        strategyMap.put(LEAD_STATUS.toString(), this::getLeadStatusLabel);
-        strategyMap.put(RATING.toString(), this::getRatingLabel);
-        strategyMap.put(NUM_EMPLOYEES.toString(), this::getNumEmployeesLabel);
-        strategyMap.put(ADDRESS.toString(), this::getAddressLabel);
+        strategyMap.put(LeadFields.EMAIL.toString(), this::getEmailLabel);
+        strategyMap.put(LeadFields.WEBSITE.toString(), this::getWebsiteLabel);
+        strategyMap.put(LeadFields.LEAD_STATUS.toString(), this::getLeadStatusLabel);
+        strategyMap.put(LeadFields.RATING.toString(), this::getRatingLabel);
+        strategyMap.put(LeadFields.NUM_EMPLOYEES.toString(), this::getNumEmployeesLabel);
+        strategyMap.put(LeadFields.ADDRESS.toString(), this::getAddressLabel);
 
-        strategyMap.put(PRODUCT_INTEREST.toString(), this::getProductInterestLabel);
-        strategyMap.put(SICCODE.toString(), this::getSicCodeLabel);
-        strategyMap.put(NUMBER_LOCATIONS.toString(), this::getNumLocationsLabel);
-        strategyMap.put(CURRENT_GENERATORS.toString(), this::getCurrentGeneratorsLabel);
-        strategyMap.put(PRIMARY.toString(), this::getPrimaryLabel);
+        strategyMap.put(LeadFields.PRODUCT_INTEREST.toString(), this::getProductInterestLabel);
+        strategyMap.put(LeadFields.SICCODE.toString(), this::getSicCodeLabel);
+        strategyMap.put(LeadFields.NUMBER_LOCATIONS.toString(), this::getNumLocationsLabel);
+        strategyMap.put(LeadFields.CURRENT_GENERATORS.toString(), this::getCurrentGeneratorsLabel);
+        strategyMap.put(LeadFields.PRIMARY.toString(), this::getPrimaryLabel);
 
-        strategyMap.put(DESCRIPTION.toString(), this::getDescriptionLabel);
+        strategyMap.put(LeadFields.DESCRIPTION.toString(), this::getDescriptionLabel);
 
         return strategyMap;
     }

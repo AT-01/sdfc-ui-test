@@ -1,23 +1,24 @@
 package org.fundacionjala.sfdc.tests.contract;
 
+import java.util.Map;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
 import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
 import org.fundacionjala.sfdc.pages.accounts.AccountForm;
 import org.fundacionjala.sfdc.pages.accounts.AccountHome;
 import org.fundacionjala.sfdc.pages.contracts.ContractDetail;
+import org.fundacionjala.sfdc.pages.contracts.ContractFields;
 import org.fundacionjala.sfdc.pages.contracts.ContractForm;
 import org.fundacionjala.sfdc.pages.contracts.ContractHome;
 import org.fundacionjala.sfdc.tests.Asserts;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
-import java.util.Map;
-
-import static org.fundacionjala.sfdc.pages.contracts.ContractFields.ACCOUNT_NAME;
 import static org.testng.Assert.assertFalse;
 
 /**
@@ -44,7 +45,7 @@ public class DeleteEditContract {
         accountsHome = Navigator.goToAccount();
         AccountForm accountForm = accountsHome.clickNewButton();
         accountDetail = accountForm
-                .setNameTextField(valuesMapJson.get(ACCOUNT_NAME.toString()))
+                .setNameTextField(valuesMapJson.get(ContractFields.ACCOUNT_NAME.toString()))
                 .clickSaveButton();
 
         ContractHome contractHome = appLauncher.clickOnContractHome();
@@ -83,7 +84,7 @@ public class DeleteEditContract {
     public void tearDown() {
         appLauncher = mainApp.clickAppLauncher();
         accountsHome = appLauncher.clickOnAccountsHome();
-        accountDetail = accountsHome.clickOnAccount(valuesMapJson.get(ACCOUNT_NAME.toString()));
+        accountDetail = accountsHome.clickOnAccount(valuesMapJson.get(ContractFields.ACCOUNT_NAME.toString()));
         mainApp = accountDetail.clickDeleteButton();
 
     }

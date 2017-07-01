@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import org.fundacionjala.sfdc.framework.browser.DriverManager;
+import org.fundacionjala.sfdc.framework.selenium.browser.DriverManager;
 
 /**
  * This base page abstract class.

@@ -1,4 +1,4 @@
-package org.fundacionjala.sfdc.framework.browser;
+package org.fundacionjala.sfdc.framework.selenium.browser;
 
 import org.openqa.selenium.WebDriverException;
 

@@ -1,23 +1,18 @@
 package org.fundacionjala.sfdc.pages.accounts;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.AssertsDetails;
-import org.fundacionjala.sfdc.pages.MainApp;
-import org.fundacionjala.sfdc.pages.base.DetailBase;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_NAME;
-import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_SITE;
-import static org.fundacionjala.sfdc.pages.accounts.AccountFields.PHONE;
-import static org.fundacionjala.sfdc.pages.accounts.AccountFields.WEBSITE;
-import static org.fundacionjala.sfdc.pages.accounts.AccountFields.EMPLOYEES;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.AssertsDetails;
+import org.fundacionjala.sfdc.pages.MainApp;
+import org.fundacionjala.sfdc.pages.base.DetailBase;
 
 /**
  * This class content all the Account data.
@@ -118,12 +113,11 @@ public class AccountDetail extends DetailBase {
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap<>();
 
-
-        strategyMap.put(ACCOUNT_NAME.toString(), this::getName);
-        strategyMap.put(ACCOUNT_SITE.toString(), this::getSite);
-        strategyMap.put(PHONE.toString(), this::getPhone);
-        strategyMap.put(WEBSITE.toString(), this::getWebsite);
-        strategyMap.put(EMPLOYEES.toString(), this::getEmployees);
+        strategyMap.put(AccountFields.ACCOUNT_NAME.toString(), this::getName);
+        strategyMap.put(AccountFields.ACCOUNT_SITE.toString(), this::getSite);
+        strategyMap.put(AccountFields.PHONE.toString(), this::getPhone);
+        strategyMap.put(AccountFields.WEBSITE.toString(), this::getWebsite);
+        strategyMap.put(AccountFields.EMPLOYEES.toString(), this::getEmployees);
 
         return strategyMap;
     }

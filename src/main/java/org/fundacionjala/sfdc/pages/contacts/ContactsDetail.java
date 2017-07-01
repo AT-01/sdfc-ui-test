@@ -7,43 +7,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.AssertsDetails;
 import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.base.DetailBase;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.ASSISTANT;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.ASSISTANT_PHONE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.BIRTH_DATE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.CONTACT_NAME;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.DEPARTMENT;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.FIRST_NAME_CATEGORY;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.HOME_PHONE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LANGUAGES;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LAST_NAME;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LEAD_SOURCE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.LEVEL;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAIL;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_CITY;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_COUNTRY;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_STATE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_STREET;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MAILING_ZIP;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.MOBILE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_CITY;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_COUNTRY;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_PHONE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_STATE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_STREET;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.OTHER_ZIP;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.PHONE;
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.TITLE;
 
 /**
  * This method represent to contact detail.
  */
 public class ContactsDetail extends DetailBase {
 
-    public static final int NAME_LABEL_LENGTH = 3;
     @FindBy(xpath = "//span[contains(text(), 'Name')]/parent::div/following-sibling::div/span/span")
     private WebElement nameLabel;
 
@@ -248,33 +221,32 @@ public class ContactsDetail extends DetailBase {
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap<>();
 
-        strategyMap.put(FIRST_NAME_CATEGORY.getValue(), this::getFirstNameCategoryLabel);
-        strategyMap.put(CONTACT_NAME.getValue(), this::getNameLabel);
-        strategyMap.put(LAST_NAME.getValue(), this::getLastNameLabel);
-        strategyMap.put(TITLE.getValue(), this::getTitleLabel);
-        strategyMap.put(DEPARTMENT.getValue(), this::getDepartmentLabel);
-        strategyMap.put(BIRTH_DATE.getValue(), this::getBirthDateLabel);
-        strategyMap.put(LEAD_SOURCE.getValue(), this::getLeadSourceLabel);
-        strategyMap.put(MAIL.getValue(), this::getMailLabel);
-        strategyMap.put(MAILING_STREET.getValue(), this::getMailingAdressLabel);
-        strategyMap.put(OTHER_STREET.getValue(), this::getOtherAddresLabel);
-        strategyMap.put(PHONE.getValue(), this::getPhoneLabel);
-        strategyMap.put(HOME_PHONE.getValue(), this::getHomePhoneLabel);
-        strategyMap.put(MOBILE.getValue(), this::getMobileLabel);
-        strategyMap.put(OTHER_PHONE.getValue(), this::getOtherPhoneLabel);
-        strategyMap.put(ASSISTANT.getValue(), this::getAssistandLabel);
-        strategyMap.put(ASSISTANT_PHONE.getValue(), this::getAssistandPhoneLabel);
-        strategyMap.put(MAILING_CITY.getValue(), this::getMailingCity);
-        strategyMap.put(MAILING_STATE.getValue(), this::getMailingState);
-        strategyMap.put(OTHER_CITY.getValue(), this::getOtherCity);
-        strategyMap.put(MAILING_ZIP.getValue(), this::getMailingZip);
-        strategyMap.put(MAILING_COUNTRY.getValue(), this::getMailingCountry);
-        strategyMap.put(OTHER_ZIP.getValue(), this::getOtherZip);
-        strategyMap.put(OTHER_STATE.getValue(), this::getOtherState);
-        strategyMap.put(OTHER_COUNTRY.getValue(), this::getOtherCoutry);
-        strategyMap.put(LANGUAGES.getValue(), this::getLanguagesLabel);
-        strategyMap.put(LEVEL.getValue(), this::getLevelAdress);
-
+        strategyMap.put(ContactFields.FIRST_NAME_CATEGORY.getValue(), this::getFirstNameCategoryLabel);
+        strategyMap.put(ContactFields.CONTACT_NAME.getValue(), this::getNameLabel);
+        strategyMap.put(ContactFields.LAST_NAME.getValue(), this::getLastNameLabel);
+        strategyMap.put(ContactFields.TITLE.getValue(), this::getTitleLabel);
+        strategyMap.put(ContactFields.DEPARTMENT.getValue(), this::getDepartmentLabel);
+        strategyMap.put(ContactFields.BIRTH_DATE.getValue(), this::getBirthDateLabel);
+        strategyMap.put(ContactFields.LEAD_SOURCE.getValue(), this::getLeadSourceLabel);
+        strategyMap.put(ContactFields.MAIL.getValue(), this::getMailLabel);
+        strategyMap.put(ContactFields.MAILING_STREET.getValue(), this::getMailingAdressLabel);
+        strategyMap.put(ContactFields.OTHER_STREET.getValue(), this::getOtherAddresLabel);
+        strategyMap.put(ContactFields.PHONE.getValue(), this::getPhoneLabel);
+        strategyMap.put(ContactFields.HOME_PHONE.getValue(), this::getHomePhoneLabel);
+        strategyMap.put(ContactFields.MOBILE.getValue(), this::getMobileLabel);
+        strategyMap.put(ContactFields.OTHER_PHONE.getValue(), this::getOtherPhoneLabel);
+        strategyMap.put(ContactFields.ASSISTANT.getValue(), this::getAssistandLabel);
+        strategyMap.put(ContactFields.ASSISTANT_PHONE.getValue(), this::getAssistandPhoneLabel);
+        strategyMap.put(ContactFields.MAILING_CITY.getValue(), this::getMailingCity);
+        strategyMap.put(ContactFields.MAILING_STATE.getValue(), this::getMailingState);
+        strategyMap.put(ContactFields.OTHER_CITY.getValue(), this::getOtherCity);
+        strategyMap.put(ContactFields.MAILING_ZIP.getValue(), this::getMailingZip);
+        strategyMap.put(ContactFields.MAILING_COUNTRY.getValue(), this::getMailingCountry);
+        strategyMap.put(ContactFields.OTHER_ZIP.getValue(), this::getOtherZip);
+        strategyMap.put(ContactFields.OTHER_STATE.getValue(), this::getOtherState);
+        strategyMap.put(ContactFields.OTHER_COUNTRY.getValue(), this::getOtherCoutry);
+        strategyMap.put(ContactFields.LANGUAGES.getValue(), this::getLanguagesLabel);
+        strategyMap.put(ContactFields.LEVEL.getValue(), this::getLevelAdress);
 
         return strategyMap;
     }

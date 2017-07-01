@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import org.fundacionjala.sfdc.pages.chatter.ChatterAbstractPage;
 import org.fundacionjala.sfdc.pages.chatter.PostContainer;
 import org.fundacionjala.sfdc.pages.chatter.PostForm;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.framework.selenium.Navigator;
 
 /**
  * Method that verify the creation of chatter.

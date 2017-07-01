@@ -1,20 +1,20 @@
 package org.fundacionjala.sfdc.tests.contact;
 
+import java.util.Map;
+
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.utils.Navigator;
+import org.fundacionjala.sfdc.pages.contacts.ContactFields;
 import org.fundacionjala.sfdc.pages.contacts.ContactForm;
 import org.fundacionjala.sfdc.pages.contacts.ContactHome;
 import org.fundacionjala.sfdc.pages.contacts.ContactsDetail;
 import org.fundacionjala.sfdc.tests.Asserts;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
-import java.util.Map;
-
-import static org.fundacionjala.sfdc.pages.contacts.ContactFields.CONTACT_NAME;
 import static org.fundacionjala.sfdc.tests.contact.CreateContact.CONTACT_DATA_PATH;
 import static org.testng.Assert.assertFalse;
-
 
 /**
  * This method is a preconditions to edit and delete a contact.
@@ -58,8 +58,8 @@ public class DeleteEditContact {
     @Test
     public void deleteContact() {
         contactsDetail.clickDeleteButton();
-        assertFalse(contactsDetail.isContactDisplayed(valuesMapJson.get(CONTACT_NAME.getValue())
-                        .concat(COMMA).concat(valuesMapJson.get(CONTACT_NAME.getValue()))),
+        assertFalse(contactsDetail.isContactDisplayed(valuesMapJson.get(ContactFields.CONTACT_NAME.getValue())
+                        .concat(COMMA).concat(valuesMapJson.get(ContactFields.CONTACT_NAME.getValue()))),
                 "The contacts shouldn't to be displayed");
     }
 }

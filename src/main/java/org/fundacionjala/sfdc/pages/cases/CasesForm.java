@@ -1,30 +1,17 @@
 package org.fundacionjala.sfdc.pages.cases;
 
-import org.fundacionjala.sfdc.framework.utils.CommonActions;
-import org.fundacionjala.sfdc.pages.FormSteps;
-import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
-import org.fundacionjala.sfdc.pages.base.FormBase;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
-import org.openqa.selenium.support.FindBy;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.DESCRIPTION_TEXT;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.SLA_VIOLATION;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.SUBJECT_TEXT;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.ENGINEERING_NUMBER;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.POTENTIAL_LIABILITY;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.PRODUCT_VALUE;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.CASE_REASON;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.TYPE_VALUE;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.PRIORITY_VALUE;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.STATUS_DROOPDOWNLIST;
-import static org.fundacionjala.sfdc.pages.cases.CasesFields.CASES_ORIGIN_DROOPDOWNLIST;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
-import static java.lang.String.valueOf;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.FormSteps;
+import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
+import org.fundacionjala.sfdc.pages.base.FormBase;
 
 /**
  * This class manage the cases form page objects.
@@ -148,25 +135,28 @@ public class CasesForm extends FormBase {
      */
     private Map<String, FormSteps> getStrategyStepMap(final Map<String, String> values) {
         final Map<String, FormSteps> strategyMap = new HashMap();
-        strategyMap.put(STATUS_DROOPDOWNLIST.getValue(),
-                () -> setStatusDropDownList(valueOf(values.get(STATUS_DROOPDOWNLIST.getValue()))));
-        strategyMap.put(CASES_ORIGIN_DROOPDOWNLIST.getValue(),
-                () -> setCaseOriginDropDownList(valueOf(values.get(CASES_ORIGIN_DROOPDOWNLIST.getValue()))));
-        strategyMap.put(PRIORITY_VALUE.getValue(),
-                () -> setPriority(valueOf(values.get(PRIORITY_VALUE.getValue()))));
-        strategyMap.put(TYPE_VALUE.getValue(), () -> setType(valueOf(values.get(TYPE_VALUE.getValue()))));
-        strategyMap.put(CASE_REASON.getValue(), () -> setCaseReason(valueOf(values.get(CASE_REASON.getValue()))));
-        strategyMap.put(PRODUCT_VALUE.getValue(), () -> setProduct(valueOf(values.get(PRODUCT_VALUE.getValue()))));
-        strategyMap.put(POTENTIAL_LIABILITY.getValue(),
-                () -> setPotentialLiability(valueOf(values.get(POTENTIAL_LIABILITY.getValue()))));
-        strategyMap.put(ENGINEERING_NUMBER.getValue(),
-                () -> setEngineeringNumber(valueOf(values.get(ENGINEERING_NUMBER.getValue()))));
-        strategyMap.put(SLA_VIOLATION.getValue(),
-                () -> setSlaViolation(valueOf(values.get(SLA_VIOLATION.getValue()))));
-        strategyMap.put(SUBJECT_TEXT.getValue(),
-                () -> setSubjectText(valueOf(values.get(SUBJECT_TEXT.getValue()))));
-        strategyMap.put(DESCRIPTION_TEXT.getValue(),
-                () -> setDescriptionText(valueOf(values.get(DESCRIPTION_TEXT.getValue()))));
+        strategyMap.put(CasesFields.STATUS.getValue(),
+                () -> setStatusDropDownList(String.valueOf(values.get(CasesFields.STATUS.getValue()))));
+        strategyMap.put(CasesFields.CASES_ORIGIN.getValue(),
+                () -> setCaseOriginDropDownList(String.valueOf(values.get(CasesFields.CASES_ORIGIN.getValue()))));
+        strategyMap.put(CasesFields.PRIORITY.getValue(),
+                () -> setPriority(String.valueOf(values.get(CasesFields.PRIORITY.getValue()))));
+        strategyMap.put(CasesFields.TYPE.getValue(),
+                () -> setType(String.valueOf(values.get(CasesFields.TYPE.getValue()))));
+        strategyMap.put(CasesFields.CASE_REASON.getValue(),
+                () -> setCaseReason(String.valueOf(values.get(CasesFields.CASE_REASON.getValue()))));
+        strategyMap.put(CasesFields.PRODUCT.getValue(),
+                () -> setProduct(String.valueOf(values.get(CasesFields.PRODUCT.getValue()))));
+        strategyMap.put(CasesFields.POTENTIAL_LIABILITY.getValue(),
+                () -> setPotentialLiability(String.valueOf(values.get(CasesFields.POTENTIAL_LIABILITY.getValue()))));
+        strategyMap.put(CasesFields.ENGINEERING_NUMBER.getValue(),
+                () -> setEngineeringNumber(String.valueOf(values.get(CasesFields.ENGINEERING_NUMBER.getValue()))));
+        strategyMap.put(CasesFields.SLA_VIOLATION.getValue(),
+                () -> setSlaViolation(String.valueOf(values.get(CasesFields.SLA_VIOLATION.getValue()))));
+        strategyMap.put(CasesFields.SUBJECT.getValue(),
+                () -> setSubjectText(String.valueOf(values.get(CasesFields.SUBJECT.getValue()))));
+        strategyMap.put(CasesFields.DESCRIPTION.getValue(),
+                () -> setDescriptionText(String.valueOf(values.get(CasesFields.DESCRIPTION.getValue()))));
         return strategyMap;
     }
 
