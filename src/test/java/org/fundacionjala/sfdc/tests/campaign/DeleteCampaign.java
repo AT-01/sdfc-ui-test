@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
+import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignDetail;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignForm;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignsHome;
@@ -32,6 +33,7 @@ public class DeleteCampaign {
     @BeforeMethod()
     public void setup() {
         valuesMapJson = JsonMapper.getMapJson(CAMPAIGN_DATA_PATH);
+        LoginPage.loginAsPrimaryUser();
         campaignsHome = Navigator.goToCampaign();
         CampaignForm campaignForm = campaignsHome.clickNewButton();
         campaignForm.fillTheForm(valuesMapJson);
@@ -43,8 +45,8 @@ public class DeleteCampaign {
      */
     @Test()
     public void deleteCampaign() {
-        campaignsHome = campaignDetail.clickDeleteButton();
-        assertFalse(campaignsHome.existCampaign(valuesMapJson.get("campaignName")));
+        campaignDetail.clickDeleteButton();
+        assertFalse(campaignDetail.isCampaignDisplayed(valuesMapJson.get("campaignName")), "NewCampaign is deleted");
     }
 
 }

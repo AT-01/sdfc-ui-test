@@ -21,8 +21,11 @@ import org.fundacionjala.sfdc.tests.Asserts;
 public class CreateCampaign {
 
     private static final String CAMPAIGN_DATA_PATH = "campaign/CreateCampaignData.json";
+
     private CampaignDetail campaignDetail;
+
     private CampaignsHome campaignsHome;
+
     private Map<String, String> valuesMapJson;
 
     /**
