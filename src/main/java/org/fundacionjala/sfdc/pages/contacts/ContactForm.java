@@ -3,7 +3,7 @@ package org.fundacionjala.sfdc.pages.contacts;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
-import java.util.Map;
+
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -439,6 +439,7 @@ public class ContactForm extends FormBase {
 
     /**
      * Method.
+     *
      * @param item string.
      * @return a instance of the ContactFrom class.
      */
