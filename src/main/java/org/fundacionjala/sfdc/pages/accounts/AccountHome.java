@@ -1,15 +1,39 @@
 package org.fundacionjala.sfdc.pages.accounts;
 
-import org.openqa.selenium.By;
-
 import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.fundacionjala.sfdc.pages.base.HomeBase;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
 
 /**
  * It is the account base page, abstract class.
  */
 public class AccountHome extends HomeBase {
+
+    @FindBy(css = ".slds-cell-edit.cellContainer div a")
+    @CacheLookup
+    private static WebElement showMoreActionsLink;
+
+    @FindBy(css = "[title='Delete']")
+    @CacheLookup
+    private static WebElement deleteLink;
+
+    @FindBy(css = "button[title='Delete']")
+    @CacheLookup
+    private static WebElement deleteButton;
+
+    /**
+     * Method to delete an account.
+     */
+    public void deleteAccount() {
+        CommonActions.sleep(3000);
+        CommonActions.clickElement(showMoreActionsLink);
+        CommonActions.clickElement(deleteLink);
+        CommonActions.clickElement(deleteButton);
+    }
 
     /**
      * {@inheritDoc}
