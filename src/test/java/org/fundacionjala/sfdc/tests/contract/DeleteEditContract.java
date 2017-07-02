@@ -2,11 +2,6 @@ package org.fundacionjala.sfdc.tests.contract;
 
 import java.util.Map;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.MainApp;
@@ -18,6 +13,9 @@ import org.fundacionjala.sfdc.pages.contracts.ContractFields;
 import org.fundacionjala.sfdc.pages.contracts.ContractForm;
 import org.fundacionjala.sfdc.pages.contracts.ContractHome;
 import org.fundacionjala.sfdc.tests.Asserts;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertFalse;
 
@@ -42,7 +40,7 @@ public class DeleteEditContract {
     @BeforeMethod
     public void setUp() {
         valuesMapJson = JsonMapper.getMapJson(CreateContract.CONTRACT_DATA_PATH);
-        accountsHome = Navigator.goToAccount();
+//        accountsHome = Navigator.goToAccount();
         AccountForm accountForm = accountsHome.clickNewButton();
         accountDetail = accountForm
                 .setNameTextField(valuesMapJson.get(ContractFields.ACCOUNT_NAME.toString()))
