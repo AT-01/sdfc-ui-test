@@ -7,8 +7,8 @@ import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
 import org.fundacionjala.sfdc.pages.accounts.AccountForm;
-import org.junit.After;
-import org.junit.Before;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static org.fundacionjala.sfdc.tests.Asserts.assertDetailValues;
@@ -16,7 +16,7 @@ import static org.fundacionjala.sfdc.tests.Asserts.assertDetailValues;
 /**
  * Class that verify the account edition after an account was created using a json file.
  */
-public class EditAccountJson {
+public class EditAccount {
     private static final String ACCOUNT_DATA_PATH = "account/CreateAccountData.json";
     private static final String ACCOUNT_DATA_EDIT_PATH = "account/EditAccountData.json";
     private AccountDetail accountDetail;
@@ -25,7 +25,7 @@ public class EditAccountJson {
     /**
      * This method is the preconditions to edit an account.
      */
-    @Before
+    @BeforeMethod
     public void setUp() {
         Map<String, String> valuesMapJson = JsonMapper.getMapJson(ACCOUNT_DATA_PATH);
         LoginPage.loginAsPrimaryUser();
@@ -53,8 +53,8 @@ public class EditAccountJson {
     /**
      * Delete the account recently created.
      */
-    @After
+    @AfterMethod
     public void tearDown() {
-        Navigator.goToAccountHome().deleteAccount();
+        accountDetail.clickDeleteButton();
     }
 }
