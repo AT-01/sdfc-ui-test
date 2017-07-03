@@ -199,4 +199,20 @@ public final class CommonActions {
             Thread.currentThread().interrupt();
         }
     }
+
+    /**
+     * This method find a item in the list.
+     *
+     * @param webElementList web element
+     * @param accountName    name
+     */
+    public static void findElement(List<WebElement> webElementList, final String accountName) {
+        if (!webElementList.isEmpty()) {
+            for (WebElement webElement : webElementList) {
+                if (accountName.equalsIgnoreCase(webElement.getText().toString())) {
+                    check(webElement);
+                }
+            }
+        }
+    }
 }
