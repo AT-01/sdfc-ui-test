@@ -74,10 +74,6 @@ public class ContractForm extends FormBase {
     @CacheLookup
     private WebElement companySignedByTextBox;
 
-    @FindBy(xpath = "//input[@data-interactive-lib-uid='17']")
-    @CacheLookup
-    private WebElement companySignedDateTextBox;
-
     private ContractBuilder contractBuilder;
 
     private Map<String, String> valuesMap;
@@ -238,18 +234,6 @@ public class ContractForm extends FormBase {
     }
 
     /**
-     * This method  sets the company signed date.
-     *
-     * @param companySignedDate a string to set.
-     * @return a contract form..
-     */
-    public ContractForm setCompanySignedDate(final String companySignedDate) {
-        companySignedDateTextBox.clear();
-        companySignedDateTextBox.sendKeys(companySignedDate);
-        return this;
-    }
-
-    /**
      * This method makes click on account name.
      *
      * @return {@link LookUpWindow}.
@@ -293,8 +277,6 @@ public class ContractForm extends FormBase {
                 setAccountName(values.get(OWNER_EXPIRATION_NOTICE.toString())));
         strategyMap.put(COMPANY_SIGNED_BY.toString(), () ->
                 setCompanySignedBy(values.get(COMPANY_SIGNED_BY.toString())));
-        strategyMap.put(COMPANY_SIGNED_DATE.toString(), () ->
-                setCompanySignedDate(values.get(COMPANY_SIGNED_DATE.toString())));
 
         return strategyMap;
     }
