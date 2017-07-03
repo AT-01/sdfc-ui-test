@@ -13,6 +13,10 @@ public abstract class HomeBase extends AbstractBasePage {
     @CacheLookup
     protected WebElement newButton;
 
+    @FindBy(css = ".slds-icon-waffle")
+    @CacheLookup
+    protected WebElement iconWaffle;
+
     @FindBy(css = "button[title='List View Controls'")
     protected WebElement listViewButton;
 

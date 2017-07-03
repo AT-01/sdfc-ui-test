@@ -6,7 +6,9 @@
     <test name="Accounts">
         <classes>
             <class name="org.fundacionjala.sfdc.tests.account.CreateAccount"/>
-            <class name="org.fundacionjala.sfdc.tests.account.EditDeleteAccount"/>
+            <class name="org.fundacionjala.sfdc.tests.account.EditAccountJson"/>
+            <class name="org.fundacionjala.sfdc.tests.account.EditAccountBuilder"/>
+            <class name="org.fundacionjala.sfdc.tests.account.DeleteAccount"/>
         </classes>
     </test>
 </suite>

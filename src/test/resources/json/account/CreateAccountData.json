@@ -1,7 +1,19 @@
 {
   "ACCOUNT_NAME": "Test Account Name",
+  "ACCOUNT_NUMBER": "123456",
   "ACCOUNT_SITE": "Test Account Site",
+  "TYPE": "Prospect",
+  "ANNUAL_REVENUE": "12",
   "PHONE": "+(591)71234567",
+  "FAX": "123456789",
   "WEBSITE": "http://www.mydomain.com",
-  "EMPLOYEES": "3"
+  "TICKER_SYMBOL": "Ticker Test",
+  "EMPLOYEES": "3",
+  "SIC_CODE": "123456789",
+  "BILLING_STREET": "Test Billing Street",
+  "SHIPPING_STREET": "Test Shipping Street",
+  "SLA_EXPIRATION_DATE": "7/29/2017",
+  "SLA_SERIAL": "0123456789",
+  "NUMBER_LOCATIONS": "5",
+  "DESCRIPTION": "Test Description!!!!!!"
 }

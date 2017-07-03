@@ -1,7 +1,19 @@
 {
   "ACCOUNT_NAME": "Test Account Name Edited",
+  "ACCOUNT_NUMBER": "7890",
   "ACCOUNT_SITE": "Test Account Site Edited",
-  "PHONE": "+(591)71234567",
-  "WEBSITE": "http://www.editedDomain.com",
-  "EMPLOYEES": "0"
+  "TYPE": "Installation Partner",
+  "ANNUAL_REVENUE": "21",
+  "PHONE": "+(591)01234567",
+  "FAX": "987654321",
+  "WEBSITE": "http://www.mydomain-edited.com",
+  "TICKER_SYMBOL": "Ticker Test Edited",
+  "EMPLOYEES": "9",
+  "SIC_CODE": "987654321",
+  "BILLING_STREET": "Test Billing Street Edited",
+  "SHIPPING_STREET": "Test Shipping Street Edited",
+  "SLA_EXPIRATION_DATE": "10/29/2017",
+  "SLA_SERIAL": "9876543210",
+  "NUMBER_LOCATIONS": "10",
+  "DESCRIPTION": "Test Description Edited!!!!!!"
 }
