@@ -1,11 +1,10 @@
 package org.fundacionjala.sfdc.pages;
 
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-
-import org.fundacionjala.sfdc.framework.selenium.CommonActions;
-import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 
 /**
  * Class to manage the main page.
@@ -37,7 +36,7 @@ public class MainApp extends AbstractBasePage {
      * @return {@link AppLauncher}
      */
     public AppLauncher clickAppLauncher() {
-        CommonActions.sleep(30000);
+        CommonActions.sleep(15000);
         CommonActions.clickElement(appLauncherButton);
         return new AppLauncher();
     }
