@@ -1,7 +1,7 @@
 package org.fundacionjala.sfdc.framework.selenium;
 
-import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.AppLauncher;
+import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.accounts.AccountHome;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignsHome;
 import org.fundacionjala.sfdc.pages.cases.CasesHome;
@@ -28,7 +28,7 @@ public final class Navigator {
      * @return ChatterAbstractPage.
      */
     public static ChatterAbstractPage goToChatter() {
-        goToNavigator().clickOnChatterTab();
+        goToAppLauncher().clickOnChatterTab();
         return new ChatterAbstractPage();
     }
 
@@ -38,7 +38,7 @@ public final class Navigator {
      * @return CampaignsHome.
      */
     public static CampaignsHome goToCampaign() {
-        goToNavigator().clickCampaigns();
+        goToAppLauncher().clickCampaigns();
         return new CampaignsHome();
     }
 
@@ -47,8 +47,8 @@ public final class Navigator {
      *
      * @return AccountHome.
      */
-    public static AccountHome goToAccount() {
-        goToNavigator().clickOnAccountsHome();
+    public static AccountHome goToAccountHome() {
+        goToAppLauncher().clickOnAccountsHome();
         return new AccountHome();
     }
 
@@ -58,7 +58,7 @@ public final class Navigator {
      * @return CasesHome.
      */
     public static CasesHome goToCases() {
-        goToNavigator().clickOnCasesHome();
+        goToAppLauncher().clickOnCasesHome();
         return new CasesHome();
     }
 
@@ -68,7 +68,7 @@ public final class Navigator {
      * @return ContactHome.
      */
     public static ContactHome goToContact() {
-        goToNavigator().clickOnContactsHome();
+        goToAppLauncher().clickOnContactsHome();
         return new ContactHome();
     }
 
@@ -78,7 +78,7 @@ public final class Navigator {
      * @return ContractHome.
      */
     public static ContractHome goToContract() {
-        goToNavigator().clickOnContractHome();
+        goToAppLauncher().clickOnContractHome();
         return new ContractHome();
     }
 
@@ -88,7 +88,7 @@ public final class Navigator {
      * @return LeadHome.
      */
     public static LeadHome goToLead() {
-        goToNavigator().clickLead();
+        goToAppLauncher().clickLead();
         return new LeadHome();
     }
 
@@ -97,8 +97,8 @@ public final class Navigator {
      *
      * @return OpportunityHome.
      */
-    public static OpportunityHome goToOportunity() {
-        goToNavigator().clickOnOpportunitiesHome();
+    public static OpportunityHome goToOpportunity() {
+        goToAppLauncher().clickOnOpportunitiesHome();
         return new OpportunityHome();
     }
 
@@ -108,7 +108,7 @@ public final class Navigator {
      * @return ProductHome.
      */
     public static ProductHome goToProduct() {
-        goToNavigator().clickOnProductsHome();
+        goToAppLauncher().clickOnProductsHome();
         return new ProductHome();
     }
 
@@ -117,8 +117,7 @@ public final class Navigator {
      *
      * @return Mainapp class.
      */
-    private static AppLauncher goToNavigator() {
-        MainApp mainApp = new MainApp();
-        return mainApp.clickAppLauncher();
+    public static AppLauncher goToAppLauncher() {
+        return new MainApp().clickAppLauncher();
     }
 }

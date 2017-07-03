@@ -3,11 +3,6 @@ package org.fundacionjala.sfdc.tests.contract;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.MainApp;
@@ -19,6 +14,9 @@ import org.fundacionjala.sfdc.pages.contracts.ContractFields;
 import org.fundacionjala.sfdc.pages.contracts.ContractForm;
 import org.fundacionjala.sfdc.pages.contracts.ContractHome;
 import org.fundacionjala.sfdc.tests.Asserts;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 /**
  * This class handle create a new contract.
@@ -59,7 +57,7 @@ public class CreateContract {
         Map<String, String> valuesMapAccount = new HashMap<>();
         valuesMapAccount.put(ContractFields.ACCOUNT_NAME.toString(),
                 valuesMapJson.get(ContractFields.ACCOUNT_NAME.toString()));
-        accountHome = Navigator.goToAccount();
+//        accountHome = Navigator.goToAccount();
         accountForm = accountHome.clickNewButton();
         accountForm.fillTheForm(valuesMapAccount);
         accountForm.clickSaveButton();
