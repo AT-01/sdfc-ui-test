@@ -74,9 +74,6 @@ public class ContactsDetail extends DetailBase {
     @FindBy(xpath = "//span[contains(text(), 'Level')]/parent::div/following-sibling::div/span/span")
     private WebElement levelAdress;
 
-    @FindBy(xpath = "//span[text()='Details']")
-    private WebElement details;
-
     @FindBy(css = "a[title='Show more actions for this record']")
     private WebElement showOptionsButton;
 
@@ -177,7 +174,7 @@ public class ContactsDetail extends DetailBase {
      * Click.
      */
     public void clickOnDetails() {
-        CommonActions.clickOnaHiddenElement(details);
+        CommonActions.clickOnaHiddenElement(detailsLinkButton);
     }
 
     /**
@@ -400,6 +397,7 @@ public class ContactsDetail extends DetailBase {
 
     /**
      * Click.
+     *
      * @return label text.
      */
     public String getMobileLabel() {
