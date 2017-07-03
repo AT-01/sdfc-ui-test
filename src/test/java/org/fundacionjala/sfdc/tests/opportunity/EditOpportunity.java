@@ -26,7 +26,6 @@ public class EditOpportunity {
     private OpportunityForm opportunityForm;
     private OpportunityDetail opportunityDetail;
 
-
     /**
      * This method is a preconditions to create a opportunities.
      */
