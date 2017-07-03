@@ -8,32 +8,24 @@ import org.testng.annotations.Test;
 
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.pages.AppLauncher;
-import org.fundacionjala.sfdc.pages.MainApp;
-import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
-import org.fundacionjala.sfdc.pages.accounts.AccountForm;
-import org.fundacionjala.sfdc.pages.accounts.AccountHome;
+import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.contracts.ContractDetail;
-import org.fundacionjala.sfdc.pages.contracts.ContractFields;
 import org.fundacionjala.sfdc.pages.contracts.ContractForm;
 import org.fundacionjala.sfdc.pages.contracts.ContractHome;
 import org.fundacionjala.sfdc.tests.Asserts;
 
-import static org.testng.Assert.assertFalse;
-
 /**
- * This class handle edit and deleted a contract.
+ * Created by Administrator on 6/30/2017.
  */
-public class DeleteEditContract {
-
+public class EditContract {
     private static final String CONTRACT_DATA_EDIT_PATH = "contract/EditContractData.json";
-    private String contractNumber;
-    private AppLauncher appLauncher;
+
+    private ContractHome contractHome;
+
     private ContractForm contractForm;
+
     private ContractDetail contractDetail;
-    private AccountHome accountsHome;
-    private AccountDetail accountDetail;
-    private MainApp mainApp;
+
     private Map<String, String> valuesMapJson;
 
     /**
@@ -42,27 +34,12 @@ public class DeleteEditContract {
     @BeforeMethod
     public void setUp() {
         valuesMapJson = JsonMapper.getMapJson(CreateContract.CONTRACT_DATA_PATH);
-        accountsHome = Navigator.goToAccount();
-        AccountForm accountForm = accountsHome.clickNewButton();
-        accountDetail = accountForm
-                .setNameTextField(valuesMapJson.get(ContractFields.ACCOUNT_NAME.toString()))
-                .clickSaveButton();
-
-        ContractHome contractHome = appLauncher.clickOnContractHome();
-        contractForm = contractHome.clickNewButton();
-
+        LoginPage.loginAsPrimaryUser();
+        contractHome = Navigator.goToContract();
+        ContractForm contractForm = contractHome.clickNewButton();
         contractForm.fillTheForm(valuesMapJson);
         contractDetail = contractForm.clickSaveButton();
-        contractNumber = contractDetail.getContractNumber();
-    }
-
-    /**
-     * This a test to delete a contract.
-     */
-    @Test
-    public void deleteContract() {
-        contractDetail.clickDeleteButton();
-        assertFalse(contractDetail.isContractDisplayed(contractNumber), "The contract shouldn't be displayed");
+        contractDetail.goToLinkDetail();
     }
 
     /**
@@ -74,6 +51,7 @@ public class DeleteEditContract {
         Map<String, String> valuesMapEditJson = JsonMapper.getMapJson(CONTRACT_DATA_EDIT_PATH);
         contractForm.fillTheForm(valuesMapEditJson);
         contractDetail = contractForm.clickSaveButton();
+
         Asserts.assertDetailValues(contractDetail, valuesMapEditJson);
     }
 
@@ -82,10 +60,6 @@ public class DeleteEditContract {
      */
     @AfterMethod
     public void tearDown() {
-        appLauncher = mainApp.clickAppLauncher();
-        accountsHome = appLauncher.clickOnAccountsHome();
-        accountDetail = accountsHome.clickOnAccount(valuesMapJson.get(ContractFields.ACCOUNT_NAME.toString()));
-        mainApp = accountDetail.clickDeleteButton();
-
+        contractDetail.clickDeleteButton();
     }
 }

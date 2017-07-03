@@ -200,6 +200,7 @@ public class ContactsDetail extends DetailBase {
      */
     @Override
     public ContactForm clickEditButton() {
+        CommonActions.clickElement(downArrow);
         CommonActions.clickElement(editBtn);
         return new ContactForm();
     }
@@ -209,7 +210,9 @@ public class ContactsDetail extends DetailBase {
      */
     @Override
     public MainApp clickDeleteButton() {
-
+        CommonActions.clickElement(downArrow);
+        CommonActions.clickElement(deleteBtn);
+        CommonActions.clickElement(confirmDeleteButton);
         return new MainApp();
     }
 

@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
+import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignDetail;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignForm;
 import org.fundacionjala.sfdc.pages.campaigns.Campaigns;
@@ -19,10 +20,14 @@ import org.fundacionjala.sfdc.tests.Asserts;
  */
 public class UpdateCampaign {
 
-    private CampaignDetail campaignDetail;
-    private CampaignForm campaignForm;
     private static final String CAMPAIGN_UPDATE_CAMPAIGN_DATA = "campaign/UpdateCampaignData.json";
+
     private static final String CAMPAIGN_DATA_PATH = "campaign/CreateCampaignData.json";
+
+    private CampaignDetail campaignDetail;
+
+    private CampaignForm campaignForm;
+
     private CampaignsHome campaignsHome;
 
     /**
@@ -31,6 +36,7 @@ public class UpdateCampaign {
     @BeforeMethod()
     public void setup() {
         Map<String, String> valuesMapJson = JsonMapper.getMapJson(CAMPAIGN_DATA_PATH);
+        LoginPage.loginAsPrimaryUser();
         campaignsHome = Navigator.goToCampaign();
         CampaignForm campaignForm = campaignsHome.clickNewButton();
         campaignForm.fillTheForm(valuesMapJson);
@@ -46,6 +52,7 @@ public class UpdateCampaign {
         campaignForm = campaignDetail.clickEditButton();
         campaignForm.fillTheForm(valuesMapEditJson);
         campaignDetail = campaignForm.clickSaveButton();
+        campaignDetail.clickDetails();
         Asserts.assertDetailValues(campaignDetail, valuesMapEditJson);
     }
 
@@ -54,13 +61,13 @@ public class UpdateCampaign {
      */
     @Test()
     public void editProduct() {
-
         campaignForm = campaignDetail.clickEditButton();
         Campaigns campaigns = new Campaigns.CampaignBuilder("UpdatedWhitBuilder")
                 .setTypeDropDown("Direct Mail")
                 .setStatusDropDown("Completed")
                 .build();
         campaignDetail = campaigns.createCampaign();
+        campaignDetail.clickDetails();
         Asserts.assertDetailValues(campaignDetail, campaigns.getValuesMap());
     }
 

@@ -5,8 +5,11 @@ import java.util.Map;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import org.fundacionjala.sfdc.framework.selenium.Navigator;
+
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
+import org.fundacionjala.sfdc.pages.AppLauncher;
+import org.fundacionjala.sfdc.pages.LoginPage;
+import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.contacts.ContactFields;
 import org.fundacionjala.sfdc.pages.contacts.ContactForm;
 import org.fundacionjala.sfdc.pages.contacts.ContactHome;
@@ -21,22 +24,28 @@ import static org.testng.Assert.assertFalse;
  */
 public class DeleteEditContact {
 
-    private static final String CONTACT_DATA_EDIT_PATH = "contact/CreateContactData.json";
+    private static final String CONTACT_DATA_EDIT_PATH = "contact/EditContactData.json";
     private static final String COMMA = ", ";
     private ContactsDetail contactsDetail;
     private ContactForm contactForm;
     private Map<String, String> valuesMapJson;
+    private MainApp mainApp = new MainApp();
+    private AppLauncher appLauncher = new AppLauncher();
 
     /**
      * This method is a preconditions to edit and delete a contact.
      */
     @BeforeMethod
     public void setUp() {
+        mainApp = new MainApp();
+        LoginPage.loginAsPrimaryUser();
+        appLauncher = mainApp.clickAppLauncher();
         valuesMapJson = JsonMapper.getMapJson(CONTACT_DATA_PATH);
-        ContactHome contactsHome = Navigator.goToContact();
+        ContactHome contactsHome = appLauncher.clickOnContactsHome();
         contactForm = contactsHome.clickNewButton();
         contactForm.fillTheForm(valuesMapJson);
         contactsDetail = contactForm.clickSaveButton();
+
     }
 
     /**
@@ -48,6 +57,7 @@ public class DeleteEditContact {
         contactForm = contactsDetail.clickEditButton();
         contactForm.fillTheForm(valuesMapEditJson);
         contactsDetail = contactForm.clickSaveButton();
+        contactsDetail.clickOnDetails();
         Asserts.assertDetailValues(contactsDetail, valuesMapEditJson);
         contactsDetail.clickDeleteButton();
     }
