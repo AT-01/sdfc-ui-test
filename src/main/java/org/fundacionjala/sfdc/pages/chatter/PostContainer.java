@@ -23,11 +23,16 @@ public class PostContainer extends AbstractBasePage {
     private static final int TIME_IN_MILLISECONDS = 1000;
 
 
-    @FindBy(linkText = "Delete")
+    @FindBy(css = "a[title='Delete']")
     @CacheLookup
     private WebElement deleteOptn;
 
-    @FindBy(linkText = "Edit")
+    @FindBy(xpath = "//a[@class='cuf-feedItemActionTrigger cuf-buttonIcon "
+            + "slds-button--icon-border slds-button slds-button--icon-x-small']")
+    @CacheLookup
+    private WebElement downDropButton;
+
+    @FindBy(xpath = "//a[@title='Edit']")
     @CacheLookup
     private WebElement editOptn;
     private String postText;
@@ -47,6 +52,13 @@ public class PostContainer extends AbstractBasePage {
         Alert alert = driver.switchTo().alert();
         alert.accept();
         return new PostForm();
+    }
+
+    /**
+     * Deletes a determined post.
+     */
+    public void clickDownDropButton() {
+        CommonActions.clickElement(downDropButton);
     }
 
     /**

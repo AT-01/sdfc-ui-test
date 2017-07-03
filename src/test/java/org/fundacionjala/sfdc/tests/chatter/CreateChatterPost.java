@@ -1,6 +1,7 @@
 package org.fundacionjala.sfdc.tests.chatter;
 
 
+import org.fundacionjala.sfdc.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -26,6 +27,7 @@ public class CreateChatterPost {
      */
     @BeforeMethod
     public void setUp() {
+        LoginPage.loginAsPrimaryUser();
         chatterHome = Navigator.goToChatter();
     }
 

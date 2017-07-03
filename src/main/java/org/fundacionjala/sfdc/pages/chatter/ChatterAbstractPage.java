@@ -12,7 +12,7 @@ import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
  */
 public class ChatterAbstractPage extends AbstractBasePage {
 
-    @FindBy(id = "publishereditablearea")
+    @FindBy(xpath = "//a[@data-tab-name='FeedItem.TextPost']")
     @CacheLookup
     private WebElement textArea;
 

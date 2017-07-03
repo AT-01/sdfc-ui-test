@@ -15,7 +15,8 @@ public class PostForm extends AbstractBasePage {
 
     private static final int TIME_IN_MILLISECONDS = 3000;
 
-    @FindBy(id = "publishersharebutton")
+    @FindBy(xpath = "//button[@class='slds-button slds-button--neutral "
+            + "cuf-publisherShareButton qe-textPostDesktop MEDIUM uiButton--default uiButton--brand uiButton']")
     @CacheLookup
     private WebElement shareBtn;
 
@@ -28,8 +29,12 @@ public class PostForm extends AbstractBasePage {
     @CacheLookup
     private WebElement editTxtArea;
 
+    @FindBy(xpath = "//span[text()='Share an update...']/parent::button")
+    @CacheLookup
+    private WebElement clickTextArea;
 
-    @FindBy(tagName = "body")
+
+    @FindBy(css = "div[data-placeholder='Share an update, @mention someone, add a file...']")
     @CacheLookup
     private WebElement textAreaField;
 
@@ -43,12 +48,21 @@ public class PostForm extends AbstractBasePage {
      * @return {@link PostForm}
      */
     public PostForm setPostTxt(final String postText) {
-        this.postText = postText;
+        /*this.postText = postText;
         driver.switchTo().frame(driver
                 .findElement(By.xpath("//iframe[contains(@class,'cke_wysiwyg_frame cke_reset')]")));
+        */
+        clickTextArea();
         CommonActions.sendKeys(textAreaField, postText);
-        driver.switchTo().defaultContent();
+        // driver.switchTo().defaultContent();
         return this;
+    }
+
+    /**
+     * Edits the text of the post publication.
+     */
+    public void clickTextArea() {
+        clickTextArea.click();
     }
 
     /**
