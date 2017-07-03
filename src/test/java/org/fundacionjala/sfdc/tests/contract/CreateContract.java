@@ -21,13 +21,17 @@ public class CreateContract {
 
     static final String CONTRACT_DATA_PATH = "contract/CreateContractData.json";
 
+    private static final String ACCOUNT_NAME = "Test01";
+
     private static final String STATUS = "Draft";
 
-    private static final String CONTRACT_START_DATE = "11/1/2016";
+    private static final String CONTRACT_START_DATE = "10/1/2018";
 
     private static final String CONTRACT_TERM_MONTHS = "1";
 
     private ContractHome contractHome;
+
+    private ContractForm contractForm;
 
     private Map<String, String> valuesMapJson;
 
@@ -59,17 +63,17 @@ public class CreateContract {
     /**
      * This method that is created a new contract.
      */
-//    @Test
-//    public void createContract() {
-//        contractHome.clickNewButton();
-//
-//        contractForm = new ContractForm.ContractBuilder(
-//                valuesMapJson.get(ACCOUNT_NAME.toString()), STATUS, CONTRACT_START_DATE, CONTRACT_TERM_MONTHS)
-//                .build();
-//        contractDetail = contractForm.saveContract();
-//        Navigator.goToContract();
-//        Asserts.assertDetailValues(contractDetail, contractForm.getValuesMap());
-//    }
+    @Test
+    public void createContract() {
+
+        contractHome.clickNewButton();
+        contractForm = new ContractForm.ContractBuilder(
+                ACCOUNT_NAME, STATUS, CONTRACT_START_DATE, CONTRACT_TERM_MONTHS)
+                .build();
+        contractDetail = contractForm.saveContract();
+        contractDetail.goToLinkDetail();
+        Asserts.assertDetailValues(contractDetail, contractForm.getValuesMap());
+    }
 
     /**
      * This method is executed after the scenario.

@@ -44,7 +44,6 @@ public class ContractForm extends FormBase {
 
     private WebElement accountNameLoopList;
 
-    //add boton create
     @FindBy(xpath = ("//span[text()='Customer Signed By']/parent::label/following-sibling::div/"
             + "div/div/div/input']"))
 
