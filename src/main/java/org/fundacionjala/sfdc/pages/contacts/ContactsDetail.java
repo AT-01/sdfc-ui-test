@@ -75,7 +75,7 @@ public class ContactsDetail extends DetailBase {
     private WebElement levelAdress;
 
     @FindBy(xpath = "//span[text()='Details']")
-    private WebElement datails;
+    private WebElement details;
 
     @FindBy(css = "a[title='Show more actions for this record']")
     private WebElement showOptionsButton;
@@ -177,7 +177,7 @@ public class ContactsDetail extends DetailBase {
      * Click.
      */
     public void clickOnDetails() {
-        CommonActions.clickElement(datails);
+        CommonActions.clickElement(details);
     }
 
     /**

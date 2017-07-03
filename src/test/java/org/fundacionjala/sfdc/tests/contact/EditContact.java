@@ -22,7 +22,7 @@ import static org.testng.Assert.assertFalse;
 /**
  * This method is a preconditions to edit and delete a contact.
  */
-public class DeleteEditContact {
+public class EditContact {
 
     private static final String CONTACT_DATA_EDIT_PATH = "contact/EditContactData.json";
     private static final String COMMA = ", ";
@@ -37,10 +37,10 @@ public class DeleteEditContact {
      */
     @BeforeMethod
     public void setUp() {
-        mainApp = new MainApp();
-        LoginPage.loginAsPrimaryUser();
-        appLauncher = mainApp.clickAppLauncher();
         valuesMapJson = JsonMapper.getMapJson(CONTACT_DATA_PATH);
+        LoginPage.loginAsPrimaryUser();
+        mainApp = new MainApp();
+        appLauncher = mainApp.clickAppLauncher();
         ContactHome contactsHome = appLauncher.clickOnContactsHome();
         contactForm = contactsHome.clickNewButton();
         contactForm.fillTheForm(valuesMapJson);
@@ -62,14 +62,4 @@ public class DeleteEditContact {
         contactsDetail.clickDeleteButton();
     }
 
-    /**
-     * This method is to delete a contact.
-     */
-    @Test
-    public void deleteContact() {
-        contactsDetail.clickDeleteButton();
-        assertFalse(contactsDetail.isContactDisplayed(valuesMapJson.get(ContactFields.CONTACT_NAME.getValue())
-                        .concat(COMMA).concat(valuesMapJson.get(ContactFields.CONTACT_NAME.getValue()))),
-                "The contacts shouldn't to be displayed");
-    }
 }
