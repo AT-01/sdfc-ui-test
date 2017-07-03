@@ -15,18 +15,23 @@ public class MainApp extends AbstractBasePage {
     @CacheLookup
     private WebElement appLauncherButton;
 
-    @FindBy(css = "#recentItems tr:first-child td a")
-    private WebElement userInformationLink;
+    @FindBy(css = ".profile-card-name a")
+    private WebElement userInfo;
 
     @FindBy(linkText = "Logout")
     @CacheLookup
     private WebElement logoutBtn;
+
+    @FindBy(css = ".profileTrigger")
+    @CacheLookup
+    private WebElement viewProfile;
 
 
     /**
      * Method that makes click on logout link.
      */
     public void clickLogout() {
+        CommonActions.clickElement(viewProfile);
         CommonActions.clickElement(logoutBtn);
     }
 
@@ -41,15 +46,21 @@ public class MainApp extends AbstractBasePage {
         return new AppLauncher();
     }
 
+
     /**
      * Method that makes click on the user Information link.
      *
      * @return {@link UserInformationPage}
      */
-    UserInformationPage clickUserInformationLink() {
-        CommonActions.clickElement(userInformationLink);
-        return new UserInformationPage();
+    public String getUserLooged() {
+        String userLogged;
+        try {
+            CommonActions.clickElement(viewProfile);
+            CommonActions.sleep(2000);
+            userLogged = String.valueOf(CommonActions.getText(userInfo));
+        } catch (Exception e) {
+            userLogged = e.toString();
+        }
+        return userLogged;
     }
-
-
 }
