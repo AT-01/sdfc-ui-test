@@ -1,11 +1,12 @@
 {
-  "opportunityName": "Opp_name2",
-  "type": "Existing Customer - Replacement",
-  "currentCloseDate": "11/1/2016",
-  "leadSource": "Partner Referral",
-  "nextStep": "Conquer the world 5",
-  "stage": "Needs Analysis",
-  "orderNumber": "00001",
-  "deliveryInstallStatus": "Yet to begin",
-  "accountName": "RuberAccount"
+  "OPPORTUNITY_NAME": "Opp_name2",
+  "AMOUNT":"$100.00",
+  "CURRENT_CLOSE_DATE": "11/01/2018",
+  "LEAD_SOURCE": "Partner Referral",
+  "NEXT_STEP": "Conquer the world 5",
+  "STAGE": "Needs Analysis",
+  "ORDER_NUMBER": "00001",
+  "DELIVERY_INSTALL_STATUS": "Yet to begin"
+
+
 }

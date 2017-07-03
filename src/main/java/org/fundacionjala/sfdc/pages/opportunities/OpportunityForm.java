@@ -1,51 +1,75 @@
 package org.fundacionjala.sfdc.pages.opportunities;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 
-import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.FormSteps;
 import org.fundacionjala.sfdc.pages.base.FormBase;
+
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.ACCOUNT_NAME;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.AMOUNT;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.CURRENT_CLOSE_DATE;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.DELIVERY_INSTALL_STATUS;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.LEAD_SOURCE;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.NEXT_STEP;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.OPPORTUNITY_NAME;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.ORDER_NUMBER;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.PRIVATE_FLAG;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.STAGE;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.TYPE;
+
 
 /**
  * This class represent to a form to create or edit a opportunity.
  */
 public class OpportunityForm extends FormBase {
 
-    @FindBy(id = "opp2")
+    @FindBy(xpath = "//span[text()='Private']/parent::label/following-sibling::input")
     @CacheLookup
-    private WebElement activeFlagCheckBox;
+    private WebElement activeFlagPrivateCheckBox;
 
-    @FindBy(id = "opp3")
+    @FindBy(xpath = "//span[text()='Opportunity Name']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement opportunityNameTextField;
 
-    @FindBy(id = "opp4")
+    @FindBy(xpath = "//span[text()='Account Name']/parent::label/following-sibling::div/div")
     @CacheLookup
     private WebElement accountNameTextField;
+
+
+    @FindBy(css = "li[role='presentation']")
+    @CacheLookup
+    private List<WebElement> accountNameList;
+
+
+    @FindBy(xpath = "//span[@title='New Account']")
+    @CacheLookup
+    private WebElement accountNameCreate;
 
     @FindBy(xpath = ".//*[@id='opp4_lkwgt']/img")
     @CacheLookup
     private WebElement accountNameLookupIconBtn;
 
-    @FindBy(id = "opp5")
+    @FindBy(xpath = "//span[text()='Type']/parent::span/following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement selectTypeCheckBox;
 
-    @FindBy(id = "opp6")
+    @FindBy(xpath = "//span[text()='Lead Source']/parent::span/following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement selectLeadSourceCheckBox;
 
-    @FindBy(id = "opp7")
+    @FindBy(xpath = "//span[text()='Amount']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement amountTextField;
 
-    @FindBy(id = "opp9")
+    @FindBy(xpath = "//span[text()='Close Date']/parent::label/following-sibling::div/child::input")
     @CacheLookup
     private WebElement closeDateField;
 
@@ -53,34 +77,40 @@ public class OpportunityForm extends FormBase {
     @CacheLookup
     private WebElement todayLink;
 
-    @FindBy(id = "opp10")
+    @FindBy(xpath = "//span[text()='Next Step']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement nextStepTextField;
 
-    @FindBy(id = "opp11")
+
+    @FindBy(xpath = "//span[text()='Stage']/parent::label/following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement selectStageField;
 
-    @FindBy(id = "opp12")
+    @FindBy(css = ".uiMenuItem.uiRadioMenuItem>a")
+
+    private List<WebElement> radiobuttonElement;
+
+
+    @FindBy(xpath = "//span[text()='Probability (%)']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement probabilityTextBox;
 
-    @FindBy(id = "opp17")
+    @FindBy(id = "//span[text()='Primary Campaign Source']/parent::label/following-sibling::div/div")
     @CacheLookup
     private WebElement primaryCampaignSourceTextBox;
 
     @FindBy(xpath = "//img[@alt='Primary Campaign Source Lookup (New Window)']")
     private WebElement primaryCampaignSourceLookupIconBtn;
 
-    @FindBy(xpath = "//td[contains(.,'Order Number')]/following::input")
+    @FindBy(xpath = "//span[text()='Order Number']/parent::label/following-sibling::input")
     @CacheLookup
-    private WebElement orderNumberTextBox;
+    private WebElement orderNumberTextField;
 
-    @FindBy(xpath = "//td[contains(.,'Delivery')]/following::span/select")
+    @FindBy(xpath = "//span[text()='Delivery/Installation Status']/parent::span/following-sibling::div/descendant::a")
     @CacheLookup
     private WebElement multiSelectDeliveryInstallationStatus;
 
-    @FindBy(id = "opp14")
+    @FindBy(xpath = "//span[text()='Description']/parent::label/following-sibling::textarea")
     @CacheLookup
     private WebElement descriptionTextArea;
 
@@ -110,6 +140,7 @@ public class OpportunityForm extends FormBase {
     @Override
     public OpportunityDetail clickSaveButton() {
         CommonActions.clickElement(saveButton);
+        CommonActions.sleep(3000);
         return new OpportunityDetail();
     }
 
@@ -129,8 +160,8 @@ public class OpportunityForm extends FormBase {
      * @return {@link OpportunityForm}.
      */
     public OpportunityForm checkPrivateFlag(final boolean flag) {
-        if (!CommonActions.isSelected(activeFlagCheckBox) && flag) {
-            CommonActions.clickElement(activeFlagCheckBox);
+        if (!CommonActions.isSelected(activeFlagPrivateCheckBox) && flag) {
+            CommonActions.clickElement(activeFlagPrivateCheckBox);
         }
         return this;
     }
@@ -153,7 +184,11 @@ public class OpportunityForm extends FormBase {
      * @return {@link OpportunityForm}.
      */
     public OpportunityForm setAccountName(final String accountName) {
-        CommonActions.sendKeys(accountNameTextField, accountName);
+        CommonActions.clickElement(accountNameTextField);
+        List<WebElement> myElements = driver.findElements(
+                By.xpath("//div[contains(@class,'primaryLabel slds-truncate slds-lookup__result-text')]"));
+        CommonActions.selectAnElement(myElements, accountName).click();
+
         return this;
     }
 
@@ -164,9 +199,10 @@ public class OpportunityForm extends FormBase {
      * @return {@link OpportunityForm}.
      */
     public OpportunityForm chooseTypeDdl(final String type) {
-        Select selectBox = new Select(selectTypeCheckBox);
-        selectBox.selectByVisibleText(type);
 
+
+        CommonActions.clickElement(selectTypeCheckBox);
+        CommonActions.selectAnElement(generalDropdown, type).click();
         return this;
     }
 
@@ -177,8 +213,9 @@ public class OpportunityForm extends FormBase {
      * @return {@link OpportunityForm}.
      */
     public OpportunityForm chooseLeadSourceDdl(final String leadSource) {
-        Select selectBox = new Select(selectLeadSourceCheckBox);
-        selectBox.selectByVisibleText(leadSource);
+
+        CommonActions.clickElement(selectLeadSourceCheckBox);
+        CommonActions.selectAnElement(generalDropdown, leadSource).click();
         return this;
     }
 
@@ -234,8 +271,8 @@ public class OpportunityForm extends FormBase {
      * @return {@link OpportunityForm}.
      */
     public OpportunityForm chooseStageDdl(final String stage) {
-        Select selectBox = new Select(selectStageField);
-        selectBox.selectByVisibleText(stage);
+        CommonActions.clickElement(selectStageField);
+        CommonActions.selectAnElement(generalDropdown, stage).click();
         return this;
     }
 
@@ -268,8 +305,8 @@ public class OpportunityForm extends FormBase {
      * @return {@link OpportunityForm}
      */
     public OpportunityForm setOrderNumber(final String orderNumber) {
-        orderNumberTextBox.clear();
-        orderNumberTextBox.sendKeys(orderNumber);
+        orderNumberTextField.clear();
+        orderNumberTextField.sendKeys(orderNumber);
         return this;
     }
 
@@ -280,9 +317,9 @@ public class OpportunityForm extends FormBase {
      * @param deleveryInstallationStatus a string to choose.
      * @return {@link OpportunityForm}.
      */
-    public OpportunityForm chooseDeliveryInstallStatusDdl(final String deleveryInstallationStatus) {
-        Select selectBox = new Select(multiSelectDeliveryInstallationStatus);
-        selectBox.selectByVisibleText(deleveryInstallationStatus);
+    public OpportunityForm chooseDeliveryInstallationStatusDdl(final String deleveryInstallationStatus) {
+        CommonActions.clickElement(multiSelectDeliveryInstallationStatus);
+        CommonActions.selectAnElement(generalDropdown, deleveryInstallationStatus).click();
         return this;
     }
 
@@ -316,28 +353,19 @@ public class OpportunityForm extends FormBase {
     private Map<String, FormSteps> getStrategyStepMap(final Map<String, String> values) {
         final Map<String, FormSteps> strategyMap = new HashMap<>();
 
-        strategyMap.put(OpportunityFields.OPPORTUNITY_NAME.getValue(),
-                () -> setOpportunityName(values.get(OpportunityFields.OPPORTUNITY_NAME.getValue())));
-        strategyMap.put(OpportunityFields.TYPE.getValue(),
-                () -> chooseTypeDdl(values.get(OpportunityFields.TYPE.getValue())));
-        strategyMap.put(OpportunityFields.LEAD_SOURCE.getValue(),
-                () -> chooseLeadSourceDdl(values.get(OpportunityFields.LEAD_SOURCE.getValue())));
-        strategyMap.put(OpportunityFields.AMOUNT.getValue(),
-                () -> setAmount(values.get(OpportunityFields.AMOUNT.getValue())));
-        strategyMap.put(OpportunityFields.NEXT_STEP.getValue(),
-                () -> setNextStep(values.get(OpportunityFields.NEXT_STEP.getValue())));
-        strategyMap.put(OpportunityFields.STAGE.getValue(),
-                () -> chooseStageDdl(values.get(OpportunityFields.STAGE.getValue())));
-        strategyMap.put(OpportunityFields.ORDER_NUMBER.getValue(),
-                () -> setOrderNumber(values.get(OpportunityFields.ORDER_NUMBER.getValue())));
-        strategyMap.put(OpportunityFields.DELIVERY_INSTALL_STATUS.getValue(),
-                () -> chooseDeliveryInstallStatusDdl(values.get(OpportunityFields.DELIVERY_INSTALL_STATUS.getValue())));
-        strategyMap.put(OpportunityFields.ACCOUNT_NAME.getValue(),
-                () -> setAccountName(values.get(OpportunityFields.ACCOUNT_NAME.getValue())));
-        strategyMap.put(OpportunityFields.CURRENT_CLOSE_DATE.getValue(),
-                () -> setCloseDate(values.get(OpportunityFields.CURRENT_CLOSE_DATE.getValue())));
-        strategyMap.put(OpportunityFields.PRIVATE_FLAG.getValue(),
-                () -> checkPrivateFlag(Boolean.parseBoolean(values.get(OpportunityFields.PRIVATE_FLAG.getValue()))));
+        strategyMap.put(OPPORTUNITY_NAME.toString(), () -> setOpportunityName(values.get(OPPORTUNITY_NAME.toString())));
+        strategyMap.put(TYPE.toString(), () -> chooseTypeDdl(values.get(TYPE.toString())));
+        strategyMap.put(LEAD_SOURCE.toString(), () -> chooseLeadSourceDdl(values.get(LEAD_SOURCE.toString())));
+        strategyMap.put(AMOUNT.toString(), () -> setAmount(values.get(AMOUNT.toString())));
+        strategyMap.put(NEXT_STEP.toString(), () -> setNextStep(values.get(NEXT_STEP.toString())));
+        strategyMap.put(STAGE.toString(), () -> chooseStageDdl(values.get(STAGE.toString())));
+        strategyMap.put(ORDER_NUMBER.toString(), () -> setOrderNumber(values.get(ORDER_NUMBER.toString())));
+        strategyMap.put(DELIVERY_INSTALL_STATUS.toString(),
+                () -> chooseDeliveryInstallationStatusDdl(values.get(DELIVERY_INSTALL_STATUS.toString())));
+        strategyMap.put(ACCOUNT_NAME.toString(), () -> setAccountName(values.get(ACCOUNT_NAME.toString())));
+        strategyMap.put(CURRENT_CLOSE_DATE.toString(), () -> setCloseDate(values.get(CURRENT_CLOSE_DATE.toString())));
+        strategyMap.put(PRIVATE_FLAG.toString(),
+                () -> checkPrivateFlag(Boolean.parseBoolean(values.get(PRIVATE_FLAG.toString()))));
 
         return strategyMap;
     }
@@ -388,9 +416,9 @@ public class OpportunityForm extends FormBase {
         public OpportunityBuilder(final String opportunityName, final String currentCloseDate,
                                   final String stage) {
             strategyMap = new HashMap<>();
-            strategyMap.put(OpportunityFields.OPPORTUNITY_NAME.getValue(), opportunityName);
-            strategyMap.put(OpportunityFields.CURRENT_CLOSE_DATE.getValue(), currentCloseDate);
-            strategyMap.put(OpportunityFields.STAGE.getValue(), stage);
+            strategyMap.put(OPPORTUNITY_NAME.toString(), opportunityName);
+            strategyMap.put(CURRENT_CLOSE_DATE.toString(), currentCloseDate);
+            strategyMap.put(STAGE.toString(), stage);
         }
 
         /**
@@ -400,7 +428,7 @@ public class OpportunityForm extends FormBase {
          * @return {@link OpportunityBuilder}
          */
         public OpportunityBuilder setAccountName(final String accountName) {
-            strategyMap.put(OpportunityFields.ACCOUNT_NAME.getValue(), accountName);
+            strategyMap.put(ACCOUNT_NAME.toString(), accountName);
             return this;
         }
 
@@ -411,7 +439,7 @@ public class OpportunityForm extends FormBase {
          * @return {@link OpportunityBuilder}
          */
         public OpportunityBuilder setType(final String type) {
-            strategyMap.put(OpportunityFields.TYPE.getValue(), type);
+            strategyMap.put(TYPE.toString(), type);
             return this;
         }
 
@@ -422,7 +450,7 @@ public class OpportunityForm extends FormBase {
          * @return {@link OpportunityBuilder}
          */
         public OpportunityBuilder setAmount(final String amount) {
-            strategyMap.put(OpportunityFields.AMOUNT.getValue(), amount);
+            strategyMap.put(AMOUNT.toString(), amount);
             return this;
         }
 

@@ -2,61 +2,53 @@ package org.fundacionjala.sfdc.tests.opportunity;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
-
 import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.opportunities.OpportunityDetail;
 import org.fundacionjala.sfdc.pages.opportunities.OpportunityForm;
 import org.fundacionjala.sfdc.pages.opportunities.OpportunityHome;
-import org.fundacionjala.sfdc.tests.Asserts;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Map;
 
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.OPPORTUNITY_NAME;
+import static org.testng.Assert.assertFalse;
 
 /**
- * This class is a test to create a opportunity.
+ * This class is a test to edit and delete of a opportunity.
  */
-public class CreateOpportunity {
+public class DeleteOpportunity {
 
-    static final String OPPORTUNITY_DATA_PATH = "opportunity/CreateOpportunityData.json";
+    private OpportunityForm opportunityForm;
     private OpportunityDetail opportunityDetail;
     private Map<String, String> valuesMapJson;
     private OpportunityHome opportunityHome;
-    private OpportunityForm opportunityForm;
+
+    // private OpportunityHome opportunityHome;
 
     /**
-     * This method is a preconditions to create a opportunities.
+     * This method is a preconditions to edit and delete a opportunity.
      */
     @BeforeMethod
     public void beforeTest() {
 
-        valuesMapJson = JsonMapper.getMapJson(OPPORTUNITY_DATA_PATH);
+        valuesMapJson = JsonMapper.getMapJson(CreateOpportunity.OPPORTUNITY_DATA_PATH);
         LoginPage.loginAsPrimaryUser();
-        opportunityHome = Navigator.goToOpportunity();
-
-    }
-
-    /**
-     * This a test to create a opportunities.
-     */
-    @Test
-    public void createOpportunity() {
-
+        opportunityHome =  Navigator.goToOpportunity();
         opportunityForm = opportunityHome.clickNewButton();
         opportunityForm.fillTheForm(valuesMapJson);
         opportunityDetail = opportunityForm.clickSaveButton();
-        opportunityDetail.clickDetails();
-        Asserts.assertDetailValues(opportunityDetail, valuesMapJson);
+
     }
 
     /**
-     * This a post conditions a opportunities.
+     * This a test to delete a opportunities.
      */
-    @AfterMethod
-    public void afterTest() {
-
+    @Test
+    public void deleteOpportunity() {
         opportunityDetail.clickDeleteButton();
+        assertFalse(opportunityDetail.isOpportunityDisplayed(valuesMapJson.get(OPPORTUNITY_NAME.toString())));
     }
+
+
 }

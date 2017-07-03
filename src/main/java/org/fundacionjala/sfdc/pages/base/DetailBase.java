@@ -17,9 +17,13 @@ public abstract class DetailBase extends AbstractBasePage {
     @CacheLookup
     protected WebElement deleteBtn;
 
-    @FindBy(css = "[title='Edit']")
+    @FindBy(css = "a[title='Edit']")
     @CacheLookup
     protected WebElement editBtn;
+
+    @FindBy(name = "clone")
+    @CacheLookup
+    protected WebElement cloneBtn;
 
     @FindBy(css = "[title='Details']")
     @CacheLookup
