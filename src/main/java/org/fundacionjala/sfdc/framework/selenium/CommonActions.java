@@ -10,7 +10,6 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-
 import org.fundacionjala.sfdc.framework.selenium.browser.DriverManager;
 
 
@@ -204,7 +203,7 @@ public final class CommonActions {
     /**
      * Click.
      *
-     * @param element to seelt
+     * @param element to be clicked.
      */
     public static void clickOnaHiddenElement(final WebElement element) {
         DriverManager.getInstance().getWait()
