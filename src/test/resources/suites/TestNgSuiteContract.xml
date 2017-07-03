@@ -6,7 +6,8 @@
     <test name="Contract">
         <classes>
             <class name="org.fundacionjala.sfdc.tests.contract.CreateContract"/>
-            <class name="org.fundacionjala.sfdc.tests.contract.DeleteEditContract"/>
+            <class name="org.fundacionjala.sfdc.tests.contract.DeleteContract"/>
+            <class name="org.fundacionjala.sfdc.tests.contract.EditContract"/>
         </classes>
     </test>
 </suite>
