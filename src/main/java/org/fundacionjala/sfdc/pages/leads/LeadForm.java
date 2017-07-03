@@ -169,7 +169,8 @@ public class LeadForm extends FormBase {
     @FindBy(css = "button[title='Save & New']")
     private WebElement saveAndNewButton;
 
-    @FindBy(css = "button[title='Save']")
+    @FindBy(xpath = "//button[@class='slds-button slds-button--neutral uiButton--default uiButton--"
+            + "brand uiButton forceActionButton']")
     private WebElement saveButton;
 
 
@@ -359,7 +360,7 @@ public class LeadForm extends FormBase {
      * @return a String with the number formatted.
      */
     private String formatNumber(final String number) {
-        return NumberFormat.getNumberInstance(Locale.US).format(Integer.parseInt(number));
+        return NumberFormat.getNumberInstance(Locale.GERMANY).format(Integer.parseInt(number));
     }
 
     /**
@@ -371,18 +372,18 @@ public class LeadForm extends FormBase {
     private String formatAddress(final Map<String, String> valuesMap) {
         String address = "";
         if (String.valueOf(valuesMap.get(LeadFields.ZIP_CODE.toString())).equals("null")) {
-            address = valuesMap.get(LeadFields.STREET.toString()) + "\n"
+            address = valuesMap.get(LeadFields.STREET.toString()) + "," + "\n"
                     + valuesMap.get(LeadFields.CITY.toString())
                     + ", " + valuesMap.get(LeadFields.STATE_PROVINCE.toString())
-                    + "\n" + valuesMap.get(LeadFields.COUNTRY.toString());
+                    + " " + valuesMap.get(LeadFields.COUNTRY.toString());
         } else {
-            address = valuesMap.get(LeadFields.STREET.toString()) + "\n"
+            address = valuesMap.get(LeadFields.STREET.toString()) + "," + "\n"
                     + valuesMap.get(LeadFields.CITY.toString())
                     + ", " + valuesMap.get(LeadFields.STATE_PROVINCE.toString())
                     + " " + valuesMap.get(LeadFields.ZIP_CODE.toString())
-                    + "\n" + valuesMap.get(LeadFields.COUNTRY.toString());
+                    + " " + valuesMap.get(LeadFields.COUNTRY.toString());
         }
-        return formatString(address);
+        return address;
     }
 
     /**
