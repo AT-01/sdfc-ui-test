@@ -7,8 +7,6 @@ import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.MainApp;
-import org.fundacionjala.sfdc.pages.campaigns.CampaignDetail;
-import org.fundacionjala.sfdc.pages.campaigns.CampaignsHome;
 import org.fundacionjala.sfdc.pages.leads.LeadDetails;
 import org.fundacionjala.sfdc.pages.leads.LeadForm;
 import org.fundacionjala.sfdc.pages.leads.LeadHome;
@@ -23,11 +21,11 @@ import static org.fundacionjala.sfdc.tests.Asserts.assertDetailValues;
  */
 public class CreateLead {
 
-    private static final String CAMPAIGN_NAME = "AT-CampaignTest-01";
+    //private static final String CAMPAIGN_NAME = "AT-CampaignTest-01";
     private static final String LEAD_DATA_PATH = "lead/CreateLeadData.json";
 
-    private CampaignsHome campaignsHome;
-    private CampaignDetail campaignDetail;
+    //private CampaignsHome campaignsHome;
+    //private CampaignDetail campaignDetail;
     private AppLauncher appLauncher;
     private MainApp mainApp;
     private LeadHome leadHome;
@@ -43,6 +41,15 @@ public class CreateLead {
      */
     @BeforeMethod
     public void setUp() {
+        //TabBar tabBar = new TabBar();
+        /*LoginPage.loginAsPrimaryUser();
+        campaignsHome = Navigator.goToCampaign();
+        campaignsHome.clickNewButton();
+        Campaigns campaigns = new Campaigns.CampaignBuilder(CAMPAIGN_NAME).setActive("checked")
+                .build();
+        campaignDetail = campaigns.createCampaign();
+        valuesMapJson = JsonMapper.getMapJson(LEAD_DATA_PATH);
+        //valuesMapJson.put(CAMPAIGN.toString(), CAMPAIGN_NAME);*/
         valuesMapJson = JsonMapper.getMapJson(LEAD_DATA_PATH);
         LoginPage.loginAsPrimaryUser();
         mainApp = new MainApp();
@@ -58,7 +65,7 @@ public class CreateLead {
         leadForm = leadHome.clickNewButton();
         leadForm.fillTheForm(valuesMapJson);
         leadDetails = leadForm.clickSaveButton();
-        leadDetails.clickDetails();
+        leadDetails.clickDetailsButton();
         assertDetailValues(leadDetails, leadForm.formatJson(valuesMapJson));
 
     }
@@ -69,9 +76,9 @@ public class CreateLead {
     @AfterMethod
     public void tearDown() {
         leadDetails.clickDeleteButton();
-        campaignsHome = new AppLauncher().clickCampaigns();
+        /*campaignsHome = new AppLauncher().clickCampaigns();
         campaignDetail = campaignsHome.selectCampaign(CAMPAIGN_NAME);
-        campaignDetail.clickDeleteButton();
+        campaignDetail.clickDeleteButton();*/
     }
 }
 
