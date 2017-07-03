@@ -177,7 +177,7 @@ public class ContactsDetail extends DetailBase {
      * Click.
      */
     public void clickOnDetails() {
-        CommonActions.clickElement(datails);
+        CommonActions.clickOnaHiddenElement(datails);
     }
 
     /**

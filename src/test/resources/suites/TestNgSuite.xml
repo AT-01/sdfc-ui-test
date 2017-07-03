@@ -16,7 +16,7 @@
             <class name="org.fundacionjala.sfdc.tests.chatter.CreateChatterPost"/>
             <class name="org.fundacionjala.sfdc.tests.chatter.DeleteChatterPost"/>
             <class name="org.fundacionjala.sfdc.tests.chatter.EditChatterPost"/>
-            <class name="org.fundacionjala.sfdc.tests.contact.DeleteEditContact"/>
+            <class name="org.fundacionjala.sfdc.tests.contact.EditContact"/>
             <class name="org.fundacionjala.sfdc.tests.contact.CreateContact"/>
             <!--<class name="org.fundacionjala.sfdc.tests.contract.CreateContract"/>-->
             <!--<class name="org.fundacionjala.sfdc.tests.contract.DeleteEditContract"/>-->

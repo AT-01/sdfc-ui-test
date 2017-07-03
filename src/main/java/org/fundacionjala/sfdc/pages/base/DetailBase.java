@@ -17,7 +17,7 @@ public abstract class DetailBase extends AbstractBasePage {
     @CacheLookup
     protected WebElement deleteBtn;
 
-    @FindBy(xpath = "//button[@title='Edit Status']")
+    @FindBy(css = "[title='Edit']")
     @CacheLookup
     protected WebElement editBtn;
 

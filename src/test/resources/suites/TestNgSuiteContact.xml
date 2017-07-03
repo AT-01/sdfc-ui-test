@@ -5,7 +5,7 @@
     </listeners>
     <test name="Regression1">
         <classes>
-            <class name="org.fundacionjala.sfdc.tests.contact.DeleteEditContact"/>
+            <class name="org.fundacionjala.sfdc.tests.contact.EditContact"/>
             <class name="org.fundacionjala.sfdc.tests.contact.CreateContact"/>
         </classes>
     </test>
