@@ -54,7 +54,7 @@ public class ContractForm extends FormBase {
     private WebElement priceBookMultiSelect;
 
     @FindBy(xpath = "//span[text()='Status']/"
-            +  "parent::span/following-sibling::div/descendant::a")
+            + "parent::span/following-sibling::div/descendant::a")
 
     private WebElement statusMultiselect;
 
@@ -141,7 +141,8 @@ public class ContractForm extends FormBase {
         accountNameTextField.click();
         List<WebElement> myElements = driver.findElements(By.xpath("//div[contains(@class,'primaryLabel "
                 + "slds-truncate slds-lookup__result-text')]"));
-        CommonActions.findElement(myElements, accountName);
+
+        CommonActions.selectAnElement(myElements, accountName).click();
         return this;
     }
 
@@ -153,9 +154,11 @@ public class ContractForm extends FormBase {
      */
     public ContractForm setCustomerSignedTitle(final String customerSignedTitle) {
         accountNameTextField.click();
+        accountNameTextField.click();
         List<WebElement> myElements = driver.findElements(By.xpath("//div[contains"
                 + "(@class,'primaryLabel slds-truncate slds-lookup__result-text')]"));
-        CommonActions.findElement(myElements, customerSignedTitle);
+
+        CommonActions.selectAnElement(myElements, customerSignedTitle).click();
         return this;
     }
 
@@ -181,8 +184,7 @@ public class ContractForm extends FormBase {
 
         statusMultiselect.click();
         List<WebElement> myElements = driver.findElements(By.xpath("//a[contains(@role,'menuitemradio')]"));
-        CommonActions.findElement(myElements, status);
-
+        CommonActions.selectAnElement(myElements, status).click();
         return this;
     }
 
@@ -197,6 +199,7 @@ public class ContractForm extends FormBase {
         contractStartDateTextBox.sendKeys(contractStartDate);
         return this;
     }
+
 
     /**
      * This method sets the contract term in months.
