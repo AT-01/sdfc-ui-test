@@ -56,7 +56,6 @@ public class MainApp extends AbstractBasePage {
         String userLogged;
         try {
             CommonActions.clickElement(viewProfile);
-            CommonActions.sleep(2000);
             userLogged = String.valueOf(CommonActions.getText(userInfo));
         } catch (Exception e) {
             userLogged = e.toString();
