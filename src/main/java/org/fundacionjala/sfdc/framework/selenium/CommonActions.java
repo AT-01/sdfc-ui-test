@@ -84,7 +84,7 @@ public final class CommonActions {
     public static WebElement selectAnElement(final List<WebElement> elementsList,
                                              final String selectItem) {
         WebElement webElement = elementsList.stream()
-                .filter(element -> selectItem.equals(element.getText()))
+                .filter(element -> selectItem.equalsIgnoreCase(element.getText()))
                 .findAny()
                 .orElse(null);
         if (webElement == null) {

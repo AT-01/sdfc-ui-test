@@ -3,7 +3,6 @@ package org.fundacionjala.sfdc.pages.leads;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
@@ -13,119 +12,150 @@ import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.AssertsDetails;
 import org.fundacionjala.sfdc.pages.base.DetailBase;
 
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.COMPANY;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.ADDRESS;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.ANNUAL_REVENUE;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.CURRENT_GENERATORS;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.DESCRIPTION;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.EMAIL;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.FAX;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.FULL_NAME;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.INDUSTRY;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.LEAD_SOURCE;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.LEAD_STATUS;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.MOBILE;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.NUMBER_LOCATIONS;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.NUM_EMPLOYEES;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.PHONE;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.PRIMARY;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.PRODUCT_INTEREST;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.RATING;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.SICCODE;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.TITLE;
+import static org.fundacionjala.sfdc.pages.leads.LeadFields.WEBSITE;
+
+
 /**
  * Class to manage the Detail of the LeadHome Page when it was created.
  */
 public class LeadDetails extends DetailBase {
 
     /*LeadHome Information*/
-    @FindBy(id = "lea1_ileinner")
+    @FindBy(xpath = "//span[text()='Lead Owner']/parent::div/following-sibling::div/span/div/div")
     @CacheLookup
     private WebElement ownerLabel;
 
     @FindBy(xpath = "//span[text()='Details']")
     @CacheLookup
-    private WebElement details;
+    private WebElement detailsButton;
 
-
-    @FindBy(id = "lea2_ileinner")
+    @FindBy(xpath = "//span[text()='Name']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement nameLabel;
 
-    @FindBy(id = "lea3_ileinner")
+    @FindBy(xpath = "//span[text()='Company']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement companyLabel;
 
-    @FindBy(id = "lea4_ileinner")
+    @FindBy(xpath = "//span[text()='Title']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement titleLabel;
 
-    @FindBy(id = "lea5_ileinner")
+    @FindBy(xpath = "//span[text()='Lead Source']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement leadSourceLabel;
 
-    @FindBy(id = "lea6_ileinner")
+    @FindBy(xpath = "//span[text()='Industry']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement industryLabel;
 
-    @FindBy(id = "lea7_ileinner")
+    @FindBy(xpath = "//span[text()='Annual Revenue']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement annualRevenueLabel;
 
-    @FindBy(id = "lea8_ileinner")
+    @FindBy(xpath = "//span[text()='Phone']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement phoneLabel;
 
-    @FindBy(id = "lea9_ileinner")
+    @FindBy(xpath = "//span[text()='Mobile']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement mobileLabel;
 
-    @FindBy(id = "lea10_ileinner")
+    @FindBy(xpath = "//span[text()='Fax']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement faxLabel;
 
-    @FindBy(id = "lea11_ileinner")
+    @FindBy(xpath = "//span[text()='Email']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement emailLabel;
 
-    @FindBy(id = "lea12_ileinner")
+    @FindBy(xpath = "//span[text()='Website']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement websiteLabel;
 
-    @FindBy(id = "lea13_ileinner")
+    @FindBy(xpath = "//span[text()='Lead Status']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement leadStatusLabel;
 
-    @FindBy(id = "lea14_ileinner")
+    @FindBy(xpath = "//span[text()='Rating']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement ratingLabel;
 
-    @FindBy(id = "lea15_ileinner")
+    @FindBy(xpath = "//span[text()='No. of Employees']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement numEmployeesLabel;
 
     /*Address Information*/
-    @FindBy(id = "lea16_ileinner")
+    @FindBy(xpath = "//span[text()='Address']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement addressLabel;
 
     /*additional information*/
-    @FindBy(xpath = "//td[contains(.,'Product Interest')]/following::div")
+    @FindBy(xpath = "//span[text()='Product Interest']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement productInterestLabel;
 
-    @FindBy(xpath = "//td[contains(.,'SIC Code')]/following::div")
+    @FindBy(xpath = "//span[text()='SIC Code']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement sicCodeLabel;
 
-    @FindBy(xpath = "//td[contains(.,'Number of Locations')]/following::div")
+    @FindBy(xpath = "//span[text()='Number of Locations']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement numLocationsLabel;
 
-    @FindBy(xpath = "//td[contains(.,'Current Generator')]/following::div")
+    @FindBy(xpath = "//span[text()='Current Generator(s)']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement currentGeneratorsLabel;
 
-    @FindBy(xpath = "//td[contains(.,'Primary')]/following::div")
+    @FindBy(xpath = "//span[text()='Primary']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement primaryLabel;
 
     /*Others*/
-    @FindBy(id = "lea17_ileinner")
+    @FindBy(xpath = "//span[text()='Description']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement descriptionLabel;
 
-    @FindBy(id = "CreatedBy_ileinner")
+    @FindBy(xpath = "//span[text()='Created By']/parent::div/following-sibling::div/span/div")
     @CacheLookup
     private WebElement createdByLabel;
 
-    @FindBy(id = "LastModifiedBy_ileinner")
+    @FindBy(xpath = "//span[text()='Last Modified By']/parent::div/following-sibling::div/span/div")
     @CacheLookup
     private WebElement lastModifiedByLabel;
 
     @FindBy(css = "div.listRelatedObject.campaignBlock table.list")
     @CacheLookup
     private WebElement campaignBlock;
+
+    @FindBy(css = "a[title='Show more actions for this record']")
+    @CacheLookup
+    private WebElement buttonMoreActions;
+
+    @FindBy(css = "button[title=\"Delete\"]")
+    @CacheLookup
+    private WebElement buttonDeleteConfirm;
+
 
     /**
      * Method that gets the Owner that was registered in the creation of LeadHome.
@@ -139,8 +169,8 @@ public class LeadDetails extends DetailBase {
     /**
      * Method that gets the Owner that was registered in the creation of LeadHome.
      */
-    public void clickDetails() {
-        CommonActions.clickElement(details);
+    public void clickDetailsButton() {
+        CommonActions.clickElement(detailsButton);
     }
 
     /**
@@ -369,32 +399,46 @@ public class LeadDetails extends DetailBase {
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap<>();
 
-        strategyMap.put(LeadFields.FULL_NAME.toString(), this::getNameLabel);
-        strategyMap.put(LeadFields.COMPANY.toString(), this::getCompanyLabel);
-        strategyMap.put(LeadFields.TITLE.toString(), this::getTitleLabel);
-        strategyMap.put(LeadFields.LEAD_SOURCE.toString(), this::getLeadSourceLabel);
-        strategyMap.put(LeadFields.INDUSTRY.toString(), this::getIndustryLabel);
-        strategyMap.put(LeadFields.PHONE.toString(), this::getPhoneLabel);
-        strategyMap.put(LeadFields.MOBILE.toString(), this::getMobileLabel);
-        strategyMap.put(LeadFields.FAX.toString(), this::getFaxLabel);
-        strategyMap.put(LeadFields.ANNUAL_REVENUE.toString(), this::getAnnualRevenueLabel);
+        strategyMap.put(FULL_NAME.toString(), this::getNameLabel);
+        strategyMap.put(COMPANY.toString(), this::getCompanyLabel);
+        strategyMap.put(TITLE.toString(), this::getTitleLabel);
+        strategyMap.put(LEAD_SOURCE.toString(), this::getLeadSourceLabel);
+        strategyMap.put(INDUSTRY.toString(), this::getIndustryLabel);
+        strategyMap.put(PHONE.toString(), this::getPhoneLabel);
+        strategyMap.put(MOBILE.toString(), this::getMobileLabel);
+        strategyMap.put(FAX.toString(), this::getFaxLabel);
+        strategyMap.put(ANNUAL_REVENUE.toString(), this::getAnnualRevenueLabel);
 
-        strategyMap.put(LeadFields.EMAIL.toString(), this::getEmailLabel);
-        strategyMap.put(LeadFields.WEBSITE.toString(), this::getWebsiteLabel);
-        strategyMap.put(LeadFields.LEAD_STATUS.toString(), this::getLeadStatusLabel);
-        strategyMap.put(LeadFields.RATING.toString(), this::getRatingLabel);
-        strategyMap.put(LeadFields.NUM_EMPLOYEES.toString(), this::getNumEmployeesLabel);
-        strategyMap.put(LeadFields.ADDRESS.toString(), this::getAddressLabel);
+        strategyMap.put(EMAIL.toString(), this::getEmailLabel);
+        strategyMap.put(WEBSITE.toString(), this::getWebsiteLabel);
+        strategyMap.put(LEAD_STATUS.toString(), this::getLeadStatusLabel);
+        strategyMap.put(RATING.toString(), this::getRatingLabel);
+        strategyMap.put(NUM_EMPLOYEES.toString(), this::getNumEmployeesLabel);
+        strategyMap.put(ADDRESS.toString(), this::getAddressLabel);
 
-        strategyMap.put(LeadFields.PRODUCT_INTEREST.toString(), this::getProductInterestLabel);
-        strategyMap.put(LeadFields.SICCODE.toString(), this::getSicCodeLabel);
-        strategyMap.put(LeadFields.NUMBER_LOCATIONS.toString(), this::getNumLocationsLabel);
-        strategyMap.put(LeadFields.CURRENT_GENERATORS.toString(), this::getCurrentGeneratorsLabel);
-        strategyMap.put(LeadFields.PRIMARY.toString(), this::getPrimaryLabel);
+        strategyMap.put(PRODUCT_INTEREST.toString(), this::getProductInterestLabel);
+        strategyMap.put(SICCODE.toString(), this::getSicCodeLabel);
+        strategyMap.put(NUMBER_LOCATIONS.toString(), this::getNumLocationsLabel);
+        strategyMap.put(CURRENT_GENERATORS.toString(), this::getCurrentGeneratorsLabel);
+        strategyMap.put(PRIMARY.toString(), this::getPrimaryLabel);
 
-        strategyMap.put(LeadFields.DESCRIPTION.toString(), this::getDescriptionLabel);
+        strategyMap.put(DESCRIPTION.toString(), this::getDescriptionLabel);
 
         return strategyMap;
+    }
+
+    /**
+     * Method that gets the Owner that was registered in the creation of LeadHome.
+     */
+    public void clickButtonMoreActions() {
+        CommonActions.clickElement(buttonMoreActions);
+    }
+
+    /**
+     * Method that gets the Owner that was registered in the creation of LeadHome.
+     */
+    public void buttonDeleteConfirm() {
+        CommonActions.clickElement(buttonDeleteConfirm);
     }
 
     /**
@@ -402,6 +446,7 @@ public class LeadDetails extends DetailBase {
      */
     @Override
     public LeadForm clickEditButton() {
+        clickButtonMoreActions();
         CommonActions.clickElement(editBtn);
         return new LeadForm();
     }
@@ -411,9 +456,11 @@ public class LeadDetails extends DetailBase {
      */
     @Override
     public LeadHome clickDeleteButton() {
+        clickButtonMoreActions();
         CommonActions.clickElement(deleteBtn);
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
+        buttonDeleteConfirm();
+        //Alert alert = driver.switchTo().alert();
+        //alert.accept();
         return new LeadHome();
     }
 }

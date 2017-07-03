@@ -3,73 +3,86 @@ package org.fundacionjala.sfdc.pages.contracts;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.AssertsDetails;
-import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.fundacionjala.sfdc.pages.base.DetailBase;
+
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.ACCOUNT_NAME;
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.COMPANY_SIGNED_BY;
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.COMPANY_SIGNED_DATE;
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.CONTRACT_START_DATE;
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.CONTRACT_TERM_MONTHS;
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.CUSTOMER_SIGNED_BY;
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.CUSTOMER_SIGNED_DATE;
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.CUSTOMER_SIGNED_TITLE;
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.OWNER_EXPIRATION_NOTICE;
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.PRICE_BOOK;
+import static org.fundacionjala.sfdc.pages.contracts.ContractFields.STATUS;
 
 /**
  * This class represents of the contract detail.
  */
 public class ContractDetail extends DetailBase {
 
-    @FindBy(id = "ctrc2_ileinner")
+    @FindBy(xpath = "//span[contains(.,'Details')]")
+    @CacheLookup
+    private WebElement detailsLink;
+
+    @FindBy(xpath = "//span[text()='Contract Number']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement contractNumberLabel;
 
-    @FindBy(id = "ctrc7_ileinner")
+    @FindBy(xpath = "//span[text()='Account Name']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement accountNameLabel;
 
-    @FindBy(id = "ctrc16_ileinner")
+    @FindBy(xpath = "//span[text()='Customer Signed By']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement customerSignedByLabel;
 
-    @FindBy(id = "CustomerSignedTitle_ileinner")
+    @FindBy(xpath = "//span[text()='Customer Signed Title']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement customerSignedTitleLabel;
 
-    @FindBy(id = "ctrc6_ileinner")
+    @FindBy(xpath = "//span[text()='Customer Signed Date']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement customerSignedDateLabel;
 
-    @FindBy(id = "ctrc17_ileinner")
+    @FindBy(xpath = "//span[text()='Price Book']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement priceBookLabel;
 
-    @FindBy(id = "ctrc15_ileinner")
+    @FindBy(xpath = "//span[text()='Status']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement statusLabel;
 
-    @FindBy(id = "ctrc5_ileinner")
+    @FindBy(xpath = "//span[text()='Contract Start Date']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement contractStartDateLabel;
 
-    @FindBy(id = "ctrc14_ileinner")
+    @FindBy(xpath = "//span[text()='Contract End Date']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement contractEndDateLabel;
 
-    @FindBy(id = "ctrc40_ileinner")
+    @FindBy(xpath = "//span[text()='Contract Term (months)']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement contractTermMonthsLabel;
 
-    @FindBy(id = "ctrc13_ileinner")
+    @FindBy(xpath = "//span[text()='Owner Expiration Notice']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement ownerExpirationNoticeLabel;
 
-    @FindBy(id = "CompanySigned_ileinner")
+    @FindBy(xpath = "//span[text()='Company Signed By']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement companySignedByLabel;
 
-    @FindBy(id = "CompanySignedDate_ileinner")
+    @FindBy(xpath = "//span[text()='Company Signed Date']/parent::div/following-sibling::div/span")
     @CacheLookup
     private WebElement companySignedDateLabel;
 
@@ -86,10 +99,10 @@ public class ContractDetail extends DetailBase {
      * {@inheritDoc}
      */
     @Override
-    public AbstractBasePage clickDeleteButton() {
+    public ContractHome clickDeleteButton() {
+        CommonActions.clickElement(downArrow);
         CommonActions.clickElement(deleteBtn);
-        Alert alert = wait.until(ExpectedConditions.alertIsPresent());
-        alert.accept();
+        CommonActions.clickElement(confirmDeleteButton);
         return new ContractHome();
     }
 
@@ -217,6 +230,8 @@ public class ContractDetail extends DetailBase {
      * @return true if the contract with the number sent is displayed.
      */
     public boolean isContractDisplayed(final String contractNumber) {
+        //span[contains(.,'Contract "00000120" was deleted.')]
+        System.out.println();
         try {
             driver.findElement(By.linkText(contractNumber)).getText();
             return true;
@@ -234,18 +249,27 @@ public class ContractDetail extends DetailBase {
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap<>();
 
-        strategyMap.put(ContractFields.ACCOUNT_NAME.toString(), this::getAccountName);
-        strategyMap.put(ContractFields.CUSTOMER_SIGNED_BY.toString(), this::getCustomerSignedBy);
-        strategyMap.put(ContractFields.CUSTOMER_SIGNED_TITLE.toString(), this::getCustomerSignedTitle);
-        strategyMap.put(ContractFields.CUSTOMER_SIGNED_DATE.toString(), this::getCustomerSignedDate);
-        strategyMap.put(ContractFields.PRICE_BOOK.toString(), this::getPriceBook);
-        strategyMap.put(ContractFields.STATUS.toString(), this::getStatus);
-        strategyMap.put(ContractFields.CONTRACT_START_DATE.toString(), this::getContractStartDate);
-        strategyMap.put(ContractFields.CONTRACT_TERM_MONTHS.toString(), this::getContractTermMonths);
-        strategyMap.put(ContractFields.OWNER_EXPIRATION_NOTICE.toString(), this::getOwnerExpirationNotice);
-        strategyMap.put(ContractFields.COMPANY_SIGNED_BY.toString(), this::getCompanySignedBy);
-        strategyMap.put(ContractFields.COMPANY_SIGNED_DATE.toString(), this::getCompanySignedDate);
+        strategyMap.put(ACCOUNT_NAME.toString(), this::getAccountName);
+        strategyMap.put(CUSTOMER_SIGNED_BY.toString(), this::getCustomerSignedBy);
+        strategyMap.put(CUSTOMER_SIGNED_TITLE.toString(), this::getCustomerSignedTitle);
+        strategyMap.put(CUSTOMER_SIGNED_DATE.toString(), this::getCustomerSignedDate);
+        strategyMap.put(PRICE_BOOK.toString(), this::getPriceBook);
+        strategyMap.put(STATUS.toString(), this::getStatus);
+        strategyMap.put(CONTRACT_START_DATE.toString(), this::getContractStartDate);
+        strategyMap.put(CONTRACT_TERM_MONTHS.toString(), this::getContractTermMonths);
+        strategyMap.put(OWNER_EXPIRATION_NOTICE.toString(), this::getOwnerExpirationNotice);
+        strategyMap.put(COMPANY_SIGNED_BY.toString(), this::getCompanySignedBy);
+        strategyMap.put(COMPANY_SIGNED_DATE.toString(), this::getCompanySignedDate);
         return strategyMap;
     }
 
+    /**
+     * This method Navigate.
+     */
+
+    public void goToLinkDetail() {
+
+        CommonActions.sleep(3000);
+        CommonActions.clickElement(detailsLink);
+    }
 }
