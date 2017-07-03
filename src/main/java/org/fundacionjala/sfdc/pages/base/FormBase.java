@@ -1,5 +1,7 @@
 package org.fundacionjala.sfdc.pages.base;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -19,6 +21,9 @@ public abstract class FormBase extends AbstractBasePage {
 
     @FindBy(css = "button[title='Cancel']")
     private WebElement cancelBtn;
+
+    @FindBy(css = "div.visible.positioned li.uiMenuItem.uiRadioMenuItem>a")
+    protected List<WebElement> generalDropdown;
 
     /**
      * Clicks on "save" button.

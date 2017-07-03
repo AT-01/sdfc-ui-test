@@ -28,9 +28,6 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     private WebElement activeCheckbox;
 
-    @FindBy(css = "div.visible.positioned li.uiMenuItem.uiRadioMenuItem>a")
-    private List<WebElement> generalDropdown;
-
     @FindBy(css = "[aria-label=\"Type\"]")
     @CacheLookup
     private WebElement typeDropdownButton;
