@@ -49,7 +49,7 @@ public class AppLauncher extends AbstractBasePage {
     @CacheLookup
     private WebElement opportunitiesTab;
 
-    @FindBy(id = "Contract_Tab")
+    @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Contracts']")
     @CacheLookup
     private WebElement contractsTab;
 
