@@ -1,16 +1,11 @@
 package org.fundacionjala.sfdc.pages.chatter;
 
-import org.openqa.selenium.Alert;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import org.fundacionjala.sfdc.framework.selenium.CommonActions;
-import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 
 
 /**
@@ -23,14 +18,22 @@ public class PostContainer extends AbstractBasePage {
     private static final int TIME_IN_MILLISECONDS = 1000;
 
 
-    @FindBy(linkText = "Delete")
+    @FindBy(css = "a[title='Delete']")
     @CacheLookup
     private WebElement deleteOptn;
 
-    @FindBy(linkText = "Edit")
+    @FindBy(css = "div[class='uiMenu forceChatterOverflowActionMenu']")
+    @CacheLookup
+    private WebElement downDropButton;
+
+    @FindBy(xpath = "//a[@title='Edit']")
     @CacheLookup
     private WebElement editOptn;
-    private String postText;
+
+    @FindBy(css = "button[title='Delete']")
+    @CacheLookup
+    private WebElement clickConfirmDelete;
+
 
     /**
      * Deletes a determined post.
@@ -42,11 +45,15 @@ public class PostContainer extends AbstractBasePage {
     public PostForm deletePost(final String postTxt) {
         clickActionMenu(postTxt);
         CommonActions.clickElement(deleteOptn);
-        WebDriverWait wait = new WebDriverWait(driver, EXPECTATION_TIME_OUT, SLEEP_IN_MILLISECONDS);
-        wait.until(ExpectedConditions.alertIsPresent());
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
+        CommonActions.clickElement(clickConfirmDelete);
         return new PostForm();
+    }
+
+    /**
+     * Deletes a determined post.
+     */
+    public void clickDownDropButton() {
+        CommonActions.clickElement(downDropButton);
     }
 
     /**
@@ -66,70 +73,24 @@ public class PostContainer extends AbstractBasePage {
     /**
      * Makes click on the action menu of a determined post.
      *
-     * @param postTxt Is the post text used to identify the
-     *                publication to click its action menu.
+     * @param postText Is the post text used to identify the
+     *                 publication to click its action menu.
      */
-    private void clickActionMenu(final String postTxt) {
-        WebElement actionMenu = driver.findElement(By.xpath("//span[contains(.,'" + postTxt + "')]/ancestor::div["
-                + "@class='feeditembody']/following::a[@class='zen-trigger feeditemActionMenuButton']"));
+    private void clickActionMenu(final String postText) {
+        WebElement actionMenu = driver.findElement(By.xpath("//span[text()='" + postText + " " + "']/ancestor::"
+                + "div[@class='cuf-feedElementIterationItem slds-feed__item']/descendant::"
+                + "a[contains(@class, 'cuf-feedItemActionTrigger')]"));
         CommonActions.clickElement(actionMenu);
     }
 
     /**
      * Method that verify os an element is present.
-     *
+     * @param postText text data.
      * @return true if the element is present.
      */
-    public boolean isPostDisplayed() {
-        WebElement postContainer;
-        try {
-            Thread.sleep(TIME_IN_MILLISECONDS);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            postContainer = wait.until(ExpectedConditions
-                    .visibilityOf(driver.findElement(By.xpath("//span[contains(.,'" + this.getPostxt() + "')]"))));
-        } catch (WebDriverException e) {
-            return false;
-        }
-        return isElementPresent(postContainer);
-    }
-
-    /**
-     * Method that verify if an element is present in the page.
-     *
-     * @param webElement the element to search.
-     * @return true if the element is present.
-     */
-    public boolean isElementPresent(final WebElement webElement) {
-        try {
-            webElement.getText();
-            return true;
-        } catch (WebDriverException e) {
-            return false;
-        }
-    }
-
-    /**
-     * Method that get the Post.
-     *
-     * @return a String with the Post.
-     */
-    public String getPostxt() {
-        return this.postText;
-    }
-
-    /**
-     * Method that sets the Post.
-     *
-     * @param postTxt String with the post.
-     * @return {@link PostContainer}
-     */
-    public PostContainer setPostTxt(final String postTxt) {
-        this.postText = postTxt;
-        return this;
+    public boolean isPostDisplayed(String postText) {
+        WebElement postContainer = driver.findElement(By.xpath("//span[contains(.,'" + postText + "')]"));
+        return CommonActions.isElementPresent(postContainer);
     }
 
     /**
