@@ -29,7 +29,7 @@ public class AppLauncher extends AbstractBasePage {
     @CacheLookup
     private WebElement leadTab;
 
-    @FindBy(id = "Chatter_Tab")
+    @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Chatter']")
     @CacheLookup
     private WebElement chatterTab;
 

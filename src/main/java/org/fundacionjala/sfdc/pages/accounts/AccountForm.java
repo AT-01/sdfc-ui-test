@@ -14,19 +14,26 @@ import org.openqa.selenium.support.FindBy;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_NAME;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_NUMBER;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_SITE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACTIVE;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ANNUAL_REVENUE;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.BILLING_STREET;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.CUSTOMER_PRIORITY;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.DESCRIPTION;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.EMPLOYEES;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.FAX;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.INDUSTRY;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.NUMBER_LOCATIONS;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.OWNERSHIP;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.PHONE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.RATING;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.SHIPPING_STREET;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.SIC_CODE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.SLA;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.SLA_EXPIRATION_DATE;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.SLA_SERIAL;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.TICKER_SYMBOL;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.TYPE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.UPSELL_OPPORTUNITY;
 import static org.fundacionjala.sfdc.pages.accounts.AccountFields.WEBSITE;
 
 /**
@@ -63,12 +70,20 @@ public class AccountForm extends FormBase {
     @CacheLookup
     private WebElement typeDropDownList;
 
+    @FindBy(css = "[aria-label='Industry']")
+    @CacheLookup
+    private WebElement industryDropDownList;
+
     @FindBy(css = "div.visible.positioned li.uiMenuItem.uiRadioMenuItem>a")
     private List<WebElement> dropDownList;
 
     @FindBy(xpath = "//span[text()='Annual Revenue']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement annualTextField;
+
+    @FindBy(xpath = "//span[text()='Rating']/parent::span/following-sibling::div/descendant::a")
+    @CacheLookup
+    private WebElement ratingDropDownList;
 
     @FindBy(xpath = "//span[text()='Fax']/parent::label/following-sibling::input")
     @CacheLookup
@@ -77,6 +92,10 @@ public class AccountForm extends FormBase {
     @FindBy(xpath = "//span[text()='Ticker Symbol']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement tickerTextField;
+
+    @FindBy(xpath = "//span[text()='Ownership']/parent::span/following-sibling::div/descendant::a")
+    @CacheLookup
+    private WebElement ownershipDropDownList;
 
     @FindBy(xpath = "//span[text()='SIC Code']/parent::label/following-sibling::input")
     @CacheLookup
@@ -90,9 +109,17 @@ public class AccountForm extends FormBase {
     @CacheLookup
     private WebElement shippingStreetTextArea;
 
+    @FindBy(xpath = "//span[text()='Customer Priority']/parent::span/following-sibling::div/descendant::a")
+    @CacheLookup
+    private WebElement customerPriorityDropDownList;
+
     @FindBy(xpath = "//span[text()='SLA Expiration Date']/parent::label/following-sibling::div/input")
     @CacheLookup
     private WebElement slaExpirationDateField;
+
+    @FindBy(xpath = "//span[text()='SLA']/parent::span/following-sibling::div/descendant::a")
+    @CacheLookup
+    private WebElement slaDropDownList;
 
     @FindBy(xpath = "//span[text()='SLA Serial Number']/parent::label/following-sibling::input")
     @CacheLookup
@@ -101,6 +128,14 @@ public class AccountForm extends FormBase {
     @FindBy(xpath = "//span[text()='Number of Locations']/parent::label/following-sibling::input")
     @CacheLookup
     private WebElement numberOfLocationsTextField;
+
+    @FindBy(xpath = "//span[text()='Active']/parent::span/following-sibling::div/descendant::a")
+    @CacheLookup
+    private WebElement activeDropDownList;
+
+    @FindBy(xpath = "//span[text()='Upsell Opportunity']/parent::span/following-sibling::div/descendant::a")
+    @CacheLookup
+    private WebElement upsellOpportunityDropDownList;
 
     @FindBy(xpath = "//span[text()='Description']/parent::label/following-sibling::textarea")
     @CacheLookup
@@ -191,11 +226,14 @@ public class AccountForm extends FormBase {
                 () -> setAccountNumberTextField(values.get(ACCOUNT_NUMBER.toString())));
         strategyMap.put(ACCOUNT_SITE.toString(), () -> setSiteTextField(values.get(ACCOUNT_SITE.toString())));
         strategyMap.put(TYPE.toString(), () -> setTypeDropDownList(values.get(TYPE.toString())));
+        strategyMap.put(INDUSTRY.toString(), () -> setIndustryDropDownList(values.get(INDUSTRY.toString())));
         strategyMap.put(ANNUAL_REVENUE.toString(), () -> setAnnualTextField(values.get(ANNUAL_REVENUE.toString())));
+        strategyMap.put(RATING.toString(), () -> setRatingDropDownList(values.get(RATING.toString())));
         strategyMap.put(PHONE.toString(), () -> setPhoneTextField(values.get(PHONE.toString())));
         strategyMap.put(FAX.toString(), () -> setFaxTextField(values.get(FAX.toString())));
         strategyMap.put(WEBSITE.toString(), () -> setWebsiteTextField(values.get(WEBSITE.toString())));
         strategyMap.put(TICKER_SYMBOL.toString(), () -> setTickerTextField(values.get(TICKER_SYMBOL.toString())));
+        strategyMap.put(OWNERSHIP.toString(), () -> setOwnershipDropDownList(values.get(OWNERSHIP.toString())));
         strategyMap.put(EMPLOYEES.toString(),
                 () -> setEmployeesTextField(values.get(EMPLOYEES.toString())));
         strategyMap.put(SIC_CODE.toString(), () -> setSicCodeTextField(values.get(SIC_CODE.toString())));
@@ -203,12 +241,18 @@ public class AccountForm extends FormBase {
                 () -> setBillingStreetTextArea(values.get(BILLING_STREET.toString())));
         strategyMap.put(SHIPPING_STREET.toString(),
                 () -> setShippingStreetTextArea(values.get(SHIPPING_STREET.toString())));
+        strategyMap.put(CUSTOMER_PRIORITY.toString(),
+                () -> setCustomerPriorityDropDownList(values.get(CUSTOMER_PRIORITY.toString())));
         strategyMap.put(SLA_EXPIRATION_DATE.toString(),
                 () -> setSlaExpirationDateField(values.get(SLA_EXPIRATION_DATE.toString())));
+        strategyMap.put(SLA.toString(), () -> setSlaDropDownList(values.get(SLA.toString())));
         strategyMap.put(SLA_SERIAL.toString(),
                 () -> setSlaSerialNumberTextField(values.get(SLA_SERIAL.toString())));
         strategyMap.put(NUMBER_LOCATIONS.toString(),
                 () -> setNumberOfLocations(values.get(NUMBER_LOCATIONS.toString())));
+        strategyMap.put(ACTIVE.toString(), () -> setActiveDropDownList(values.get(ACTIVE.toString())));
+        strategyMap.put(UPSELL_OPPORTUNITY.toString(),
+                () -> setUpsellOpportunityDropDownList(values.get(UPSELL_OPPORTUNITY.toString())));
         strategyMap.put(DESCRIPTION.toString(),
                 () -> setDescriptionTextAreaTextField(values.get(DESCRIPTION.toString())));
 
@@ -238,13 +282,25 @@ public class AccountForm extends FormBase {
     }
 
     /**
-     * This method select one specific element from a dropDownList.
+     * This method select one specific type from a dropDownList.
      *
      * @param element String with the element.
      * @return Return this class.
      */
     private AccountForm setTypeDropDownList(final String element) {
         CommonActions.clickElement(typeDropDownList);
+        CommonActions.selectAnElement(dropDownList, element).click();
+        return this;
+    }
+
+    /**
+     * This method select one specific industry from a dropDownList.
+     *
+     * @param element String with the element.
+     * @return Return this class.
+     */
+    private AccountForm setIndustryDropDownList(final String element) {
+        CommonActions.clickElement(industryDropDownList);
         CommonActions.selectAnElement(dropDownList, element).click();
         return this;
     }
@@ -257,6 +313,18 @@ public class AccountForm extends FormBase {
      */
     private AccountForm setAnnualTextField(final String annualRevenue) {
         CommonActions.sendKeys(annualTextField, annualRevenue);
+        return this;
+    }
+
+    /**
+     * This method set one specific rating from a dropDownList.
+     *
+     * @param element String with the element.
+     * @return Return this class.
+     */
+    private AccountForm setRatingDropDownList(final String element) {
+        CommonActions.clickElement(ratingDropDownList);
+        CommonActions.selectAnElement(dropDownList, element).click();
         return this;
     }
 
@@ -279,6 +347,18 @@ public class AccountForm extends FormBase {
      */
     private AccountForm setTickerTextField(final String ticker) {
         CommonActions.sendKeys(tickerTextField, ticker);
+        return this;
+    }
+
+    /**
+     * This method set one specific ownership from a dropDownList.
+     *
+     * @param element String with the element.
+     * @return Return this class.
+     */
+    private AccountForm setOwnershipDropDownList(final String element) {
+        CommonActions.clickElement(ownershipDropDownList);
+        CommonActions.selectAnElement(dropDownList, element).click();
         return this;
     }
 
@@ -316,6 +396,18 @@ public class AccountForm extends FormBase {
     }
 
     /**
+     * This method set one specific customer priority from a dropDownList.
+     *
+     * @param element String with the element.
+     * @return Return this class.
+     */
+    private AccountForm setCustomerPriorityDropDownList(final String element) {
+        CommonActions.clickElement(customerPriorityDropDownList);
+        CommonActions.selectAnElement(dropDownList, element).click();
+        return this;
+    }
+
+    /**
      * This method set the sla expiration date in the text field.
      *
      * @param slaExpirationDate String with the sla expiration date.
@@ -323,6 +415,18 @@ public class AccountForm extends FormBase {
      */
     private AccountForm setSlaExpirationDateField(final String slaExpirationDate) {
         CommonActions.sendKeys(slaExpirationDateField, slaExpirationDate);
+        return this;
+    }
+
+    /**
+     * This method set one specific sla from a dropDownList.
+     *
+     * @param element String with the element.
+     * @return Return this class.
+     */
+    private AccountForm setSlaDropDownList(final String element) {
+        CommonActions.clickElement(slaDropDownList);
+        CommonActions.selectAnElement(dropDownList, element).click();
         return this;
     }
 
@@ -345,6 +449,30 @@ public class AccountForm extends FormBase {
      */
     private AccountForm setNumberOfLocations(final String numberOfLocations) {
         CommonActions.sendKeys(numberOfLocationsTextField, numberOfLocations);
+        return this;
+    }
+
+    /**
+     * This method set one specific active option from a dropDownList.
+     *
+     * @param element String with the element.
+     * @return Return this class.
+     */
+    private AccountForm setActiveDropDownList(final String element) {
+        CommonActions.clickElement(activeDropDownList);
+        CommonActions.selectAnElement(dropDownList, element).click();
+        return this;
+    }
+
+    /**
+     * This method set one specific upsell opportunity option from a dropDownList.
+     *
+     * @param element String with the element.
+     * @return Return this class.
+     */
+    private AccountForm setUpsellOpportunityDropDownList(final String element) {
+        CommonActions.clickElement(upsellOpportunityDropDownList);
+        CommonActions.selectAnElement(dropDownList, element).click();
         return this;
     }
 
@@ -463,6 +591,17 @@ public class AccountForm extends FormBase {
         }
 
         /**
+         * This method set the industry's site.
+         *
+         * @param industry String with type.
+         * @return {@link AccountBuilder}
+         */
+        public AccountBuilder setIndustry(final String industry) {
+            strategyMap.put(INDUSTRY.toString(), industry);
+            return this;
+        }
+
+        /**
          * This method set the annual revenue's site.
          *
          * @param annualRevenue String with annual revenue.
@@ -470,6 +609,17 @@ public class AccountForm extends FormBase {
          */
         public AccountBuilder setAnnualRevenue(final String annualRevenue) {
             strategyMap.put(ANNUAL_REVENUE.toString(), annualRevenue);
+            return this;
+        }
+
+        /**
+         * This method set the rating's site.
+         *
+         * @param rating String with rating.
+         * @return {@link AccountBuilder}
+         */
+        public AccountBuilder setRating(final String rating) {
+            strategyMap.put(RATING.toString(), rating);
             return this;
         }
 
@@ -492,6 +642,17 @@ public class AccountForm extends FormBase {
          */
         public AccountBuilder setTickerSymbol(final String tickerSymbol) {
             strategyMap.put(TICKER_SYMBOL.toString(), tickerSymbol);
+            return this;
+        }
+
+        /**
+         * This method set the ticker ownership's site.
+         *
+         * @param ownership String with ticker symbol.
+         * @return {@link AccountBuilder}
+         */
+        public AccountBuilder setOwnership(final String ownership) {
+            strategyMap.put(OWNERSHIP.toString(), ownership);
             return this;
         }
 
@@ -529,6 +690,17 @@ public class AccountForm extends FormBase {
         }
 
         /**
+         * This method set the customer priority's site.
+         *
+         * @param customerPriority String with customer priority.
+         * @return {@link AccountBuilder}
+         */
+        public AccountBuilder setCustomerPriority(final String customerPriority) {
+            strategyMap.put(CUSTOMER_PRIORITY.toString(), customerPriority);
+            return this;
+        }
+
+        /**
          * This method set the sla expiration date's site.
          *
          * @param slaExpirationDate String with sla expiration date.
@@ -536,6 +708,17 @@ public class AccountForm extends FormBase {
          */
         public AccountBuilder setSlaExpirationDate(final String slaExpirationDate) {
             strategyMap.put(SLA_EXPIRATION_DATE.toString(), slaExpirationDate);
+            return this;
+        }
+
+        /**
+         * This method set the sla of the site.
+         *
+         * @param sla String with sla.
+         * @return {@link AccountBuilder}
+         */
+        public AccountBuilder setSla(String sla) {
+            strategyMap.put(SLA.toString(), sla);
             return this;
         }
 
@@ -558,6 +741,28 @@ public class AccountForm extends FormBase {
          */
         public AccountBuilder setNumberOfLocations(final String numberOfLocations) {
             strategyMap.put(NUMBER_LOCATIONS.toString(), numberOfLocations);
+            return this;
+        }
+
+        /**
+         * This method set the active's site.
+         *
+         * @param active String active.
+         * @return {@link AccountBuilder}
+         */
+        public AccountBuilder setActive(final String active) {
+            strategyMap.put(ACTIVE.toString(), active);
+            return this;
+        }
+
+        /**
+         * This method set the upsell opportunity's site.
+         *
+         * @param upsellOpportunity String upsell opportunity.
+         * @return {@link AccountBuilder}
+         */
+        public AccountBuilder setUpsellOpportunity(final String upsellOpportunity) {
+            strategyMap.put(UPSELL_OPPORTUNITY.toString(), upsellOpportunity);
             return this;
         }
 
