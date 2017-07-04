@@ -1,14 +1,12 @@
 package org.fundacionjala.sfdc.pages.contacts;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.List;
-
+import java.util.Map;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-
 import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.FormSteps;
 import org.fundacionjala.sfdc.pages.base.FormBase;
@@ -22,8 +20,6 @@ public class ContactForm extends FormBase {
     @CacheLookup
     private WebElement salutations;
 
-    @FindBy(css = ".uiMenuItem.uiRadioMenuItem>a")
-    private List<WebElement> salutdationsList;
 
     @FindBy(css = "input[placeholder='First Name']")
     @CacheLookup
@@ -154,7 +150,7 @@ public class ContactForm extends FormBase {
      */
     public ContactForm selectFirstNameCategory(final String item) {
         CommonActions.clickElement(salutations);
-        CommonActions.selectAnElement(salutdationsList, item).click();
+        CommonActions.selectAnElement(generalDropdown, item).click();
         return this;
     }
 
@@ -265,7 +261,7 @@ public class ContactForm extends FormBase {
      */
     public ContactForm selectLeadSource(final String item) {
         CommonActions.clickElement(leadSourceField);
-        CommonActions.selectAnElement(salutdationsList, item).click();
+        CommonActions.selectAnElement(generalDropdown, item).click();
         return this;
     }
 
@@ -445,7 +441,7 @@ public class ContactForm extends FormBase {
      */
     public ContactForm setLevel(final String item) {
         CommonActions.clickElement(levelCombo);
-        CommonActions.selectAnElement(salutdationsList, item).click();
+        CommonActions.selectAnElement(generalDropdown, item).click();
         return this;
     }
 

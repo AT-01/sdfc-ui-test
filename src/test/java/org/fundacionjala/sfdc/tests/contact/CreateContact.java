@@ -1,18 +1,17 @@
 package org.fundacionjala.sfdc.tests.contact;
 
+import java.util.Map;
+
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.pages.AppLauncher;
 import org.fundacionjala.sfdc.pages.LoginPage;
-import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.contacts.ContactForm;
 import org.fundacionjala.sfdc.pages.contacts.ContactHome;
 import org.fundacionjala.sfdc.pages.contacts.ContactsDetail;
 import org.fundacionjala.sfdc.tests.Asserts;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import java.util.Map;
 
 /**
  * This class is a test to create a contact.
@@ -20,11 +19,10 @@ import java.util.Map;
 public class CreateContact {
 
     static final String CONTACT_DATA_PATH = "contact/CreateContactData.json";
-    private ContactHome contactsHome;
+    private ContactHome contactsHome = new ContactHome();
     private ContactsDetail contactsDetail;
     private Map<String, String> valuesMapJson;
-    private MainApp mainApp = new MainApp();
-    private AppLauncher appLauncher = new AppLauncher();
+
 
     /**
      * This method is a preconditions to create a contact.
@@ -33,9 +31,7 @@ public class CreateContact {
     public void setUp() {
         valuesMapJson = JsonMapper.getMapJson(CONTACT_DATA_PATH);
         LoginPage.loginAsPrimaryUser();
-        mainApp = new MainApp();
-        appLauncher = mainApp.clickAppLauncher();
-        contactsHome = appLauncher.clickOnContactsHome();
+        Navigator.goToContact();
     }
 
     /**
