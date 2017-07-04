@@ -54,7 +54,7 @@ public class CreateContract {
     @Test
     public void createContractWithJsonRequeried() {
         valuesMapJson = JsonMapper.getMapJson(CONTRACT_DATA_PATH);
-        contractDetail = CommonTest.createFormContract(contractHome,valuesMapJson);
+        contractDetail = CommonTest.createFormContract(contractHome, valuesMapJson);
         Asserts.assertDetailValues(contractDetail, valuesMapJson);
     }
 
@@ -65,7 +65,7 @@ public class CreateContract {
     public void createContractWithJsonComplet() {
 
         valuesMapJson = JsonMapper.getMapJson(CONTRACT_DATA_PATH1);
-        contractDetail = CommonTest.createFormContract(contractHome,valuesMapJson);
+        contractDetail = CommonTest.createFormContract(contractHome, valuesMapJson);
         Asserts.assertDetailValues(contractDetail, valuesMapJson);
     }
 

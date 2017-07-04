@@ -1,14 +1,11 @@
 package org.fundacionjala.sfdc.pages.contracts;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 
 import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.FormSteps;
@@ -49,7 +46,7 @@ public class ContractForm extends FormBase {
     @FindBy(xpath = "//span[text()='Customer Signed Date']/parent::label/following-sibling::div/input")
     private WebElement customerSignedDate;
 
-    @FindBy(xpath = "/span[text()='Price Book']/parent::label/following-sibling::div/descendant::input")
+    @FindBy(xpath = "//span[text()='Price Book']/parent::label/following-sibling::div/descendant::input")
     private WebElement priceBookMultiSelect;
 
     @FindBy(xpath = "//span[text()='Status']/"
@@ -74,6 +71,11 @@ public class ContractForm extends FormBase {
     @FindBy(xpath = "//span[text()='Company Signed Date']/parent::label/following-sibling::div/input")
     @CacheLookup
     private WebElement companySignedDateField;
+
+    @FindBy(xpath = "//span[text()='Company Signed By']/parent::label/following-sibling::div/descendant::a/div/div")
+    private WebElement generalDropdown1;
+
+//    protected List<WebElement> generalDropdown1;
 
     private ContractBuilder contractBuilder;
 
@@ -235,7 +237,8 @@ public class ContractForm extends FormBase {
      */
     public ContractForm setCompanySignedBy(final String companySignedBy) {
         CommonActions.clickElement(companySignedByTextBox);
-        CommonActions.selectAnElement(generalAcountDropdown, companySignedBy);
+        CommonActions.clickElement(generalDropdown1);
+//        CommonActions.selectAnElement(generalDropdown1, companySignedBy);
         return this;
     }
 
