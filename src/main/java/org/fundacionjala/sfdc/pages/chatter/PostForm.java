@@ -1,11 +1,12 @@
 package org.fundacionjala.sfdc.pages.chatter;
 
-import org.fundacionjala.sfdc.framework.selenium.CommonActions;
-import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 
 /**
  * Class that represents the form where to introduce the text on chatter.
@@ -15,17 +16,15 @@ public class PostForm extends AbstractBasePage {
     private static final int TIME_IN_MILLISECONDS = 3000;
 
     @FindBy(xpath = "//button[@class='slds-button slds-button--neutral "
-            +
-            "cuf-publisherShareButton qe-textPostDesktop MEDIUM uiButton--default uiButton--brand uiButton']")
-    @CacheLookup
+            + "cuf-publisherShareButton qe-textPostDesktop MEDIUM uiButton--default uiButton--brand uiButton']")
     private WebElement shareBtn;
 
     @FindBy(name = "quickActionSubmitButton")
     @CacheLookup
     private WebElement saveBtn;
 
-    @FindBy(css = "body[class='chatterPublisherRTE cke_editable "
-            + "cke_editable_themed cke_contents_ltr cke_show_borders'] ")
+    @FindBy(css = "body[class=\"chatterPublisherRTE cke_editable "
+            + "cke_editable_themed cke_contents_ltr cke_show_borders\"] ")
     @CacheLookup
     private WebElement editTxtArea;
 
@@ -38,13 +37,9 @@ public class PostForm extends AbstractBasePage {
     @CacheLookup
     private WebElement textAreaField;
 
-    @FindBy(xpath = "//a[@class='cuf-feedItemActionTrigger "
-            + "cuf-buttonIcon slds-button slds-button--icon-border slds-button--icon-x-small']")
+    @FindBy(css = "div[data-placeholder='Write a comment...']")
     @CacheLookup
-    private WebElement clickButtonAction;
-
-
-
+    private WebElement textComment;
 
     /**
      * Edits the text of the post publication.
@@ -54,8 +49,13 @@ public class PostForm extends AbstractBasePage {
      * @return {@link PostForm}
      */
     public PostForm setPostTxt(final String postText) {
+        /*this.postText = postText;
+        driver.switchTo().frame(driver
+                .findElement(By.xpath("//iframe[contains(@class,'cke_wysiwyg_frame cke_reset')]")));
+        */
         clickTextArea();
         CommonActions.sendKeys(textAreaField, postText);
+        // driver.switchTo().defaultContent();
         return this;
     }
 
@@ -66,7 +66,6 @@ public class PostForm extends AbstractBasePage {
         clickTextArea.click();
     }
 
-
     /**
      * Edits the text of a comment from a publication.
      *
@@ -76,10 +75,8 @@ public class PostForm extends AbstractBasePage {
      * @return {@link PostForm}
      */
     public PostForm setCommentTxt(final String commentText, final String postText) {
-        WebElement commentTxt = driver.findElement(By.xpath("//span[contains(.,'"
-                + postText + "')]/following::textarea[contains(@class,"
-                + "'foobar cxnewcommenttext groupAtMentionsEnabled')]"));
-        CommonActions.sendKeys(commentTxt, commentText);
+
+        CommonActions.sendKeys(textComment, postText);
         return this;
     }
 
@@ -121,18 +118,6 @@ public class PostForm extends AbstractBasePage {
      */
     public PostContainer clickSaveBtn() {
         CommonActions.clickElement(saveBtn);
-        return new PostContainer();
-    }
-
-    /**
-     * Makes click on the comment button.
-     * @param postText text data.
-     * @return {@link PostContainer}
-     */
-    public PostContainer clickCommentBtn(String postText) {
-        WebElement commentBtn = driver.findElement(
-                By.xpath("//span[contains(.,'" + postText + "')]/following::input[@value = 'Comment']"));
-        CommonActions.clickElement(commentBtn);
         return new PostContainer();
     }
 
