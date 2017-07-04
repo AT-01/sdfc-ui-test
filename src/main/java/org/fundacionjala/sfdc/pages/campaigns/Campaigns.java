@@ -22,6 +22,8 @@ public class Campaigns {
         this.campaignBuilder = campaignBuilder;
     }
 
+
+
     /**
      * create  the campaign.
      *
@@ -185,6 +187,18 @@ public class Campaigns {
          */
         public CampaignBuilder setDescription(String description) {
             strategyMap.put("description", description);
+            return this;
+        }
+
+
+        /**
+         * Method that sets the Active campaign.
+         *
+         * @param active String with active campaign.
+         * @return {@link CampaignBuilder}
+         */
+        public CampaignBuilder setActive(final String active) {
+            strategyMap.put("active", active);
             return this;
         }
     }
