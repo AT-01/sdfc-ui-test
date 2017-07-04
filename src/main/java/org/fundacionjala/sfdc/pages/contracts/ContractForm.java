@@ -16,6 +16,7 @@ import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.fundacionjala.sfdc.pages.base.FormBase;
 import org.fundacionjala.sfdc.pages.lookup.LookUpWindow;
 
+
 import static org.fundacionjala.sfdc.pages.contracts.ContractFields.ACCOUNT_NAME;
 import static org.fundacionjala.sfdc.pages.contracts.ContractFields.COMPANY_SIGNED_BY;
 import static org.fundacionjala.sfdc.pages.contracts.ContractFields.COMPANY_SIGNED_DATE;
@@ -39,29 +40,27 @@ public class ContractForm extends FormBase {
 
     private WebElement accountNameTextField;
 
-    @FindBy(xpath = "//div[contains(@class,'menu uiAbstractList "
-            + "uiAutocompleteList uiInput uiAutocomplete uiInput--default uiInput--lookup')]")
+    @FindBy(xpath = ("//span[text()='Customer Signed By']/parent::label/following-sibling::div/div/div/div/input"))
+    private WebElement customerSignedByTextFieldSearch;
 
-    private WebElement accountNameLoopList;
+    @FindBy(xpath = "//span[text()='Customer Signed Title']/parent::label/following-sibling::input")
+    private WebElement customerSignedTitleField;
 
-    @FindBy(xpath = ("//span[text()='Customer Signed By']/parent::label/following-sibling::div/"
-            + "div/div/div/input']"))
+    @FindBy(xpath = "//span[text()='Customer Signed Date']/parent::label/following-sibling::div/input")
+    private WebElement customerSignedDate;
 
-    private WebElement customerSignedByTextField;
-
-    @FindBy(xpath = "//input[@placeholder='Search Price Books']")
+    @FindBy(xpath = "/span[text()='Price Book']/parent::label/following-sibling::div/descendant::input")
     private WebElement priceBookMultiSelect;
 
     @FindBy(xpath = "//span[text()='Status']/"
             + "parent::span/following-sibling::div/descendant::a")
-
     private WebElement statusMultiselect;
 
     @FindBy(xpath = "//span[text()='Contract Start"
             + " Date']/parent::label/following-sibling::div/child::input")
     private WebElement contractStartDateTextBox;
 
-    @FindBy(xpath = "//span[text()='Contract Term (months)']/" + "parent::label/following-sibling::input")
+    @FindBy(xpath = "//span[text()='Contract Term (months)']/parent::label/following-sibling::input")
 
     private WebElement contractTermMonthsTextBox;
 
@@ -69,9 +68,12 @@ public class ContractForm extends FormBase {
     @CacheLookup
     private WebElement ownerExpirationNoticeMultiSelect;
 
-    @FindBy(xpath = "//input[@placeholder='Search People']")
-    @CacheLookup
+    @FindBy(xpath = "//span[text()='Company Signed By']/parent::label/following-sibling::div/descendant::input")
     private WebElement companySignedByTextBox;
+
+    @FindBy(xpath = "//span[text()='Company Signed Date']/parent::label/following-sibling::div/input")
+    @CacheLookup
+    private WebElement companySignedDateField;
 
     private ContractBuilder contractBuilder;
 
@@ -121,8 +123,9 @@ public class ContractForm extends FormBase {
      * @return a contract form.
      */
     public ContractForm setCustomerSignedBy(final String customerSignedBy) {
-        customerSignedByTextField.clear();
-        customerSignedByTextField.sendKeys(customerSignedBy);
+
+        CommonActions.clickElement(customerSignedByTextFieldSearch);
+        CommonActions.selectAnElement(generalAcountDropdown, customerSignedBy).click();
         return this;
     }
 
@@ -133,30 +136,35 @@ public class ContractForm extends FormBase {
      * @return a contract form.
      */
     public ContractForm setAccountName(final String accountName) {
-        accountNameTextField.click();
-        List<WebElement> myElements = driver.findElements(By.xpath("//div[contains(@class,'primaryLabel "
-                + "slds-truncate slds-lookup__result-text')]"));
-
-        CommonActions.selectAnElement(myElements, accountName).click();
+        CommonActions.clickElement(accountNameTextField);
+        CommonActions.selectAnElement(generalAcountDropdown, accountName).click();
         return this;
     }
 
-    /**
+     /**
      * This method sets a customer signed title.
      *
      * @param customerSignedTitle is a string name.
      * @return a contract form.
      */
     public ContractForm setCustomerSignedTitle(final String customerSignedTitle) {
-        accountNameTextField.click();
-        accountNameTextField.click();
-        List<WebElement> myElements = driver.findElements(By.xpath("//div[contains"
-                + "(@class,'primaryLabel slds-truncate slds-lookup__result-text')]"));
-
-        CommonActions.selectAnElement(myElements, customerSignedTitle).click();
+        customerSignedTitleField.clear();
+        customerSignedTitleField.sendKeys(customerSignedTitle);
         return this;
     }
 
+    /**
+     * This method  sets the contract start date.
+     *
+     * @param contractStartDate a string to set.
+     * @return a contract form..
+     */
+    public ContractForm setContractCustomerSignedDateDate(final String contractStartDate) {
+
+        customerSignedDate.clear();
+        customerSignedDate.sendKeys(contractStartDate);
+        return this;
+    }
     /**
      * This method sets the price book.
      *
@@ -164,8 +172,8 @@ public class ContractForm extends FormBase {
      * @return a contract form.
      */
     public ContractForm choosePriceBookType(final String type) {
-        Select selectBox = new Select(priceBookMultiSelect);
-        selectBox.selectByVisibleText(type);
+        CommonActions.clickElement(priceBookMultiSelect);
+        CommonActions.selectAnElement(generalAcountDropdown, type).click();
         return this;
     }
 
@@ -177,9 +185,8 @@ public class ContractForm extends FormBase {
      */
     public ContractForm chooseStatus(final String status) {
 
-        statusMultiselect.click();
-        List<WebElement> myElements = driver.findElements(By.xpath("//a[contains(@role,'menuitemradio')]"));
-        CommonActions.selectAnElement(myElements, status).click();
+        CommonActions.clickElement(statusMultiselect);
+        CommonActions.selectAnElement(generalDropdown, status).click();
         return this;
     }
 
@@ -215,8 +222,8 @@ public class ContractForm extends FormBase {
      * @return a contract form.
      */
     public ContractForm chooseOwnerExpirationNotice(final String ownerExpirationNotice) {
-        Select selectBox = new Select(ownerExpirationNoticeMultiSelect);
-        selectBox.selectByVisibleText(ownerExpirationNotice);
+        CommonActions.clickElement(ownerExpirationNoticeMultiSelect);
+        CommonActions.selectAnElement(generalDropdown, ownerExpirationNotice).click();
         return this;
     }
 
@@ -227,8 +234,20 @@ public class ContractForm extends FormBase {
      * @return a opportunity form.
      */
     public ContractForm setCompanySignedBy(final String companySignedBy) {
-        companySignedByTextBox.clear();
-        companySignedByTextBox.sendKeys(companySignedBy);
+        CommonActions.clickElement(companySignedByTextBox);
+        CommonActions.selectAnElement(generalAcountDropdown, companySignedBy);
+        return this;
+    }
+
+    /**
+     * This method  sets the contract company date.
+     *
+     * @param contractCompanyDate string to set.
+     * @return a contract form..
+     */
+    public ContractForm setContractCompanyDate(final String contractCompanyDate) {
+        companySignedDateField.clear();
+        companySignedDateField.sendKeys(contractCompanyDate);
         return this;
     }
 
@@ -261,21 +280,29 @@ public class ContractForm extends FormBase {
     public Map<String, FormSteps> getStrategyStepMap(final Map<String, String> values) {
         final Map<String, FormSteps> strategyMap = new HashMap<>();
 
-        strategyMap.put(ACCOUNT_NAME.toString(), () -> setAccountName(values.get(ACCOUNT_NAME.toString())));
-        strategyMap.put(CUSTOMER_SIGNED_BY.toString(), () ->
-                setCustomerSignedBy(values.get(CUSTOMER_SIGNED_BY.toString())));
-        strategyMap.put(CUSTOMER_SIGNED_TITLE.toString(), () ->
-                setCustomerSignedTitle(values.get(CUSTOMER_SIGNED_TITLE.toString())));
-        strategyMap.put(PRICE_BOOK.toString(), () -> choosePriceBookType(values.get(PRICE_BOOK.toString())));
         strategyMap.put(STATUS.toString(), () -> chooseStatus(values.get(STATUS.toString())));
         strategyMap.put(CONTRACT_START_DATE.toString(), () ->
                 setContractStartDate(values.get(CONTRACT_START_DATE.toString())));
+        strategyMap.put(ACCOUNT_NAME.toString(), () -> setAccountName(values.get(ACCOUNT_NAME.toString())));
         strategyMap.put(CONTRACT_TERM_MONTHS.toString(), () ->
                 setContractTermMonths(values.get(CONTRACT_TERM_MONTHS.toString())));
+        strategyMap.put(CUSTOMER_SIGNED_BY.toString(), () ->
+                setCustomerSignedBy(values.get(CUSTOMER_SIGNED_BY.toString())));
         strategyMap.put(OWNER_EXPIRATION_NOTICE.toString(), () ->
-                setAccountName(values.get(OWNER_EXPIRATION_NOTICE.toString())));
+                chooseOwnerExpirationNotice(values.get(OWNER_EXPIRATION_NOTICE.toString())));
+        strategyMap.put(CUSTOMER_SIGNED_TITLE.toString(), () ->
+                setCustomerSignedTitle(values.get(CUSTOMER_SIGNED_TITLE.toString())));
         strategyMap.put(COMPANY_SIGNED_BY.toString(), () ->
                 setCompanySignedBy(values.get(COMPANY_SIGNED_BY.toString())));
+        strategyMap.put(CUSTOMER_SIGNED_DATE.toString(), () ->
+                setContractCustomerSignedDateDate(values.get(CUSTOMER_SIGNED_DATE.toString())));
+        strategyMap.put(COMPANY_SIGNED_DATE.toString(), () ->
+                setContractCompanyDate(values.get(COMPANY_SIGNED_DATE.toString())));
+        strategyMap.put(PRICE_BOOK.toString(), () -> choosePriceBookType(values.get(PRICE_BOOK.toString())));
+
+
+
+
 
         return strategyMap;
     }

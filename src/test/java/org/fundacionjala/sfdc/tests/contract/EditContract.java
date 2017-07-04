@@ -47,11 +47,12 @@ public class EditContract {
      */
     @Test
     public void editContract() {
-        contractForm = contractDetail.clickEditButton();
+
         Map<String, String> valuesMapEditJson = JsonMapper.getMapJson(CONTRACT_DATA_EDIT_PATH);
+        contractForm = contractDetail.clickEditButton();
         contractForm.fillTheForm(valuesMapEditJson);
         contractDetail = contractForm.clickSaveButton();
-
+        contractDetail.goToLinkDetail();
         Asserts.assertDetailValues(contractDetail, valuesMapEditJson);
     }
 

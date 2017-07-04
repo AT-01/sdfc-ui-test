@@ -25,6 +25,10 @@ public abstract class FormBase extends AbstractBasePage {
     @FindBy(css = "div.visible.positioned li.uiMenuItem.uiRadioMenuItem>a")
     protected List<WebElement> generalDropdown;
 
+    @FindBy(css = ".lookup__list.visible li.forceSearchInputLookupDesktopOption>a")
+    protected List<WebElement> generalAcountDropdown;
+
+
     /**
      * Clicks on "save" button.
      *
