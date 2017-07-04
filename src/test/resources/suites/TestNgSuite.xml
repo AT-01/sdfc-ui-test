@@ -22,7 +22,7 @@
             <!--<class name="org.fundacionjala.sfdc.tests.contract.DeleteEditContract"/>-->
             <class name="org.fundacionjala.sfdc.tests.lead.CreateLead"/>
             <class name="org.fundacionjala.sfdc.tests.lead.UpdateDeleteLead"/>
-            <class name="org.fundacionjala.sfdc.tests.opportunity.DeleteEditOpportunity"/>
+            <class name="org.fundacionjala.sfdc.tests.opportunity.DeleteOpportunity"/>
             <class name="org.fundacionjala.sfdc.tests.opportunity.CreateOpportunity"/>
             <class name="org.fundacionjala.sfdc.tests.product.EditProduct"/>
             <class name="org.fundacionjala.sfdc.tests.product.DeleteProduct"/>

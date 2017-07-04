@@ -23,9 +23,9 @@ public class CampaignDetail extends DetailBase {
     @CacheLookup
     private WebElement campaignNameLabel;
 
-    @FindBy(name = "del")
+    @FindBy(xpath = "//span[text()='Active']/parent::div/following-sibling::div/span/span/img")
     @CacheLookup
-    private WebElement deleteButton;
+    private WebElement checkStatus;
 
     @FindBy(xpath = "//span[text()='Campaign Name']/parent::div/following-sibling::div/span/span")
     @CacheLookup
@@ -134,6 +134,7 @@ public class CampaignDetail extends DetailBase {
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap();
         strategyMap.put("campaignName", this::getCampaignName);
+        strategyMap.put("active", this::getCheckStatus);
         strategyMap.put("typeDropDown", this::getSelectedValue);
         strategyMap.put("statusDropDown", this::getSelectedStatus);
         strategyMap.put("startDate", this::getStartDate);
@@ -265,5 +266,14 @@ public class CampaignDetail extends DetailBase {
      */
     public boolean isCampaignDisplayed(String campaignName) {
         return CommonActions.existElementByLinkText(campaignName);
+    }
+
+    /**
+     * get the estatus of the check box.
+     *
+     * @return String whit the status.
+     */
+    private String getCheckStatus() {
+        return checkStatus.getAttribute("class");
     }
 }

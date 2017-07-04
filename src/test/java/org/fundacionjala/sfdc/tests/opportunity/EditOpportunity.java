@@ -1,7 +1,7 @@
 package org.fundacionjala.sfdc.tests.opportunity;
 
-import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
+import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 
 import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.opportunities.OpportunityDetail;
@@ -16,39 +16,40 @@ import java.util.Map;
 
 
 /**
- * This class is a test to create a opportunity.
+ * Created by Administrator on 6/30/2017.
  */
-public class CreateOpportunity {
-
-    static final String OPPORTUNITY_DATA_PATH = "opportunity/CreateOpportunityData.json";
-    private OpportunityDetail opportunityDetail;
+public class EditOpportunity {
+    private static final String OPPORTUNITY_DATA_PATH = "opportunity/CreateOpportunityData.json";
+    private static final String OPPORTUNITY_DATA_EDIT_PATH = "opportunity/EditOpportunityData.json";
     private Map<String, String> valuesMapJson;
     private OpportunityHome opportunityHome;
     private OpportunityForm opportunityForm;
+    private OpportunityDetail opportunityDetail;
 
     /**
      * This method is a preconditions to create a opportunities.
      */
     @BeforeMethod
     public void beforeTest() {
-
         valuesMapJson = JsonMapper.getMapJson(OPPORTUNITY_DATA_PATH);
         LoginPage.loginAsPrimaryUser();
         opportunityHome = Navigator.goToOpportunity();
-
-    }
-
-    /**
-     * This a test to create a opportunities.
-     */
-    @Test
-    public void createOpportunity() {
-
         opportunityForm = opportunityHome.clickNewButton();
         opportunityForm.fillTheForm(valuesMapJson);
         opportunityDetail = opportunityForm.clickSaveButton();
+    }
+
+    /**
+     * This is a test to edit an opportunity.
+     */
+    @Test
+    public void editOpportunity() {
+        Map<String, String> valuesMapEditJson2 = JsonMapper.getMapJson(OPPORTUNITY_DATA_EDIT_PATH);
+        opportunityForm = opportunityDetail.clickEditButton();
+        opportunityForm.fillTheForm(valuesMapEditJson2);
+        opportunityDetail = opportunityForm.clickSaveButton();
         opportunityDetail.clickDetails();
-        Asserts.assertDetailValues(opportunityDetail, valuesMapJson);
+        Asserts.assertDetailValues(opportunityDetail, valuesMapEditJson2);
     }
 
     /**
