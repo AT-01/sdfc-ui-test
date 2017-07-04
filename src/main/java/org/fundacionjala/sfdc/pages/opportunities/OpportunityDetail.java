@@ -79,10 +79,6 @@ public class OpportunityDetail extends DetailBase {
     private WebElement descriptionLabel;
 
 
-    @FindBy(xpath = "//span[text()='Details']")
-    @CacheLookup
-    private WebElement detailsButton;
-
     /**
      * {@inheritDoc}.
      */
@@ -256,6 +252,6 @@ public class OpportunityDetail extends DetailBase {
      * Method that gets the Owner that was registered in the creation of LeadHome.
      */
     public void clickDetails() {
-        CommonActions.clickElement(detailsButton);
+        CommonActions.clickElement(detailsLinkButton);
     }
 }

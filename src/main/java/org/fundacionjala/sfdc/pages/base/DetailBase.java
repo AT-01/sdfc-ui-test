@@ -21,10 +21,6 @@ public abstract class DetailBase extends AbstractBasePage {
     @CacheLookup
     protected WebElement editBtn;
 
-    @FindBy(name = "clone")
-    @CacheLookup
-    protected WebElement cloneBtn;
-
     @FindBy(css = "[title='Details']")
     @CacheLookup
     protected WebElement detailsLinkButton;
