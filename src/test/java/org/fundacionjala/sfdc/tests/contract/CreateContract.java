@@ -70,7 +70,9 @@ public class CreateContract {
     }
 
     /**
+     *
      * This method that is created a new contract.
+     *
      */
     @Test
     public void createContract() {
@@ -85,7 +87,9 @@ public class CreateContract {
     }
 
     /**
+     *
      * This method is executed after the scenario.
+     *
      */
     @AfterMethod
     public void tearDown() {

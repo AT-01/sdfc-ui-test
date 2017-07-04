@@ -13,7 +13,6 @@ import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.fundacionjala.sfdc.pages.base.FormBase;
 import org.fundacionjala.sfdc.pages.lookup.LookUpWindow;
 
-
 import static org.fundacionjala.sfdc.pages.contracts.ContractFields.ACCOUNT_NAME;
 import static org.fundacionjala.sfdc.pages.contracts.ContractFields.COMPANY_SIGNED_BY;
 import static org.fundacionjala.sfdc.pages.contracts.ContractFields.COMPANY_SIGNED_DATE;
@@ -31,6 +30,8 @@ import static org.fundacionjala.sfdc.pages.contracts.ContractFields.STATUS;
  */
 public class ContractForm extends FormBase {
 
+    @FindBy(css = "button[title='Save']")
+    private WebElement saveButton;
 
     @FindBy(xpath = "//span[text()='Account Name']/"
             + "parent::label/following-sibling::div/div/div/div/input")
@@ -143,7 +144,7 @@ public class ContractForm extends FormBase {
         return this;
     }
 
-     /**
+    /**
      * This method sets a customer signed title.
      *
      * @param customerSignedTitle is a string name.
@@ -167,6 +168,7 @@ public class ContractForm extends FormBase {
         customerSignedDate.sendKeys(contractStartDate);
         return this;
     }
+
     /**
      * This method sets the price book.
      *
@@ -302,9 +304,6 @@ public class ContractForm extends FormBase {
         strategyMap.put(COMPANY_SIGNED_DATE.toString(), () ->
                 setContractCompanyDate(values.get(COMPANY_SIGNED_DATE.toString())));
         strategyMap.put(PRICE_BOOK.toString(), () -> choosePriceBookType(values.get(PRICE_BOOK.toString())));
-
-
-
 
 
         return strategyMap;

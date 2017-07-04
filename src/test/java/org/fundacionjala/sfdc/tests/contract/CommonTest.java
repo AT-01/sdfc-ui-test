@@ -12,14 +12,16 @@ import org.fundacionjala.sfdc.pages.contracts.ContractHome;
 public final class CommonTest {
 
     /**
-     * Constructor.
+     *
+     *  Constructor.
      */
     private CommonTest() {
 
     }
 
     /**
-     * Contract detail.
+     *
+     *  Contract detail.
      *
      * @param contractHome  contract home.
      * @param valuesMapJson values.

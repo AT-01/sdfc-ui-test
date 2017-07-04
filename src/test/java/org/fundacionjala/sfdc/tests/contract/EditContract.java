@@ -29,7 +29,9 @@ public class EditContract {
     private Map<String, String> valuesMapJson;
 
     /**
-     * This method is a preconditions to edit and delete a contract.
+     *
+     * This method is a preconditions to edit and delete a contract .
+     *
      */
     @BeforeMethod
     public void setUp() {
@@ -43,7 +45,9 @@ public class EditContract {
     }
 
     /**
+     *
      * This is a test to edit a contract.
+     *
      */
     @Test
     public void editContract() {
@@ -57,7 +61,9 @@ public class EditContract {
     }
 
     /**
+     *
      * This is a post conditions for contract test.
+     *
      */
     @AfterMethod
     public void tearDown() {
