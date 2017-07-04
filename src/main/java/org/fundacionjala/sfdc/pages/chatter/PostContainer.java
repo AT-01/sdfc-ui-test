@@ -1,11 +1,12 @@
 package org.fundacionjala.sfdc.pages.chatter;
 
-import org.fundacionjala.sfdc.framework.selenium.CommonActions;
-import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
 
 
 /**
@@ -22,7 +23,8 @@ public class PostContainer extends AbstractBasePage {
     @CacheLookup
     private WebElement deleteOptn;
 
-    @FindBy(css = "div[class='uiMenu forceChatterOverflowActionMenu']")
+    @FindBy(xpath = "//a[@class='cuf-feedItemActionTrigger cuf-buttonIcon "
+            + "slds-button--icon-border slds-button slds-button--icon-x-small']")
     @CacheLookup
     private WebElement downDropButton;
 
@@ -30,10 +32,21 @@ public class PostContainer extends AbstractBasePage {
     @CacheLookup
     private WebElement editOptn;
 
+    @FindBy(css = "slds-icon slds-icon-text-default slds-icon--xx-small slds-icon")
+    @CacheLookup
+    private WebElement settingsChatter;
+
+    @FindBy(css = "a[title=Comment]")
+    @CacheLookup
+    private WebElement commentButton;
+
+    @FindBy(xpath = "//span[text()='Comment']")
+    @CacheLookup
+    private WebElement confirmCommentButton;
+
     @FindBy(css = "button[title='Delete']")
     @CacheLookup
     private WebElement clickConfirmDelete;
-
 
     /**
      * Deletes a determined post.
@@ -77,34 +90,44 @@ public class PostContainer extends AbstractBasePage {
      *                 publication to click its action menu.
      */
     private void clickActionMenu(final String postText) {
-        WebElement actionMenu = driver.findElement(By.xpath("//span[text()='" + postText + " " + "']/ancestor::"
-                + "div[@class='cuf-feedElementIterationItem slds-feed__item']/descendant::"
-                + "a[contains(@class, 'cuf-feedItemActionTrigger')]"));
+        WebElement actionMenu = driver.findElement(By.xpath("//span[text()='"
+                + postText + "']/ancestor::"
+                + " div[@class='cuf-feedElementIterationItem slds-feed__item']/descendant::"
+                + " a[contains(@class, 'cuf-feedItemActionTrigger')]"));
         CommonActions.clickElement(actionMenu);
     }
 
     /**
-     * Method that verify os an element is present.
-     * @param postText text data.
-     * @return true if the element is present.
+     *
+     * @param postxt .
+     * @return <code>true</code>
      */
-    public boolean isPostDisplayed(String postText) {
-        WebElement postContainer = driver.findElement(By.xpath("//span[contains(.,'" + postText + "')]"));
+    public boolean isPostDisplayed(final String postxt) {
+        WebElement postContainer = (driver.findElement(By.xpath("//span[contains(.,'" + postxt + "')]")));
         return CommonActions.isElementPresent(postContainer);
     }
 
     /**
-     * Method that makes click on comment link.
-     *
-     * @param postTxt String with the Post.
-     * @return {@link PostForm}
+     * Click on settings button.
      */
-    public PostForm clickCommentLkn(final String postTxt) {
-        WebElement postContainer = driver.findElement(By.xpath("//span[contains(.,'"
-                + postTxt + "')]/following::a[text()='Comment']"));
-        CommonActions.clickElement(postContainer);
-        return new PostForm();
-
+    public void clickSettingsChatter() {
+        CommonActions.clickElement(settingsChatter);
     }
 
+    /**
+     * .click on commentButton.
+     *
+     * @return PostForm
+     */
+    public PostForm clickCommentButton() {
+        CommonActions.clickElement(commentButton);
+        return new PostForm();
+    }
+
+    /**
+     * click on confirm comment button.
+     */
+    public void confirmComment() {
+        CommonActions.clickElement(confirmCommentButton);
+    }
 }

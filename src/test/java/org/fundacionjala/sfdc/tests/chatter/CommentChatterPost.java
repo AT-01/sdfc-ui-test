@@ -1,13 +1,15 @@
 package org.fundacionjala.sfdc.tests.chatter;
 
-import org.fundacionjala.sfdc.framework.selenium.Navigator;
-import org.fundacionjala.sfdc.pages.chatter.ChatterAbstractPage;
-import org.fundacionjala.sfdc.pages.chatter.PostContainer;
-import org.fundacionjala.sfdc.pages.chatter.PostForm;
-import org.testng.Assert;
+import org.fundacionjala.sfdc.pages.AppLauncher;
+import org.fundacionjala.sfdc.pages.LoginPage;
+import org.fundacionjala.sfdc.pages.MainApp;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.fundacionjala.sfdc.pages.chatter.ChatterAbstractPage;
+import org.fundacionjala.sfdc.pages.chatter.PostContainer;
+import org.fundacionjala.sfdc.pages.chatter.PostForm;
+import static org.testng.Assert.assertTrue;
 
 /**
  * Class to verify the comments chatter post.
@@ -23,10 +25,14 @@ public class CommentChatterPost {
      */
     @BeforeMethod
     public void setUp() {
-        ChatterAbstractPage chatterHome = Navigator.goToChatter();
+        LoginPage.loginAsPrimaryUser();
+        MainApp mainApp = new MainApp();
+        AppLauncher appLauncher = mainApp.clickAppLauncher();
+
+        ChatterAbstractPage chatterHome = appLauncher.clickOnChatterTab();
         PostForm postForm = chatterHome.clickPostLnk();
         postForm.setPostTxt(POST_CONTAIN);
-        postContainer = postForm.clickShareBtn();
+        postForm.clickShareBtn();
     }
 
     /**
@@ -34,10 +40,11 @@ public class CommentChatterPost {
      */
     @Test
     public void commentChatterPostTest() {
-        PostForm commentForm = postContainer.clickCommentLkn(POST_CONTAIN);
+        postContainer = new PostContainer();
+        PostForm commentForm = postContainer.clickCommentButton();
         commentForm.setCommentTxt(TEST_COMMENT, POST_CONTAIN);
-        PostContainer comment = commentForm.clickCommentBtn(POST_CONTAIN);
-        Assert.assertTrue(comment.isPostDisplayed(POST_CONTAIN), "Chatter Comment Displayed");
+        postContainer.confirmComment();
+        assertTrue(postContainer.isPostDisplayed(POST_CONTAIN), "TestCommentPost");
     }
 
     /**
