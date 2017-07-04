@@ -45,7 +45,7 @@ public class AppLauncher extends AbstractBasePage {
     @CacheLookup
     private WebElement accountTab;
 
-    @FindBy(id = "Opportunity_Tab")
+    @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Opportunities']")
     @CacheLookup
     private WebElement opportunitiesTab;
 

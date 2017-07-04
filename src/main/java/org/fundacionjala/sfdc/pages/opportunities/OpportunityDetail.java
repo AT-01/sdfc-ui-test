@@ -3,73 +3,88 @@ package org.fundacionjala.sfdc.pages.opportunities;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.openqa.selenium.Alert;
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
+import org.fundacionjala.sfdc.pages.AssertsDetails;
+import org.fundacionjala.sfdc.pages.MainApp;
+import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
+import org.fundacionjala.sfdc.pages.base.DetailBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
-import org.fundacionjala.sfdc.framework.selenium.CommonActions;
-import org.fundacionjala.sfdc.pages.AssertsDetails;
-import org.fundacionjala.sfdc.pages.MainApp;
-import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
-import org.fundacionjala.sfdc.pages.base.DetailBase;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.ACCOUNT_NAME;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.AMOUNT;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.CURRENT_CLOSE_DATE;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.DELIVERY_INSTALL_STATUS;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.LEAD_SOURCE;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.NEXT_STEP;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.OPPORTUNITY_NAME;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.ORDER_NUMBER;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.STAGE;
+import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.TYPE;
 
 /**
  * This class represents the opportunity detail.
  */
 public class OpportunityDetail extends DetailBase {
 
-    @FindBy(id = "opp3_ileinner")
+    @FindBy(xpath = "//span[text()='Opportunity Name']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement opportunityNameLabel;
 
-    @FindBy(id = "opp4_ileinner")
+    @FindBy(xpath = "//span[text()='Account Name']/parent::div/following-sibling::div/span/div/a")
     @CacheLookup
     private WebElement accountNameLabel;
 
-    @FindBy(id = "opp5_ileinner")
+    @FindBy(xpath = "//span[text()='Type']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement typeLabel;
 
-    @FindBy(id = "opp6_ileinner")
+    @FindBy(xpath = "//span[text()='Lead Source']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement leadSourceLabel;
 
-    @FindBy(id = "opp7_ileinner")
+    @FindBy(xpath = "//span[contains(text(), 'Amount')]/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement amountLabel;
 
-    @FindBy(id = "opp9_ileinner")
+    @FindBy(xpath = "//span[text()= 'Close Date']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement closeDateLabel;
 
-    @FindBy(id = "opp10_ileinner")
+    @FindBy(xpath = "//span[text()= 'Next Step']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement nextStepLabel;
 
-    @FindBy(id = "opp11_ileinner")
+    @FindBy(xpath = "//span[text()= 'Stage']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement stageLabel;
 
-    @FindBy(xpath = "//td[contains(.,'Order Number')]/following::div")
+    @FindBy(xpath = "//span[text()= 'Order Number']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement orderNumberLabel;
 
-    @FindBy(xpath = "//td[contains(.,'Delivery/Installation Status')]/following::div")
+    @FindBy(xpath = "//span[text()= 'Delivery/Installation Status']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement deliveryInstallLabel;
 
-    @FindBy(id = "opp2_chkbox")
+    @FindBy(xpath = "//span[text()= 'Private']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement privateFlagImg;
+
+    @FindBy(xpath = "//span[text()= 'Description']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement descriptionLabel;
+
 
     /**
      * {@inheritDoc}.
      */
     @Override
     public OpportunityForm clickEditButton() {
+        CommonActions.clickElement(downArrow);
         CommonActions.clickElement(editBtn);
         return new OpportunityForm();
     }
@@ -79,9 +94,9 @@ public class OpportunityDetail extends DetailBase {
      */
     @Override
     public MainApp clickDeleteButton() {
+        CommonActions.clickElement(downArrow);
         CommonActions.clickElement(deleteBtn);
-        Alert alert = driver.switchTo().alert();
-        alert.accept();
+        CommonActions.clickElement(confirmDeleteButton);
         return new MainApp();
     }
 
@@ -219,17 +234,24 @@ public class OpportunityDetail extends DetailBase {
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap<>();
 
-        strategyMap.put(OpportunityFields.OPPORTUNITY_NAME.getValue(), this::getOpportunityName);
-        strategyMap.put(OpportunityFields.STAGE.getValue(), this::getStage);
-        strategyMap.put(OpportunityFields.ORDER_NUMBER.getValue(), this::getOrderNumber);
-        strategyMap.put(OpportunityFields.DELIVERY_INSTALL_STATUS.getValue(), this::getDeliveryInstallation);
-        strategyMap.put(OpportunityFields.ACCOUNT_NAME.getValue(), this::getAccountName);
-        strategyMap.put(OpportunityFields.CURRENT_CLOSE_DATE.getValue(), this::getCloseDate);
-        strategyMap.put(OpportunityFields.TYPE.getValue(), this::getTypeText);
-        strategyMap.put(OpportunityFields.LEAD_SOURCE.getValue(), this::getLeadSource);
-        strategyMap.put(OpportunityFields.NEXT_STEP.getValue(), this::getNextStep);
-        strategyMap.put(OpportunityFields.AMOUNT.getValue(), this::getAmount);
+        strategyMap.put(OPPORTUNITY_NAME.toString(), this::getOpportunityName);
+        strategyMap.put(STAGE.toString(), this::getStage);
+        strategyMap.put(ORDER_NUMBER.toString(), this::getOrderNumber);
+        strategyMap.put(DELIVERY_INSTALL_STATUS.toString(), this::getDeliveryInstallation);
+        strategyMap.put(ACCOUNT_NAME.toString(), this::getAccountName);
+        strategyMap.put(CURRENT_CLOSE_DATE.toString(), this::getCloseDate);
+        strategyMap.put(TYPE.toString(), this::getTypeText);
+        strategyMap.put(LEAD_SOURCE.toString(), this::getLeadSource);
+        strategyMap.put(NEXT_STEP.toString(), this::getNextStep);
+        strategyMap.put(AMOUNT.toString(), this::getAmount);
 
         return strategyMap;
+    }
+
+    /**
+     * Method that gets the Owner that was registered in the creation of LeadHome.
+     */
+    public void clickDetails() {
+        CommonActions.clickElement(detailsLinkButton);
     }
 }
