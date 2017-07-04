@@ -4,7 +4,6 @@ package org.fundacionjala.sfdc.pages.contracts;
  * Enum for contract fields.
  */
 public enum ContractFields {
-
     ACCOUNT_NAME,
     CUSTOMER_SIGNED_BY,
     CUSTOMER_SIGNED_TITLE,

@@ -91,6 +91,7 @@ public class ContractDetail extends DetailBase {
      */
     @Override
     public ContractForm clickEditButton() {
+        CommonActions.clickElement(downArrow);
         CommonActions.clickElement(editBtn);
         return new ContractForm();
     }
