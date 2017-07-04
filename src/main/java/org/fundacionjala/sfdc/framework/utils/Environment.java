@@ -22,6 +22,8 @@ public final class Environment {
 
     private static final String PRIMARY_USER_PASS = "primaryUserPassword";
 
+    private static final String FIRST_LAST_NAME = "firstLastName";
+
     private static final String BROWSER = "browser";
 
     private static final String TIMEOUT = "timeout";
@@ -98,6 +100,15 @@ public final class Environment {
      */
     public String getPrimaryUser() {
         return getEnv(PRIMARY_USER_NAME);
+    }
+
+    /**
+     * Return the user name.
+     *
+     * @return String whit the name user.
+     */
+    public String getFirstLastName() {
+        return getEnv(FIRST_LAST_NAME);
     }
 
     /**

@@ -84,16 +84,17 @@ public class LoginPage extends AbstractBasePage {
      *
      * @param userName Username to perform a login with other user.
      * @param password Password to perform a login with other user.
+     * @param name First and Last Name displayed in page
      * @return The login to Mach2 application.
      */
-    public MainApp loginOtherUser(final String userName, final String password) {
+    public MainApp loginOtherUser(String userName, final String password,
+                                  final String name) {
         MainApp homePage;
         try {
             driver.manage().timeouts().implicitlyWait(DURATION, TimeUnit.SECONDS);
             wait.withTimeout(DURATION, TimeUnit.SECONDS);
             homePage = new MainApp();
-            if (!homePage.clickUserInformationLink().getUserName()
-                    .equals(userName)) {
+            if (!homePage.getUserLooged().equals(name)) {
                 homePage.clickLogout();
                 homePage = loginAs(userName, password);
             }
@@ -113,8 +114,10 @@ public class LoginPage extends AbstractBasePage {
      * @return Main page after login to Salesforce application.
      */
     public static MainApp loginAsPrimaryUser() {
-        LoginPage login = new LoginPage();
-        return login.loginOtherUser(Environment.getInstance().getPrimaryUser(),
-                Environment.getInstance().getPrimaryPassword());
+        LoginPage loginPage = new LoginPage();
+        return loginPage.loginOtherUser(Environment.getInstance().getPrimaryUser(),
+                Environment.getInstance().getPrimaryPassword(),
+            Environment.getInstance().getFirstLastName());
     }
+
 }

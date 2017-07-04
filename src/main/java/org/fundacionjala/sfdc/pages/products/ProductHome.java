@@ -13,6 +13,7 @@ public class ProductHome extends HomeBase {
      * {@inheritDoc}
      */
     public ProductForm clickNewButton() {
+        CommonActions.sleep(1000);
         CommonActions.clickElement(newButton);
         return new ProductForm();
     }
