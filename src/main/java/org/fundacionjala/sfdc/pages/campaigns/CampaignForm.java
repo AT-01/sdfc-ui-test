@@ -76,6 +76,8 @@ public class CampaignForm extends FormBase {
     @CacheLookup
     private WebElement revenueCampaignTextField;
 
+
+
     /**
      * set name of the campaign.
      *
@@ -196,6 +198,7 @@ public class CampaignForm extends FormBase {
     public Map<String, FormSteps> getStrategyStepMap(final Map<String, String> values) {
         final Map<String, FormSteps> strategyMap = new HashMap();
         strategyMap.put("campaignName", () -> setCampaignNameField(String.valueOf(values.get("campaignName"))));
+        strategyMap.put("active", this::checkActiveCheckbox);
         strategyMap.put("typeDropDown", () -> selectTypeDropdown(String.valueOf(values.get("typeDropDown"))));
         strategyMap.put("statusDropDown", () -> selectStatusDropdown(String.valueOf(values.get("statusDropDown"))));
         strategyMap.put("startDate", () -> setStartDateField(String.valueOf(values.get("startDate"))));

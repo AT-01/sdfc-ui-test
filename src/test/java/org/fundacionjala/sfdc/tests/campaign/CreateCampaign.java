@@ -57,6 +57,7 @@ public class CreateCampaign {
     public void createCampaign() {
         campaignsHome.clickNewButton();
         Campaigns campaigns = new Campaigns.CampaignBuilder("builderTestNew")
+                .setActive(" checked")
                 .setTypeDropDown("Email")
                 .setStatusDropDown("In Progress")
                 .setStartDate("10/25/2015")
