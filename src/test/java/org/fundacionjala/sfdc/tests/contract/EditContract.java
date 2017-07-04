@@ -29,7 +29,9 @@ public class EditContract {
     private Map<String, String> valuesMapJson;
 
     /**
-     * This method is a preconditions to edit and delete a contract.
+     *
+     * This method is a preconditions to edit and delete a contract .
+     *
      */
     @BeforeMethod
     public void setUp() {
@@ -43,20 +45,25 @@ public class EditContract {
     }
 
     /**
+     *
      * This is a test to edit a contract.
+     *
      */
     @Test
     public void editContract() {
-        contractForm = contractDetail.clickEditButton();
+
         Map<String, String> valuesMapEditJson = JsonMapper.getMapJson(CONTRACT_DATA_EDIT_PATH);
+        contractForm = contractDetail.clickEditButton();
         contractForm.fillTheForm(valuesMapEditJson);
         contractDetail = contractForm.clickSaveButton();
-
+        contractDetail.goToLinkDetail();
         Asserts.assertDetailValues(contractDetail, valuesMapEditJson);
     }
 
     /**
+     *
      * This is a post conditions for contract test.
+     *
      */
     @AfterMethod
     public void tearDown() {

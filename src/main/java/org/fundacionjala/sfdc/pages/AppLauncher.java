@@ -49,8 +49,7 @@ public class AppLauncher extends AbstractBasePage {
     @CacheLookup
     private WebElement opportunitiesTab;
 
-    @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Contracts']")
-    @CacheLookup
+    @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/span[text()='Contracts']")
     private WebElement contractsTab;
 
     @FindBy(xpath = "//span[contains(@class, 'label-ctr')]/child::span[text()='Cases']")
@@ -135,6 +134,7 @@ public class AppLauncher extends AbstractBasePage {
      * @return {@link ContractHome}
      */
     public ContractHome clickOnContractHome() {
+        CommonActions.sleep(3000);
         CommonActions.clickElement(contractsTab);
         return new ContractHome();
     }
