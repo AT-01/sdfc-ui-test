@@ -30,9 +30,6 @@ import static org.fundacionjala.sfdc.pages.contracts.ContractFields.STATUS;
  */
 public class ContractForm extends FormBase {
 
-    @FindBy(css = "button[title='Save']")
-    private WebElement saveButton;
-
     @FindBy(xpath = "//span[text()='Account Name']/"
             + "parent::label/following-sibling::div/div/div/div/input")
 
