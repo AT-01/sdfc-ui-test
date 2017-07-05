@@ -85,7 +85,7 @@ public class PostContainer extends AbstractBasePage {
 
     /**
      * Method that verify os an element is present.
-     * @param postText text data.
+     * @param postText text value.
      * @return true if the element is present.
      */
     public boolean isPostDisplayed(String postText) {
@@ -106,5 +106,4 @@ public class PostContainer extends AbstractBasePage {
         return new PostForm();
 
     }
-
 }

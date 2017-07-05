@@ -38,12 +38,18 @@ public class PostForm extends AbstractBasePage {
     @CacheLookup
     private WebElement textAreaField;
 
-    @FindBy(xpath = "//a[@class='cuf-feedItemActionTrigger "
-            + "cuf-buttonIcon slds-button slds-button--icon-border slds-button--icon-x-small']")
+    @FindBy(xpath = "//a[@class='cuf-feedItemActionTrigger cuf-buttonIcon "
+            + "slds-button slds-button--icon-border slds-button--icon-x-small']")
     @CacheLookup
     private WebElement clickButtonAction;
 
+    @FindBy(css = "div[data-placeholder='Update your post...']")
+    @CacheLookup
+    private WebElement clickEditTextField;
 
+    @FindBy(xpath = "//span[text()='Save']")
+    @CacheLookup
+    private WebElement clickEditTextFieldSave;
 
 
     /**
@@ -59,6 +65,13 @@ public class PostForm extends AbstractBasePage {
         return this;
     }
 
+    /**
+     * @return PostContainer method.
+     */
+    public PostContainer setClickEditTextFieldSave() {
+        CommonActions.clickElement(clickEditTextFieldSave);
+        return new PostContainer();
+    }
     /**
      * Edits the text of the post publication.
      */
@@ -97,10 +110,8 @@ public class PostForm extends AbstractBasePage {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        driver.switchTo().frame(driver
-                .findElement(By.xpath("//iframe[contains(@title,'Rich Text Editor, quickActionRichTextEditor')]")));
-        CommonActions.sendKeys(editTxtArea, postTxt);
-        driver.switchTo().defaultContent();
+        CommonActions.clickElement(clickEditTextField);
+        CommonActions.sendKeys(clickEditTextField, postTxt);
         return this;
     }
 
@@ -126,7 +137,7 @@ public class PostForm extends AbstractBasePage {
 
     /**
      * Makes click on the comment button.
-     * @param postText text data.
+     * @param postText text value.
      * @return {@link PostContainer}
      */
     public PostContainer clickCommentBtn(String postText) {
@@ -135,5 +146,6 @@ public class PostForm extends AbstractBasePage {
         CommonActions.clickElement(commentBtn);
         return new PostContainer();
     }
+
 
 }
