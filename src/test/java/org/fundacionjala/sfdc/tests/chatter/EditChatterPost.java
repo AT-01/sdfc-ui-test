@@ -38,7 +38,7 @@ public class EditChatterPost {
     public void editChatterPostTest() {
         postForm = postContainer.editPost(POST_CONTAIN);
         postForm.editPostTxt(NEW_POST_CONTAIN);
-        postContainer = postForm.clickSaveBtn();
+        postContainer = postForm.setClickEditTextFieldSave();
         Assert.assertTrue(postContainer.isPostDisplayed(POST_CONTAIN), "Chatter Post Displayed");
     }
 
@@ -47,8 +47,7 @@ public class EditChatterPost {
      */
     @AfterMethod
     public void deleteChatterPost() {
-
-        postContainer.deletePost(NEW_POST_CONTAIN);
+        //postContainer.deletePost(NEW_POST_CONTAIN);
     }
 
 }

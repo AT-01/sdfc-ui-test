@@ -9,13 +9,11 @@ import java.util.Map;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.FormSteps;
 import org.fundacionjala.sfdc.pages.base.FormBase;
 import org.fundacionjala.sfdc.pages.contacts.ContactForm;
-import org.fundacionjala.sfdc.pages.lookup.LookUpWindow;
 
 /**
  * This class represent the Form to create a new LeadHome.
@@ -216,18 +214,6 @@ public class LeadForm extends FormBase {
     }
 
     /**
-     * This method selects the campaign where the LeadHome is take in account.
-     *
-     * @param campaignLookupText the campaign name.
-     */
-    private void selectCampaign(final String campaignLookupText) {
-        wait.until(ExpectedConditions.elementToBeClickable(this.campaignIcon));
-        campaignIcon.click();
-        LookUpWindow campaignLookup = new LookUpWindow();
-        campaignLookup.selectCampaignWithName(campaignLookupText);
-    }
-
-    /**
      * This method sets the Last name in the field.
      *
      * @param lastName the last name of the LeadHome.
@@ -235,17 +221,6 @@ public class LeadForm extends FormBase {
      */
     public LeadForm setLastNameTextField(final String lastName) {
         CommonActions.sendKeys(lastNameTextField, lastName);
-        return this;
-    }
-
-    /**
-     * This method sets the Status of the LeadHome.
-     *
-     * @param status the status of the LeadHome.
-     * @return {@link LeadForm}
-     */
-    public LeadForm setStatusField(final String status) {
-        CommonActions.sendKeys(leadStatustTextField, status);
         return this;
     }
 
@@ -272,28 +247,6 @@ public class LeadForm extends FormBase {
     }
 
     /**
-     * This method set the Street of the LeadHome.
-     *
-     * @param street the street info of the LeadHome.
-     * @return {@link LeadForm}
-     */
-    public LeadForm setStreetTextField(final String street) {
-        CommonActions.sendKeys(streetTextField, street);
-        return this;
-    }
-
-    /**
-     * This method set the city of the LeadHome.
-     *
-     * @param city the city info of the LeadHome.
-     * @return {@link LeadForm}
-     */
-    public LeadForm setCityTextField(final String city) {
-        CommonActions.sendKeys(cityTextField, city);
-        return this;
-    }
-
-    /**
      * Method that check the field "Assign Rule" if the sent data is "Yes".
      *
      * @param assignRule if this data is "yes" the field is checked
@@ -310,7 +263,6 @@ public class LeadForm extends FormBase {
      * @param valuesMapCreate Map with the Json or builder map values.
      */
     public void fillTheForm(final Map<String, String> valuesMapCreate) {
-        //System.out.println(String.format().);
         valuesMapCreate.keySet()
                 .forEach(step -> getStrategyStepMap(valuesMapCreate).get(step).executeStep());
     }
@@ -505,8 +457,6 @@ public class LeadForm extends FormBase {
                 () -> CommonActions.sendKeys(titleField, values.get(LeadFields.TITLE.toString())));
         strategyMap.put(LeadFields.LEAD_SOURCE.toString(),
                 () ->  selectLeadSource(values.get(LeadFields.LEAD_SOURCE.toString())));
-        //strategyMap.put(CAMPAIGN.toString(),
-          //      () -> selectCampaign(values.get(CAMPAIGN.toString())));
         strategyMap.put(LeadFields.INDUSTRY.toString(),
                 () ->  selectIndustry(values.get(LeadFields.INDUSTRY.toString())));
         strategyMap.put(LeadFields.ANNUAL_REVENUE.toString(),
@@ -595,17 +545,6 @@ public class LeadForm extends FormBase {
         }
 
         /**
-         * Method that set the Salutation for the Lead.
-         *
-         * @param nameSalutation Salutation info.
-         * @return {@link LeadBuilder}
-         */
-        public LeadBuilder setNameSalutation(final String nameSalutation) {
-            strategyMap.put(LeadFields.NAME_SALUTATION.toString(), nameSalutation);
-            return this;
-        }
-
-        /**
          * Method that set the first name data.
          *
          * @param firstName String with the first name info.
@@ -617,28 +556,6 @@ public class LeadForm extends FormBase {
         }
 
         /**
-         * Method that set the Last name data.
-         *
-         * @param lastName String with the Last Name info.
-         * @return {@link LeadBuilder}
-         */
-        public LeadBuilder setLastName(final String lastName) {
-            strategyMap.put(LeadFields.LAST_NAME.toString(), lastName);
-            return this;
-        }
-
-        /**
-         * Method that set the Lead company.
-         *
-         * @param company String with the company info.
-         * @return {@link LeadBuilder}
-         */
-        public LeadBuilder setCompany(final String company) {
-            strategyMap.put(LeadFields.COMPANY.toString(), company);
-            return this;
-        }
-
-        /**
          * Method that sets the Lead title data.
          *
          * @param title String with the title info.
@@ -646,17 +563,6 @@ public class LeadForm extends FormBase {
          */
         public LeadBuilder setTitle(final String title) {
             strategyMap.put(LeadFields.TITLE.toString(), title);
-            return this;
-        }
-
-        /**
-         * Method that sets the Lead source info.
-         *
-         * @param leadSource String with the source info.
-         * @return {@link LeadBuilder}
-         */
-        public LeadBuilder setLeadSource(final String leadSource) {
-            strategyMap.put(LeadFields.LEAD_SOURCE.toString(), leadSource);
             return this;
         }
 
@@ -683,17 +589,6 @@ public class LeadForm extends FormBase {
         }
 
         /**
-         * Method that sets the Lead Annual Revenue info.
-         *
-         * @param annualRevenue String with the annual revenue data.
-         * @return {@link LeadBuilder}
-         */
-        public LeadBuilder setAnnualRevenue(final String annualRevenue) {
-            strategyMap.put(LeadFields.ANNUAL_REVENUE.toString(), annualRevenue);
-            return this;
-        }
-
-        /**
          * Method that sets the Lead phone number.
          *
          * @param phone String with the phone data.
@@ -701,17 +596,6 @@ public class LeadForm extends FormBase {
          */
         public LeadBuilder setPhone(final String phone) {
             strategyMap.put(LeadFields.PHONE.toString(), phone);
-            return this;
-        }
-
-        /**
-         * Method that sets the Lead mobile number.
-         *
-         * @param mobile String with the phone data.
-         * @return {@link LeadBuilder}
-         */
-        public LeadBuilder setMobile(final String mobile) {
-            strategyMap.put(LeadFields.MOBILE.toString(), mobile);
             return this;
         }
 
@@ -727,17 +611,6 @@ public class LeadForm extends FormBase {
         }
 
         /**
-         * Method that sets the Lead Email info.
-         *
-         * @param email String with the email data.
-         * @return {@link LeadBuilder}
-         */
-        public LeadBuilder setEmail(final String email) {
-            strategyMap.put(LeadFields.EMAIL.toString(), email);
-            return this;
-        }
-
-        /**
          * Method that sets the Lead website.
          *
          * @param website String with the website data.
@@ -745,17 +618,6 @@ public class LeadForm extends FormBase {
          */
         public LeadBuilder setWebsite(final String website) {
             strategyMap.put(LeadFields.WEBSITE.toString(), website);
-            return this;
-        }
-
-        /**
-         * Method that sets the Lead status.
-         *
-         * @param leadStatus String with the status data.
-         * @return {@link LeadBuilder}
-         */
-        public LeadBuilder setLeadStatus(final String leadStatus) {
-            strategyMap.put(LeadFields.LEAD_STATUS.toString(), leadStatus);
             return this;
         }
 
@@ -837,17 +699,6 @@ public class LeadForm extends FormBase {
         }
 
         /**
-         * Method that sets the Lead product interest.
-         *
-         * @param productInterest String with the product interest data.
-         * @return {@link LeadBuilder}
-         */
-        public LeadBuilder setProductInterest(final String productInterest) {
-            strategyMap.put(LeadFields.PRODUCT_INTEREST.toString(), productInterest);
-            return this;
-        }
-
-        /**
          * Method that sets the Lead siccode.
          *
          * @param sicCode String with the sic code data.
@@ -855,17 +706,6 @@ public class LeadForm extends FormBase {
          */
         public LeadBuilder setSicCode(final String sicCode) {
             strategyMap.put(LeadFields.SICCODE.toString(), sicCode);
-            return this;
-        }
-
-        /**
-         * Method that sets the Lead number locations.
-         *
-         * @param numberLocations String with the number locations data.
-         * @return {@link LeadBuilder}
-         */
-        public LeadBuilder setNumberLocations(final String numberLocations) {
-            strategyMap.put(LeadFields.NUMBER_LOCATIONS.toString(), numberLocations);
             return this;
         }
 

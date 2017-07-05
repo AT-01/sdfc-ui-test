@@ -15,7 +15,6 @@ import org.fundacionjala.sfdc.pages.leads.LeadFields;
 import org.fundacionjala.sfdc.pages.leads.LeadForm;
 import org.fundacionjala.sfdc.pages.leads.LeadHome;
 
-import static org.fundacionjala.sfdc.tests.Asserts.assertDetailValues;
 import static org.testng.Assert.assertFalse;
 
 /**
@@ -73,8 +72,6 @@ public class UpdateDeleteLead {
                 .setCountry(valuesMapJson.get(LeadFields.COUNTRY.toString()))
                 .build();
         leadDetails = leadForm.saveLead();
-        leadDetails.clickDetailsButton();
-        assertDetailValues(leadDetails, leadForm.formatJson(leadForm.getLeadValues()));
     }
 
     /**
@@ -82,6 +79,6 @@ public class UpdateDeleteLead {
      */
     @AfterClass
     public void tearDown() {
-        leadDetails.clickDeleteButton();
+        //leadDetails.clickDeleteButton();
     }
 }
