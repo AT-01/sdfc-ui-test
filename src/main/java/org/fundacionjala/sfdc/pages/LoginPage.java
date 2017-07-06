@@ -30,13 +30,6 @@ public class LoginPage extends AbstractBasePage {
     private WebElement loginField;
 
     /**
-     * Constructor that initialize the default values.
-     */
-    public LoginPage() {
-        driver.get(Environment.getInstance().getBaseUrl());
-    }
-
-    /**
      * This method set the username in the text field.
      *
      * @param email String with the username or email.
@@ -94,7 +87,7 @@ public class LoginPage extends AbstractBasePage {
             driver.manage().timeouts().implicitlyWait(DURATION, TimeUnit.SECONDS);
             wait.withTimeout(DURATION, TimeUnit.SECONDS);
             homePage = new MainApp();
-            if (!homePage.getUserLooged().equals(name)) {
+            if (!homePage.getUserLogged().equals(name)) {
                 homePage.clickLogout();
                 homePage = loginAs(userName, password);
             }
