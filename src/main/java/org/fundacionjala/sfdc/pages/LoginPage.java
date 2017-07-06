@@ -111,5 +111,4 @@ public class LoginPage extends AbstractBasePage {
                 Environment.getInstance().getPrimaryPassword(),
             Environment.getInstance().getFirstLastName());
     }
-
 }

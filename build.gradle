@@ -72,7 +72,7 @@ task runTestNGTestCases(type: Test) {
         includeGroups(groups)
         listeners << 'org.uncommons.reportng.HTMLReporter'
     }
-    //It's set the environment parameters.
+    //It's set the environment parameters
     systemProperties.put('primaryUserName', primaryUserName)
     systemProperties.put('primaryUserPassword', primaryUserPassword)
     systemProperties.put('firstLastName', firstLastName)

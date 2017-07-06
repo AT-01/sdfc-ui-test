@@ -26,7 +26,6 @@ public class MainApp extends AbstractBasePage {
     @CacheLookup
     private WebElement viewProfile;
 
-
     /**
      * Method that makes click on logout link.
      */
