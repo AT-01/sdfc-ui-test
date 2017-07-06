@@ -207,6 +207,7 @@ public class ContactsDetail extends DetailBase {
      */
     @Override
     public MainApp clickDeleteButton() {
+        CommonActions.sleep(1000);
         CommonActions.clickElement(downArrow);
         CommonActions.clickElement(deleteBtn);
         CommonActions.clickElement(confirmDeleteButton);
