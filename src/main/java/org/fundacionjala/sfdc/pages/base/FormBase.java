@@ -13,17 +13,21 @@ import org.fundacionjala.sfdc.framework.selenium.CommonActions;
  */
 public abstract class FormBase extends AbstractBasePage {
 
-    @FindBy(css = "button[title='Save']")
+    @FindBy(css = ".modal-footer button[title='Save']")
     protected WebElement saveButton;
 
-    @FindBy(css = "button[title='Save & New']")
+    @FindBy(css = ".modal-footer button[title='Save & New']")
     protected WebElement saveNewBtn;
 
-    @FindBy(css = "button[title='Cancel']")
+    @FindBy(css = ".modal-footer button[title='Cancel']")
     private WebElement cancelBtn;
 
     @FindBy(css = "div.visible.positioned li.uiMenuItem.uiRadioMenuItem>a")
     protected List<WebElement> generalDropdown;
+
+    @FindBy(css = ".lookup__list.visible li.forceSearchInputLookupDesktopOption>a")
+    protected List<WebElement> generalAcountDropdown;
+
 
     /**
      * Clicks on "save" button.

@@ -11,6 +11,31 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_NAME;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_NUMBER;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACCOUNT_SITE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ACTIVE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.ANNUAL_REVENUE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.BILLING_STREET;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.CUSTOMER_PRIORITY;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.DESCRIPTION;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.EMPLOYEES;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.FAX;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.INDUSTRY;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.NUMBER_LOCATIONS;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.OWNERSHIP;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.PHONE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.RATING;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.SHIPPING_STREET;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.SIC_CODE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.SLA;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.SLA_EXPIRATION_DATE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.SLA_SERIAL;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.TICKER_SYMBOL;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.TYPE;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.UPSELL_OPPORTUNITY;
+import static org.fundacionjala.sfdc.pages.accounts.AccountFields.WEBSITE;
+
 /**
  * This class content all the Account data.
  */
@@ -33,9 +58,17 @@ public class AccountDetail extends DetailBase {
     @CacheLookup
     private WebElement accountType;
 
+    @FindBy(xpath = "//span[text()='Industry']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement accountIndustry;
+
     @FindBy(xpath = "//span[text()='Annual Revenue']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement accountAnnualRevenue;
+
+    @FindBy(xpath = "//span[text()='Rating']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement accountRating;
 
     @FindBy(xpath = "//span[text()='Phone']/parent::div/following-sibling::div/span/span")
     @CacheLookup
@@ -53,6 +86,10 @@ public class AccountDetail extends DetailBase {
     @CacheLookup
     private WebElement accountTickerSymbol;
 
+    @FindBy(xpath = "//span[text()='Ownership']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement accountOwnership;
+
     @FindBy(xpath = "//span[text()='Employees']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement accountEmployees;
@@ -69,9 +106,17 @@ public class AccountDetail extends DetailBase {
     @CacheLookup
     private WebElement shippingStreet;
 
+    @FindBy(xpath = "//span[text()='Customer Priority']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement customerPriority;
+
     @FindBy(xpath = "//span[text()='SLA Expiration Date']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement slaExpirationDate;
+
+    @FindBy(xpath = "//span[text()='SLA']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement sla;
 
     @FindBy(xpath = "//span[text()='SLA Serial Number']/parent::div/following-sibling::div/span/span")
     @CacheLookup
@@ -80,6 +125,14 @@ public class AccountDetail extends DetailBase {
     @FindBy(xpath = "//span[text()='Number of Locations']/parent::div/following-sibling::div/span/span")
     @CacheLookup
     private WebElement numberOfLocations;
+
+    @FindBy(xpath = "//span[text()='Active']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement active;
+
+    @FindBy(xpath = "//span[text()='Upsell Opportunity']/parent::div/following-sibling::div/span/span")
+    @CacheLookup
+    private WebElement upsellOpportunity;
 
     @FindBy(xpath = "//span[text()='Description']/parent::div/following-sibling::div/span/span")
     @CacheLookup
@@ -115,23 +168,30 @@ public class AccountDetail extends DetailBase {
     public Map<String, AssertsDetails> getStrategyAssertMap() {
         final Map<String, AssertsDetails> strategyMap = new HashMap<>();
 
-        strategyMap.put(AccountFields.ACCOUNT_NAME.toString(), this::getName);
-        strategyMap.put(AccountFields.ACCOUNT_NUMBER.toString(), this::getAccountNumber);
-        strategyMap.put(AccountFields.ACCOUNT_SITE.toString(), this::getSite);
-        strategyMap.put(AccountFields.TYPE.toString(), this::getAccountType);
-        strategyMap.put(AccountFields.ANNUAL_REVENUE.toString(), this::getAccountAnnualRevenue);
-        strategyMap.put(AccountFields.PHONE.toString(), this::getPhone);
-        strategyMap.put(AccountFields.FAX.toString(), this::getAccountFax);
-        strategyMap.put(AccountFields.TICKER_SYMBOL.toString(), this::getAccountTickerSymbol);
-        strategyMap.put(AccountFields.WEBSITE.toString(), this::getWebsite);
-        strategyMap.put(AccountFields.EMPLOYEES.toString(), this::getEmployees);
-        strategyMap.put(AccountFields.SIC_CODE.toString(), this::getAccountSicCode);
-        strategyMap.put(AccountFields.BILLING_STREET.toString(), this::getBillingStreet);
-        strategyMap.put(AccountFields.SHIPPING_STREET.toString(), this::getShippingStreet);
-        strategyMap.put(AccountFields.SLA_EXPIRATION_DATE.toString(), this::getSlaExpirationDate);
-        strategyMap.put(AccountFields.SLA_SERIAL.toString(), this::getSlaSerialNumber);
-        strategyMap.put(AccountFields.NUMBER_LOCATIONS.toString(), this::getNumberOfLocations);
-        strategyMap.put(AccountFields.DESCRIPTION.toString(), this::getDescription);
+        strategyMap.put(ACCOUNT_NAME.toString(), this::getName);
+        strategyMap.put(ACCOUNT_NUMBER.toString(), this::getAccountNumber);
+        strategyMap.put(ACCOUNT_SITE.toString(), this::getAccountSite);
+        strategyMap.put(TYPE.toString(), this::getAccountType);
+        strategyMap.put(INDUSTRY.toString(), this::getIndustryType);
+        strategyMap.put(ANNUAL_REVENUE.toString(), this::getAnnualRevenue);
+        strategyMap.put(RATING.toString(), this::getAccountRating);
+        strategyMap.put(PHONE.toString(), this::getAccountPhone);
+        strategyMap.put(FAX.toString(), this::getAccountFax);
+        strategyMap.put(TICKER_SYMBOL.toString(), this::getAccountTickerSymbol);
+        strategyMap.put(OWNERSHIP.toString(), this::getAccountOwnership);
+        strategyMap.put(WEBSITE.toString(), this::getAccountWebsite);
+        strategyMap.put(EMPLOYEES.toString(), this::getEmployees);
+        strategyMap.put(SIC_CODE.toString(), this::getAccountSicCode);
+        strategyMap.put(BILLING_STREET.toString(), this::getBillingStreet);
+        strategyMap.put(SHIPPING_STREET.toString(), this::getShippingStreet);
+        strategyMap.put(CUSTOMER_PRIORITY.toString(), this::getCustomerPriority);
+        strategyMap.put(SLA_EXPIRATION_DATE.toString(), this::getSlaExpirationDate);
+        strategyMap.put(SLA.toString(), this::getSla);
+        strategyMap.put(SLA_SERIAL.toString(), this::getSlaSerialNumber);
+        strategyMap.put(NUMBER_LOCATIONS.toString(), this::getNumberOfLocations);
+        strategyMap.put(ACTIVE.toString(), this::getActive);
+        strategyMap.put(UPSELL_OPPORTUNITY.toString(), this::getUpsellOpportunity);
+        strategyMap.put(DESCRIPTION.toString(), this::getDescription);
 
         return strategyMap;
     }
@@ -200,12 +260,39 @@ public class AccountDetail extends DetailBase {
     }
 
     /**
+     * Returns the account industry field.
+     *
+     * @return a String with the account industry field.
+     */
+    private String getIndustryType() {
+        return accountIndustry.getText();
+    }
+
+    /**
+     * Returns the account upsell opportunity field.
+     *
+     * @return a String with the upsell opportunity field.
+     */
+    private String getUpsellOpportunity() {
+        return upsellOpportunity.getText();
+    }
+
+    /**
      * Returns the annual revenue field.
      *
      * @return a String with the annual revenue field.
      */
-    private String getAccountAnnualRevenue() {
+    private String getAnnualRevenue() {
         return accountAnnualRevenue.getText().replace("$", "");
+    }
+
+    /**
+     * Returns the annual revenue field.
+     *
+     * @return a String with the annual revenue field.
+     */
+    private String getAccountRating() {
+        return accountRating.getText();
     }
 
     /**
@@ -227,6 +314,24 @@ public class AccountDetail extends DetailBase {
     }
 
     /**
+     * Returns the account ownership field.
+     *
+     * @return a String with the ownership field.
+     */
+    private String getAccountOwnership() {
+        return accountOwnership.getText();
+    }
+
+    /**
+     * Returns the customer priority field.
+     *
+     * @return a String with the customer priority field.
+     */
+    private String getCustomerPriority() {
+        return customerPriority.getText();
+    }
+
+    /**
      * Returns the sic code field.
      *
      * @return a String with the sic code field.
@@ -238,10 +343,28 @@ public class AccountDetail extends DetailBase {
     /**
      * Returns the sla expiration date field.
      *
-     * @return a String with the sla expiration field field.
+     * @return a String with the sla expiration field.
      */
     private String getSlaExpirationDate() {
         return slaExpirationDate.getText();
+    }
+
+    /**
+     * Returns the sla field.
+     *
+     * @return a String with the sla field.
+     */
+    private String getSla() {
+        return sla.getText();
+    }
+
+    /**
+     * Returns the active field.
+     *
+     * @return a String with the active field.
+     */
+    private String getActive() {
+        return active.getText();
     }
 
     /**
@@ -258,7 +381,7 @@ public class AccountDetail extends DetailBase {
      *
      * @return String with account site
      */
-    private String getSite() {
+    private String getAccountSite() {
         return accountSite.getText();
     }
 
@@ -267,7 +390,7 @@ public class AccountDetail extends DetailBase {
      *
      * @return String with account phone
      */
-    private String getPhone() {
+    private String getAccountPhone() {
         return accountPhone.getText();
     }
 
@@ -276,7 +399,7 @@ public class AccountDetail extends DetailBase {
      *
      * @return String with account website
      */
-    private String getWebsite() {
+    private String getAccountWebsite() {
         return accountWebsite.getText();
     }
 

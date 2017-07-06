@@ -75,6 +75,7 @@ task runTestNGTestCases(type: Test) {
     //It's set the environment parameters.
     systemProperties.put('primaryUserName', primaryUserName)
     systemProperties.put('primaryUserPassword', primaryUserPassword)
+    systemProperties.put('firstLastName', firstLastName)
     systemProperties.put('browser', browser)
     systemProperties.put('proxy', proxy)
     systemProperties.put('port', port)

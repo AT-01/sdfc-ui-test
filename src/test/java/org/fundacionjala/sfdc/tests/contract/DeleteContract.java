@@ -29,7 +29,9 @@ public class DeleteContract {
     private Map<String, String> valuesMapJson;
 
     /**
+     *
      * This method is a preconditions to edit and delete a contract.
+     *
      */
     @BeforeMethod
     public void setUp() {

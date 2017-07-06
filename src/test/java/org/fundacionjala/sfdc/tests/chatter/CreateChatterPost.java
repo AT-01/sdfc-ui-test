@@ -1,15 +1,15 @@
 package org.fundacionjala.sfdc.tests.chatter;
 
 
+import org.fundacionjala.sfdc.framework.selenium.Navigator;
+import org.fundacionjala.sfdc.pages.LoginPage;
+import org.fundacionjala.sfdc.pages.chatter.ChatterAbstractPage;
+import org.fundacionjala.sfdc.pages.chatter.PostContainer;
+import org.fundacionjala.sfdc.pages.chatter.PostForm;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
-import org.fundacionjala.sfdc.pages.chatter.ChatterAbstractPage;
-import org.fundacionjala.sfdc.pages.chatter.PostContainer;
-import org.fundacionjala.sfdc.pages.chatter.PostForm;
-import org.fundacionjala.sfdc.framework.selenium.Navigator;
 
 /**
  * Method that verify the creation of chatter.
@@ -20,12 +20,12 @@ public class CreateChatterPost {
     private ChatterAbstractPage chatterHome;
     private PostContainer postContainer;
 
-
     /**
      * Before method.
      */
     @BeforeMethod
     public void setUp() {
+        LoginPage.loginAsPrimaryUser();
         chatterHome = Navigator.goToChatter();
     }
 
@@ -34,9 +34,10 @@ public class CreateChatterPost {
      */
     @Test
     public void createChatterPostTest() {
-        PostForm postForm = chatterHome.clickPostLnk().setPostTxt(POST_CONTAIN);
+        PostForm postForm = chatterHome.clickPostLnk()
+                .setPostTxt(POST_CONTAIN);
         postContainer = postForm.clickShareBtn();
-        Assert.assertTrue(postContainer.isPostDisplayed(), "Chatter Post Displayed");
+        Assert.assertTrue(postContainer.isPostDisplayed(POST_CONTAIN), "Chatter Post Displayed");
     }
 
     /**

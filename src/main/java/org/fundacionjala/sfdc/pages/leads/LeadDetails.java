@@ -3,7 +3,6 @@ package org.fundacionjala.sfdc.pages.leads;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -152,19 +151,10 @@ public class LeadDetails extends DetailBase {
     @CacheLookup
     private WebElement buttonMoreActions;
 
-    @FindBy(css = "button[title=\"Delete\"]")
+    @FindBy(css = "button[title='Delete']")
     @CacheLookup
     private WebElement buttonDeleteConfirm;
 
-
-    /**
-     * Method that gets the Owner that was registered in the creation of LeadHome.
-     *
-     * @return a string that is the Owner data.
-     */
-    public String getOwnerLabel() {
-        return ownerLabel.getText();
-    }
 
     /**
      * Method that gets the Owner that was registered in the creation of LeadHome.
@@ -364,35 +354,6 @@ public class LeadDetails extends DetailBase {
     }
 
     /**
-     * This method gets the campaign that was selected.
-     *
-     * @param campaignName String with the campaign name.
-     * @return a String with the campaign name.
-     */
-    public String getCampaign(final String campaignName) {
-        return campaignBlock.findElement(By.linkText(campaignName)).getText();
-    }
-
-    /**
-     * This method gets the nameLabel of the user that created the LeadHome.
-     *
-     * @return a String with the user name.
-     */
-    public String getCreatedByLabel() {
-        return createdByLabel.getText();
-    }
-
-    /**
-     * This method gets the user name that was the last that modify the info of the LeadHome.
-     *
-     * @return a String with the user name.
-     */
-    public String getLastModifiedByLabel() {
-        return lastModifiedByLabel.getText();
-    }
-
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -459,8 +420,6 @@ public class LeadDetails extends DetailBase {
         clickButtonMoreActions();
         CommonActions.clickElement(deleteBtn);
         buttonDeleteConfirm();
-        //Alert alert = driver.switchTo().alert();
-        //alert.accept();
         return new LeadHome();
     }
 }

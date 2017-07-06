@@ -7,7 +7,6 @@
         <classes>
             <class name="org.fundacionjala.sfdc.tests.account.CreateAccount"/>
             <class name="org.fundacionjala.sfdc.tests.account.EditAccount"/>
-            <class name="org.fundacionjala.sfdc.tests.account.EditAccountBuilder"/>
             <class name="org.fundacionjala.sfdc.tests.account.DeleteAccount"/>
         </classes>
     </test>
