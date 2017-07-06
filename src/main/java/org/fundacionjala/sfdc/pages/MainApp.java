@@ -52,7 +52,7 @@ public class MainApp extends AbstractBasePage {
      *
      * @return {@link UserInformationPage}
      */
-    public String getUserLooged() {
+    public String getUserLogged() {
         String userLogged;
         try {
             CommonActions.clickElement(viewProfile);
