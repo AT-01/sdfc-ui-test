@@ -25,6 +25,7 @@ public class LeadHome extends HomeBase {
      */
     @Override
     public LeadForm clickNewButton() {
+        CommonActions.sleep(5000);
         CommonActions.clickElement(newButton);
         return new LeadForm();
     }

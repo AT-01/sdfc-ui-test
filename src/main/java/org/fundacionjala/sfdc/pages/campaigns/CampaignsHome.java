@@ -38,6 +38,7 @@ public class CampaignsHome extends AbstractBasePage {
      * @return CampaignForm.
      */
     public CampaignForm clickNewButton() {
+        CommonActions.sleep(5000);
         CommonActions.clickElement(newButton);
         return new CampaignForm();
     }

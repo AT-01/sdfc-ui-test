@@ -1,7 +1,6 @@
 package org.fundacionjala.sfdc.tests.chatter;
 
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.chatter.ChatterAbstractPage;
 import org.fundacionjala.sfdc.pages.chatter.PostContainer;
 import org.fundacionjala.sfdc.pages.chatter.PostForm;
@@ -22,7 +21,6 @@ public class DeleteChatterPost {
      */
     @BeforeMethod
     public void setUp() {
-        LoginPage.loginAsPrimaryUser();
         chatterHome = Navigator.goToChatter();
         PostForm postForm = chatterHome.clickPostLnk().setPostTxt(POST_CONTAIN);
         postContainer = postForm.clickShareBtn();
@@ -34,7 +32,6 @@ public class DeleteChatterPost {
     @Test
     public void deleteChatterPostTest() {
         postContainer.deletePost(POST_CONTAIN);
-//        Assert.assertFalse(postContainer.isPostDisplayed(POST_CONTAIN), "Chatter Post Deleted");
     }
 
 }

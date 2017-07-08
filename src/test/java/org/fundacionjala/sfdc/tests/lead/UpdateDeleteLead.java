@@ -3,7 +3,6 @@ package org.fundacionjala.sfdc.tests.lead;
 
 import java.util.Map;
 
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -34,7 +33,6 @@ public class UpdateDeleteLead {
     @BeforeMethod
     public void setUp() {
         valuesMapJson = JsonMapper.getMapJson(LEAD_DATA_PATH);
-        LoginPage.loginAsPrimaryUser();
         leadHomePage = Navigator.goToLead();
         leadForm = leadHomePage.clickNewButton();
         leadDetails = leadForm
@@ -79,6 +77,6 @@ public class UpdateDeleteLead {
      */
     @AfterClass
     public void tearDown() {
-        //leadDetails.clickDeleteButton();
+        leadDetails.clickDeleteButton();
     }
 }
