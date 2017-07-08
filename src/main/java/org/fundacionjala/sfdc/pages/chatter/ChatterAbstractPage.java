@@ -21,6 +21,7 @@ public class ChatterAbstractPage extends AbstractBasePage {
      * @return {@link PostForm}
      */
     public PostForm clickPostLnk() {
+        CommonActions.sleep(5000);
         CommonActions.clickElement(textArea);
         return new PostForm();
     }

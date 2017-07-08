@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.leads.LeadDetails;
 import org.fundacionjala.sfdc.pages.leads.LeadForm;
 import org.fundacionjala.sfdc.pages.leads.LeadHome;
@@ -36,7 +35,7 @@ public class CreateLead {
     @BeforeMethod
     public void setUp() {
         valuesMapJson = JsonMapper.getMapJson(LEAD_DATA_PATH);
-        LoginPage.loginAsPrimaryUser();
+        //LoginPage.loginAsPrimaryUser();
         leadHome = Navigator.goToLead();
     }
 

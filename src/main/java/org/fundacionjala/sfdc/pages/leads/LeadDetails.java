@@ -392,6 +392,7 @@ public class LeadDetails extends DetailBase {
      * Method that gets the Owner that was registered in the creation of LeadHome.
      */
     public void clickButtonMoreActions() {
+        CommonActions.sleep(5000);
         CommonActions.clickElement(buttonMoreActions);
     }
 
@@ -399,8 +400,17 @@ public class LeadDetails extends DetailBase {
      * Method that gets the Owner that was registered in the creation of LeadHome.
      */
     public void buttonDeleteConfirm() {
+        CommonActions.sleep(5000);
         CommonActions.clickElement(buttonDeleteConfirm);
     }
+
+    /**
+     * Method that gets the Owner that was registered in the creation of LeadHome.
+     */
+    public void waitNewButton() {
+        CommonActions.sleep(3000);
+    }
+
 
     /**
      * {@inheritDoc}

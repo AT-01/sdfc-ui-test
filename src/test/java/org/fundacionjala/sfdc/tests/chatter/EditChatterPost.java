@@ -1,7 +1,6 @@
 package org.fundacionjala.sfdc.tests.chatter;
 
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.chatter.ChatterAbstractPage;
 import org.fundacionjala.sfdc.pages.chatter.PostContainer;
 import org.fundacionjala.sfdc.pages.chatter.PostForm;
@@ -25,7 +24,6 @@ public class EditChatterPost {
      */
     @BeforeMethod
     public void setUp() {
-        LoginPage.loginAsPrimaryUser();
         ChatterAbstractPage chatterHome = Navigator.goToChatter();
         postForm = chatterHome.clickPostLnk().setPostTxt(POST_CONTAIN);
         postContainer = postForm.clickShareBtn();
