@@ -26,6 +26,8 @@ public class CreateCampaign {
 
     private CampaignsHome campaignsHome;
 
+    private CampaignForm campaignForm;
+
     private Map<String, String> valuesMapJson;
 
     /**
@@ -34,8 +36,9 @@ public class CreateCampaign {
     @BeforeMethod()
     public void setup() {
         valuesMapJson = JsonMapper.getMapJson(CAMPAIGN_DATA_PATH);
-        LoginPage.loginAsPrimaryUser();
+//        LoginPage.loginAsPrimaryUser();
         campaignsHome = Navigator.goToCampaign();
+        campaignForm = campaignsHome.clickNewButton();
     }
 
     /**
@@ -43,7 +46,6 @@ public class CreateCampaign {
      */
     @Test()
     public void createCampaignWithJson() {
-        CampaignForm campaignForm = campaignsHome.clickNewButton();
         campaignForm.fillTheForm(valuesMapJson);
         campaignDetail = campaignForm.clickSaveButton();
         campaignDetail.clickDetails();
@@ -55,7 +57,7 @@ public class CreateCampaign {
      */
     @Test()
     public void createCampaign() {
-        campaignsHome.clickNewButton();
+//        campaignsHome.clickNewButton();
         Campaigns campaigns = new Campaigns.CampaignBuilder("builderTestNew")
                 .setActive(" checked")
                 .setTypeDropDown("Email")
