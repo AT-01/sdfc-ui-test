@@ -8,7 +8,6 @@ import org.testng.annotations.Test;
 
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignDetail;
 import org.fundacionjala.sfdc.pages.campaigns.CampaignForm;
 import org.fundacionjala.sfdc.pages.campaigns.Campaigns;
@@ -36,9 +35,9 @@ public class UpdateCampaign {
     @BeforeMethod()
     public void setup() {
         Map<String, String> valuesMapJson = JsonMapper.getMapJson(CAMPAIGN_DATA_PATH);
-        LoginPage.loginAsPrimaryUser();
+//        LoginPage.loginAsPrimaryUser();
         campaignsHome = Navigator.goToCampaign();
-        CampaignForm campaignForm = campaignsHome.clickNewButton();
+        campaignForm = campaignsHome.clickNewButton();
         campaignForm.fillTheForm(valuesMapJson);
         campaignDetail = campaignForm.clickSaveButton();
     }
