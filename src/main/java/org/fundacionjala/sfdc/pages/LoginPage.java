@@ -16,7 +16,12 @@ import org.fundacionjala.sfdc.pages.base.AbstractBasePage;
  * Class to manage the login process.
  */
 public class LoginPage extends AbstractBasePage {
-    public static final int DURATION = 3;
+    private static final int DURATION = 3;
+
+    private static final DriverManager DRIVER_MANAGER = DriverManager.getInstance();
+
+    private static final Environment ENVIRONMENT = Environment.getInstance();
+
     @FindBy(id = "username")
     @CacheLookup
     private static WebElement userNameField;
@@ -84,19 +89,19 @@ public class LoginPage extends AbstractBasePage {
                                   final String name) {
         MainApp homePage;
         try {
-            driver.manage().timeouts().implicitlyWait(DURATION, TimeUnit.SECONDS);
-            wait.withTimeout(DURATION, TimeUnit.SECONDS);
+            DRIVER_MANAGER.getDriver().manage().timeouts().implicitlyWait(DURATION, TimeUnit.SECONDS);
+            DRIVER_MANAGER.getWait().withTimeout(DURATION, TimeUnit.SECONDS);
             homePage = new MainApp();
             if (!homePage.getUserLogged().equals(name)) {
                 homePage.clickLogout();
                 homePage = loginAs(userName, password);
             }
         } catch (WebDriverException e) {
-            DriverManager.getInstance().getDriver().get(Environment.getInstance().getBaseUrl());
+            DRIVER_MANAGER.getDriver().get(ENVIRONMENT.getBaseUrl());
             homePage = loginAs(userName, password);
         } finally {
-            driver.manage().timeouts().implicitlyWait(Environment.getInstance().getTimeout(), TimeUnit.SECONDS);
-            wait.withTimeout(Environment.getInstance().getTimeout(), TimeUnit.SECONDS);
+            DRIVER_MANAGER.getDriver().manage().timeouts().implicitlyWait(ENVIRONMENT.getTimeout(), TimeUnit.SECONDS);
+            DRIVER_MANAGER.getWait().withTimeout(ENVIRONMENT.getTimeout(), TimeUnit.SECONDS);
         }
         return homePage;
     }
@@ -108,9 +113,9 @@ public class LoginPage extends AbstractBasePage {
      */
     public static MainApp loginAsPrimaryUser() {
         LoginPage loginPage = new LoginPage();
-        return loginPage.loginOtherUser(Environment.getInstance().getPrimaryUser(),
-                Environment.getInstance().getPrimaryPassword(),
-            Environment.getInstance().getFirstLastName());
+        return loginPage.loginOtherUser(ENVIRONMENT.getPrimaryUser(),
+                ENVIRONMENT.getPrimaryPassword(),
+            ENVIRONMENT.getFirstLastName());
     }
 
 }
