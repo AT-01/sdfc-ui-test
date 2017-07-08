@@ -12,6 +12,7 @@ public class ContactHome extends HomeBase {
      */
     @Override
     public ContactForm clickNewButton() {
+        CommonActions.sleep(1000);
         CommonActions.clickElement(newButton);
         return new ContactForm();
     }
