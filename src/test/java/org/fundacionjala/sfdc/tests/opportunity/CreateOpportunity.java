@@ -4,6 +4,8 @@ import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
 
 import org.fundacionjala.sfdc.pages.LoginPage;
+import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
+import org.fundacionjala.sfdc.pages.accounts.AccountForm;
 import org.fundacionjala.sfdc.pages.opportunities.OpportunityDetail;
 import org.fundacionjala.sfdc.pages.opportunities.OpportunityForm;
 import org.fundacionjala.sfdc.pages.opportunities.OpportunityHome;
@@ -26,6 +28,7 @@ public class CreateOpportunity {
     private OpportunityHome opportunityHome;
     private OpportunityForm opportunityForm;
 
+
     /**
      * This method is a preconditions to create a opportunities.
      */
@@ -33,7 +36,7 @@ public class CreateOpportunity {
     public void beforeTest() {
 
         valuesMapJson = JsonMapper.getMapJson(OPPORTUNITY_DATA_PATH);
-        LoginPage.loginAsPrimaryUser();
+
         opportunityHome = Navigator.goToOpportunity();
 
     }

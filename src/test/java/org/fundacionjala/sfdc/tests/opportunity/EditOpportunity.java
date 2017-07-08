@@ -32,7 +32,7 @@ public class EditOpportunity {
     @BeforeMethod
     public void beforeTest() {
         valuesMapJson = JsonMapper.getMapJson(OPPORTUNITY_DATA_PATH);
-        LoginPage.loginAsPrimaryUser();
+
         opportunityHome = Navigator.goToOpportunity();
         opportunityForm = opportunityHome.clickNewButton();
         opportunityForm.fillTheForm(valuesMapJson);

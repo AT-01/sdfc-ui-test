@@ -33,8 +33,8 @@ public class DeleteOpportunity {
     public void beforeTest() {
 
         valuesMapJson = JsonMapper.getMapJson(CreateOpportunity.OPPORTUNITY_DATA_PATH);
-        LoginPage.loginAsPrimaryUser();
-        opportunityHome =  Navigator.goToOpportunity();
+
+        opportunityHome = Navigator.goToOpportunity();
         opportunityForm = opportunityHome.clickNewButton();
         opportunityForm.fillTheForm(valuesMapJson);
         opportunityDetail = opportunityForm.clickSaveButton();

@@ -17,6 +17,7 @@ public class OpportunityHome extends HomeBase {
      * @return {@link OpportunityForm}
      */
     public OpportunityForm clickNewButton() {
+        CommonActions.sleep(5000);
         CommonActions.clickElement(newButton);
         return new OpportunityForm();
     }
