@@ -2,7 +2,6 @@ package org.fundacionjala.sfdc.tests.cases;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.pages.AppLauncher;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.cases.CaseDetail;
 import org.fundacionjala.sfdc.pages.cases.CaseInformation;
@@ -30,7 +29,6 @@ public class DeleteCases {
      */
     @BeforeMethod
     public void setUp() {
-        LoginPage.loginAsPrimaryUser();
         MainApp mainApp = new MainApp();
         AppLauncher appLauncher = mainApp.clickAppLauncher();
         casesHome = appLauncher.clickOnCasesHome();

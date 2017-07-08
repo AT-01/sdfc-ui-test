@@ -51,6 +51,14 @@ public class PostForm extends AbstractBasePage {
     @CacheLookup
     private WebElement clickEditTextFieldSave;
 
+    @FindBy(css = "div[data-placeholder='Write a comment...']")
+    @CacheLookup
+    private WebElement textComment;
+
+    @FindBy(xpath = "//span[text()='Comment']")
+    @CacheLookup
+    private WebElement confirmCommentButton;
+
 
     /**
      * Edits the text of the post publication.
@@ -89,10 +97,7 @@ public class PostForm extends AbstractBasePage {
      * @return {@link PostForm}
      */
     public PostForm setCommentTxt(final String commentText, final String postText) {
-        WebElement commentTxt = driver.findElement(By.xpath("//span[contains(.,'"
-                + postText + "')]/following::textarea[contains(@class,"
-                + "'foobar cxnewcommenttext groupAtMentionsEnabled')]"));
-        CommonActions.sendKeys(commentTxt, commentText);
+        CommonActions.sendKeys(textComment, postText);
         return this;
     }
 
@@ -146,6 +151,14 @@ public class PostForm extends AbstractBasePage {
         CommonActions.clickElement(commentBtn);
         return new PostContainer();
     }
+
+    /**
+     * click on confirm comment button.
+     */
+    public void confirmComment() {
+        CommonActions.clickElement(confirmCommentButton);
+    }
+
 
 
 }
