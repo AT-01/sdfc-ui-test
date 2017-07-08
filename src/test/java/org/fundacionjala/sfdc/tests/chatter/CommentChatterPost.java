@@ -1,7 +1,7 @@
 package org.fundacionjala.sfdc.tests.chatter;
 
+import org.fundacionjala.sfdc.framework.selenium.CommonActions;
 import org.fundacionjala.sfdc.pages.AppLauncher;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.MainApp;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -25,7 +25,6 @@ public class CommentChatterPost {
      */
     @BeforeMethod
     public void setUp() {
-        LoginPage.loginAsPrimaryUser();
         MainApp mainApp = new MainApp();
         AppLauncher appLauncher = mainApp.clickAppLauncher();
 
@@ -52,6 +51,7 @@ public class CommentChatterPost {
      */
     @AfterMethod
     public void deleteChatterPost() {
+        CommonActions.sleep(5000);
         postContainer.deletePost(POST_CONTAIN);
     }
 
