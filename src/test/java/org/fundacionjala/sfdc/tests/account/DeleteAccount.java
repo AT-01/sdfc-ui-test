@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.accounts.AccountForm;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,7 +20,6 @@ public class DeleteAccount {
     @BeforeMethod
     public void setup() {
         Map<String, String> valuesMapJson = JsonMapper.getMapJson(ACCOUNT_DATA_PATH);
-        LoginPage.loginAsPrimaryUser();
         AccountForm accountForm = Navigator.goToAccountHome().clickNewButton();
         accountForm.fillTheForm(valuesMapJson);
         accountForm.clickSaveButton();

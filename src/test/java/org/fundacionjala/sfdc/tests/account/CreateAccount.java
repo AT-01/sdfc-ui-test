@@ -4,7 +4,6 @@ import java.util.Map;
 
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.accounts.AccountDetail;
 import org.fundacionjala.sfdc.pages.accounts.AccountForm;
 import org.testng.annotations.AfterMethod;
@@ -52,7 +51,6 @@ public class CreateAccount {
     @BeforeMethod
     public void setUp() {
         valuesMapJson = JsonMapper.getMapJson(ACCOUNT_DATA_PATH);
-        LoginPage.loginAsPrimaryUser();
         accountForm = Navigator.goToAccountHome().clickNewButton();
     }
 
