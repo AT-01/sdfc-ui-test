@@ -21,7 +21,7 @@ public class CommentChatterPost {
     private PostContainer postContainer;
 
     /**
-     * Before method.
+     * Before method .
      */
     @BeforeMethod
     public void setUp() {
@@ -35,7 +35,7 @@ public class CommentChatterPost {
     }
 
     /**
-     * Method that verify the comments in the post.
+     * Method that verify the comments in the post .
      */
     @Test
     public void commentChatterPostTest() {

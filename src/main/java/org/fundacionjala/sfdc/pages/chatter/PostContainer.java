@@ -127,7 +127,7 @@ public class PostContainer extends AbstractBasePage {
     }
 
     /**
-     * click on confirm comment button.
+     * click on confirm comment button .
      */
     public void confirmComment() {
         CommonActions.clickElement(confirmCommentButton);

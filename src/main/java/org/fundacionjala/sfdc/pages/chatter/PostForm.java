@@ -93,7 +93,7 @@ public class PostForm extends AbstractBasePage {
      *
      * @param commentText Is the text that is going to be
      *                    written in the comment text field.
-     * @param postText    Is the post to fin to write the comment.
+     * @param postText    Is the post to fin to write the comment .
      * @return {@link PostForm}
      */
     public PostForm setCommentTxt(final String commentText, final String postText) {

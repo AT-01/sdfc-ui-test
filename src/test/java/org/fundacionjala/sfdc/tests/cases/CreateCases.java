@@ -16,7 +16,7 @@ import org.testng.annotations.Test;
 import java.util.Map;
 
 /**
- * This class manage the test create.
+ * This class manage the test create .
  */
 public class CreateCases {
     private static final String CASES_DATA_PATH = "cases/CreateCasesData.json";

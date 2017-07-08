@@ -15,7 +15,7 @@ import java.util.Map;
 import static org.testng.Assert.assertFalse;
 
 /**
- * This is in charge to execute the test Delete Case .
+ * This is in charge to execute the test Delete Case.
  */
 public class DeleteCases {
     private static final String CASES_DATA_PATH = "cases/CreateCasesData.json";
