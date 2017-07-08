@@ -7,7 +7,6 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.fundacionjala.sfdc.framework.selenium.Navigator;
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.contacts.ContactForm;
 import org.fundacionjala.sfdc.pages.contacts.ContactHome;
 import org.fundacionjala.sfdc.pages.contacts.ContactsDetail;
@@ -30,7 +29,6 @@ public class CreateContact {
     @BeforeMethod
     public void setUp() {
         valuesMapJson = JsonMapper.getMapJson(CONTACT_DATA_PATH);
-        LoginPage.loginAsPrimaryUser();
         Navigator.goToContact();
     }
 
