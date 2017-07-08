@@ -5,9 +5,6 @@
   "statusDropDown": "In Progress",
   "startDate": "10/25/2015",
   "endDate": "10/27/2015",
-  "revenue": "1,000",
-  "budgetedCost": "1,000",
-  "actualCost": "1,000",
   "expectedResponse": "50.00%",
   "numSentInCampaign": "10",
   "description": "Description Campaign"

@@ -33,7 +33,7 @@ public final class CommonActions {
      * @param element Element to wait and clickElement.
      */
     public static void clickElement(final WebElement element) {
-        DriverManager.getInstance().getWait().until(ExpectedConditions.visibilityOf(element));
+        DriverManager.getInstance().getWait().until(ExpectedConditions.elementToBeClickable(element));
         element.click();
     }
 

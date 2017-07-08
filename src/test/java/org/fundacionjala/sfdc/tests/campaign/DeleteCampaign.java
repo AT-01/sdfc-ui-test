@@ -34,7 +34,6 @@ public class DeleteCampaign {
     @BeforeMethod()
     public void setup() {
         valuesMapJson = JsonMapper.getMapJson(CAMPAIGN_DATA_PATH);
-//        LoginPage.loginAsPrimaryUser();
         campaignsHome = Navigator.goToCampaign();
         campaignForm = campaignsHome.clickNewButton();
         campaignForm.fillTheForm(valuesMapJson);

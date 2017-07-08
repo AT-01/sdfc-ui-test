@@ -35,7 +35,6 @@ public class CreateCampaign {
     @BeforeMethod()
     public void setup() {
         valuesMapJson = JsonMapper.getMapJson(CAMPAIGN_DATA_PATH);
-//        LoginPage.loginAsPrimaryUser();
         campaignsHome = Navigator.goToCampaign();
         campaignForm = campaignsHome.clickNewButton();
     }
@@ -56,16 +55,12 @@ public class CreateCampaign {
      */
     @Test()
     public void createCampaign() {
-//        campaignsHome.clickNewButton();
         Campaigns campaigns = new Campaigns.CampaignBuilder("builderTestNew")
                 .setActive(" checked")
                 .setTypeDropDown("Email")
                 .setStatusDropDown("In Progress")
                 .setStartDate("10/25/2015")
                 .setEndDate("10/27/2015")
-                .setRevenue("1,000")
-                .setBudgetedCost("1,000")
-                .setActualCost("1,000")
                 .setExpectedResponse("50.00%")
                 .setNumSentInCampaign("10")
                 .setDescription("Description Campaign")
