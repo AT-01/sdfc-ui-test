@@ -14,7 +14,7 @@ import static org.fundacionjala.sfdc.tests.contact.CreateContact.CONTACT_DATA_PA
 import static org.testng.Assert.assertFalse;
 
 /**
- * Created by Juan on 7/3/2017.
+ * Created by Juan P on 7/3/2017.
  */
 public class DeleteContact {
     private static final String CONTACT_DATA_EDIT_PATH = "contact/EditContactData.json";
