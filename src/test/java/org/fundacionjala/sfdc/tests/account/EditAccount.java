@@ -54,8 +54,7 @@ public class EditAccount {
     public void setUp() {
         Map<String, String> valuesMapJson = JsonMapper.getMapJson(ACCOUNT_DATA_PATH);
         LoginPage.loginAsPrimaryUser();
-        accountForm = Navigator.goToAppLauncher()
-                .clickOnAccountsHome().clickNewButton();
+        accountForm = Navigator.goToAccountHome().clickNewButton();
         accountForm.fillTheForm(valuesMapJson);
         accountDetail = accountForm.clickSaveButton();
     }

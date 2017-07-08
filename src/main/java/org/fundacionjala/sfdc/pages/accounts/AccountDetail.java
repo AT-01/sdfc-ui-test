@@ -143,6 +143,7 @@ public class AccountDetail extends DetailBase {
      */
     @Override
     public AccountForm clickEditButton() {
+        CommonActions.sleep(5000);
         CommonActions.clickElement(downArrow);
         CommonActions.clickElement(editBtn);
 

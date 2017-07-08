@@ -53,8 +53,7 @@ public class CreateAccount {
     public void setUp() {
         valuesMapJson = JsonMapper.getMapJson(ACCOUNT_DATA_PATH);
         LoginPage.loginAsPrimaryUser();
-        accountForm = Navigator.goToAppLauncher()
-                .clickOnAccountsHome().clickNewButton();
+        accountForm = Navigator.goToAccountHome().clickNewButton();
     }
 
     /**

@@ -104,6 +104,7 @@ public class AppLauncher extends AbstractBasePage {
      * @return {@link AccountHome}
      */
     public AccountHome clickOnAccountsHome() {
+        CommonActions.sleep(3000);
         CommonActions.clickElement(accountTab);
         return new AccountHome();
     }

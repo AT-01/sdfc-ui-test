@@ -40,6 +40,7 @@ public class AccountHome extends HomeBase {
      */
     @Override
     public AccountForm clickNewButton() {
+        CommonActions.sleep(5000);
         CommonActions.clickElement(newButton);
         return new AccountForm();
     }
