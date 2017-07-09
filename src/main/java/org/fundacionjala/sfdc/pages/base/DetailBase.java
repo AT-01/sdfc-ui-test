@@ -29,7 +29,7 @@ public abstract class DetailBase extends AbstractBasePage {
     @CacheLookup
     protected WebElement confirmDeleteButton;
 
-    @FindBy(css = ".uiMenu a[title='Show more actions for this record']")
+    @FindBy(css = ".oneContent.active .uiMenu a[title='Show more actions for this record']")
     @CacheLookup
     protected WebElement downArrow;
 

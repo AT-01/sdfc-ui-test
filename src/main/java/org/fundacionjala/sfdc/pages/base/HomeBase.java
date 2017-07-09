@@ -10,7 +10,6 @@ import org.openqa.selenium.support.FindBy;
 public abstract class HomeBase extends AbstractBasePage {
 
     @FindBy(css = ".active.oneContent a[title='New']")
-    @CacheLookup
     protected WebElement newButton;
 
     @FindBy(css = ".slds-icon-waffle")

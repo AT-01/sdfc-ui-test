@@ -11,9 +11,12 @@ import org.fundacionjala.sfdc.pages.contracts.ContractHome;
 import org.fundacionjala.sfdc.pages.leads.LeadHome;
 import org.fundacionjala.sfdc.pages.opportunities.OpportunityHome;
 import org.fundacionjala.sfdc.pages.products.ProductHome;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 /**
@@ -65,6 +68,7 @@ public class AppLauncher extends AbstractBasePage {
 
     public CampaignsHome clickCampaigns() {
         CommonActions.clickElement(campaignsTab);
+        waitModal();
         return new CampaignsHome();
     }
 
@@ -105,7 +109,16 @@ public class AppLauncher extends AbstractBasePage {
      */
     public AccountHome clickOnAccountsHome() {
         CommonActions.clickElement(accountTab);
+        waitModal();
         return new AccountHome();
+    }
+
+    /**
+     * This method wait modal.
+     *
+     */
+    private void waitModal() {
+        wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".modal-header"))));
     }
 
     /**

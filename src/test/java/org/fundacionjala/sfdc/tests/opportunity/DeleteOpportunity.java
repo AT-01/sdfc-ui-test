@@ -1,15 +1,15 @@
 package org.fundacionjala.sfdc.tests.opportunity;
 
-import org.fundacionjala.sfdc.framework.utils.JsonMapper;
-import org.fundacionjala.sfdc.framework.selenium.Navigator;
-import org.fundacionjala.sfdc.pages.LoginPage;
-import org.fundacionjala.sfdc.pages.opportunities.OpportunityDetail;
-import org.fundacionjala.sfdc.pages.opportunities.OpportunityForm;
-import org.fundacionjala.sfdc.pages.opportunities.OpportunityHome;
+import java.util.Map;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Map;
+import org.fundacionjala.sfdc.framework.selenium.Navigator;
+import org.fundacionjala.sfdc.framework.utils.JsonMapper;
+import org.fundacionjala.sfdc.pages.opportunities.OpportunityDetail;
+import org.fundacionjala.sfdc.pages.opportunities.OpportunityForm;
+import org.fundacionjala.sfdc.pages.opportunities.OpportunityHome;
 
 import static org.fundacionjala.sfdc.pages.opportunities.OpportunityFields.OPPORTUNITY_NAME;
 import static org.testng.Assert.assertFalse;
