@@ -2,7 +2,6 @@ package org.fundacionjala.sfdc.tests.cases;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.pages.AppLauncher;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.cases.CasesHome;
 import org.fundacionjala.sfdc.pages.cases.CaseInformation;
@@ -17,7 +16,7 @@ import org.testng.annotations.Test;
 import java.util.Map;
 
 /**
- * This class manage the test create.
+ * This class manage the test create .
  */
 public class CreateCases {
     private static final String CASES_DATA_PATH = "cases/CreateCasesData.json";
@@ -31,7 +30,6 @@ public class CreateCases {
      */
     @BeforeMethod
     public void setUp() {
-        LoginPage.loginAsPrimaryUser();
         MainApp mainApp = new MainApp();
         AppLauncher appLauncher = mainApp.clickAppLauncher();
         casesHome = appLauncher.clickOnCasesHome();

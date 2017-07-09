@@ -35,6 +35,15 @@ public class PostContainer extends AbstractBasePage {
     private WebElement clickConfirmDelete;
 
 
+    @FindBy(css = "a[title=Comment]")
+    @CacheLookup
+    private WebElement commentButton;
+
+    @FindBy(xpath = "//span[text()='Comment']")
+    @CacheLookup
+    private WebElement confirmCommentButton;
+
+
     /**
      * Deletes a determined post.
      *
@@ -105,5 +114,22 @@ public class PostContainer extends AbstractBasePage {
         CommonActions.clickElement(postContainer);
         return new PostForm();
 
+    }
+
+    /**
+     * .click on commentButton.
+     *
+     * @return PostForm
+     */
+    public PostForm clickCommentButton() {
+        CommonActions.clickElement(commentButton);
+        return new PostForm();
+    }
+
+    /**
+     * click on confirm comment button .
+     */
+    public void confirmComment() {
+        CommonActions.clickElement(confirmCommentButton);
     }
 }

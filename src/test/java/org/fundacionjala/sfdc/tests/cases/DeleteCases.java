@@ -2,7 +2,6 @@ package org.fundacionjala.sfdc.tests.cases;
 
 import org.fundacionjala.sfdc.framework.utils.JsonMapper;
 import org.fundacionjala.sfdc.pages.AppLauncher;
-import org.fundacionjala.sfdc.pages.LoginPage;
 import org.fundacionjala.sfdc.pages.MainApp;
 import org.fundacionjala.sfdc.pages.cases.CaseDetail;
 import org.fundacionjala.sfdc.pages.cases.CaseInformation;
@@ -16,7 +15,7 @@ import java.util.Map;
 import static org.testng.Assert.assertFalse;
 
 /**
- * This is in charge to execute the test Delete Case .
+ * This is in charge to execute the test Delete Case.
  */
 public class DeleteCases {
     private static final String CASES_DATA_PATH = "cases/CreateCasesData.json";
@@ -30,7 +29,6 @@ public class DeleteCases {
      */
     @BeforeMethod
     public void setUp() {
-        LoginPage.loginAsPrimaryUser();
         MainApp mainApp = new MainApp();
         AppLauncher appLauncher = mainApp.clickAppLauncher();
         casesHome = appLauncher.clickOnCasesHome();
