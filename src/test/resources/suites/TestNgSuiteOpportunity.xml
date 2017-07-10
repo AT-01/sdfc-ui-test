@@ -5,8 +5,9 @@
     </listeners>
     <test name="Regression1">
         <classes>
-           <class name="org.fundacionjala.sfdc.tests.opportunity.DeleteOpportunity"/>
             <class name="org.fundacionjala.sfdc.tests.opportunity.CreateOpportunity"/>
+            <class name="org.fundacionjala.sfdc.tests.opportunity.EditOpportunity"/>
+            <class name="org.fundacionjala.sfdc.tests.opportunity.DeleteOpportunity"/>
         </classes>
     </test>
 </suite>
